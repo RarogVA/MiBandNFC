@@ -1,6 +1,6 @@
 # Manual bootstrap from Roundabout
 
-Target: the user's Mi Smart Band 10 Pro Ceramic GL (`miwear.watch.p67glt`), firmware **3.201.026** only. This adds a small Lua child to the existing lower NFC circle in the four normal Roundabout themes. Clock, metric resources, other buttons and AOD remain native. The separate candidate is **Roundabout RU NFC 2**, ID `999999992`; released IDs `999999995` and `999999994` are immutable inputs.
+Target: the user's Mi Smart Band 10 Pro Ceramic GL (`miwear.watch.p67glt`), firmware **3.201.026** only. This adds a small Lua child to the existing lower NFC circle in the four normal Roundabout themes. Clock, metric resources, other buttons and AOD remain native. The separate candidate is **Roundabout RU NFC 3**, ID `999999991`; released IDs `999999995` and `999999994` are immutable inputs. This fresh ID avoids Notify reusing the already-installed ID `999999992`; the previous NFC 2 files are preserved. Only the face ID and its 33 localized titles change from the UI3 NFC 2 candidate; the Lua, core/UI ELFs, icons and all live/preview resources are identical.
 
 Opening the face performs no shell command and loads no module. The first manual tap verifies model/firmware, copies the embedded files to `/data/tag_catalog`, loads the catalog core and native page, and requests a deferred normal native launch. A core failure still permits the page to show FAIL. Lua stops intercepting only after the exact `/tmp/nfc_tags_catalog_ui_ready` marker confirms native registration; an `insmod`/loaded marker alone is insufficient. A bounded 100ms timer checks this marker for at most three seconds, then pauses and displays REBOOT on failure. Already-ready faces need no timer. The existing native app-ID action handles subsequent taps. This is a bootstrap after a manual tap, not a boot service. No START/APDU/RF command is sent by the bootstrap.
 
@@ -34,16 +34,17 @@ build/shortcut-research-venv/bin/python tags/bootstrap/build_face.py \
   --ui tags/launcher/build/nfc_tags_catalog_ui_v3.elf \
   --extra left.bin=PATH_TO_LEFT_ICON \
   --extra right.bin=PATH_TO_RIGHT_ICON \
-  --extra refresh.bin=PATH_TO_REFRESH_ICON
+  --extra refresh.bin=PATH_TO_REFRESH_ICON \
+  --output build/roundabout-ru-nfc3.face
 ```
 
 The append-only packer verifies the frozen baseline and exact firmware hashes, round-trips the original recorder FileResource, re-reads every embedded file, validates Widget references, checks every preserved resource and restricts mutations of the original prefix to explicit index/header fields. The format permits a 24-bit file length; the old recorder-template ELF slot limits do not apply. The four original gallery images remain intact at this stage; the separate horizontal-label pass can update them afterward.
 
 ```sh
 build/shortcut-research-venv/bin/python tags/roundabout/level_labels.py \
-  --input build/roundabout-ru-nfc2.face \
-  --output build/roundabout-ru-nfc2-final.face \
-  --preview build/roundabout-ru-nfc2-final.png
+  --input build/roundabout-ru-nfc3.face \
+  --output build/roundabout-ru-nfc3-final.face \
+  --preview build/roundabout-ru-nfc3-final.png
 ```
 
 This final pass levels all 80 bottom-label resources (five metric options, both sides, normal/AOD themes) to zero rotation. It keeps the compiled icon pixels exact and updates the four gallery previews only within old/new lettering support. It leaves numeric data, positions, arcs, native action flags and bootstrap files unchanged. It uses the saved original ZIP, the existing localization map, Pillow 11.3 and the fingerprinted Arial Bold font; the baseline glyph comparison fails closed if rasterization differs. The source and previous released faces are not overwritten.
@@ -51,11 +52,11 @@ This final pass levels all 80 bottom-label resources (five metric options, both 
 The right Calories and heart-rate labels additionally move 12 pixels right with Y unchanged. Numeric values retain their original rotation, positions, formatting, resources and gallery pixels. Only text labels are leveled:
 
 ```sh
-build/shortcut-research-venv/bin/python tags/roundabout/check_clearance.py
-build/shortcut-research-venv/bin/python tags/bootstrap/verify_final.py
+build/shortcut-research-venv/bin/python tags/roundabout/check_clearance.py --face build/roundabout-ru-nfc3-final.face
+build/shortcut-research-venv/bin/python tags/bootstrap/verify_final.py --face build/roundabout-ru-nfc3-final.face
 ```
 
-The installable candidate is then `build/roundabout-ru-nfc2-final.face`. The clearance check uses all actual progress-frame alpha masks and confirms three empty pixels before Calories and two before heart rate, on both sides in all eight themes. Icon columns remain unchanged. Final readback checks every embedded file against its source, every original data/numeric resource byte-for-byte, the native app ID and immutable previous releases. Gallery numeric pixels remain unchanged.
+The installable candidate is then `build/roundabout-ru-nfc3-final.face`. The clearance check uses all actual progress-frame alpha masks and confirms three empty pixels before Calories and two before heart rate, on both sides in all eight themes. Icon columns remain unchanged. Final readback checks every embedded file against its source, every original data/numeric resource byte-for-byte, the native app ID and immutable previous releases. Gallery numeric pixels remain unchanged.
 
 `test.py` runs the actual Lua with a mocked filesystem, shell and LVGL using `lupa.lua54`: no command on render, cold load order and READY handshake, warm pass-through, loaded-without-READY timeout, late READY, core failure with UI recovery, incompatible resident core, partial UI load, firmware mismatch, mkdir EEXIST with writable storage, unwritable storage and distinct UI source/target/request errors. It also checks v1/v2 loaded/partial/READY upgrade guards, preservation of both older ELF files, copying the refresh icon, and removal of the inherited root border before restoring dimensions. Twenty host tests pass. The launch wrapper also compiles for Cortex-M33 with the project's warning-as-error flags, and all four fingerprints match the saved firmware.
 

@@ -15,8 +15,8 @@ ROOT=Path(__file__).resolve().parents[2]
 BASE_SHA="2a7e7ff2b89b0845bf1cf96a63a0f844082d5be8d47b5c38312a480870bfa475"
 FW_SHA="66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40"
 NORMAL=(0,2,3,4)
-FACE_ID="999999992"
-FACE_NAME="Roundabout RU NFC 2"
+FACE_ID="999999991"
+FACE_NAME="Roundabout RU NFC 3"
 
 def require(ok,message):
     if not ok: raise ValueError(message)
@@ -166,7 +166,7 @@ def main():
     p.add_argument("--core",type=Path,required=True)
     p.add_argument("--ui",type=Path,required=True)
     p.add_argument("--extra",action="append",default=[],metavar="NAME=PATH")
-    p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc2.face")
+    p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc3.face")
     p.add_argument("--report",type=Path,default=Path(__file__).with_name("validation.json"))
     build(p.parse_args())
 

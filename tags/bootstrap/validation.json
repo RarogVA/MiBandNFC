@@ -1,8 +1,8 @@
 {
-  "face_id": "999999992",
-  "name": "Roundabout RU NFC 2",
+  "face_id": "999999991",
+  "name": "Roundabout RU NFC 3",
   "bytes": 3398011,
-  "sha256": "b3630679022a4013149e7f4646e7d3c54133196f3290d5d54a6ebe679461497b",
+  "sha256": "351c2b6c74f8be0b4050b0a88b11cf16ccb58853ec3ca3e43d8c47f6685fcf81",
   "ui_version": 3,
   "ui_module": "NFC_Tags_Catalog_UI_V3",
   "core_version": 1,

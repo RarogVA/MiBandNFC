@@ -21,5 +21,15 @@
   "nfc_readback": "not performed on this version",
   "user_confirmed_sync": true,
   "ui2_face_sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
-  "ui3_candidate_sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c"
+  "ui3_candidate_sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c",
+  "ui3_transfer": "Prior ID992 UI3: Notify completed, but user reports the app cannot replace an existing face. This is not proof that UI3 was active.",
+  "ui3_fresh_identity": {
+    "date": "2026-11-14",
+    "name": "Roundabout RU NFC 3",
+    "face_id": "999999991",
+    "face_sha256": "219ef64db3add938ff684aadfa289585a2c8b88ffade47ca1b1b9284d5dfc180",
+    "phone_file": "Roundabout-RU-NFC3-UI3.face",
+    "transfer": "Selected exact fresh-ID file in Notify; observed 99%, then Update completed.",
+    "visual_acceptance": "pending user check after selecting NFC3 and rebooting"
+  }
 }

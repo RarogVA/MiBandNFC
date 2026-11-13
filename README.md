@@ -19,7 +19,7 @@ Mi Smart Band 10 Pro Ceramic Global (`miwear.watch.p67glt`, прошивка
 ## Статус
 
 Текущий предварительный релиз **v0.4.2-alpha.1**: [APK 0.4.1](releases/catalog/tag-bridge-0.4.1.apk),
-[Roundabout RU NFC 2 / UI3](releases/catalog/roundabout-ru-nfc2-p67glt.face),
+[Roundabout RU NFC 3 / UI3](releases/catalog/roundabout-ru-nfc3-p67glt.face),
 [состав и контрольные суммы](releases/catalog/manifest.json),
 [описание релиза](docs/releases/v0.4.2-alpha.1.md).
 
@@ -159,7 +159,7 @@ Android требует `android.permission.BIND_NFC_SERVICE` уровня `signa
 
 ## Последний эксперимент: Roundabout + NFC-метки
 
-Новая сборка **Roundabout RU NFC 2** объединяет загрузчик и экран каталога:
+Новая сборка **Roundabout RU NFC 3** объединяет загрузчик и экран каталога:
 первое нажатие нижнего круга после перезагрузки загружает модули и открывает
 «NFC-метки». На одном экране — карточка 256×128, кнопки переключения,
 «Обновить», бейдж состояния модуля и маленькая кнопка с иконкой обновления.

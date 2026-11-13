@@ -1,16 +1,19 @@
 {
-  "name": "Roundabout RU NFC 2 + Catalog v1 + UI3",
-  "date": "2026-11-13",
+  "name": "Roundabout RU NFC 3 + Catalog v1 + UI3",
+  "date": "2026-11-14",
   "model": "miwear.watch.p67glt",
   "firmware": "3.201.026",
-  "face_id": "999999992",
+  "face_id": "999999991",
   "status": "UI1/UI2 catalog operation confirmed; UI3 border and layout acceptance pending",
   "hardware": {
     "apk_installed": true,
-    "face_transferred": false,
+    "face_transferred": true,
     "first_tap_bootstrap": false,
     "catalog_sync": "confirmed on unchanged core with UI1/UI2",
-    "nfc_readback": false
+    "nfc_readback": false,
+    "visual_acceptance_pending": true,
+    "prior_id_replacement": "User reports Notify does not replace an existing face. Fresh ID991 created for UI3.",
+    "notify_progress_then_completion": "99% then Update completed; freshly selected NFC3 ID991 file"
   },
   "features": [
     "Horizontal bottom captions; all numeric resources and their original angles/positions preserved",
@@ -25,10 +28,6 @@
     "UI3: reset owned native and Lua root styles to remove borders; no message row; 32px vertical margins"
   ],
   "files": {
-    "roundabout-ru-nfc2-p67glt.face": {
-      "bytes": 3714694,
-      "sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c"
-    },
     "catalog-core-v1.elf": {
       "bytes": 37840,
       "sha256": "f3d3fde87de70310adccfb318ef06092f7523635c993752521f56f956a5e17f1"
@@ -59,15 +58,15 @@
     },
     "face-validation.json": {
       "bytes": 1679,
-      "sha256": "8326e267edfc1631e604b8dc1dd9239d3e2517f3c624bb03931c98a4b7dea74a"
+      "sha256": "d884957c2a24b7c10fe5ec4f857ddeeda409fb78e18d06c547f5c79f3a16cff4"
     },
     "labels-validation.json": {
       "bytes": 33352,
-      "sha256": "ea1fc7104720a3c6f0935174bc2f75e5d658d35784f2fcaa07c2ad216f680173"
+      "sha256": "c0d40d8ae5c87aaece278f4ffe310c9b2f4891d4644d410232e5683e41698f96"
     },
     "clearance-validation.json": {
       "bytes": 5223,
-      "sha256": "686be4030c0edb316df8d336e41fc25f3688c360041dc3e3318f1e2941a650a4"
+      "sha256": "7f86fe3ff01dd364dc87fe71aecbe639333db4b91ed9012f67807d26035a1cca"
     },
     "tag-bridge-0.4.1.apk": {
       "bytes": 62152,
@@ -88,6 +87,14 @@
     "ui-v3-upgrade-validation.json": {
       "bytes": 1529,
       "sha256": "4e003c4a05e54521eb07d1481ce6b7fe1c1fba94ca402511c1e276309c682b4e"
+    },
+    "roundabout-ru-nfc3-p67glt.face": {
+      "bytes": 3714694,
+      "sha256": "219ef64db3add938ff684aadfa289585a2c8b88ffade47ca1b1b9284d5dfc180"
+    },
+    "fresh-identity-validation.json": {
+      "bytes": 1100,
+      "sha256": "dcccf3276a00a0412c5f4ef50b723aad8fad72bf27564870b62cd0abb39811ab"
     }
   },
   "android_version": "0.4.1",

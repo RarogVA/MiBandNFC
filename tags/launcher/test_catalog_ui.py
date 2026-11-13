@@ -23,7 +23,7 @@ for source in ("tags/launcher/catalog_ui_bindings.c", "tags/bootstrap/launch.c")
         assert len(expected) == 24 and offset >= 0
         assert firmware[offset:offset+24] == expected, (source, address)
         fingerprints.append(address)
-assert len(fingerprints) == 10
+assert len(fingerprints) == 11
 # The only exposed loader command has fixed module name and path. The C mock
 # proves all UI paths establish a persistent attempt guard before invoking it.
 launch = (ROOT / "tags/bootstrap/launch.c").read_text()
@@ -34,10 +34,10 @@ subprocess.run(["clang", "-std=c11", "-Wall", "-Wextra", "-Werror", "-g",
                 "tags/launcher/test_catalog_ui.c", "-o", str(exe)], cwd=ROOT, check=True)
 result = subprocess.run([str(exe)], cwd=ROOT, text=True, capture_output=True)
 report = {"result": "PASS" if result.returncode == 0 else "FAIL",
-          "ui_profile": "catalog-ui-v2",
+          "ui_profile": "catalog-ui-v3",
           "sanitizers": ["address", "undefined"], "output": result.stdout,
           "errors": result.stderr, "firmware_fingerprints": fingerprints,
-          "layout_scope": "336x480 containment; 256x128 card aligned with navigation/refresh; compact status and icon-only reload; no heading/module label; sibling separation and font-style choice. Actual glyph rendering requires hardware.",
+          "layout_scope": "Owned 336x480 backdrop resets styles before geometry and uses pure black; PM parent unchanged. 256x128 card aligned with navigation/refresh, 32px top/bottom margins; six root children without heading/module/notice label. Errors go to diagnostic file. Actual glyph rendering requires hardware.",
           "hardware_tested": False,
           "source_sha256": {name: hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sources}}
 (OUT / "catalog-ui-host-tests.json").write_text(json.dumps(report, indent=2) + "\n")

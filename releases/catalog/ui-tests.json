@@ -1,13 +1,14 @@
 {
   "result": "PASS",
-  "ui_profile": "catalog-ui-v2",
+  "ui_profile": "catalog-ui-v3",
   "sanitizers": [
     "address",
     "undefined"
   ],
-  "output": "catalog UI trust, geometry, registration, selection, lifecycle and guarded loader: 341 checks PASS\n",
+  "output": "catalog UI trust, geometry, registration, selection, lifecycle and guarded loader: 379 checks PASS\n",
   "errors": "",
   "firmware_fingerprints": [
+    "0x2c5582b8",
     "0x2c5599a0",
     "0x2c5587a0",
     "0x2c557dd0",
@@ -19,14 +20,14 @@
     "0x2c787f74",
     "0x2c2025d4"
   ],
-  "layout_scope": "336x480 containment; 256x128 card aligned with navigation/refresh; compact status and icon-only reload; no heading/module label; sibling separation and font-style choice. Actual glyph rendering requires hardware.",
+  "layout_scope": "Owned 336x480 backdrop resets styles before geometry and uses pure black; PM parent unchanged. 256x128 card aligned with navigation/refresh, 32px top/bottom margins; six root children without heading/module/notice label. Errors go to diagnostic file. Actual glyph rendering requires hardware.",
   "hardware_tested": false,
   "source_sha256": {
-    "tags/launcher/test_catalog_ui.c": "c2800aa78a201d6b1c2f4feaee42994db890ac371d02b85dac8e6b6f8615bb41",
-    "tags/launcher/test_catalog_ui.py": "38c388abe33ededf0a2c7b6a2dff3bd538745824043f1807b5d40afb71293d03",
-    "tags/launcher/catalog_ui.c": "72c8c21cca94a3424693febba1f3c4009ed12318be64cd78ed30f5d975070264",
-    "tags/launcher/catalog_ui_bindings.c": "04074fc7b9df9522525f545d08f2faee216d7098adbd5c8214c97dde6edf300b",
-    "tags/launcher/catalog_ui_bindings.h": "82d8ff708761f5b27eeb6e367721696172194cdcd691a7c30e146c30a9396d78",
+    "tags/launcher/test_catalog_ui.c": "4e5adfcea9dc7a3d91ceedebc7521ae33631e44d092a8fb6ff2a262ce967a489",
+    "tags/launcher/test_catalog_ui.py": "be86057e9be0f584387aeacf9ed009fc5552238e07dff82e08aa9e0bee77928d",
+    "tags/launcher/catalog_ui.c": "73cfcad0b6c624b9e2300821aa92d504571d5283b0aeed0e76e017c4149e4a27",
+    "tags/launcher/catalog_ui_bindings.c": "c6654299e2bb56fddf7e6a6b8f11de0404e20f066f8ba445e7843f11a482defe",
+    "tags/launcher/catalog_ui_bindings.h": "20a811daef45846bb5c95d871b55cebd3c4d20c3f1a39967799b7b427462a1f5",
     "tags/launcher/bindings.h": "47075d07482d8edf3ce5b889cbd069523831d5f56b789a743406cae8f21f4a7f",
     "tags/launcher/abi.h": "00550a11242f26af9f91cb966977fc66910f709a96fab484e5bee61a0a19f1de",
     "tags/catalog/api.h": "dc97d9743b716d9ca33841e035d1f5743df218db732deb6053c60889586b6ec3",

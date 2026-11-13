@@ -1,12 +1,12 @@
 {
-  "input_sha256": "a9d798b9e7f612b31e1bb7368f7714dee67e4353a9b34dfaa77f91deb5ae3cc8",
-  "output_sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
-  "bytes": 3714298,
+  "input_sha256": "b3630679022a4013149e7f4646e7d3c54133196f3290d5d54a6ebe679461497b",
+  "output_sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c",
+  "bytes": 3714694,
   "source_sha256": "ef28f70549660bc5f8a126c6e4dbcc53e13511d222863e405eade28b03766738",
   "changed_images": 80,
   "changed_resource_payloads": 80,
   "unchanged_resource_entries": 2424,
-  "changed_prefix_bytes": 392,
+  "changed_prefix_bytes": 391,
   "records": [
     {
       "uid": "0x2000006",

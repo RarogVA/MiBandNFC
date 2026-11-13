@@ -1,0 +1,54 @@
+{
+  "before_sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
+  "after_sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c",
+  "changed_resources": [
+    {
+      "theme": 0,
+      "before_name": "app/lua/main.lua",
+      "after_name": "app/lua/main.lua"
+    },
+    {
+      "theme": 0,
+      "before_name": "app/lua/catalog_ui_v2.elf",
+      "after_name": "app/lua/catalog_ui_v3.elf"
+    },
+    {
+      "theme": 2,
+      "before_name": "app/lua/main.lua",
+      "after_name": "app/lua/main.lua"
+    },
+    {
+      "theme": 2,
+      "before_name": "app/lua/catalog_ui_v2.elf",
+      "after_name": "app/lua/catalog_ui_v3.elf"
+    },
+    {
+      "theme": 3,
+      "before_name": "app/lua/main.lua",
+      "after_name": "app/lua/main.lua"
+    },
+    {
+      "theme": 3,
+      "before_name": "app/lua/catalog_ui_v2.elf",
+      "after_name": "app/lua/catalog_ui_v3.elf"
+    },
+    {
+      "theme": 4,
+      "before_name": "app/lua/main.lua",
+      "after_name": "app/lua/main.lua"
+    },
+    {
+      "theme": 4,
+      "before_name": "app/lua/catalog_ui_v2.elf",
+      "after_name": "app/lua/catalog_ui_v3.elf"
+    }
+  ],
+  "added_resources": [],
+  "all_other_resource_payloads_byteidentical": true,
+  "all_four_preview_payloads_byteidentical": true,
+  "core_elf_and_three_icons_unchanged": true,
+  "live_circle_editor_labels_and_numeric_resources_unchanged": true,
+  "lua_default_border_removed_before_setting_size": true,
+  "host_lua_tests_passed": 20,
+  "hardware_validated": false
+}

@@ -1,16 +1,16 @@
 {
   "face_id": "999999992",
   "name": "Roundabout RU NFC 2",
-  "bytes": 3714298,
-  "sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
-  "ui_version": 2,
+  "bytes": 3714694,
+  "sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c",
+  "ui_version": 3,
   "core_version": 1,
   "embedded_files": [
     {
       "name": "app/lua/main.lua",
       "source": "tags/bootstrap/main.lua",
-      "bytes": 6786,
-      "sha256": "1b41cd5898dccc0772a93dee9415e7ae56112e7d3474739316dce11f9e7c25c5"
+      "bytes": 7026,
+      "sha256": "1a5583c0c2cbf8b57cdd67ac0c5ccc9231f53ca93a70756051019be012d046bf"
     },
     {
       "name": "app/lua/catalog_core_v1.elf",
@@ -19,10 +19,10 @@
       "sha256": "f3d3fde87de70310adccfb318ef06092f7523635c993752521f56f956a5e17f1"
     },
     {
-      "name": "app/lua/catalog_ui_v2.elf",
-      "source": "tags/launcher/build/nfc_tags_catalog_ui_v2.elf",
-      "bytes": 10628,
-      "sha256": "b9acb2d04c0ca40528a39786af18723c6128f5277bdf8d0550fad079689ebcdc"
+      "name": "app/lua/catalog_ui_v3.elf",
+      "source": "tags/launcher/build/nfc_tags_catalog_ui_v3.elf",
+      "bytes": 10784,
+      "sha256": "721431bcd5e662a1722ef363d4dd0aef3d2ce9e330bf36368a8da02b2126b72d"
     },
     {
       "name": "app/lua/left.bin",

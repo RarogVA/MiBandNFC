@@ -66,7 +66,7 @@ def build(args):
     require(file_resource(reference_name,reference_data)==recorder[offset:offset+size],"FileResource reference roundtrip failed")
     resources=[("app/lua/main.lua",args.lua.read_bytes()),
                ("app/lua/catalog_core_v1.elf",args.core.read_bytes()),
-               ("app/lua/catalog_ui_v2.elf",args.ui.read_bytes())]
+               ("app/lua/catalog_ui_v3.elf",args.ui.read_bytes())]
     for name,payload in resources[1:]:require(payload[:4]==b"\x7fELF",f"Not an ELF: {name}")
     for spec in args.extra:
         name,path=spec.split("=",1)
@@ -145,7 +145,7 @@ def build(args):
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_bytes(output)
     report={"face_id":FACE_ID,"name":FACE_NAME,"bytes":len(output),"sha256":sha(output),
-            "ui_version":2,"ui_module":"NFC_Tags_Catalog_UI_V2","core_version":1,
+            "ui_version":3,"ui_module":"NFC_Tags_Catalog_UI_V3","core_version":1,
             "baseline_sha256":BASE_SHA,"firmware_sha256":FW_SHA,"normal_themes":list(NORMAL),
             "unchanged_resource_entries":unchanged,"changed_prefix_bytes":len(changed),
             "editor_boundary":{"uid":hex(editbox_uid),"old_pixels":[69,69],"new_pixels":[84,84],"widget_position":[126,274],"themes":8},

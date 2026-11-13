@@ -24,7 +24,9 @@ the full ELF. Never truncate it or replace a frozen released core. The original
 The new profile is enabled only with `TAG_CATALOG_PROFILE` and uses separate
 build outputs. First-tap bootstrap, catalog synchronization and selection have
 been observed on the band with UI1; see the [hardware observation](../../docs/evidence/tags/catalog-v1-observation.json).
-UI2, catalog NFC readback and reboot persistence still require hardware checks;
+A later user photograph also confirms UI2 showing the selected tag and module
+OK. UI3 fixes the visible border and spacing without changing this core.
+UI3, catalog NFC readback and reboot persistence still require hardware checks;
 the [current integration status](../../docs/catalog-v1.md) distinguishes these
 from the earlier single-tag NFC pass.
 

@@ -2,7 +2,7 @@
 -- Evaluating this file never loads a module or starts NFC. Only a manual tap
 -- can copy/load the modules. The ordinary Widget remains the app launcher.
 local lvgl=require("lvgl")
-local UI_VERSION="catalog_ui_v2\n"
+local UI_VERSION="catalog_ui_v3\n"
 local CORE_VERSION="catalog_v1\n"
 local function read(path,n)
  local f=io.open(path,"rb");if not f then return nil end
@@ -41,7 +41,11 @@ local function load(target,name)
  if not mark(attempted,"1\n") then return false end
  return execute("insmod "..target.." "..name)
 end
-local root=lvgl.Object(nil,{w=84,h=84,bg_opa=0})
+local root=lvgl.Object(nil,{})
+-- The theme's default Object style has a visible border. Remove it before
+-- setting our dimensions: remove_style_all also removes local size styles.
+root:remove_style_all()
+root:set{w=84,h=84,bg_opa=0}
 root:clear_flag(lvgl.FLAG.SCROLLABLE)
 root:clear_flag(lvgl.FLAG.EVENT_BUBBLE)
 local status=nil
@@ -117,7 +121,8 @@ else
    show(waiting and "WAIT" or "REBOOT");busy=false;return
   end
   if read("/tmp/NFC_Tags_Catalog_UI_V1_attempted") or
-     read("/tmp/NFC_Tags_Catalog_UI_V2_attempted") then
+     read("/tmp/NFC_Tags_Catalog_UI_V2_attempted") or
+     read("/tmp/NFC_Tags_Catalog_UI_V3_attempted") then
    show("REBOOT");busy=false;return
   end
   show("LOAD")
@@ -133,7 +138,7 @@ else
   -- Preserve both ELFs for the native retry button before attempting insmod.
   -- Icon failures do not prevent the native page from loading.
   local core_copied=copy("catalog_core_v1.elf","/data/tag_catalog/core-catalog.elf")
-  local ui_copied,ui_error,ui_path=copy("catalog_ui_v2.elf","/data/tag_catalog/ui-catalog-v2.elf")
+  local ui_copied,ui_error,ui_path=copy("catalog_ui_v3.elf","/data/tag_catalog/ui-catalog-v3.elf")
   copy("left.bin","/data/tag_catalog/left.bin")
   copy("right.bin","/data/tag_catalog/right.bin")
   copy("refresh.bin","/data/tag_catalog/refresh.bin")
@@ -148,7 +153,7 @@ else
   if not mark("/tmp/nfc_tags_ui_open_request",UI_VERSION) then
    failure("UI REQ","/tmp/nfc_tags_ui_open_request");busy=false;return
   end
-  if not load("/data/tag_catalog/ui-catalog-v2.elf","NFC_Tags_Catalog_UI_V2") then
+  if not load("/data/tag_catalog/ui-catalog-v3.elf","NFC_Tags_Catalog_UI_V3") then
    show("REBOOT");busy=false;return
   end
   if not mark("/tmp/nfc_tags_ui_loaded",UI_VERSION) then

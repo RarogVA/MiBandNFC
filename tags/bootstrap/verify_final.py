@@ -11,7 +11,7 @@ def main():
     require(data[0x28:0x68].split(b"\0")[0]==b"999999992","Final ID changed")
     files={"app/lua/main.lua":ROOT/"tags/bootstrap/main.lua",
            "app/lua/catalog_core_v1.elf":ROOT/"tags/catalog/build/catalog_core_v1.elf",
-           "app/lua/catalog_ui_v2.elf":ROOT/"tags/launcher/build/nfc_tags_catalog_ui_v2.elf",
+           "app/lua/catalog_ui_v3.elf":ROOT/"tags/launcher/build/nfc_tags_catalog_ui_v3.elf",
            "app/lua/left.bin":ROOT/"tags/launcher/icons/left.bin",
            "app/lua/right.bin":ROOT/"tags/launcher/icons/right.bin",
            "app/lua/refresh.bin":ROOT/"tags/launcher/icons/refresh.bin"}
@@ -46,7 +46,7 @@ def main():
     for length in lengths:
         require(title[cursor:cursor+length].decode()=="Roundabout RU NFC 2","Unexpected localized title");cursor+=length
     require(cursor==len(title),"Title bounds mismatch")
-    report={"face_id":"999999992","name":"Roundabout RU NFC 2","bytes":len(data),"sha256":sha(data),"ui_version":2,"core_version":1,
+    report={"face_id":"999999992","name":"Roundabout RU NFC 2","bytes":len(data),"sha256":sha(data),"ui_version":3,"core_version":1,
             "embedded_files":[{"name":name,"source":str(path.relative_to(ROOT)),"bytes":path.stat().st_size,"sha256":sha(path.read_bytes())} for name,path in files.items()],
             "verified_normal_themes":list(NORMAL),"native_app_id":212,"original_data_resources_byteidentical":unchanged_numeric,"previous_releases_unchanged":True,
             "hardware_validated":False}

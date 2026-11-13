@@ -78,22 +78,40 @@
   "hardware_validated": false,
   "ready_handshake": {
     "marker": "/tmp/nfc_tags_catalog_ui_ready",
-    "exact_value": "catalog_ui_v2\n",
+    "exact_value": "catalog_ui_v3\n",
     "loaded_marker_is_not_ready": true,
     "timer_period_ms": 100,
     "maximum_timer_ticks": 30,
     "late_ready": "onPressed event1 sets EVENT_BUBBLE before native SHORT_CLICKED event4",
     "lua_callback_dispatch": "Calls Lua with 2 arguments, 0 results; no stop-bubbling call or event mutation",
-    "ui_version": 2,
-    "legacy_loaded_or_ready_requires_reboot": "catalog_ui_v1\n",
+    "ui_version": 3,
+    "legacy_loaded_or_ready_requires_reboot": [
+      "catalog_ui_v1\n",
+      "catalog_ui_v2\n"
+    ],
     "attempt_guards": [
       "/tmp/NFC_Tags_Catalog_UI_V1_attempted",
-      "/tmp/NFC_Tags_Catalog_UI_V2_attempted"
+      "/tmp/NFC_Tags_Catalog_UI_V2_attempted",
+      "/tmp/NFC_Tags_Catalog_UI_V3_attempted"
     ]
   },
   "timer_api_reference": {
     "source": "references/recorder.face app/lua/main.lua",
     "sha256": "5da7c06dbb600d50b1fcf0500916894371b7633135850cfdfc32db80afa42b58",
     "syntax": "lvgl.Timer{period=100,paused=true,cb=function(t)...end}; timer:resume(); timer:pause()"
+  },
+  "lua_root_style_reset": {
+    "binding": "0x2c7e9c31",
+    "native": "0x2c5582b8",
+    "start": "0x2c7e9c30",
+    "end": "0x2c7e9c9a",
+    "bytes": "b0b5012100af044612f632fb28b105460121204612f648ff48b90121154a204614f6a6f900206ef52ffb0020b0bd124a4ff0ff31204612f6a3fd1049204612f63bfc4ff0ff316ff00102204612f660f86ff0030148b1204611f67cfd28680028dbd06ef511fb0020b0bd",
+    "order": [
+      "Object(nil,{})",
+      "remove_style_all()",
+      "set{w=84,h=84,bg_opa=0}",
+      "flags"
+    ],
+    "effect": "Only the bootstrap-owned object loses its default theme border; no native Widget, editor frame or metric resource is changed."
   }
 }

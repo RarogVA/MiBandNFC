@@ -8,7 +8,7 @@
 static const char app_name[]="dev.mbapdu.tags";
 static ui_app app;
 static ui_page page,*pages[1];
-static ui_obj *title,*badge,*module_badge,*module_text,*hint,*previous,*next;
+static ui_obj *title,*badge,*module_badge,*module_text,*previous,*next;
 static ui_timer *refresh_timer,*load_timer;
 static unsigned refresh_count,initialized;
 static int initialization_result=-1;
@@ -32,6 +32,7 @@ static int file_write(const char *path,const char *text) {
     return wrote==n&&!closed?0:-1;
 }
 static void diagnostic(const char *text) {(void)file_write("/tmp/nfc_tags_ui_state",text);}
+static void notice(const char *text) {(void)file_write("/tmp/nfc_tags_ui_notice",text);}
 static int exists(const char *path) {
     void *f=ui_open(path,"r");if(!f)return 0;
     /* An existing load guard must remain a guard even if close fails. */
@@ -116,85 +117,87 @@ static void choose(int delta) {
     tag_catalog_entry entry;
     if(api->get(revision,(uint16_t)index,&entry))return;
     int rc=api->select(revision,entry.id,entry.revision);
-    ui_text(hint,rc==0?"":rc==-2?"Дождитесь остановки NFC":"Обновите каталог на Pixel");
+    notice(rc==0?"":rc==-2?"Дождитесь остановки NFC":"Обновите каталог на Pixel");
     if(!rc)delayed_refresh();
 }
 static void go_previous(ui_event *e){(void)e;choose(-1);}
 static void go_next(ui_event *e){(void)e;choose(1);}
-static void refreshed(ui_event *e){(void)e;if(!title||!hint)return;ui_text(hint,"");update();}
+static void refreshed(ui_event *e){(void)e;if(!title)return;notice("");update();}
 static void load_core(ui_timer *t) {
     ui_timer_delete(t);load_timer=0;
-    if(provider()){if(hint)ui_text(hint,"Модуль уже загружен");update();return;}
+    if(provider()){notice("Модуль уже загружен");update();return;}
     if(exists("/tmp/Tag_Catalog_V1_attempted")||exists("/tmp/apdu_lab_loaded")||exists("/tmp/tag_catalog_loaded")) {
-        if(hint)ui_text(hint,"Нужна перезагрузка браслета");return;
+        notice("Нужна перезагрузка браслета");return;
     }
     if(file_write("/tmp/Tag_Catalog_V1_attempted","1\n")) {
-        if(hint)ui_text(hint,"Не удалось сохранить состояние");return;
+        notice("Не удалось сохранить состояние");return;
     }
     int rc=tag_bootstrap_insmod_core();
     if(rc==0)(void)file_write("/tmp/tag_catalog_v1_loaded","catalog_v1\n");
-    if(hint)ui_text(hint,rc==0?"Загрузка…":"Ошибка. Перезагрузите браслет");
+    notice(rc==0?"Загрузка…":"Ошибка. Перезагрузите браслет");
     if(title)delayed_refresh();
 }
 static void load_clicked(ui_event *e) {
-    (void)e;if(!title||!hint||load_timer)return;
+    (void)e;if(!title||load_timer)return;
     api=provider();
     if(api){tag_catalog_health h;int ok=api->health(&h)==0&&h.loop_live&&!h.error;
-        ui_text(hint,ok?"Модуль работает":"Нужна перезагрузка браслета");update();return;}
-    ui_text(hint,"Загрузка…");load_timer=ui_timer_create(load_core,50,0);
+        notice(ok?"Модуль работает":"Нужна перезагрузка браслета");update();return;}
+    notice("Загрузка…");load_timer=ui_timer_create(load_core,50,0);
 }
 static int create(void *pm,ui_obj *parent,void *data) {
     (void)pm;(void)data;if(!parent||title)return -1;
     ui_obj *root=ui_object(parent,0);if(!root)return -1;
+    /* A plain LVGL object inherits a border/radius from the system theme.
+     * Reset only our own background before restoring its explicit geometry. */
+    ui_remove_style_all(root);
     ui_size(root,336,480);ui_align(root,1,0,0);pads(root,0);ui_clear_flag(root,0x10u);
-    ui_bg(root,0xff050505u,0);ui_opa(root,255,0);
+    ui_bg(root,0xff000000u,0);ui_opa(root,255,0);
     /* Keep the original card width; halve its height. All main controls
      * share its horizontal bounds, without a page title or module caption. */
-    ui_obj *card=button(root,40,48,256,128,0);if(!card)goto failed;
+    ui_obj *card=button(root,40,32,256,128,0);if(!card)goto failed;
     ui_bg(card,0xff1c2531u,0);
     title=text(card,"Нет меток",12,20,232,48,20);
     ui_obj *type=button(card,12,88,112,28,0);if(!type)goto failed;
     ui_bg(type,0xff304661u,0);badge=text(type,"—",4,2,104,24,17);
-    previous=button(root,40,192,120,48,go_previous);
-    next=button(root,176,192,120,48,go_next);
+    previous=button(root,40,204,120,56,go_previous);
+    next=button(root,176,204,120,56,go_next);
     if(!previous||!next)goto failed;
     nav_icon(previous,"/data/tag_catalog/left.bin","‹");nav_icon(next,"/data/tag_catalog/right.bin","›");
-    ui_obj *refresh=button(root,40,256,256,48,refreshed);if(!refresh)goto failed;
-    (void)text(refresh,"Обновить",8,9,240,30,20);
-    module_badge=button(root,106,328,66,44,0);if(!module_badge)goto failed;
-    module_text=text(module_badge,"FAIL",3,9,60,28,20);
-    ui_obj *load=button(root,184,328,44,44,load_clicked);if(!load)goto failed;
+    ui_obj *refresh=button(root,40,304,256,56,refreshed);if(!refresh)goto failed;
+    (void)text(refresh,"Обновить",8,13,240,30,20);
+    module_badge=button(root,105,400,66,48,0);if(!module_badge)goto failed;
+    module_text=text(module_badge,"FAIL",3,10,60,28,20);
+    ui_obj *load=button(root,183,400,48,48,load_clicked);if(!load)goto failed;
     nav_icon(load,"/data/tag_catalog/refresh.bin","↻");
-    hint=text(root,"",16,392,304,28,17);
-    if(!title||!badge||!module_text||!hint)goto failed;
-    update();diagnostic("NFC_CATALOG_UI2\nPAGE_OPEN\n0\nEND\n");return 0;
+    if(!title||!badge||!module_text)goto failed;
+    update();diagnostic("NFC_CATALOG_UI3\nPAGE_OPEN\n0\nEND\n");return 0;
 failed:
     /* PM owns all created children, including a partial page. Never retain
      * partial handles or allow its callbacks to access missing siblings. */
-    title=badge=module_badge=module_text=hint=previous=next=0;api=0;
-    diagnostic("NFC_CATALOG_UI2\nUI_ALLOC\n-1\nEND\n");return -1;
+    title=badge=module_badge=module_text=previous=next=0;api=0;
+    diagnostic("NFC_CATALOG_UI3\nUI_ALLOC\n-1\nEND\n");return -1;
 }
 static int destroy(void *pm,ui_obj *root,void *data) {
     (void)pm;(void)root;(void)data;
     if(refresh_timer){ui_timer_delete(refresh_timer);refresh_timer=0;}
     if(load_timer){ui_timer_delete(load_timer);load_timer=0;}
-    title=badge=module_badge=module_text=hint=previous=next=0;api=0;
-    diagnostic("NFC_CATALOG_UI2\nREADY\n0\nEND\n");return 0;
+    title=badge=module_badge=module_text=previous=next=0;api=0;
+    diagnostic("NFC_CATALOG_UI3\nREADY\n0\nEND\n");return 0;
 }
 static const char *get_name(void){return "NFC-метки";}
 static void register_app(ui_timer *t) {
     ui_timer_delete(t);
-    if(ui_lookup(APP_ID)){diagnostic("NFC_CATALOG_UI2\nID_OCCUPIED\n-1\nEND\n");return;}
+    if(ui_lookup(APP_ID)){diagnostic("NFC_CATALOG_UI3\nID_OCCUPIED\n-1\nEND\n");return;}
     app.name=app_name;app.app_id=APP_ID;app.get_name=get_name;
     page.name="main";page.app_id=APP_ID;page.layer=1;page.on_create=create;page.on_destroy=destroy;pages[0]=&page;
     int rc=ui_install(&app,pages,1);ui_app *installed=ui_lookup(APP_ID);
-    if(rc||!installed||!equal(installed->name,app_name)){diagnostic("NFC_CATALOG_UI2\nREGISTER_FAILED\n-1\nEND\n");return;}
-    if(file_write("/tmp/nfc_tags_catalog_ui_ready","catalog_ui_v2\n")) {
-        diagnostic("NFC_CATALOG_UI2\nMARKER_FAILED\n-1\nEND\n");return;
+    if(rc||!installed||!equal(installed->name,app_name)){diagnostic("NFC_CATALOG_UI3\nREGISTER_FAILED\n-1\nEND\n");return;}
+    if(file_write("/tmp/nfc_tags_catalog_ui_ready","catalog_ui_v3\n")) {
+        diagnostic("NFC_CATALOG_UI3\nMARKER_FAILED\n-1\nEND\n");return;
     }
-    diagnostic("NFC_CATALOG_UI2\nREADY\n0\nEND\n");
+    diagnostic("NFC_CATALOG_UI3\nREADY\n0\nEND\n");
     char request[32];
-    if(file_read("/tmp/nfc_tags_ui_open_request",request,sizeof(request))>0&&equal(request,"catalog_ui_v2\n")) {
+    if(file_read("/tmp/nfc_tags_ui_open_request",request,sizeof(request))>0&&equal(request,"catalog_ui_v3\n")) {
         (void)file_write("/tmp/nfc_tags_ui_open_request","");
         (void)tag_bootstrap_open_app(APP_ID);
     }
@@ -203,7 +206,7 @@ int module_initialize(void) {
     if(initialized)return initialization_result;
     if(!ui_firmware_verified()||!catalog_ui_bindings_verified()||!tag_bootstrap_bindings_verified())return -1;
     initialized=1;
-    diagnostic("NFC_CATALOG_UI2\nDEFERRED\n0\nEND\n");
+    diagnostic("NFC_CATALOG_UI3\nDEFERRED\n0\nEND\n");
     initialization_result=ui_timer_create(register_app,500,0)?0:-1;
     return initialization_result;
 }

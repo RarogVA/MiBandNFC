@@ -17,7 +17,9 @@
     "STATUS #536870918 SELECT_OK",
     "STATUS #536870919 SELECT_OK"
   ],
-  "band_visual_confirmation": "User confirmed first-tap page opening and synchronization. User photograph shows NFC-Test, NDEF badge, navigation/refresh controls and green module OK. UI1 had a square 180x180 card; UI2 changes are pending hardware check.",
+  "band_visual_confirmation": "User confirmed UI1 first-tap page opening and synchronization. Later UI2 photograph confirms NFC-Test, NDEF, green OK and icon-only reload. User identified inherited root borders, a square around the watchface shortcut, and unused bottom space; UI3 addresses these and is awaiting device acceptance.",
   "nfc_readback": "not performed on this version",
-  "user_confirmed_sync": true
+  "user_confirmed_sync": true,
+  "ui2_face_sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
+  "ui3_candidate_sha256": "93849102b61a42859d625fbf1ac8389fba44bb47001d3b525b00930dde8c419c"
 }

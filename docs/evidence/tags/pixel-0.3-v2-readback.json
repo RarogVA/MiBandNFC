@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-13",
+  "result": "PASS",
+  "scope": "One successful Type 4 NDEF physical readback with independent BLE/ATT proof on the same Pixel; one earlier failed attempt retained in log",
+  "devices": {
+    "phone": "Pixel 8a",
+    "band": "miwear.watch.p67glt",
+    "firmware": "3.201.026"
+  },
+  "artifacts": {
+    "apk_version": "0.3",
+    "apk_sha256": "afbb082b791753129049d491bca6a0e6c510d0e4448aa810a9b3b80f7ad098a5",
+    "face_version": 2,
+    "face_sha256": "82a42f736c1c722cfed55e9ee7da840fce154c3252ffdbf3b0f0694ffe5510ea",
+    "elf_sha256": "91f63ed22532c81ba14c0f4d4e6271ace8b55df0a664c6eec8d706b7788c0673"
+  },
+  "fixture": {
+    "name": "NFC-Test",
+    "text": "Hello-from-Pixel",
+    "ndef_bytes": 23,
+    "ndef_hex": "D101135402727548656C6C6F2D66726F6D2D506978656C",
+    "ndef_sha256": "71c395e4cb360cb7932ebdd8d625713788f35ea5ce691c2c9f5b8cfe760a4a82",
+    "source": "Created in our Pixel application; expected data read from its catalogue"
+  },
+  "successful_exchange": {
+    "apdu_count": 6,
+    "sequences": [
+      268435463,
+      268435464,
+      268435465,
+      268435466,
+      268435467,
+      268435468
+    ],
+    "request_response_lengths": [
+      [
+        13,
+        2
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        5,
+        17
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "ndef_content_matches": true,
+    "independent_ble_apdu_values_match": true,
+    "all_response_att_writes_confirmed": true,
+    "stop_sequence": 1446798735,
+    "stop_status": "STOPPED",
+    "post_stop_query_sequence": 1446798736,
+    "post_stop_query_status": "STOPPED"
+  },
+  "band_display": {
+    "user_confirmed_name": "NFC-Test",
+    "user_confirmed_technology": "NDEF",
+    "user_confirmed_state": "SELECTED"
+  },
+  "first_attempt": {
+    "result": "FAIL",
+    "error": "NFC transmit failed",
+    "root_cause": "Not established; physical RF loss or timer/cancellation are hypotheses, not conclusions",
+    "cleanup_query_stopped": true
+  },
+  "observations": [
+    "Keeping the GATT connection alive after refresh allowed discovering the Tag Bridge service.",
+    "First QUERY timed out; a reconnect while the user kept the band screen awake then received STOPPED and TAG_OK. Sleep causality was not separately proven."
+  ],
+  "limits": [
+    "Only a synthetic 23-byte text NDEF was tested.",
+    "The band display and Pixel app remained open. Background/sleep operation is unverified.",
+    "No physical tag scanning, access-card rights, UID clone or Mir Pay payment was tested."
+  ],
+  "evidence": "pixel-0.3-v2-readback-log.txt",
+  "evidence_type": "App UI log and independent in-app NFC/BLE byte comparison; not a raw RF capture",
+  "final_shutdown": {
+    "stop_sequence": 1446798738,
+    "status": "STOPPED",
+    "bluetooth_disconnected": true
+  }
+}

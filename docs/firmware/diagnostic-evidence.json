@@ -1,0 +1,52 @@
+{
+  "model": "miwear.watch.p67glt",
+  "version": "3.201.026",
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "bindings": [
+    {
+      "name": "fopen",
+      "file_offset": "0xf9364",
+      "read_va": "0x2c1b9364",
+      "call_pointer": "0x2c1b9365",
+      "signature": "void *(const char *path,const char *mode)",
+      "fingerprint24": "b0b5054600af08460c46fff731ff011e0fdb28464ff4db72"
+    },
+    {
+      "name": "fwrite",
+      "file_offset": "0xf9ad4",
+      "read_va": "0x2c1b9ad4",
+      "call_pointer": "0x2c1b9ad5",
+      "signature": "size_t(const void *ptr,size_t size,size_t count,void *stream)",
+      "fingerprint24": "2de9f0411d460c461646804600af184600f048fb06fb04f1"
+    },
+    {
+      "name": "fclose",
+      "file_offset": "0xf9438",
+      "read_va": "0x2c1b9438",
+      "call_pointer": "0x2c1b9439",
+      "signature": "int(void *stream)",
+      "fingerprint24": "2de9f04100af002800f08880b0f87c30044613f002055ad1"
+    }
+  ],
+  "independent_evidence": [
+    "All three exact entrypoints and24-byte signatures already present in firmware/watchface/firmware-fingerprint-verification.json, independently matched to original recorder module.",
+    "fopen0x2c1b9364 calls mode parser0x2c1b91d4, open0x2c19f398 with mode0666, then fdopen0x2c1b92b4, closesfd onfailure.",
+    "fwrite0x2c1b9ad4 accepts fourargument registers, locksstream0x2c1ba178, multiplies size*count, calls streamwrite0x2c1b9b0c, divides writtenbytes bysize, unlocksstream0x2c1ba184.",
+    "fclose0x2c1b9438 checksstreamandwriteflags, flushesbuffer0x2c1b9d08 whenwrite-enabled, releasesstreamresources and closesunderlyingfd; signature alsocorroboratedby originalrecorder."
+  ],
+  "behavior": {
+    "path": "/tmp/apdu_lab_state",
+    "mode": "w",
+    "format": "stage=<normalized stage>\nrc=<signed int32>\nstate=<unsigned uint32>\n",
+    "stage_cap_bytes": 48,
+    "max_record_bytes": 87,
+    "ascii": "Bytes outside32..126 become underscore; nullstage becomes unknown.",
+    "dedup": "Cache normalizedtuplebeforeI/O, includingfailedattempts. Anidenticaltupleperformsnocalls. Changedtupleallowsoneattempt.",
+    "verification": "Once onfirstchangedtuple; allthreefingerprintsrequired. Failurepermanentlydisablesfilecalls silently forresidentinstance.",
+    "threading": "Only initializer/controlpoll; caller mustserialize. NoHAL/Bluetooth/IRQcallbackuses.",
+    "failure": "Best-effortonefwrite; fclosealwaysafteropen, includingpartialwrite. Noerrormessageorrecursivestatuswrite. Noatomicrename guarantee; readercanseeincompletefileduringwrite oronIOfailure.",
+    "runtime_tested": false
+  },
+  "tests": "prototype/tests/diagnostic_test.c ASAN/UBSAN validatesINT_MIN,INT_MAX,UINT32_MAX,ASCIIreplacement,truncation,dedup,fingerprintfailure,openfailure,shortwrite,closefailure; ARMcompiledwith-Werror.",
+  "_archive_context": "Historical static diagnostic-binding analysis. runtime_tested=false is local to that original review; later complete v6 synthetic hardware proof is docs/evidence/pixel-gatt-v6-observation.json. It does not independently validate every diagnostic file-I/O failure branch. Old source/build paths are provenance."
+}

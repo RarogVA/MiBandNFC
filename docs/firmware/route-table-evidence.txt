@@ -1,0 +1,26 @@
+ARCHIVE CONTEXT (project cleanup, 2026-11-13): This is a historical static-analysis note. Statements such as "not runtime tested" describe the analysis stage, not the latest project status. Later v6/Android 0.4 produced one complete synthetic hardware PASS with verified cleanup; see ../evidence/pixel-gatt-v6-observation.json and ../evidence/README.md. That run does not validate every binding, timing case or fault path. References to removed clones/build outputs below are provenance, not current build dependencies.
+
+v6: placement of the synthetic AID (2026-11-13)
+
+Observed on v5: GET routing completed; SET returned 41 01 01 03
+(NCI_STATUS_FAILED), NCI version 20. The existing entry order was not logged,
+so ordering is a concrete implementation defect candidate, not a proven
+explanation for that particular controller response.
+
+Primary implementation evidence:
+https://android.googlesource.com/platform/system/nfc/+/7066f224aaa6c240a58c8329219936e07753b019/src/nfa/ee/nfa_ee_act.cc
+nfa_ee_lmrt_to_nfcc iterates routing classes from AID through Technology.
+Its AID builder places the empty/default AID after specific AIDs.
+Associated nfa_ee_int.h defines AID=1, system-code=3, protocol=4, technology=5.
+Do not confuse reference source with the exact watch firmware implementation.
+
+v5 appended the test AID after all baseline entries. v6 prepends its exact
+AID, before protocol/technology and any existing prefix/default AID. All
+original TLV bytes and relative order remain unchanged. It neither sorts
+opaque vendor records nor claims to repair a nonstandard baseline order.
+Existing same-AID conflicts remain rejected. Removal must reproduce the
+baseline byte-for-byte, including duplicate/opaque entries and ordering.
+
+Tests cover placement before mixed AID/protocol/technology entries, count
+and length, exact restoration, conflicting route, malformed tables and
+multi-packet round trips. Host tests do not prove NFCC acceptance.

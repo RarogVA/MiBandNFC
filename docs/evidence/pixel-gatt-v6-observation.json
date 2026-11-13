@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-13",
+  "face_revision": 6,
+  "apk_revision": "0.4",
+  "result": "PASS",
+  "source": "Live Pixel UIAutomator log, independent byte checks against synthetic challenge",
+  "elapsed_ms_app": 396.5,
+  "run": 1,
+  "select_ble_seq": 268435457,
+  "challenge_ble_seq": 268435458,
+  "info": "cached v=20 chip=00 feat=00063E1A aid=1 lmrt=1030 ctrl=255",
+  "cleanup_stop_seq": 858178273,
+  "post_cleanup_query_seq": 858178274,
+  "cleanup_stopped_verified": true,
+  "independent_challenge_response_verified": true,
+  "physical_apdu_exchange_verified": true,
+  "payment_or_mirpay_tested": false,
+  "observed_ui": [
+    "795968.112 Только синтетический AID F04D424150445501. Совместимость GATT с браслетом ещё не подтверждена.\n795968.112 Нет Mir Pay, карт, доступа в Интернет или фоновой службы.\n796172.271 BT: выбран сопряжённый Xiaomi Smart Band 10 Pro A234 · <band-address>\n796172.284 BT: новый сеанс\n796172.285 BT: подключение GATT…\n796172.431 BT: поиск экспериментального GATT-сервиса…\n796172.527 BT: GATT готов, RX/write + TX/notify, фрагменты ≤20 байт\n796172.539 CONTROL QUERY seq=858178270 · без изменения NFC\n796172.580 CONTROL QUERY seq=858178270: ATT подтверждён\n796172.599 STATUS seq=858178270 STOPPED\n796172.602 BLE PREFLIGHT: STOPPED с правильным seq + завершённый ATT write\n796181.683 CONTROL INFO seq=858178271 · payload=03, только чтение\n796181.766 CONTROL INFO seq=858178271: ATT подтверждён\n796181.816 STATUS seq=858178271 INFO:cached v=20 chip=00 feat=00063E1A aid=1 lmrt=1030 ctrl=255\n796181.822 INFO подтверждён: совпавший seq + завершённый ATT write · cached v=20 chip=00 feat=00063E1A aid=1 lmrt=1030 ctrl=255\n796195.680 CONTROL START_NFC seq=858178272\n796195.897 CONTROL START_NFC seq=858178272: ATT подтверждён\n796195.943 STATUS seq=858178272 STARTING:Reading current NFC routes\n796195.992 STATUS seq=858178272 READY\n796196.043 NFC: ReaderMode включён после STATUS READY и завершения START write\n796224.604 NFC TX SELECT 00A4040008F04D42415044550100\n796224.664 BT RX seq=268435457 CAPDU=00A4040008F04D42415044550100\n796224.712 NFC RX SELECT 9000\n796224.717 NFC TX challenge=A53CDFFDEB09B4B817E594F9B60E5DDE run=1\n796224.758 BT TX seq=268435457 ATT подтверждён RAPDU=9000\n796224.809 BT RX seq=268435458 CAPDU=8010000010A53CDFFDEB09B4B817E594F9B60E5DDE00\n796224.954 NFC RX 7BF8AB135C3140B21D11AC4E587A99009000\n796225.001 BT TX seq=268435458 ATT подтверждён RAPDU=7BF8AB135C3140B21D11AC4E587A99009000\n796225.053 CONTROL STOP_NFC seq=858178273\n796225.056 PASS · NFC → BT → Pixel → BT → NFC\nrun=1, seq=268435458, 396.5 мс\n796225.146 CONTROL STOP_NFC: ATT подтверждён, ждём STOPPED\n796225.195 STATUS seq=858178273 STOPPING:Stopping test RF session\n796225.210 STATUS seq=858178273 STOPPING:Restoring discovery\n796225.245 STATUS seq=858178273 STOPPED\n796225.251 NATIVE: STOPPED подтверждён\n796225.255 CONTROL QUERY seq=858178274 · без изменения NFC\n796225.343 CONTROL QUERY seq=858178274: ATT подтверждён\n796225.348 STATUS seq=858178274 STOPPED\n796225.351 BLE PREFLIGHT: STOPPED с правильным seq + завершённый ATT write\n"
+  ],
+  "files": {
+    "releases/apdu-lab-0.4.apk": "326d2ba5ba50c63781befc4555344f9eba0a9d576b9f37e5df26af5883b4d6f5",
+    "releases/apdu-lab-v6-p67glt-3.201.026.face": "6ae1ef45f34c947ebfd043d786f280acfe6bbfef40df614c1a0b8390d870e7c5",
+    "releases/apdu-lab-v6-p67glt-3.201.026.elf": "6c231fe8ab36cac7b076a40e467b03a4a67bb5b63ed6e9aa9f3c04dad2ff5bb8"
+  },
+  "archive_editing": "Release paths relocated; band MAC replaced with <band-address>. APDU bytes, protocol fields, timestamps, sequence numbers and original release hashes are unchanged."
+}

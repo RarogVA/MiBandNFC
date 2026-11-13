@@ -1,0 +1,50 @@
+Mi Fitness local watchface import — static inspection only
+
+Result: no verified way to install our standalone .face through the currently
+installed, unmodified Mi Fitness was established. No phone/band action, import,
+installation, pairing change, account request, or server upload was performed.
+
+Inspected APK: apk/mi-fitness-installed.apk
+SHA256: d7b0a2b45e12899d91f9323bd59dad8e3531c490cbf1bc83345f5631929cfbe2
+Manifest package com.xiaomi.wearable, version 3.59.2i, versionCode 359002.
+
+An actual local designer tool exists:
+apk/mifitness-protocol/sources/com/xiaomi/fitness/watch/face/debug/designer/
+  FaceDesignerFragment.java
+  :815 title "表盘本地推送工具" (local watchface push tool).
+  :602-624 ACTION_OPEN_DOCUMENT, MIME */*, chooser says select ZIP; selected
+    content is copied and unzipped, not imported as a standalone .face.
+  :288-327 non-dual-core flow searches the extracted files for .bin, rewrites
+    the watchface ID, then requests a server license when verifySign is enabled.
+  :540-575 expects editor ZIP, optionally checks capability.json; dual-core
+    flow uploads the ZIP to submitPackageTask rather than directly sending it.
+  :156-164 direct dual-core installation also requests a license when enabled.
+  :843-844 signature-verification switch is enabled only for isDevChannel().
+FaceDesignerModel.java :13-16 initializes BOTH verifySign and verifyCapability
+to true. The decompiled build identifies itself as watch-face_playProductRelease.
+Therefore this is not evidence that a release user can import our unsigned .face.
+No signature bypass or helper was implemented. Whether the current account can
+use the designer licensing flow was not tested.
+
+Exported container exists, but is not a direct file-import intent:
+evidence/mifitness-manifest-tree.txt — original manifest lines 2971-2978:
+  com.xiaomi.fitness.baseui.common.CommonBaseActivity exported=true.
+evidence/import-CommonBaseActivity.java :82-88,180-192 dispatches its fragment.
+evidence/import-md4.java :62-64 reads custom Parcelable "fragment_param";
+  :34-59 instantiates its className and attaches arguments.
+evidence/import-FragmentParams.java :92-110 records the Parcelable fields.
+This is not an adb --es className route. A dedicated helper might open the
+designer UI, but that would not establish compatibility or satisfy licensing.
+The helper was deliberately not built or launched.
+
+Other inspection artifacts:
+  evidence/import-DeviceCommonBaseActivity.java
+  evidence/import-AppUtil.java (:219-220 returns the runtime isDevChannel flag)
+  apk/mifitness-protocol/sources/com/xiaomi/fitness/watch/face/debug/
+    FaceDebugHelperImpl.java (download helper, not a local file-import endpoint)
+
+No exported .face file-import intent was found in the inspected manifest.
+This is a bounded static finding, not a proof that every internal/remote UI
+route is impossible. The next practical input is the user's existing method
+for installing third-party .face files on this paired device. Native and
+Android prototype files were not changed during this investigation.

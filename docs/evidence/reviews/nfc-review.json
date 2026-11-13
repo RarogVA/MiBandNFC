@@ -1,0 +1,96 @@
+{
+  "review": "Independent static + fault-injection review of NFC backend",
+  "state": "reviewed_fixes_pass_host_regressions; experimental_runtime_limits_remain",
+  "backend_files": [
+    "<historical-project>/prototype/band/nfc_probe.c",
+    "<historical-project>/prototype/band/route_table.c"
+  ],
+  "findings": [
+    {
+      "id": "P1-route-preservation",
+      "functions": [
+        "get_table",
+        "waiting_snapshot/GET_REMOVE",
+        "fail",
+        "nfc_probe_can_unload"
+      ],
+      "evidence": "Fault injection dropped first original TLV after SET. VERIFY_ADD detects mismatch, but STOP later reports routes cleaned / cleanflag1 with only5 original bytes remaining instead of10.",
+      "reproduction": "<historical-project>/prototype/android/build/review/preservation_failure.c",
+      "requested": "Retain original baseline and avoid false-clean status after ambiguous/partial mutation; verify preserved originals or retain explicit recovery uncertainty.",
+      "status": "fixed_and_regression_verified",
+      "fix": "Retains baseline and intended installed table. Cleanup verifies original TLV multiset; restores known partial result to baseline only when no unknown entries exist. Missing baseline plus unknown changes remains RECOVERY."
+    },
+    {
+      "id": "P1-late-stop",
+      "functions": [
+        "nfc_probe_start",
+        "fail",
+        "nfc_probe_stop"
+      ],
+      "evidence": "Mock accepts stop asynchronously without changing state. Timeout releases hook and marks clean. Accepted stop later reaches state0; repeated STOP returns Stopped but RF remains disabled.",
+      "reproduction": "<historical-project>/prototype/android/build/review/late_stop_failure.c",
+      "requested": "Track accepted/inflight stop until completion and compensating discovery restart are resolved; never declare clean solely because stop has not completed yet.",
+      "status": "fixed_and_regression_verified",
+      "fix": "Accepted stop_pending survives timeout; repeated STOP reuses it without a second command. Hook remains until state0 and compensating discovery restart completes."
+    },
+    {
+      "id": "P2-unserializable-TLV",
+      "functions": [
+        "rt_snapshot_fragment",
+        "write_table",
+        "write_chunk"
+      ],
+      "evidence": "Snapshot allows complete253-byte TLV in255-byte notification payload; backend SET payload capped252 supports max250-byte TLV. If oversized opaque TLV follows smaller entries, prior SET_MORE can already be sent before serialization fails.",
+      "requested": "Dry-run every SET chunk before first mutation, including full command total-length bound.",
+      "status": "fixed_and_regression_verified",
+      "fix": "write_table dry-runs every chunk with actual 252-byte payload bound before first SET."
+    }
+  ],
+  "conditional_risks": [
+    {
+      "id": "get-notification-owner-isolation",
+      "evidence": "RF_GET_ROUTING notifications lack a transaction ID. HAL observer collects matching notifications while local GET is pending. No lock excludes concurrent stock GET/SET or route mutation between snapshot and SET. Per-command callback resolves RSP ownership but cannot prove notification ownership.",
+      "limit": "No firmware runtime concurrency trace. This remains an experimental integration risk, not a reproduced device failure or assurance of destructive behavior."
+    },
+    {
+      "id": "real-thread-and-controller-behavior",
+      "evidence": "Host mocks exercise bounded parser/state transitions but not real interrupt/task scheduling, controller SET commit semantics, callback-slot timing, or NFC stack shutdown/reset. Module remains resident; no unloading is approved by this review.",
+      "limit": "No installation or runtime firmware API calls were performed."
+    }
+  ],
+  "positive_checks": [
+    "Route table and APDU buffers have checked bounded lengths in reviewed helpers",
+    "HAL callback remains resident and stock traffic is forwarded by design",
+    "module.c deliberately has no unload/destructor",
+    "Native transport directions and byte order match Android implementation"
+  ],
+  "validation": {
+    "compiler": "clang with -fsanitize=address,undefined -g",
+    "passed": [
+      "prototype/tests/nfc_probe_test.c (lifecycle, route preservation, partial SET commit/reject, corrupted successful SET, unknown concurrent mutation containment, oversized TLV preflight, delayed STOP, deferred command callback, stale RF session)",
+      "prototype/tests/route_table_test.c (bounded snapshots, malformed/truncated entries, opaque TLV preservation, multi-packet roundtrip, conflicts)",
+      "prototype/android/build/review/pending_stop_regression.c (independent repeated-STOP check: no second hardware STOP while accepted request remains pending; eventual completion restores RF discovery)"
+    ],
+    "device_interaction": false,
+    "scope": "Deterministic host fault-injection and source review; runtime compatibility remains unproven."
+  },
+  "apk_changed": false,
+  "reviewed_sha256": {
+    "prototype/band/nfc_probe.c": "aca0255fac5b60c8b5b80ca6307583b8af140585a21b37d7243a91570ef6e961",
+    "prototype/band/route_table.c": "06af1d53ae5d2d2ebacf04152f0dee2ac979513dbea546f16e7e5cb0e0d4a5f2",
+    "prototype/tests/nfc_probe_test.c": "2ca526d8dec5e86d7e50317f557100e0951047b556667adf171735d6a33252db"
+  },
+  "command_response_correlation": {
+    "status": "improved_and_regression_verified",
+    "result": "Completion comes from queued NFA per-command callback; raw same-opcode RSP is insufficient. Accepted command_pending survives timeout and blocks cleanup until callback plus final GET NTF. Deferred callback/raw-RSP fault injection passes.",
+    "evidence_reported_by_backend_agent": "Exact firmware nci queue carries queued BT_HDR callback; NXP RSP handler dispatches event oid|0x40 and full NCI packet."
+  },
+  "apk_sha256": "8e4dec707518a6921405c35329ffef87f59ac2cb05a2d49a96372edb2f415311",
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

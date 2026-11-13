@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "releases_verified": 4,
+  "firmware_fingerprints_verified": 32,
+  "face_repack_byte_identical": true,
+  "elf_spare_bytes": 160,
+  "hardware_evidence": {
+    "recorded_runs": 1,
+    "result": "PASS",
+    "duration_ms": 396.5,
+    "scope": "Saved synthetic run; no new hardware test performed"
+  }
+}

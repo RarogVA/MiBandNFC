@@ -1,0 +1,200 @@
+{
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "profile": "NDEF Type 4 tag bridge",
+  "compiler": "Android (13624864, +pgo, -bolt, +lto, -mlgo, based on r530567e) clang version 19.0.1 (https://android.googlesource.com/toolchain/llvm-project 97a699bf4812a18fb657c2779f5296a4ab2694d2)",
+  "flags": [
+    "--target=arm-none-eabi",
+    "-mcpu=cortex-m33",
+    "-mthumb",
+    "-mfloat-abi=hard",
+    "-mfpu=fpv5-sp-d16",
+    "-mno-movt",
+    "-Oz",
+    "-g0",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-stack-protector",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DNFC_PROBE_ENABLE_EXPERIMENTAL_ROUTING=1",
+    "-DTRANSPORT_TAG_PROFILE=1"
+  ],
+  "variant": "v2 (hardware-tested artifact reproduction)",
+  "elf": {
+    "path": "tags/build/tag-bridge-p67glt-3.201.026.elf",
+    "bytes": 28680,
+    "sha256": "91f63ed22532c81ba14c0f4d4e6271ace8b55df0a664c6eec8d706b7788c0673",
+    "entry": "0x1",
+    "resource_bytes": 31272,
+    "spare_bytes": 2592,
+    "unstripped_bytes": 32064,
+    "symbol_strip_preserved_loaded_bytes_and_relocations": true,
+    "undefined_symbols": [],
+    "constructor": {
+      "section_type": "SHT_INIT_ARRAY",
+      "bytes": 4,
+      "relocation_type": 38,
+      "target": "module_constructor",
+      "pointer": "0x3f5"
+    }
+  },
+  "face": {
+    "path": "tags/build/tag-bridge-p67glt-3.201.026.face",
+    "bytes": 230557,
+    "sha256": "82a42f736c1c722cfed55e9ee7da840fce154c3252ffdbf3b0f0694ffe5510ea",
+    "id": "999999996",
+    "lua_bytes": 3961,
+    "lua_resource_bytes": 4529,
+    "diagnostic_version": 2,
+    "diagnostic_path": "/tmp/apdu_lab_state",
+    "elf_resource": "app/lua/apdu_lab_probe_3.201.026.elf",
+    "template_sha256": "1d3be2b0c95c21ffa834485a45e326d0d98eeea54be94a1afd086df454e0901c",
+    "records": [
+      {
+        "name": "app/lua/main.lua",
+        "offset": 156931,
+        "name_at": 156951,
+        "namesize": 16,
+        "start": 156967,
+        "end": 161496,
+        "length": 4529
+      },
+      {
+        "name": "app/lua/main.lua",
+        "offset": 161496,
+        "name_at": 161516,
+        "namesize": 16,
+        "start": 161532,
+        "end": 166061,
+        "length": 4529
+      },
+      {
+        "name": "app/lua/apdu_lab_probe_3.201.026.elf",
+        "offset": 166061,
+        "name_at": 166081,
+        "namesize": 36,
+        "start": 166117,
+        "end": 197389,
+        "length": 31272
+      },
+      {
+        "name": "app/lua/delete_trash.bin",
+        "offset": 197389,
+        "name_at": 197409,
+        "namesize": 24,
+        "start": 197433,
+        "end": 202565,
+        "length": 5132
+      },
+      {
+        "name": "app/lua/ok.bin",
+        "offset": 202565,
+        "name_at": 202585,
+        "namesize": 14,
+        "start": 202599,
+        "end": 205939,
+        "length": 3340
+      },
+      {
+        "name": "app/lua/close.bin",
+        "offset": 205939,
+        "name_at": 205959,
+        "namesize": 17,
+        "start": 205976,
+        "end": 209316,
+        "length": 3340
+      },
+      {
+        "name": "app/lua/pause.bin",
+        "offset": 209316,
+        "name_at": 209336,
+        "namesize": 17,
+        "start": 209353,
+        "end": 212693,
+        "length": 3340
+      },
+      {
+        "name": "app/lua/recorder.bin",
+        "offset": 212693,
+        "name_at": 212713,
+        "namesize": 20,
+        "start": 212733,
+        "end": 222574,
+        "length": 9841
+      },
+      {
+        "name": "app/lua/stop.bin",
+        "offset": 222574,
+        "name_at": 222594,
+        "namesize": 16,
+        "start": 222610,
+        "end": 225950,
+        "length": 3340
+      },
+      {
+        "name": "app/lua/main.bin",
+        "offset": 225950,
+        "name_at": 225970,
+        "namesize": 16,
+        "start": 225986,
+        "end": 229326,
+        "length": 3340
+      },
+      {
+        "name": "app/lua/ru_RU.txt",
+        "offset": 229326,
+        "name_at": 229346,
+        "namesize": 17,
+        "start": 229363,
+        "end": 230039,
+        "length": 676
+      },
+      {
+        "name": "app/lua/en_US.txt",
+        "offset": 230039,
+        "name_at": 230059,
+        "namesize": 17,
+        "start": 230076,
+        "end": 230557,
+        "length": 481
+      }
+    ]
+  },
+  "source_sha256": {
+    "band/diagnostic.c": "8b675cec641444f8e0c33805d559409b61f03027ad73adbea4dc81d0c7393125",
+    "band/diagnostic.h": "376fabc825addcfc1156149974fd4eff35671801805e6508d0e94745b53e3c4c",
+    "band/module.ld": "7b32dbc231603c5a4b51ba97862d10b760b0cfeb1407874c24f8f59174ca9afd",
+    "band/module_fingerprints.h": "5477138bfa9479b303bc56a17da841531ee74339568d73bd42e9de32d2a431d9",
+    "band/native_clock.c": "f5f9cfbfe2192c95f43af8580310c620d060d90a277d72051ed2144294ad5220",
+    "band/native_clock.h": "c109968604a2a37fd7ff2da78b6cc3c773e5f74d827848b38eb8c457ebc0ff08",
+    "band/nfc_fingerprints.h": "6fbae0da1835b437920a25b1e06526da2ac4f157e9ab3f1b995b142d911ea53f",
+    "band/nfc_probe.c": "7118fd0074b2e24cc86315fc699e5e0436ee39d3b5d2717027ab35a804086516",
+    "band/nfc_probe.h": "41f8a02df5e3e38d5e629799d7a2304834e47cc81f3718eb9c5dddd05d21e48a",
+    "band/route_table.c": "b7d5685b43196ca50a0824d19fa24f4460a0336eb705c4fe1f09bd6158706099",
+    "band/route_table.h": "7b10f4c5d3504bf494067ac44b52f71731ee3db2ea6504729188ca1c989c6b01",
+    "band/runtime.c": "da62d7f87ccfc488c60b2990b5505af3ee4e7c493fe592cc88d55f4b6b1713a0",
+    "band/transport.c": "1734e1270a9fb405b4c667a1cfc029ee125072cf1849023b5a99cb47b627cf92",
+    "band/transport.h": "fa84cfd416518eb636a04007528d5c49276c08afcc7b1d7f1ef4f41bcc6c35c4",
+    "band/transport_fingerprints.h": "d1af18964eb689305106e3bb4756d05dc584a9a79ebf5d668978541962624c6e",
+    "tags/band/module.c": "b82e6288c1fdec534e049e537ac1c4e00f785c84dc3c1cfe9b3a3c4eb2047b67",
+    "tags/band/tag_display.c": "819fb8bd3e9ccfe429c6030af422d2e7bd1d2d8ffcd14e3a5bd778cd9bd202bd",
+    "tags/band/tag_display.h": "57bf6b5d1dd575dfae5fd0a64512cb685c8f6d386add40ef92439f9238d405b8",
+    "tags/band/tag_record.c": "51045ed95bc8529aff1d9f4fa18ac1082b93becd65b6da34b1a6933aa413a254",
+    "tags/band/tag_record.h": "1cd95d6d05ad25113ee52e62b14c3f4738a819499b204ad600754faf5ee9fe02",
+    "tags/build_band.py": "0add8abd433a115658f1542da9f1dbf0a6bcc9a1b924e68d414da2e7c2e21662",
+    "tags/watchface/main.lua": "b62a00e4523c1bce70aa75eed56b40928304279914d8a58267ebefe6cb5a0af4"
+  },
+  "hardware_tested": false,
+  "notes": [
+    "Exact template resource layout retained; preview assets remain from Recorder.",
+    "Build validates ARM ABI, firmware-loader constructor, complete symbols, slot size and FACE payloads.",
+    "No device connected, installed or executed by this script."
+  ]
+}

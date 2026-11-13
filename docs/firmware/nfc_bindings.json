@@ -1,0 +1,219 @@
+{
+  "image_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "model": "miwear.watch.p67glt",
+  "version": "3.201.026",
+  "bindings": [
+    {
+      "name": "hal_open",
+      "file_offset": "0x58fb24",
+      "read_va": "0x2c64fb24",
+      "call_pointer": "0xc64fb25",
+      "fingerprint24": "f8b506460c46054d054b0022054900af05482e601c60f6f7"
+    },
+    {
+      "name": "hal_data_forward",
+      "file_offset": "0x58faa8",
+      "read_va": "0x2c64faa8",
+      "call_pointer": "0xc64faa9",
+      "fingerprint24": "034b1b681bb180b500af984780bd7047b0aa0e2080b4034b"
+    },
+    {
+      "name": "nfc_hal_data_callback",
+      "file_offset": "0x59af1c",
+      "read_va": "0x2c65af1c",
+      "call_pointer": "0xc65af1d",
+      "fingerprint24": "f8b5134b00af93f83031072b1ed00d46e1b10446f4f754fb"
+    },
+    {
+      "name": "nfa_stop_discovery",
+      "file_offset": "0x590e44",
+      "read_va": "0x2c650e44",
+      "call_pointer": "0xc650e45",
+      "fingerprint24": "80b5082000affef79bf830b140f20f12028009f04df80020"
+    },
+    {
+      "name": "nfa_start_discovery",
+      "file_offset": "0x590e24",
+      "read_va": "0x2c650e24",
+      "call_pointer": "0xc650e25",
+      "fingerprint24": "80b5082000affef7abf830b14ff48772028009f05df80020"
+    },
+    {
+      "name": "nfa_send_nxp_nci",
+      "file_offset": "0x590ed8",
+      "read_va": "0x2c650ed8",
+      "call_pointer": "0xc650ed9",
+      "fingerprint24": "08b32de9f0410e4600afc9b19046bab104461430fef74af8"
+    },
+    {
+      "name": "nfa_send_raw_frame",
+      "file_offset": "0x590dcc",
+      "read_va": "0x2c650dcc",
+      "call_pointer": "0xc650dcd",
+      "fingerprint24": "09b32de9f041064600af08b301f10c0080b20c469046fef7"
+    },
+    {
+      "name": "nfa_send_raw_action",
+      "file_offset": "0x590874",
+      "read_va": "0x2c650874",
+      "call_pointer": "0xc650875",
+      "fingerprint24": "b0b51b4c00af94f84c30043b012b25d82368054643f40063"
+    },
+    {
+      "name": "nfc_send_data",
+      "file_offset": "0x59b79c",
+      "read_va": "0x2c65b79c",
+      "call_pointer": "0xc65b79d",
+      "fingerprint24": "b0b500af0c4601f0a5fe18b114b1a388032b05d803252046"
+    },
+    {
+      "name": "nci_nxp_response_dispatch",
+      "file_offset": "0x59ab98",
+      "read_va": "0x2c65ab98",
+      "call_pointer": "0xc65ab99",
+      "fingerprint24": "b0b50c4c00afd4f8405165b18288418808320244537803f0"
+    },
+    {
+      "name": "nfc_queue_update_window",
+      "file_offset": "0x59b9a8",
+      "read_va": "0x2c65b9a8",
+      "call_pointer": "0xc65b9a9",
+      "fingerprint24": "2de9f041524c00af94f8cf31012b6fd04ff0000804f5ca70"
+    },
+    {
+      "name": "nfc_send_nxp_command_internal",
+      "file_offset": "0x59d724",
+      "read_va": "0x2c65d724",
+      "call_pointer": "0xc65d725",
+      "fingerprint24": "98b180b5428800afff2a0ad84ff4804c02228160a0f800c0"
+    },
+    {
+      "name": "nfc_get_nci_version",
+      "file_offset": "0x59b200",
+      "read_va": "0x2c65b200",
+      "call_pointer": "0xc65b201",
+      "fingerprint24": "80b4044b00af93f8f801bd465df8047b704700bff4b50e20",
+      "usage": "Fingerprint only: diagnostic reads the exact getter target byte directly after all preflight gates; no call or controller command."
+    },
+    {
+      "name": "nfc_chip_family_getter",
+      "file_offset": "0x5825f0",
+      "read_va": "0x2c6425f0",
+      "fingerprint24": "80b4034b00af1878bd465df8047b7047b5040b2080b4034b",
+      "usage": "Fingerprint only; no call. Gating cached INFO reads."
+    },
+    {
+      "name": "nfc_enabled_cache_base",
+      "file_offset": "0x59b35a",
+      "read_va": "0x2c65b35a",
+      "fingerprint24": "6a4c314684f83031e018ab8894f8f8210c3305eb03087a74",
+      "usage": "Fingerprint only; no call. Gating cached INFO reads."
+    },
+    {
+      "name": "nfc_enabled_cache_stores",
+      "file_offset": "0x59b37c",
+      "read_va": "0x2c65b37c",
+      "fingerprint24": "c4f8c05084f8c620a4f8c4307b8398f807307d6184f8c730",
+      "usage": "Fingerprint only; no call. Gating cached INFO reads."
+    },
+    {
+      "name": "nfc_enabled_cb_literal",
+      "file_offset": "0x59b504",
+      "read_va": "0x2c65b504",
+      "fingerprint24": "f4b50e20c0b60e202de9f04182b0002300affb71037a062b",
+      "usage": "Fingerprint only; no call. Gating cached INFO reads."
+    }
+  ],
+  "ram": {
+    "HAL_data_callback_slot": "0x200eaab0",
+    "expected_callback": "0x0c65af1d",
+    "HAL_open_slot": "0x200eaac0",
+    "expected_HAL_open": "0x0c64fb25",
+    "NFA_DM_flags": "0x200eabdc",
+    "NFA_DISC_state": "0x200eac28",
+    "NFC_NCI_version": "0x200eb7ec",
+    "NFC_features": "0x200eb6b4",
+    "NFC_max_LMRT": "0x200eb6b8",
+    "NFC_max_control_payload": "0x200eb6bb",
+    "NFC_chip_family": "0x200b04b5"
+  },
+  "semantics": "Bindings derived from exact firmware disassembly and public NXP source comparison. One v6 hardware run on p67glt 3.201.026 demonstrated the synthetic NFC-to-BLE-to-Pixel-to-BLE-to-NFC path, accepted route setup and verified STOPPED cleanup; this is not validation of every binding or concurrency case. Calls use Thumb execution alias; fingerprint reads use XIP data alias. No SE/default technology routing API is called.",
+  "evidence": {
+    "raw_hook": {
+      "source": "disassembly/hal_open_wrappers.txt",
+      "read_slot": "HAL open saves r1 to 0x200eaab0; forwarding wrapper 0x2c64faa8 loads that slot and blx calls it with unmodified (uint16 length,uint8 *packet). Original callback0x2c65af1c copies packet into stack task queue."
+    },
+    "queued_command": {
+      "source": [
+        "disassembly/nfa_dm_api-control.txt",
+        "disassembly/nfa_dm_actions-small.txt",
+        "disassembly/nfc_send_nxp_command.txt",
+        "disassembly/nci_command_queue.txt",
+        "disassembly/nci_receive_parsers.txt"
+      ],
+      "path": "0x2c650ed8 copies bytes and cb into event0x11a; action0x2c650740 repackages BT_HDR; internal0x2c65d724 marks layer_specific2 and cb at+8; queue0x2c65b9a8 stores callback at NFC_CB+0x140 when that message is sent; response0x2c65ab98 invokes cb(event=oid|0x40,len,fullNCIpacket), clears slot, updates command window."
+    },
+    "queued_response": {
+      "source": "disassembly/nfa_send_raw_action.txt",
+      "path": "0x2c650dcc copies bytes into event0x10c; action0x2c650874 requires discovery state4 or5, calls NFC_SendData with connid0 for listen state5. API returns enqueue status, not RF delivery acknowledgement."
+    }
+  },
+  "experiment": {
+    "aid_hex": "F04D424150445501",
+    "select_hex": "00A4040008F04D42415044550100",
+    "route_tlv_hex": "020A0001F04D424150445501",
+    "routing_commands": [
+      "21 02 00: GET_LISTEN_MODE_ROUTING",
+      "21 01 len more/count/TLVs: SET_LISTEN_MODE_ROUTING"
+    ],
+    "calls_no_se_or_default_technology_routing_api": true,
+    "mutates_controller_ram_table": true,
+    "flash_writes": false,
+    "hardware_tested": true,
+    "runtime_hooks": "Only compare-exchange HAL data callback RAM slot. Original chain retained for all management and unrelated data. Module must remain resident until reboot.",
+    "hardware_validation": {
+      "date": "2026-11-13",
+      "face_revision": 6,
+      "apk_revision": "0.4",
+      "complete_synthetic_runs": 1,
+      "result": "PASS",
+      "evidence": "../evidence/pixel-gatt-v6-observation.json",
+      "raw_log": "../evidence/pixel-v6-pass-log.txt",
+      "elapsed_ms_app": 396.5,
+      "observed": "GET/SET/verification reached READY; SELECT returned 9000; a fresh synthetic challenge matched BLE request/response and NFC response; STOP and subsequent QUERY reported STOPPED.",
+      "scope_limit": "One observed run on this exact device and firmware, not a repeatability, timing-distribution, terminal, payment, or Mir Pay test."
+    }
+  },
+  "recovery": {
+    "baseline": "Retain entire pre-add baseline and intended baseline+test table. Normal cleanup snapshots CURRENT table, removes exact own route and preserves all other TLVs. Original baseline multiset must remain present.",
+    "partial_set": "If original entries disappeared but every current entry belongs to our intended table, restore retained baseline and GET verify. If unknown/concurrent entries coexist with missing originals, remain RECOVERY without writing.",
+    "serialization": "Dry-run all SET chunks before mutation. Per-request NFA callback required for response; raw same-opcode responses do not complete request. Accepted STOP and raw commands remain owned across timeout until completion.",
+    "stop": "Asynchronous. A clean flag requires verified route cleanup, RF discovery restart and callback restore. can_unload is a cleanup state helper only; root module never unloads."
+  },
+  "limitations": [
+    "Runtime INFO advertised NCI 2.0, NXP family, AID support and LMRT 1030; one v6 synthetic physical APDU run passed (app elapsed 396.5 ms). Exact NFC chip/firmware identity and wider compatibility remain unestablished.",
+    "No proven stock-stack routing transaction lock. A simultaneous stock routing update between snapshot and SET can race this experiment. GET notification protocol has no transaction ID. Do not treat mocks or callback matching as proving global isolation.",
+    "Controller multi-chunk SET atomicity is unknown. Partial writes are detected/restored only under the documented unambiguous baseline subset condition; ambiguous outcomes remain RECOVERY.",
+    "Stock RF discovery must already be enabled and idle/discovering. No initialization, reset, persistence, default technology diversion, SE access, payment AIDs or Mir Pay calls are implemented.",
+    "First SELECT must fit a single NCI DATA packet; subsequent own APDUs may fragment. Limits CAPDU261/RAPDU258 bytes. No ISO-DEP WTX implementation; one complete synthetic run was measured, while real BLE timing distribution, sleep behavior and payment-terminal deadlines remain untested.",
+    "Fingerprints identify exact compiled entrypoints in the provided image, not a formal vendor ABI contract. Full firmware and module context checks are additionally performed by watchface loader."
+  ],
+  "diagnostics": {
+    "retained": "nfc_probe_diagnostic() remains across STOP until a new START passes preflight/discovery gates. Command failure status uses the same stable buffer, including after successful automatic RF restart.",
+    "format": "NFC_REJECT or NFC_BAD_RSP; op=expectedOID, st=controller status or -- for unaccepted shape, ev=callback event, n=full callback length, cb=up to8 leading bytes, raw=independent4-byte HAL management RSP prefix or -, v=runtime NCI version, d=route-dirty flag at error. Hex is uppercase; n is decimal. Max121bytes plus ERROR: <=127.",
+    "concurrency": "Callback fields are bounded writes before release publication of completion; poll acquires completion and formats. One callback belongs to each pending NFA command; no next command is submitted before consumption. Raw witness is a single atomic32-bit word, cleared per command; it is never accepted as ownership/correlation.",
+    "version_evidence": "0x2c65b200 getter reads base0x200eb5f4+0x1f8. 0x2c65c9a4/c9a6 copy CORE_RESET_NTF payload+2 into same byte; 0x2c65ca0c/ca10 assign legacy0x10. Getter first24bytes, including base literal, are now in preflight fingerprints. Read happens once after successful fingerprint/callback/stack/discovery gates.",
+    "unchanged": "NFC packet acceptance predicate, route snapshot validation, no SET without full GET snapshot, timeout/cleanup ownership and RF forwarding remain unchanged. Diagnostic capture is not a controller command."
+  },
+  "cached_info": {
+    "API": "nfc_probe_info(), same control thread as all public probe APIs. Separate stable <=121-byte ASCII buffer; never touches retained response diagnostic.",
+    "gates": "Full existing fingerprint, original HAL slots and enabled-stack preflight, then NCI version must be exactly 0x20. No cache read on preflight failure; no feature/LMRT/ctrl/chip read for other NCI versions. Own active hook also returns unavailable. No NFC command, discovery stop/start, hook or route mutation.",
+    "parser": "nfc_enabled 0x2c65b2fc: literal at0x2c65b504 supplies nfc_cb=0x200eb5f4. 0x65b37c stores 32-bit LE features at+c0; 0x65b384 stores uint16 maxLMRT at+c4; 0x65b390 stores uint8 max control payload at+c7. r8 points to CORE_INIT_RSP payload after status. These instructions/base literal are separately fingerprinted.",
+    "feature_bits": "NCI2 NFCC Features second octet: bit0 reserved, bit1 technology, bit2 protocol, bit3 AID, bit4 system-code, bit5 APDU-pattern, bit6 forced-NFCEE. The reported aid=(features>>11)&1 is advertised AID routing support only, not proof of DH card emulation or an accepted route.",
+    "primary_feature_source": "https://android.googlesource.com/platform/system/nfc/+/d3867f5bade8b8771580eb8ed27dc8de4dc1422a/src/nci_packets.pdl#187",
+    "chip": "Pure getter0x2c6425f0 reads byte0x200b04b5. Selection0x642c7e..0x642ca6 stores 0 for NXP,1 for THN31; unknown path0x642ac6..0x642ad6 stores FF. Family0 cannot distinguish SN100 from SN110. Getter+literal fingerprinted; getter itself is not called.",
+    "chip_evidence": "disassembly/nfc_driver_p67-region.txt",
+    "format": "cached v=20 chip=00 feat=XXXXXXXX aid=1 lmrt=65535 ctrl=255, or unavailable gate=<preflight code>, or cached v=XX unavailable: unsupported NCI layout. Values are startup cache, not a live controller query.",
+    "observed_v6": "cached v=20 chip=00 feat=00063E1A aid=1 lmrt=1030 ctrl=255; see ../evidence/pixel-gatt-v6-observation.json. This startup cache does not establish an exact NFCC model."
+  }
+}

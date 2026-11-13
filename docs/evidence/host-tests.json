@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "scope": "Host mocks and JVM protocol/proof tests; no physical NFC/BLE claim",
+  "native_flags": [
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-g",
+    "-Itests",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer"
+  ],
+  "tests": {
+    "route_table": "route table: preservation, multi-packet round trip, conflicts and malformed input PASS",
+    "transport": "PASS: exact CCC IPC mode1 dispatch, register failure preserves singleton, control race, 261/258-byte framing, ATT23 fragments, peer filter, disconnect epochs, invalid lengths, owned cleanup",
+    "module": "module: complete SELECT exchange, stale/duplicate responses, epoch race, status priority, clock failure, deadlines PASS",
+    "nfc_probe": "nfc_probe: lifecycle, route preservation, APDU scope/fragmentation, stale-session and recovery tests passed",
+    "diagnostic": "diagnostic: format, int32/uint32 bounds, ASCII cap, dedup and I/O failures passed",
+    "android_jvm": "PASS 131 assertions: protocol boundaries, fragmentation, whitelist, BLE preflight, read-only INFO, fresh BT proof\nwarning: [options] source value 8 is obsolete and will be removed in a future release\nwarning: [options] target value 8 is obsolete and will be removed in a future release\nwarning: [options] To suppress warnings about obsolete options, use -Xlint:-options.\n3 warnings"
+  },
+  "sha256": {
+    "band/diagnostic.c": "edb04cd5755ffc5f5bb9ed2f06794b6ef8c83ba852b998ec12196e9899250d80",
+    "band/diagnostic.h": "376fabc825addcfc1156149974fd4eff35671801805e6508d0e94745b53e3c4c",
+    "band/module.c": "a9ab071066e477d0435724a656f426a2fea3790eecc97d5f9739bb80cf34aed9",
+    "band/module_fingerprints.h": "5477138bfa9479b303bc56a17da841531ee74339568d73bd42e9de32d2a431d9",
+    "band/native_clock.c": "f5f9cfbfe2192c95f43af8580310c620d060d90a277d72051ed2144294ad5220",
+    "band/native_clock.h": "c109968604a2a37fd7ff2da78b6cc3c773e5f74d827848b38eb8c457ebc0ff08",
+    "band/nfc_fingerprints.h": "6fbae0da1835b437920a25b1e06526da2ac4f157e9ab3f1b995b142d911ea53f",
+    "band/nfc_probe.c": "4d9d8e7c8409aaabb07beec861d5804878552058c6f83bc9f6b9a24d1e401b31",
+    "band/nfc_probe.h": "41f8a02df5e3e38d5e629799d7a2304834e47cc81f3718eb9c5dddd05d21e48a",
+    "band/route_table.c": "2a15d640bf782604463e23d2eadcb69b4720191d220eb026d253fd279a2b2b76",
+    "band/route_table.h": "421c2e93a31c8c5749cd45738e3e366a31e3c441b5e25f2ec72407e43105881c",
+    "band/runtime.c": "da62d7f87ccfc488c60b2990b5505af3ee4e7c493fe592cc88d55f4b6b1713a0",
+    "band/transport.c": "cc9e6b61aa19c4b3bab471456a7565c9b5627df5daa49e1e9a4ba16c2cf47142",
+    "band/transport.h": "caec7ee6cb460af744bb089d17b6592788029fe9e47b78e4d5408176c87c9f11",
+    "band/transport_fingerprints.h": "d1af18964eb689305106e3bb4756d05dc584a9a79ebf5d668978541962624c6e",
+    "tests/diagnostic_test.c": "dbbfa2e4a48190f2468db3758e835af9d3bbe46c7b3ca0adc1f044a0a6e9abee",
+    "tests/module_test.c": "f2693c1882a9c8ab439c8713ecffd44cbd7238eab8cc0cc9243cd66086eac679",
+    "tests/module_test_backend.h": "1133af60bb512ffb3e4a7c3b45ccf3b6d90fdddbc1a4958c77d6d372a847dff9",
+    "tests/nfc_probe_test.c": "bd7f924dfd60930d794ff0f243ae3dfd87510d7d748f3e69e2355c57b771f5ac",
+    "tests/route_table_test.c": "8c03d49552faf600e895561a853556373f4b2277b556071b5fb23a34f3907551",
+    "tests/transport_test.c": "566a0fae0da44e9445f065e0a4aca5977128813d71beca4f40dd6933b2f40331",
+    "tests/transport_test_backend.h": "e1c06f2c31e77725fe75ade5b054276e098ea2c2f9c2cf6afb07108c66bc41d5"
+  }
+}

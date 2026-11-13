@@ -1,0 +1,49 @@
+00590874 2c650874 b0b5       push     {r4, r5, r7, lr}
+00590876 2c650876 1b4c       ldr      r4, [pc, #0x6c] ; literal[0x5908e4]=0x200eabdc
+00590878 2c650878 00af       add      r7, sp, #0
+0059087a 2c65087a 94f84c30   ldrb.w   r3, [r4, #0x4c]
+0059087e 2c65087e 043b       subs     r3, #4
+00590880 2c650880 012b       cmp      r3, #1
+00590882 2c650882 25d8       bhi      #0x2c6508d0
+00590884 2c650884 2368       ldr      r3, [r4]
+00590886 2c650886 0546       mov      r5, r0
+00590888 2c650888 43f40063   orr      r3, r3, #0x800
+0059088c 2c65088c 0020       movs     r0, #0
+0059088e 2c65088e 2360       str      r3, [r4]
+00590890 2c650890 0af078ff   bl       #0x2c65b784
+00590894 2c650894 2368       ldr      r3, [r4]
+00590896 2c650896 9b07       lsls     r3, r3, #0x1e
+00590898 2c650898 0dd4       bmi      #0x2c6508b6
+0059089a 2c65089a 94f84c30   ldrb.w   r3, [r4, #0x4c]
+0059089e 2c65089e 052b       cmp      r3, #5
+005908a0 2c6508a0 09d0       beq      #0x2c6508b6
+005908a2 2c6508a2 94f85030   ldrb.w   r3, [r4, #0x50]
+005908a6 2c6508a6 5a1e       subs     r2, r3, #1
+005908a8 2c6508a8 032a       cmp      r2, #3
+005908aa 2c6508aa 0bd9       bls      #0x2c6508c4
+005908ac 2c6508ac 0e4a       ldr      r2, [pc, #0x38] ; literal[0x5908e8]=0x200b05e4
+005908ae 2c6508ae 1268       ldr      r2, [r2]
+005908b0 2c6508b0 d278       ldrb     r2, [r2, #3]
+005908b2 2c6508b2 9a42       cmp      r2, r3
+005908b4 2c6508b4 06d0       beq      #0x2c6508c4
+005908b6 2c6508b6 2946       mov      r1, r5
+005908b8 2c6508b8 0020       movs     r0, #0
+005908ba 2c6508ba 0af06fff   bl       #0x2c65b79c
+005908be 2c6508be 60b9       cbnz     r0, #0x2c6508da
+005908c0 2c6508c0 0020       movs     r0, #0
+005908c2 2c6508c2 b0bd       pop      {r4, r5, r7, pc}
+005908c4 2c6508c4 2946       mov      r1, r5
+005908c6 2c6508c6 0020       movs     r0, #0
+005908c8 2c6508c8 0af068ff   bl       #0x2c65b79c
+005908cc 2c6508cc 0328       cmp      r0, #3
+005908ce 2c6508ce f7d1       bne      #0x2c6508c0
+005908d0 2c6508d0 0120       movs     r0, #1
+005908d2 2c6508d2 0af057ff   bl       #0x2c65b784
+005908d6 2c6508d6 0120       movs     r0, #1
+005908d8 2c6508d8 b0bd       pop      {r4, r5, r7, pc}
+005908da 2c6508da 0120       movs     r0, #1
+005908dc 2c6508dc 0af052ff   bl       #0x2c65b784
+005908e0 2c6508e0 eee7       b        #0x2c6508c0
+005908e2 2c6508e2 00bf       nop      
+005908e4 2c6508e4 dcab       add      r3, sp, #0x370
+005908e6 2c6508e6 0e20       movs     r0, #0xe

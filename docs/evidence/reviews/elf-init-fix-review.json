@@ -1,0 +1,47 @@
+{
+  "status": "PASS for reviewed initialization fix and deterministic host model",
+  "elf_sha256": "194f17700c26b9740853187362d289c352d1cad7288d6c7a0fafec2fa4bf3e2b",
+  "elf_bytes": 28424,
+  "constructor": {
+    "section_type": "SHT_INIT_ARRAY",
+    "bytes": 4,
+    "flags": 3,
+    "relocation": "R_ARM_TARGET1 (38)",
+    "symbol": "module_constructor",
+    "thumb_pointer": "0x3e9",
+    "body_relocation": "R_ARM_THM_JUMP24 (30) -> module_initialize"
+  },
+  "source_sha256": {
+    "band/module.c": "356a2e5d733e5fb864ecda656596c4150a808149e9d89d24a6f53e7bc6a61461",
+    "band/module.ld": "7b32dbc231603c5a4b51ba97862d10b760b0cfeb1407874c24f8f59174ca9afd",
+    "band/diagnostic.c": "edb04cd5755ffc5f5bb9ed2f06794b6ef8c83ba852b998ec12196e9899250d80",
+    "band/diagnostic.h": "376fabc825addcfc1156149974fd4eff35671801805e6508d0e94745b53e3c4c",
+    "tools/build_band.py": "b49010c61ae4df2385b17bc97653eff17b6b733d3eee3e6e3f22af83daf9c641",
+    "tests/module_test.c": "5bb4e60be6de4ba8432e461047a5a3edac233b10f80708e3f625199b3b7d6b2b",
+    "tests/module_test_backend.h": "1133af60bb512ffb3e4a7c3b45ccf3b6d90fdddbc1a4958c77d6d372a847dff9",
+    "watchface/main.lua": "82c19894f6a566543db13141e93c4e54b57be207303aed4d8e3518934ce4a926"
+  },
+  "checks": [
+    "Initializer idempotence prevents repeated timer creation.",
+    "poll acquire-loads initialization_complete and returns before any work until initializer release-stores after all initial diagnostics and logging. This closes reported NSH/LVGL writer race.",
+    "Synchronous callback inside host timer_create does not start transport; explicit post-init poll does.",
+    "Independent module and diagnostic host tests rerun with ASAN/UBSAN and -Wall -Wextra -Werror: PASS.",
+    "All 3 diagnostic fopen/fwrite/fclose fingerprints independently match exact firmware bytes.",
+    "Diagnostic writer bounds stage48/record87, handles int32 minimum, deduplicates attempts, closes even after short write, silently abandons failed I/O.",
+    "Build gate checks actual linked SHT_INIT_ARRAY and exact wrapper relocation target; inspected final ELF independently.",
+    "Watchface source3575 bytes below4529-byte slot; ELF28424 bytes below31272-byte slot. STATUS reads at most256 bytes from own /tmp/apdu_lab_state."
+  ],
+  "remaining_limits": [
+    "No installation or firmware execution in this review. Runtime GATT, advertising and NFC remain unproven.",
+    "Diagnostic file is a best-effort last-state snapshot. Concurrent STATUS read can see partial/empty contents; UI instructs retry.",
+    "Old resident module must not be unloaded; restart is needed before installing corrected module with the same identity."
+  ],
+  "files_edited_by_reviewer": [],
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

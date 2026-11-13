@@ -1,0 +1,51 @@
+{
+  "scope": "Read-only local artifact audit; no device access or hardware identity claim",
+  "face": {
+    "path": "releases/tags/tag-bridge-v2-p67glt-3.201.026.face",
+    "sha256": "82a42f736c1c722cfed55e9ee7da840fce154c3252ffdbf3b0f0694ffe5510ea",
+    "id": "999999996",
+    "lua_copies": 2,
+    "lua_copies_identical": true,
+    "lua_title_v2": true,
+    "elf_resource_name": "app/lua/apdu_lab_probe_3.201.026.elf",
+    "elf_payload_exact": true
+  },
+  "elf": {
+    "sha256": "91f63ed22532c81ba14c0f4d4e6271ace8b55df0a664c6eec8d706b7788c0673",
+    "bytes": 28680,
+    "markers_present": [
+      "MB-TAGS",
+      "TAG_CATALOG"
+    ],
+    "legacy_markers_absent": [
+      "MB-APDU",
+      "APDU_LAB"
+    ],
+    "tag_profile_flag": "-DTRANSPORT_TAG_PROFILE=1",
+    "disassembly": {
+      "symbol": "uuid128",
+      "text_offset": "0x1128",
+      "instruction": "add.w r0, r4, #0x10",
+      "effect": "service/RX/TX component 1/2/3 become 0x11/0x12/0x13"
+    },
+    "service_uuid": "7dbb0011-8e51-4f89-a9cb-9d40bb8c0e31",
+    "rx_uuid": "7dbb0012-8e51-4f89-a9cb-9d40bb8c0e31",
+    "tx_uuid": "7dbb0013-8e51-4f89-a9cb-9d40bb8c0e31"
+  },
+  "diagnostic_69905": {
+    "hex": "0x11111",
+    "running": 1,
+    "table_state": 1,
+    "advertising_state": 1,
+    "advertising_attempted": 1,
+    "service_nonnull": 1,
+    "subscribed": 0,
+    "meaning": "Local transport initialization succeeded; neither subscribed peer nor advertised/discovered UUID identity established"
+  },
+  "limitations": [
+    "v2 and APDU Lab diagnostics share /tmp/apdu_lab_state",
+    "v2 and APDU Lab use same ELF resource basename despite different face IDs",
+    "Legacy QUERY/INFO contents do not identify module profile",
+    "Stale diagnostic, firmware extraction/cache collision and Android GATT cache are hypotheses, not proven causes"
+  ]
+}

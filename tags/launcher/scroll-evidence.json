@@ -1,0 +1,59 @@
+{
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "native_functions": {
+    "lv_obj_set_scroll_dir": {
+      "veneer": "0x2c559138",
+      "target": "0x1c02cbe1",
+      "proof": "Lua property scroll_dir at 0x2ca7adec; direct setter pointer at +8 equals veneer target"
+    },
+    "lv_obj_set_flex_flow": {
+      "veneer": "0x2c5598f8",
+      "target": "0x1c053651",
+      "proof": "Lua method table 0x2ca7af28 -> wrapper 0x2c7e93a0; each conversion calls veneer with object r0, uint8 flow r1"
+    },
+    "lv_obj_set_flex_align": {
+      "veneer": "0x2c558aa8",
+      "target": "0x1c053669",
+      "proof": "Lua method table 0x2ca7af30 -> wrapper 0x2c7eaeb4; 0x2c7eaf48 calls veneer with obj/main/cross/track"
+    },
+    "lv_obj_add_flag": {
+      "veneer": "0x2c557c98",
+      "proof": "Existing Recorder/native app binding; SCROLLABLE bit0x10 also matches v1 clear_flag use"
+    }
+  },
+  "constants": {
+    "SIZE_CONTENT": {
+      "value": "0x200007d1",
+      "code": "0x2c7f087a..0x2c7f088e",
+      "value_literal": "0x2c7f0a14",
+      "name_literal": "0x2c7f0a18",
+      "name_string": "0x2c993d20",
+      "independent_review": true
+    },
+    "FLEX_FLOW_COLUMN": {
+      "value": 1,
+      "code": "0x2c7f0380..0x2c7f038e",
+      "name_literal": "0x2c7f05bc",
+      "name_string": "0x2c993bf0",
+      "independent_review": true
+    },
+    "DIR_VERTICAL": {
+      "value": 12,
+      "source": "https://github.com/lvgl/lvgl/blob/v9.2.2/src/misc/lv_area.h"
+    }
+  },
+  "primary_sources": [
+    "https://github.com/lvgl/lvgl/blob/v9.2.2/src/layouts/flex/lv_flex.h",
+    "https://github.com/lvgl/lvgl/blob/v9.2.2/src/core/lv_obj_scroll.c",
+    "https://github.com/lvgl/lvgl/blob/v9.2.2/src/core/lv_obj_pos.c"
+  ],
+  "constraints": [
+    "default v1 ELF must remain 8821ef2c46987f2bd72676ab4c2375245d06cabd2b12dde3f17abe4e449715f6",
+    "No fixed y or height for any flow child",
+    "No change to core, BLE, NFC, page IDs, timer ownership or app lifecycle",
+    "No firmware-font size assumed; actual text metrics drive native layout"
+  ],
+  "hardware_validated": false
+}

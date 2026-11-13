@@ -1,0 +1,3991 @@
+{
+  "status": "localized source assets; not an installable face",
+  "source_manifest_sha256": "94d047396644ff5e72d8d53995d603a76e128885bbe886837a1f567141821f2c",
+  "font_name": "Arial Bold.ttf",
+  "font_sha256": "d72db21f9242aedd6b917d8549ad5921766b24d5f8d0becfda2ff4c620b3c2e0",
+  "glyph_scale": 4,
+  "face_name": "Roundabout RU",
+  "face_id": "999999995",
+  "changed_images": 111,
+  "images": {
+    "fa3fb90.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          17,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          36,
+          22,
+          74,
+          52
+        ]
+      },
+      "original_sha256": "8fe4ce83030cabc928cae6b22365b6e58a0f32a5e70664b29ec95c24fffb7d5e",
+      "localized_sha256": "05f735452a07817e908500b44456eec1997860cc7582f05cfa87cd88966bd4ae"
+    },
+    "cf89df6.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          19,
+          93,
+          59
+        ],
+        "new_text_box": [
+          18,
+          19,
+          75,
+          59
+        ]
+      },
+      "original_sha256": "e42d6202600d996d81c9e95491dc3b16f0a2bf1ae865bef2902d576d8cbcac80",
+      "localized_sha256": "b13d2eef8a0d3b538cf4febcd20f65577f651f3cdd6055f67f6d005efc10d945"
+    },
+    "e563c20.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          27,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          39,
+          19,
+          81,
+          52
+        ]
+      },
+      "original_sha256": "fdc54888807fad3ce39e5fc1664fc9aa073a0f506a5742a0ad9562cfea490e12",
+      "localized_sha256": "d17a5a0a9470e29954d8dcdb1a5d2dcf0dbe16836353c447edf6456df5cbf624"
+    },
+    "f4f81f1.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          51,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          55,
+          19,
+          89,
+          45
+        ]
+      },
+      "original_sha256": "a414b8c428611bc7da2d75fa0bd50c518341be61a8f06ca13664cdd9ec21e3c2",
+      "localized_sha256": "f046abd333a4440b76007b8023ba698b515b0d4124a9e64e17c8e31a158df182"
+    },
+    "ee992b8.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "5910d2149515b3059a3745eff85096cc1d0fae7065460817cb8db13947a23134",
+      "localized_sha256": "e9e35aecc295c7827998a56ab890443a2359ea39a448f12f2e07336bcf66ffe1"
+    },
+    "00c3e26.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          122,
+          58
+        ],
+        "new_text_box": [
+          65,
+          24,
+          103,
+          54
+        ]
+      },
+      "original_sha256": "438272897c7a93177a161ed5a07371f3603db4b753a9285d14fc94cc67e30617",
+      "localized_sha256": "d52fc8bf30af75bdd7532eaac59cbbc218e267d95113f81fd8c088645065f460"
+    },
+    "0913877.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          41,
+          19,
+          136,
+          61
+        ],
+        "new_text_box": [
+          58,
+          19,
+          118,
+          61
+        ]
+      },
+      "original_sha256": "78ad0cc8e427d22ccdee105966a8613ca17909c7200cdf3bd2118471bff91d6c",
+      "localized_sha256": "f770b4f8ca84654b8efb2b39a325349d29809a3723b11733806c554ab0ee0f77"
+    },
+    "d2d0eb9.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          113,
+          59
+        ],
+        "new_text_box": [
+          59,
+          23,
+          101,
+          56
+        ]
+      },
+      "original_sha256": "630c19baf2e98188b153e4be5db684584fc2d3277496168278e8a08d84c57a02",
+      "localized_sha256": "cfc20b84df036300cb7d1664b846ec202193af117489c1de12acc1260f954188"
+    },
+    "5251e9c.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "30f3f454583795f06ee1a2f6dba60746c46ed07eca5ca781d4b55e3158a74b1f",
+      "localized_sha256": "da0a01698fe253cb16004cf653002442913fe64b27695cbc134cfa45dd3feb3c"
+    },
+    "a83b251.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          89,
+          49
+        ],
+        "new_text_box": [
+          50,
+          21,
+          86,
+          49
+        ]
+      },
+      "original_sha256": "d6e5be107ec7207940b13e984ff106c53f2e655fb28ab58a93fa3be762d52437",
+      "localized_sha256": "4fb45d202a8c69cdb876e7d1aaaff4ebaa970e02bf3b8cdb10a9af59b51f8a1c"
+    },
+    "609a183.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          17,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          36,
+          22,
+          74,
+          52
+        ]
+      },
+      "original_sha256": "64df813e4d0528802538b9ebe5dbfb1bc506d8d3dfc1fcc20e1fbb54cc538bfb",
+      "localized_sha256": "2ede3f46863c3ca36a0fd788f909871e4f2ae61aed8efd4140d90026c81bc837"
+    },
+    "68b7fef.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          19,
+          93,
+          59
+        ],
+        "new_text_box": [
+          18,
+          19,
+          75,
+          59
+        ]
+      },
+      "original_sha256": "5a80406102940eba13f60e9ca5502aa19bf395b7ed4e5d674970208ff61c91a5",
+      "localized_sha256": "6ef288d9daab2381a61e9cfc07946a4e79594a32c420eea240338405f44a78bb"
+    },
+    "e72a17e.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          27,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          39,
+          19,
+          81,
+          52
+        ]
+      },
+      "original_sha256": "0e75d9038013aa30a0fefde37e5bc5a23df17e373e969406c480dcf91bfeeca7",
+      "localized_sha256": "ab06344f5fd9ecc916e4a126fdde75d06df8f29d369e82a2ddafd5b9152a7fc0"
+    },
+    "11ac5ba.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          51,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          55,
+          19,
+          89,
+          45
+        ]
+      },
+      "original_sha256": "3dde0ed50addf217bb316e52285cac31c487dee5ca24516ca7a7b7d47f8c1a83",
+      "localized_sha256": "3959ce809f18b77e05d59698d7dd36f5a9cd079a56181fd1546bae4fc66e0dd9"
+    },
+    "ea1de53.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "81086884605fcde430ab9042cb5fe40af0af00e0518abfbd1fca8c318933f3ee",
+      "localized_sha256": "95ceef6198124869fd1c35111c64e601b61ecbe682e39a98ee56b1a5fa0bca56"
+    },
+    "c914211.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          122,
+          58
+        ],
+        "new_text_box": [
+          65,
+          24,
+          103,
+          54
+        ]
+      },
+      "original_sha256": "92c7bfc6ae09cd7b335c8ba5dc6493fa00ec2b98a2b14a010e55985a9c87a545",
+      "localized_sha256": "54589e5d75a0c9f19898c495dcf6795eaab3b43aed6b799f817546af969047b0"
+    },
+    "db1f48a.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          41,
+          19,
+          136,
+          61
+        ],
+        "new_text_box": [
+          58,
+          19,
+          118,
+          61
+        ]
+      },
+      "original_sha256": "a316e1c808332a643a84a1b48f9335fd1c945a8e9569d8dad4e29e5035ef84fc",
+      "localized_sha256": "26ebb7ed10449a399ef8078b553a0301b48383a149da8268f496878a112d0db2"
+    },
+    "c328a2f.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          113,
+          59
+        ],
+        "new_text_box": [
+          59,
+          23,
+          101,
+          56
+        ]
+      },
+      "original_sha256": "e15a7f86c9ab91a1a8b859dd3c04a46338e420d5efbe7f15d024e164d432776c",
+      "localized_sha256": "943f12058bfef56b72adad6663bc6dbc16990f2b616ad14949ccf33cf2f2a04a"
+    },
+    "f137972.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "9c70873e556018d50a95edcda6b92747eb6d25cdc2751c0dfcc86a70abeed2af",
+      "localized_sha256": "6104c455ee8951eb18cabe67d4e6c11e9f92e995f645d09fde0928e416b39535"
+    },
+    "1ff4d6c.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          89,
+          49
+        ],
+        "new_text_box": [
+          50,
+          21,
+          86,
+          49
+        ]
+      },
+      "original_sha256": "77dfde82ddceedf0d056d94b6ccab812dde64b45a5a21ad747e936c80706db73",
+      "localized_sha256": "ac25a1059b1d2ea399392a9447535e1c56d7b96cb7fed1412cc991ab517e232d"
+    },
+    "e4a06fc.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          17,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          36,
+          22,
+          74,
+          52
+        ]
+      },
+      "original_sha256": "ad869ba2054e4a6b78ac24c6aa10f5b7747eb07332c2b279414951c80d48c3b5",
+      "localized_sha256": "c605f29d98b3006ad5cae82c35c07654db363b115238613f3b56e911c6e6f917"
+    },
+    "e052764.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          19,
+          93,
+          59
+        ],
+        "new_text_box": [
+          18,
+          19,
+          75,
+          59
+        ]
+      },
+      "original_sha256": "f6e3da330845ab67eaa74ec68715dfaa89f61fb3af3319997656de269b5eca7f",
+      "localized_sha256": "e74a40b29df4825afba92fd60a18deef029aabe0a409acbee77c38729a2bf914"
+    },
+    "351bcf0.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          27,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          39,
+          19,
+          81,
+          52
+        ]
+      },
+      "original_sha256": "f6913bbb5ae3e3031755d4e5d800d2fc8742c284361cfa526af47646f33f7e8d",
+      "localized_sha256": "8137727156ca0d109b0c102e9f487d41bf3c9aa33965377b06fb3ecfc9021915"
+    },
+    "7018f7c.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          51,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          55,
+          19,
+          89,
+          45
+        ]
+      },
+      "original_sha256": "838593b1a893223cf325d1962528f08a021ce305771b0cc80c78b360e3a2d376",
+      "localized_sha256": "6b2019fa1c9d61733c13465a32b742cf0aec9b1d9fe8dab651b355fbd3707997"
+    },
+    "4d12134.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "a6de0727eb8fdb8905db2ec8b98213828db2c207b8af6d69e3aa35e63ecdaa4c",
+      "localized_sha256": "588accab8b4804463d6bb13c03ff8609ec79b622ea9f258743083b4c22c315d9"
+    },
+    "686152e.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          122,
+          58
+        ],
+        "new_text_box": [
+          65,
+          24,
+          103,
+          54
+        ]
+      },
+      "original_sha256": "c631dae37d9ae83e214522f6c6fb84e2ef9920353c5cb4afa883fff4572162be",
+      "localized_sha256": "e200787b7ebfefa16e1689b04462a687d1cdbcce90394e99453be98b2e391086"
+    },
+    "6ceb57f.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          41,
+          19,
+          136,
+          61
+        ],
+        "new_text_box": [
+          58,
+          19,
+          118,
+          61
+        ]
+      },
+      "original_sha256": "4bbaa6333db0f82ed154896ddb14f5d940876ddc19e5877b4187b5bf45db1d0d",
+      "localized_sha256": "3b502b3d127ab421db2bc56e4efcc77afd91a8e02bfec1fac21087e7184b6af6"
+    },
+    "e4ab8cc.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          113,
+          59
+        ],
+        "new_text_box": [
+          59,
+          23,
+          101,
+          56
+        ]
+      },
+      "original_sha256": "d785aad2db9b6f971e9c532a4139216b1866654b619023c60a3a07490e8dc75e",
+      "localized_sha256": "33509da98facbfdad5de19e2e25c7cfe31eddfce172f87837a059b1b14703962"
+    },
+    "a9e3f01.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "19e6a24d9dcdadcedd107d92d61c3d2099915259050d75478cb6762c6d2b05ea",
+      "localized_sha256": "04e0ac17046c96d62223344a4556d9b5c0a53db48bd53e41807231b0c8752d2e"
+    },
+    "3acfef2.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          89,
+          49
+        ],
+        "new_text_box": [
+          50,
+          21,
+          86,
+          49
+        ]
+      },
+      "original_sha256": "709572bb017aff1301ea5916324cde585b9b291201c0e7ba67222d92d4a1e3c3",
+      "localized_sha256": "e380474351e5296f2f421bbc192538ce725c17e2adeff2fa1cd09a370b7c46f6"
+    },
+    "180daff.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          15,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          35,
+          22,
+          73,
+          52
+        ]
+      },
+      "original_sha256": "72334a38376a2222f7991e07c3ba61482444623a39c487c1998db21f67883594",
+      "localized_sha256": "55905ab8e05674de3aff9c10fe2211fef8582058985f5bb64bd1758a7ca80c12"
+    },
+    "b39a037.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          17,
+          96,
+          59
+        ],
+        "new_text_box": [
+          18,
+          17,
+          78,
+          59
+        ]
+      },
+      "original_sha256": "62dc8befecc8f2d9048a02e0579dbbed933bfb8df38e8b09ef306d60c86b9b64",
+      "localized_sha256": "07688a153d27caa1d18aa8b39432e018cce5709762d162810a5bcb64b92e5c34"
+    },
+    "cf2a733.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          25,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          38,
+          19,
+          80,
+          52
+        ]
+      },
+      "original_sha256": "10ae081000c1e6b47ae47746327c08afd760b50bdea7ff110382a8695e40d82a",
+      "localized_sha256": "c519eabca3a4dfe45b42dd7ea811175bae6105b3fb4ab11f3e06051d848e373b"
+    },
+    "c2097a6.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          49,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          54,
+          19,
+          88,
+          45
+        ]
+      },
+      "original_sha256": "6087f283952efd266681f0957ee67c46bdcc408574100ed5ee9f308fc5f0b95b",
+      "localized_sha256": "bafb5713c4baeae3cf4c9fa0957fedba29f17fe689ef540c6fc142d92f3c7cc8"
+    },
+    "72fb472.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "3bad84e9c4fe191a17fe32e78443df091c01fec10efadb1cdeca8be4eb883af4",
+      "localized_sha256": "c05b43c1c2fe6ca11cc3f442635aa00e880a132de937f8c0637f03e14bf07c2f"
+    },
+    "389d4d6.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          125,
+          59
+        ],
+        "new_text_box": [
+          67,
+          24,
+          105,
+          54
+        ]
+      },
+      "original_sha256": "c9000645e3abab8bf6b456785c8860b82b179f18bd71f578ff872b3b0f2b6867",
+      "localized_sha256": "17cd84068c8c7179b28240a6938c3273bf1ffb95fde0069c1db7010e10ffdb72"
+    },
+    "50aea0a.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          40,
+          14,
+          130,
+          60
+        ],
+        "new_text_box": [
+          52,
+          14,
+          117,
+          59
+        ]
+      },
+      "original_sha256": "37d8e959f420ee4788160eee617ec533e4830a7533386b97bbf39620af35a936",
+      "localized_sha256": "6e9dcbdfedc14ce3ba8d2645e8eb251698a27ccfcb0ca2b485c38dc68d65e6bb"
+    },
+    "a689600.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          115,
+          60
+        ],
+        "new_text_box": [
+          60,
+          24,
+          102,
+          57
+        ]
+      },
+      "original_sha256": "d94db428f11bd8ca2bfb93841c87df6af929ebfa19a24588432a3897b262779e",
+      "localized_sha256": "4bb4528cd7150c58998fdf11fd4b93c7ffda8bab76a7b1c8ff5daf5c44cd5168"
+    },
+    "3068772.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "61c919ae84c8fa8f7a1498a85f1f569fc782c16ded522107655c7760e79e5cc7",
+      "localized_sha256": "00f83a9b3dd01a42dd18578f87c1df746fff6c95e34a3c0b75fb9177b36cf31e"
+    },
+    "88e0d24.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          99,
+          99,
+          99
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          91,
+          49
+        ],
+        "new_text_box": [
+          51,
+          21,
+          87,
+          49
+        ]
+      },
+      "original_sha256": "92b053ea2cc29dfef635ebf984aa45b7ef9d31fd27d57651519306722c2bf21a",
+      "localized_sha256": "e760f2369a48c4970b702cc1ace9d22230b3013e106d2ad1c434ef2d074fa9d9"
+    },
+    "61f848a.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          17,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          36,
+          22,
+          74,
+          52
+        ]
+      },
+      "original_sha256": "788e8ba17d76b115ad0e976a91fe24ea48b21c6060666282de25143d72c45ea4",
+      "localized_sha256": "a09e9785f06b6872ace5746061ea0b5dda1c40874bc549cc02c018b58e60b25a"
+    },
+    "84ce115.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          19,
+          93,
+          59
+        ],
+        "new_text_box": [
+          18,
+          19,
+          75,
+          59
+        ]
+      },
+      "original_sha256": "748add6dee2d5259bdd0d6dd68682d543cd73f98a6b4eaeccb3b47b14d11f4ab",
+      "localized_sha256": "3acdcf0b966c33c6024603f99744ed1b723c663c57b3b49c296a6fd9378895cc"
+    },
+    "1fd7f82.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          27,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          39,
+          19,
+          81,
+          52
+        ]
+      },
+      "original_sha256": "7fc9e06ae9efd4e8a5cfca9ce142e15883251c65e63d884d4ac1413a56e4555b",
+      "localized_sha256": "06117df1f42f38811597294de8e22bad5a7b9e0a05c8061c3bc9f25aa5c627be"
+    },
+    "632a669.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          51,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          55,
+          19,
+          89,
+          45
+        ]
+      },
+      "original_sha256": "054f59ad82edaf1adc171e447adb373eb63508dd0f81969d571540014e53e2b4",
+      "localized_sha256": "541dfb62ed430a08459f3261ab57012498d4d39056df035e486252203e8152e5"
+    },
+    "e2862d2.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "677459cb401e506e5e2e9c4a93bc7fc9c786cbda4e49dbce63b4cfdcf582c41d",
+      "localized_sha256": "d06b05927f120f325ef67005acca288db45c2c01cc45aa2a7afb64352461e64b"
+    },
+    "7fca60e.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          122,
+          58
+        ],
+        "new_text_box": [
+          65,
+          24,
+          103,
+          54
+        ]
+      },
+      "original_sha256": "eb3fda81537b2814d7ba03b9c56bef58efff117d70a0449a7c04e685183efa66",
+      "localized_sha256": "fb0f5cca4a8d029089f3ab8d15199bade63156c22080b19042446621a5a9f782"
+    },
+    "1ee36ec.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          41,
+          19,
+          136,
+          61
+        ],
+        "new_text_box": [
+          58,
+          19,
+          118,
+          61
+        ]
+      },
+      "original_sha256": "3b53018f7894c4f625c816ec599bca242f4f336cff1b7433a9b32efc5b7d5f68",
+      "localized_sha256": "f7849a4dda58847033f0c44881f0c11170f4026479ad27d2844b7ef6b5017b60"
+    },
+    "1acca22.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          113,
+          59
+        ],
+        "new_text_box": [
+          59,
+          23,
+          101,
+          56
+        ]
+      },
+      "original_sha256": "13ac8da0b144052bab5f63a1c2044766686af84868e9b0771d69d599c0d7ddaf",
+      "localized_sha256": "483158fb0e7b8e61c1815119b7575d5fd9c1bb894f4cbb59646a9c6018d85850"
+    },
+    "2e459f2.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "1622493eac6b4e3fcc6c547ff08d6e775ca093dc6d6f97c7fbe1e44bd42f8fec",
+      "localized_sha256": "d64c9f6116210c634d659af2bc29ac5d03174f3e5f59727a0f12ddf46a03b86e"
+    },
+    "f5f124e.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          89,
+          49
+        ],
+        "new_text_box": [
+          50,
+          21,
+          86,
+          49
+        ]
+      },
+      "original_sha256": "516968e7853d8953109831b35db9bbf197e071238ce6a58927fd040cd32ca8dd",
+      "localized_sha256": "1814c79ac506119adf1c4a5d1c711c736158e453dbed61c5853355ade50cae7f"
+    },
+    "8602dee.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          17,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          36,
+          22,
+          74,
+          52
+        ]
+      },
+      "original_sha256": "2d207d94d4b786443624260a0e297fc0f3eb9adbd060a375c1621a24997a7c70",
+      "localized_sha256": "1b58d36f92835ae6170ef4286b062a1863f4d8cf808fcb9d458b797ca854a8bb"
+    },
+    "f72ebe5.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          19,
+          93,
+          59
+        ],
+        "new_text_box": [
+          18,
+          19,
+          75,
+          59
+        ]
+      },
+      "original_sha256": "170e1059560a01d0f4c9eea329864404c85cd32f3a72b685d21990abb28a8c07",
+      "localized_sha256": "1e81e0eeb81418b073bec2bc095ac3f0d7361ca0ed5760b21c6f14c9a2239988"
+    },
+    "1fe6dd0.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          27,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          39,
+          19,
+          81,
+          52
+        ]
+      },
+      "original_sha256": "3daf2004c6c24d0fb9fe6c98f93eeb5c19bf1955417b05cbbb5f75ce7e37fade",
+      "localized_sha256": "32899a1cb6bdf52bd7b0c91c03d1a6ba3bc6ed99e386c0610d62e26ae3635557"
+    },
+    "46d0ca4.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          51,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          55,
+          19,
+          89,
+          45
+        ]
+      },
+      "original_sha256": "7f6dc676624e6b549a558794ec6c4113ad1635211ddd58170a31ca85836a6062",
+      "localized_sha256": "9f33cfbbb7cfd2324600bd7c2757993f632cd79a252fcbe57274b9f5b95b1aa7"
+    },
+    "cd2e8d4.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "dbd43d5e72f6d88c1d6e2a70a36a2e3f53f2c526067716a7b5fe541eb1683512",
+      "localized_sha256": "b6bc96d72098020b8a98bb68d5436b1a84524d835850e3492ed2c0e6c48bfc32"
+    },
+    "1aaaff1.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          122,
+          58
+        ],
+        "new_text_box": [
+          65,
+          24,
+          103,
+          54
+        ]
+      },
+      "original_sha256": "b125cd715f11ab4fb36c95e911200b8ead9b766ca1d934d2d24f4941d38693de",
+      "localized_sha256": "6530f44741126960a81e95851fc810836240861b1d88d29417d4b2834a336c2f"
+    },
+    "ea4769a.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          41,
+          19,
+          136,
+          61
+        ],
+        "new_text_box": [
+          58,
+          19,
+          118,
+          61
+        ]
+      },
+      "original_sha256": "1bcee3d14048793a446a319c0e39fc5a465d97d51a6617ab307b93154e3dbdea",
+      "localized_sha256": "c2a026a4c670c4f74fd8ec89f1bbbec2350965b24e50f57f8e07aaa371ea40c3"
+    },
+    "5b34b40.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          113,
+          59
+        ],
+        "new_text_box": [
+          59,
+          23,
+          101,
+          56
+        ]
+      },
+      "original_sha256": "6110cf944896e0c4c52e2add236d602e169ea0b13ef42e666104fe0f3c7a8e79",
+      "localized_sha256": "b0a1381fe44fef38bc40cfa5ada9f3dc8be854321571dcb0deeb0247f4a3dfdf"
+    },
+    "9b09276.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "fc672b0ae132f73653b7be326278d19d879f403c4d93f75aefd35ff1267c397b",
+      "localized_sha256": "07443fc115e1dd3abb18ab9335b6998e2c3ecca13902fec4bcd007132f8ff654"
+    },
+    "3de76d0.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          89,
+          49
+        ],
+        "new_text_box": [
+          50,
+          21,
+          86,
+          49
+        ]
+      },
+      "original_sha256": "32f5cb3167f98d87346b1f4976a6f0b38dd25da00a3a157964a58dcc0ff04a12",
+      "localized_sha256": "0497cc8b556204821659dfe6285240d88d8f4a0ac969c786762f722badfd3036"
+    },
+    "7b76fba.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          17,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          36,
+          22,
+          74,
+          52
+        ]
+      },
+      "original_sha256": "3f089039bc7558e9901296ec7b282b7fa02ebe8ff5f12ec7b6857cc9084e2170",
+      "localized_sha256": "637178ff836a8b7af35beb1e1a9770de051b22da47c6bc31f64c2cc7e71b7db3"
+    },
+    "2bee041.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          19,
+          93,
+          59
+        ],
+        "new_text_box": [
+          18,
+          19,
+          75,
+          59
+        ]
+      },
+      "original_sha256": "1b38b2c0cca6f59d106a74ac84cee2227412dea662ad9c7588dcdd036c584717",
+      "localized_sha256": "7998808e59c7bb4cdc6c1b15b52aee8eaf93689bd9559adc78bc2425a9171a56"
+    },
+    "cf0b930.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          27,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          39,
+          19,
+          81,
+          52
+        ]
+      },
+      "original_sha256": "72fc5b81ba5b090b2cac816f3e04ef840c90e0af901d4238c15223af9320bd1b",
+      "localized_sha256": "77d12fa88566f1f84f28ead04d50da726f6c67f4ddff04575515674ca416b27a"
+    },
+    "ecea305.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          51,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          55,
+          19,
+          89,
+          45
+        ]
+      },
+      "original_sha256": "d00c844533e3787ad5ab14094882a41564ce3447257d17a46cb2018de3bfdadb",
+      "localized_sha256": "02cd5f1188f8fa577029be920c7a7a6d08a7ce56ce653b42876281060e37e88d"
+    },
+    "b70c618.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "07b65acbf242989cd2b981f05adcfc103e7938112334df0d4d81d04c47b86bf7",
+      "localized_sha256": "970fde035e837968346a8d718f4acd83b18736237708d771b3bc9a4cd5ce9880"
+    },
+    "125a1af.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          122,
+          58
+        ],
+        "new_text_box": [
+          65,
+          24,
+          103,
+          54
+        ]
+      },
+      "original_sha256": "454cea6a462ec5eef3f9f9f50ccda1db12c040a652538c1bcd84461d254b8270",
+      "localized_sha256": "77b5bfe8c740204d64a06d43b1dc37e43d4aff15e44c0b6cb8a1d60b7efc6f99"
+    },
+    "8eed839.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          41,
+          19,
+          136,
+          61
+        ],
+        "new_text_box": [
+          58,
+          19,
+          118,
+          61
+        ]
+      },
+      "original_sha256": "4d0ed97131051e49604b75528fe84234524860bc5f89bc81bffd92fe98267b40",
+      "localized_sha256": "29d6cb1cb4c3a4fcc8d7e4f463582e94b6526a69ed13efab4cfda6f776657a49"
+    },
+    "0ab7f8f.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          113,
+          59
+        ],
+        "new_text_box": [
+          59,
+          23,
+          101,
+          56
+        ]
+      },
+      "original_sha256": "d982828ef8d1e2485c2dca9be34838330a2fac4e0071a115288a9f6a76f1a5bf",
+      "localized_sha256": "9f2457dca65e4b901d9c4bc909f5a6630e6119760606b145f90bfea05ce86881"
+    },
+    "0f9626e.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "d0f23994fc0b0835d894b03e91fb3c3eade5a52cc467e33d488391b22f12fe08",
+      "localized_sha256": "e220e7bacf4c56737261b4ec245cf37554022d80ee52c248bf65d16344d90b0c"
+    },
+    "e874308.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          21,
+          89,
+          49
+        ],
+        "new_text_box": [
+          50,
+          21,
+          86,
+          49
+        ]
+      },
+      "original_sha256": "75d9e20ff7a17cb3e99930f51c7e8a473e83a6bda5a7faea0f6079796e99b938",
+      "localized_sha256": "5d3b0309fd1d06618a85d5d2a77382f8d3f28fc27c95e5b737b4454294bc9e6f"
+    },
+    "0af0409.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          15,
+          19,
+          93,
+          56
+        ],
+        "new_text_box": [
+          35,
+          22,
+          73,
+          52
+        ]
+      },
+      "original_sha256": "e5540f65fb5c3ececfe7be992a72fae6ad7e8e25e8bb3fae33bc4fe76cc42733",
+      "localized_sha256": "5e223e3225103688aa9a21cefc5176b7f4addb6b55930648a3a8c9b9cdc4e22b"
+    },
+    "5f8f0a1.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          0,
+          17,
+          96,
+          59
+        ],
+        "new_text_box": [
+          18,
+          17,
+          78,
+          59
+        ]
+      },
+      "original_sha256": "b59a9703cf31910f3aa7bc42688832b94b1d61a303afe395c642634e2380cb3e",
+      "localized_sha256": "44421efc047b585efec4be204939fd007d253b483a02420473e39995fd1f44bf"
+    },
+    "8373fea.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          25,
+          18,
+          94,
+          53
+        ],
+        "new_text_box": [
+          38,
+          19,
+          80,
+          52
+        ]
+      },
+      "original_sha256": "bac93b0dbb348e2c55efe6cc02f1a4af2c1d1f007536c53afe0a3ef0c40533b8",
+      "localized_sha256": "546c9ac36decb261ca658c1e98f9c63bc7513ca285b065a721a9fe71e0369a1b"
+    },
+    "659ea76.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          49,
+          19,
+          93,
+          45
+        ],
+        "new_text_box": [
+          54,
+          19,
+          88,
+          45
+        ]
+      },
+      "original_sha256": "7ba985835bdc2ff06646974d1271a6c4176d329282d4a741861af538eea27824",
+      "localized_sha256": "44e279497f8957f82c662103f7461571dee38b5b19db60fefd20917eeb12085d"
+    },
+    "2d0f9d9.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "right",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          0,
+          0,
+          96,
+          64
+        ],
+        "old_text_box": [
+          30,
+          21,
+          89,
+          52
+        ],
+        "new_text_box": [
+          40,
+          21,
+          79,
+          52
+        ]
+      },
+      "original_sha256": "78ded904e8d461d949e34e3fac3d8a4e3652ff76fe48354bac8eb1ff0ab49c1d",
+      "localized_sha256": "b9f0089ec0b955f6f42c622b942943dd2b8e4fdc4b7526757036f53cbaa2bf22"
+    },
+    "57c2119.png": {
+      "text": "ЧСС",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          47,
+          20,
+          125,
+          59
+        ],
+        "new_text_box": [
+          67,
+          24,
+          105,
+          54
+        ]
+      },
+      "original_sha256": "1bdf90f7b6be1aca25604fbea97e0af3b919121d9d61ff91504391b5b400b5ca",
+      "localized_sha256": "8ac370ac902c520e3eb7c6f87169eed94357e3eebe85d57a803733422cc90d26"
+    },
+    "c11dba1.png": {
+      "text": "Активность",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          40,
+          14,
+          131,
+          60
+        ],
+        "new_text_box": [
+          53,
+          14,
+          118,
+          59
+        ]
+      },
+      "original_sha256": "150b532e45278882c7bd13e71eb19a2c715d7f56bc32ca1736dcb0a0d4585b15",
+      "localized_sha256": "65d69b244e17494778fdd52b5dc165ec2a5fae317f7c21b863d47c4c4c57782d"
+    },
+    "75cba70.png": {
+      "text": "Стоя",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          115,
+          60
+        ],
+        "new_text_box": [
+          60,
+          24,
+          102,
+          57
+        ]
+      },
+      "original_sha256": "6be58e37d43adf93624036867977c9b774f806b1bf0c3364b10977256338f6e4",
+      "localized_sha256": "97164795713da56a33e6d4e7df71a87953a1667632d6ec9973f7deeac3f13726"
+    },
+    "768e598.png": {
+      "text": "Ккал",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          106,
+          54
+        ],
+        "new_text_box": [
+          57,
+          21,
+          97,
+          53
+        ]
+      },
+      "original_sha256": "5695a3a5409b46875bea7950ba5f9cd8a669fff3a8fd5272f7c63de6e0e785ac",
+      "localized_sha256": "5621dfe0aab93255eea2a92e179b9aff92f3faf70a250c3c2cab9a1bd8df1f58"
+    },
+    "00a30d6.png": {
+      "text": "Шаги",
+      "kind": "arc_label",
+      "side": "left",
+      "size": [
+        138,
+        64
+      ],
+      "render": {
+        "color": [
+          70,
+          70,
+          70
+        ],
+        "region": [
+          40,
+          0,
+          138,
+          64
+        ],
+        "old_text_box": [
+          48,
+          21,
+          91,
+          49
+        ],
+        "new_text_box": [
+          51,
+          21,
+          87,
+          49
+        ]
+      },
+      "original_sha256": "3b7154055e44d27119e804538f79829a6fb2a42d99e1ca8cc43f380e5187b883",
+      "localized_sha256": "af12aa79c77a7948880e7aa70b8ba34b6fa51d6ab633aeb4863a255148b1ad66"
+    },
+    "97a6aff.png": {
+      "text": "ч.",
+      "kind": "sleep_unit",
+      "size": [
+        12,
+        24
+      ],
+      "render": {
+        "color": [
+          252,
+          252,
+          252
+        ],
+        "region": [
+          0,
+          0,
+          12,
+          24
+        ],
+        "old_text_box": [
+          2,
+          5,
+          11,
+          20
+        ],
+        "new_text_box": [
+          0,
+          6,
+          12,
+          18
+        ]
+      },
+      "original_sha256": "1ca871f68a37d60096309589d0bdd7667d211ba2a8e1783ac5436b09821b7e6c",
+      "localized_sha256": "0186c2944901e093655b695adc94a07678b29fe5f2be1116ecb59fdb9750bae9"
+    },
+    "872cf28.png": {
+      "text": "ч.",
+      "kind": "sleep_unit",
+      "size": [
+        12,
+        24
+      ],
+      "render": {
+        "color": [
+          122,
+          122,
+          122
+        ],
+        "region": [
+          0,
+          0,
+          12,
+          24
+        ],
+        "old_text_box": [
+          2,
+          5,
+          11,
+          20
+        ],
+        "new_text_box": [
+          0,
+          6,
+          12,
+          18
+        ]
+      },
+      "original_sha256": "d60b09411eb6d2c6f49bf3ef8f62d047a60eaef6b10865571b1bd98d2e5865df",
+      "localized_sha256": "7caaac25650285cdcf788114ba94377c297efa2ce88828e6994e5d7486c86bf1"
+    },
+    "亮屏/9a217d9.png": {
+      "text": "ВС",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          3,
+          1,
+          33,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "14a0404dfef5e5422d179c91af4e3b40b61646cf81607a58d7195c5e7a0d30d5",
+      "localized_sha256": "695e2575acb71331d281012b21fa84e724e5b2363f60e98998afa76310126132"
+    },
+    "亮屏/cfd5348.png": {
+      "text": "ПН",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          2,
+          1,
+          35,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "75fbfe44bcac58911635f3b9a194a54e3d4b3fc6165b6672d17a84686bda0735",
+      "localized_sha256": "b74001493bc25097e15ba55497c4488d866cf91fa7170aa9a8ef1b4fd081aa01"
+    },
+    "亮屏/2d62890.png": {
+      "text": "ВТ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          4,
+          1,
+          32,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          29,
+          13
+        ]
+      },
+      "original_sha256": "e4db0ebb2e091603a6b7eda5d1b4809af3a0aa71866c7f166eb9ae7af6c4df82",
+      "localized_sha256": "397d1dd84e08799d0c13bf326588f2c9f718c7b3e586891c1bcf728602eae039"
+    },
+    "亮屏/af8e883.png": {
+      "text": "СР",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          1,
+          1,
+          36,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "53f1f4d97f81ab913aeccd36b7276e8323ab57451cd9fb16e3e11cf1494cb8c4",
+      "localized_sha256": "736d78badcae108a76b93dc2807a598183bfcc328ffbaab077e2cbc971ed2fa1"
+    },
+    "亮屏/5b8a9d2.png": {
+      "text": "ЧТ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          3,
+          1,
+          33,
+          13
+        ],
+        "new_text_box": [
+          7,
+          1,
+          29,
+          13
+        ]
+      },
+      "original_sha256": "be98adcc352795642bf01f0f5e4a92542de52ffed031e65fb54b6a6e689ec5eb",
+      "localized_sha256": "8bcfb93b228401fa6a35206d0fb7dadb0f15c105d79c989358221f839091b4e1"
+    },
+    "亮屏/6f7f74d.png": {
+      "text": "ПТ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          8,
+          1,
+          28,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          29,
+          13
+        ]
+      },
+      "original_sha256": "235e17ff63d321c68fa12dccc6f96ad50977f2636ac1a6e78d44bcb3b47b785e",
+      "localized_sha256": "ac68b5c229a95323ae4adb5131a4bea1f6d9212f2a4986d16a7672dd078bc809"
+    },
+    "亮屏/5c084fc.png": {
+      "text": "СБ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          52,
+          130,
+          255
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          4,
+          1,
+          32,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "c5f51380e04e28a2b63930accb5a1bfa4fd5c0653c4c7c1624b61876b6d74cb1",
+      "localized_sha256": "11b3fcd3a66674d14b589e702bdfc3e0e1acf2a47035944efdced2c4850d715d"
+    },
+    "可替换组件日期/609b886.png": {
+      "text": "ВС",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          3,
+          1,
+          39,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "529424684a87fb22b5b1114481f8af2c6f4f4125e0a6e5b15cb09f404f79e473",
+      "localized_sha256": "2b206d72c367ea5bf3c201a666afe890be3eeb04ef1cbfdb6b8bb91a7519341e"
+    },
+    "可替换组件日期/97fd771.png": {
+      "text": "ПН",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          1,
+          1,
+          42,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "5ac6bb3a758de69c4c6035cb572fcc87a03484f8261185331dbd0d936b241045",
+      "localized_sha256": "833b1597d837cdd58ee6b8b06f49da6c5bdcdee32ff41ad30bf764ce2f08b73b"
+    },
+    "可替换组件日期/dd21eda.png": {
+      "text": "ВТ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          4,
+          2,
+          38,
+          16
+        ],
+        "new_text_box": [
+          10,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "c3d27e5cde5954cf5d8b69eb70ab8ce2ba570230c969282743f204e03868d92d",
+      "localized_sha256": "f77a73984666c7658c44974f1f29bdc8f9b5831c19c0d5777eb6e0743ec9d49c"
+    },
+    "可替换组件日期/5cbeed9.png": {
+      "text": "СР",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          0,
+          2,
+          42,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "c19f493d77be177d04766bf8fbe9ff4cc0c47d1b1ad11518f9cc5a30c63a510c",
+      "localized_sha256": "9541f7e8ef528805bb8d0db803a5001967a7106b96d0eeee0f9602d02bf341af"
+    },
+    "可替换组件日期/e567032.png": {
+      "text": "ЧТ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          3,
+          2,
+          39,
+          16
+        ],
+        "new_text_box": [
+          10,
+          2,
+          32,
+          14
+        ]
+      },
+      "original_sha256": "46804daad0ce14b18fed013d370e29324f29a0e462967bd9ba8e83529a46c1f1",
+      "localized_sha256": "dde7343aa629e2eb519fcbddd38cec312d7119378f353eda0e8da64ac3683a25"
+    },
+    "可替换组件日期/732d2fe.png": {
+      "text": "ПТ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          9,
+          2,
+          34,
+          16
+        ],
+        "new_text_box": [
+          10,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "81ecec20ba35e7a63fa7608b7e12dbc92ef514980215730be9db45f0ed621d17",
+      "localized_sha256": "c96de129b4bbbc27930dcdcb1a40c65933350deef47346538eb0a7bfedb11d38"
+    },
+    "可替换组件日期/fdff68c.png": {
+      "text": "СБ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          5,
+          1,
+          38,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "59bde0da18100f8420c9e4e961a06bd06b9c0d8b522ee41e0231b29aad4c0dc7",
+      "localized_sha256": "f861880ac1dbf7c94e1922f2fcfd2fc59dc97a3156053ccc2844653ac30e2294"
+    },
+    "1_21/6bd09ba.png": {
+      "text": "СР",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          253,
+          253,
+          253
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          0,
+          2,
+          42,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "c954f6670e34fc18c8bea1733cf993f1eb5e0671831c60d61516b4a6e6c50f91",
+      "localized_sha256": "9541f7e8ef528805bb8d0db803a5001967a7106b96d0eeee0f9602d02bf341af"
+    },
+    "应用入口日期切图/e232380.png": {
+      "text": "ВС",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          3,
+          1,
+          33,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "8d9876c009ab449beeaf55dd5d7f9631b72dd32a147b57564ff29c29a8c08f0b",
+      "localized_sha256": "841731875fc8885ae07853169f11e157e09e402a62fb8a62203bceaad932905e"
+    },
+    "应用入口日期切图/ebfd003.png": {
+      "text": "ПН",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          2,
+          1,
+          35,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "360d23d99c50e603d4722dfbcd9c13a6b4466a9bd274c9f7e28ae80f4f49fb5e",
+      "localized_sha256": "587bbca8c216a37131038b3165bbbcfb3e2e920c081897bfc59b37a8cd2a44c1"
+    },
+    "应用入口日期切图/aed721a.png": {
+      "text": "ВТ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          4,
+          1,
+          32,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          29,
+          13
+        ]
+      },
+      "original_sha256": "7ccfbee3ec5f93add1ecc35615b8fd1cb10fc0f3c22c00bb3b817ca30ce27c0c",
+      "localized_sha256": "7653c58ed45fe5e1899c56456a8ed044e5d1c5cdb9d356eaa0c5920d13e418d8"
+    },
+    "应用入口日期切图/1406fde.png": {
+      "text": "СР",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          1,
+          1,
+          36,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "af73af2cc1da4916e348c2c1960e342b031b7e2e74e5fc2bec888021808dd376",
+      "localized_sha256": "1176fa157e815f9ff606b81daefc5549320bc5652b4390f5a8cee53588dd0c93"
+    },
+    "应用入口日期切图/74ff229.png": {
+      "text": "ЧТ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          3,
+          1,
+          33,
+          13
+        ],
+        "new_text_box": [
+          7,
+          1,
+          29,
+          13
+        ]
+      },
+      "original_sha256": "505c42850f7f8e94f9843cfa8663d9c86fe60b89a30c44f30aaa6e0eb12afec4",
+      "localized_sha256": "b1e72e40fba515abc5be847d65c33566036219fa720d20ba407771be8df1fcb9"
+    },
+    "应用入口日期切图/0de56c1.png": {
+      "text": "ПТ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          8,
+          1,
+          28,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          29,
+          13
+        ]
+      },
+      "original_sha256": "37386980fb88921a14bce0fad931e073510137028d27fbdb7a74e85f725f076d",
+      "localized_sha256": "8ba7f9824bc999e2973bacf6107d6cab57d9b8d3884330d1eabd137fbdc51d3e"
+    },
+    "应用入口日期切图/8588401.png": {
+      "text": "СБ",
+      "kind": "weekday",
+      "size": [
+        36,
+        15
+      ],
+      "render": {
+        "color": [
+          36,
+          91,
+          179
+        ],
+        "region": [
+          0,
+          0,
+          36,
+          15
+        ],
+        "old_text_box": [
+          4,
+          1,
+          32,
+          13
+        ],
+        "new_text_box": [
+          6,
+          1,
+          30,
+          13
+        ]
+      },
+      "original_sha256": "ab2fa5e35e23b4afdeed375c7bc6712fa9b57824308c4ff9804ce95e99a30faf",
+      "localized_sha256": "d2f3b1eca9405b03489152fb38c39f396eb5a3e109bbb58089a5c246d5f4c6c5"
+    },
+    "可替换组件日期/16612f8.png": {
+      "text": "ВС",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          3,
+          1,
+          39,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "d9ad7eb861aaa9f158fffbc774580b4c1e34c6865297938a4b9bc9fb24361ae6",
+      "localized_sha256": "5f540550c7b3c5ddf5ae9a42fdd1914944198308140288d8b301e6d26f6767bb"
+    },
+    "可替换组件日期/45d6c92.png": {
+      "text": "ПН",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          1,
+          1,
+          42,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "9a2e1b283e455e48532cf86dffccbebc9ab25b42e5f9d55f270411acb434a34e",
+      "localized_sha256": "603e1118a1464e5fd5f716801482570b59720806d5c77abd66ec4459cf9ebbb8"
+    },
+    "可替换组件日期/4ffad4c.png": {
+      "text": "ВТ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          4,
+          2,
+          38,
+          16
+        ],
+        "new_text_box": [
+          10,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "d2e3450a8be3e92f3ac290efaf64c27fae9d19273dfaff222f7808d284c2aba2",
+      "localized_sha256": "057c8877b9272184522feadc2e3e9e5a3e6570d4959e0c20cd5e3bea6f8980c1"
+    },
+    "可替换组件日期/d2df3c9.png": {
+      "text": "СР",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          0,
+          2,
+          42,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "0fde721721963497a6a2bed4c4bbb2b04be0dcab3687d195e646a8e365f3ea68",
+      "localized_sha256": "018e6e112b823de18bacc0c1e1ac06659157a94b1292cfa39ab639802610c641"
+    },
+    "可替换组件日期/76eea8b.png": {
+      "text": "ЧТ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          3,
+          2,
+          39,
+          16
+        ],
+        "new_text_box": [
+          10,
+          2,
+          32,
+          14
+        ]
+      },
+      "original_sha256": "fc9d37cf38126037d125158e92c3688c6f3868a1004770e8c81b177c5b871c23",
+      "localized_sha256": "1a5cb44cde39a5badaf034d200456db9e48c00108d76d0d26a963468c856368a"
+    },
+    "可替换组件日期/61a85a0.png": {
+      "text": "ПТ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          9,
+          2,
+          34,
+          16
+        ],
+        "new_text_box": [
+          10,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "379bc24f0b6a0b68e9b5eb8dd181541778b51668a2c9ee7c37d361864b8726be",
+      "localized_sha256": "d5cd785fedb416288d253fc646e9abaa7f39f1a71c464496fb69aea4e3f8512c"
+    },
+    "可替换组件日期/93f2cb0.png": {
+      "text": "СБ",
+      "kind": "weekday",
+      "size": [
+        43,
+        17
+      ],
+      "render": {
+        "color": [
+          127,
+          127,
+          127
+        ],
+        "region": [
+          0,
+          0,
+          43,
+          17
+        ],
+        "old_text_box": [
+          5,
+          1,
+          38,
+          16
+        ],
+        "new_text_box": [
+          9,
+          2,
+          33,
+          14
+        ]
+      },
+      "original_sha256": "ccd5c8ab89c45c50c3ed20b653d6d997369420d0387d1f0c3b9db941ecd07f49",
+      "localized_sha256": "18e2f7e3ad9ec723c57f59268aab6f347594dad3db7bb0376d092b0e132edf53"
+    }
+  },
+  "weekday_index_order": [
+    "ВС",
+    "ПН",
+    "ВТ",
+    "СР",
+    "ЧТ",
+    "ПТ",
+    "СБ"
+  ],
+  "layout_unchanged": true,
+  "action_keys_unchanged": true,
+  "numeric_data_sources_unchanged": true,
+  "compiled_binary_included": false,
+  "hardware_changed": false
+}

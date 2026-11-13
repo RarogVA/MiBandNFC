@@ -1,0 +1,211 @@
+005a6100 2c666100 59f0       .byte    0x59, 0xf0
+005a6102 2c666102 03e6       b        #0x2c665d0c
+005a6104 2c666104 41f27075   movw     r5, #0x1770
+005a6108 2c666108 7148       ldr      r0, [pc, #0x1c4] ; literal[0x5a62d0]=0x200ebd52
+005a610a 2c66610a 4ff40063   mov.w    r3, #0x800
+005a610e 2c66610e 0090       str      r0, [sp]
+005a6110 2c666110 0521       movs     r1, #5
+005a6112 2c666112 704a       ldr      r2, [pc, #0x1c0] ; literal[0x5a62d4]=0x200ebd54
+005a6114 2c666114 0195       str      r5, [sp, #4]
+005a6116 2c666116 7048       ldr      r0, [pc, #0x1c0] ; literal[0x5a62d8]=0x200b07f0
+005a6118 2c666118 e7f710fa   bl       #0x2c64d53c
+005a611c 2c66611c 0620       movs     r0, #6
+005a611e 2c66611e 6f4a       ldr      r2, [pc, #0x1bc] ; literal[0x5a62dc]=0x2ca204d0 'SeApi_Nfc_cmd_lower_layer'
+005a6120 2c666120 6f49       ldr      r1, [pc, #0x1bc] ; literal[0x5a62e0]=0x2c916734 '[NFC_STACK] %s: after use wired,need send select none to avoid DPD issue\n'
+005a6122 2c666122 58f7c9f4   bl       #0x2c1beab8
+005a6126 2c666126 00e6       b        #0x2c665d2a
+005a6128 2c666128 7e7c       ldrb     r6, [r7, #0x11]
+005a612a 2c66612a 97f81090   ldrb.w   sb, [r7, #0x10]
+005a612e 2c66612e 97f81280   ldrb.w   r8, [r7, #0x12]
+005a6132 2c666132 97f813a0   ldrb.w   sl, [r7, #0x13]
+005a6136 2c666136 644d       ldr      r5, [pc, #0x190] ; literal[0x5a62c8]=0x200ebcc8
+005a6138 2c666138 7c68       ldr      r4, [r7, #4]
+005a613a 2c66613a cdf81080   str.w    r8, [sp, #0x10]
+005a613e 2c66613e cdf818a0   str.w    sl, [sp, #0x18]
+005a6142 2c666142 cdf80890   str.w    sb, [sp, #8]
+005a6146 2c666146 0096       str      r6, [sp]
+005a6148 2c666148 eb78       ldrb     r3, [r5, #3]
+005a614a 2c66614a 0620       movs     r0, #6
+005a614c 2c66614c 0593       str      r3, [sp, #0x14]
+005a614e 2c66614e ab78       ldrb     r3, [r5, #2]
+005a6150 2c666150 624a       ldr      r2, [pc, #0x188] ; literal[0x5a62dc]=0x2ca204d0 'SeApi_Nfc_cmd_lower_layer'
+005a6152 2c666152 0393       str      r3, [sp, #0xc]
+005a6154 2c666154 2b78       ldrb     r3, [r5]
+005a6156 2c666156 6349       ldr      r1, [pc, #0x18c] ; literal[0x5a62e4]=0x2c917140 '[NFC_STACK] %s: byd f1:%d f2:%d wh1:%d wh2:%d t1:%d t2:%d y1:%d y2:%d\n'
+005a6158 2c666158 0193       str      r3, [sp, #4]
+005a615a 2c66615a 6b78       ldrb     r3, [r5, #1]
+005a615c 2c66615c 58f7acf4   bl       #0x2c1beab8
+005a6160 2c666160 637a       ldrb     r3, [r4, #9]
+005a6162 2c666162 002b       cmp      r3, #0
+005a6164 2c666164 7ff4daad   bne.w    #0x2c665d1c
+005a6168 2c666168 6b78       ldrb     r3, [r5, #1]
+005a616a 2c66616a 2978       ldrb     r1, [r5]
+005a616c 2c66616c 9e42       cmp      r6, r3
+005a616e 2c66616e aa78       ldrb     r2, [r5, #2]
+005a6170 2c666170 e878       ldrb     r0, [r5, #3]
+005a6172 2c666172 0dd0       beq      #0x2c666190
+005a6174 2c666174 63b1       cbz      r3, #0x2c666190
+005a6176 2c666176 0c20       movs     r0, #0xc
+005a6178 2c666178 5ff732f0   bl       #0x2c1c51e0
+005a617c 2c66617c 8046       mov      r8, r0
+005a617e 2c66617e 20b1       cbz      r0, #0x2c66618a
+005a6180 2c666180 0023       movs     r3, #0
+005a6182 2c666182 2268       ldr      r2, [r4]
+005a6184 2c666184 0360       str      r3, [r0]
+005a6186 2c666186 8260       str      r2, [r0, #8]
+005a6188 2c666188 8380       strh     r3, [r0, #4]
+005a618a 2c66618a 0026       movs     r6, #0
+005a618c 2c66618c 3546       mov      r5, r6
+005a618e 2c66618e b3e5       b        #0x2c665cf8
+005a6190 2c666190 9045       cmp      r8, r2
+005a6192 2c666192 01d0       beq      #0x2c666198
+005a6194 2c666194 002a       cmp      r2, #0
+005a6196 2c666196 eed1       bne      #0x2c666176
+005a6198 2c666198 8945       cmp      sb, r1
+005a619a 2c66619a 01d0       beq      #0x2c6661a0
+005a619c 2c66619c 0029       cmp      r1, #0
+005a619e 2c66619e ead1       bne      #0x2c666176
+005a61a0 2c6661a0 8245       cmp      sl, r0
+005a61a2 2c6661a2 3ff4bbad   beq.w    #0x2c665d1c
+005a61a6 2c6661a6 0028       cmp      r0, #0
+005a61a8 2c6661a8 3ff4b8ad   beq.w    #0x2c665d1c
+005a61ac 2c6661ac e3e7       b        #0x2c666176
+005a61ae 2c6661ae 07f16b02   add.w    r2, r7, #0x6b
+005a61b2 2c6661b2 d45c       ldrb     r4, [r2, r3]
+005a61b4 2c6661b4 002c       cmp      r4, #0
+005a61b6 2c6661b6 8cd1       bne      #0x2c6660d2
+005a61b8 2c6661b8 4022       movs     r2, #0x40
+005a61ba 2c6661ba 2146       mov      r1, r4
+005a61bc 2c6661bc 4046       mov      r0, r8
+005a61be 2c6661be f3f6bffb   bl       #0x2c559940
+005a61c2 2c6661c2 4ff49672   mov.w    r2, #0x12c
+005a61c6 2c6661c6 2146       mov      r1, r4
+005a61c8 2c6661c8 5846       mov      r0, fp
+005a61ca 2c6661ca f3f6b9fb   bl       #0x2c559940
+005a61ce 2c6661ce 41f27073   movw     r3, #0x1770
+005a61d2 2c6661d2 cde900a3   strd     sl, r3, [sp]
+005a61d6 2c6661d6 4ff49673   mov.w    r3, #0x12c
+005a61da 2c6661da 5a46       mov      r2, fp
+005a61dc 2c6661dc aaf80030   strh.w   r3, [sl]
+005a61e0 2c6661e0 0521       movs     r1, #5
+005a61e2 2c6661e2 4ff40063   mov.w    r3, #0x800
+005a61e6 2c6661e6 07f11400   add.w    r0, r7, #0x14
+005a61ea 2c6661ea e7f7a7f9   bl       #0x2c64d53c
+005a61ee 2c6661ee baf80030   ldrh.w   r3, [sl]
+005a61f2 2c6661f2 012b       cmp      r3, #1
+005a61f4 2c6661f4 05d9       bls      #0x2c666202
+005a61f6 2c6661f6 991e       subs     r1, r3, #2
+005a61f8 2c6661f8 1bf80120   ldrb.w   r2, [fp, r1]
+005a61fc 2c6661fc 902a       cmp      r2, #0x90
+005a61fe 2c6661fe 00f00d81   beq.w    #0x2c66641c
+005a6202 2c666202 3046       mov      r0, r6
+005a6204 2c666204 3149       ldr      r1, [pc, #0xc4] ; literal[0x5a62cc]=0x2c8f4e44 'A000000836432D50444B010101020001'
+005a6206 2c666206 f2f62ff9   bl       #0x2c558468
+005a620a 2c66620a 7b68       ldr      r3, [r7, #4]
+005a620c 2c66620c 5b7a       ldrb     r3, [r3, #9]
+005a620e 2c66620e 002b       cmp      r3, #0
+005a6210 2c666210 00f0e980   beq.w    #0x2c6663e6
+005a6214 2c666214 0028       cmp      r0, #0
+005a6216 2c666216 40f0a781   bne.w    #0x2c666568
+005a621a 2c66621a 2b4b       ldr      r3, [pc, #0xac] ; literal[0x5a62c8]=0x200ebcc8
+005a621c 2c66621c 5870       strb     r0, [r3, #1]
+005a621e 2c66621e 41f27073   movw     r3, #0x1770
+005a6222 2c666222 5a46       mov      r2, fp
+005a6224 2c666224 0193       str      r3, [sp, #4]
+005a6226 2c666226 0521       movs     r1, #5
+005a6228 2c666228 4ff40063   mov.w    r3, #0x800
+005a622c 2c66622c cdf800a0   str.w    sl, [sp]
+005a6230 2c666230 2948       ldr      r0, [pc, #0xa4] ; literal[0x5a62d8]=0x200b07f0
+005a6232 2c666232 e7f783f9   bl       #0x2c64d53c
+005a6236 2c666236 2846       mov      r0, r5
+005a6238 2c666238 5ef7bcf7   bl       #0x2c1c51b4
+005a623c 2c66623c 08e7       b        #0x2c666050
+005a623e 2c66623e 0320       movs     r0, #3
+005a6240 2c666240 294b       ldr      r3, [pc, #0xa4] ; literal[0x5a62e8]=0x2c917134 'each_car'
+005a6242 2c666242 264a       ldr      r2, [pc, #0x98] ; literal[0x5a62dc]=0x2ca204d0 'SeApi_Nfc_cmd_lower_layer'
+005a6244 2c666244 2949       ldr      r1, [pc, #0xa4] ; literal[0x5a62ec]=0x2c915eb0 '[NFC_STACK] %s: ERROR: %s is null\n'
+005a6246 2c666246 58f737f4   bl       #0x2c1beab8
+005a624a 2c66624a 01e7       b        #0x2c666050
+005a624c 2c66624c 3046       mov      r0, r6
+005a624e 2c66624e 2849       ldr      r1, [pc, #0xa0] ; literal[0x5a62f0]=0x2c8f4dd8 '425944494B425944494B010101020001'
+005a6250 2c666250 f2f60af9   bl       #0x2c558468
+005a6254 2c666254 c8b1       cbz      r0, #0x2c66628a
+005a6256 2c666256 3046       mov      r0, r6
+005a6258 2c666258 2649       ldr      r1, [pc, #0x98] ; literal[0x5a62f4]=0x2c8f4dfc 'A000000836444E5A444B010101020001'
+005a625a 2c66625a f2f605f9   bl       #0x2c558468
+005a625e 2c66625e 0028       cmp      r0, #0
+005a6260 2c666260 40f09f80   bne.w    #0x2c6663a2
+005a6264 2c666264 184b       ldr      r3, [pc, #0x60] ; literal[0x5a62c8]=0x200ebcc8
+005a6266 2c666266 9870       strb     r0, [r3, #2]
+005a6268 2c666268 efe6       b        #0x2c66604a
+005a626a 2c66626a 3046       mov      r0, r6
+005a626c 2c66626c 2049       ldr      r1, [pc, #0x80] ; literal[0x5a62f0]=0x2c8f4dd8 '425944494B425944494B010101020001'
+005a626e 2c66626e f2f6fbf8   bl       #0x2c558468
+005a6272 2c666272 40b1       cbz      r0, #0x2c666286
+005a6274 2c666274 3046       mov      r0, r6
+005a6276 2c666276 1f49       ldr      r1, [pc, #0x7c] ; literal[0x5a62f4]=0x2c8f4dfc 'A000000836444E5A444B010101020001'
+005a6278 2c666278 f2f6f6f8   bl       #0x2c558468
+005a627c 2c66627c 0028       cmp      r0, #0
+005a627e 2c66627e 40f08780   bne.w    #0x2c666390
+005a6282 2c666282 b874       strb     r0, [r7, #0x12]
+005a6284 2c666284 e1e6       b        #0x2c66604a
+005a6286 2c666286 3874       strb     r0, [r7, #0x10]
+005a6288 2c666288 dfe6       b        #0x2c66604a
+005a628a 2c66628a 0f4b       ldr      r3, [pc, #0x3c] ; literal[0x5a62c8]=0x200ebcc8
+005a628c 2c66628c 1870       strb     r0, [r3]
+005a628e 2c66628e dce6       b        #0x2c66604a
+005a6290 2c666290 5146       mov      r1, sl
+005a6292 2c666292 1948       ldr      r0, [pc, #0x64] ; literal[0x5a62f8]=0x2c8f69c0 'persist.nfc.caractivate'
+005a6294 2c666294 09f5caf8   bl       #0x2c36f42c
+005a6298 2c666298 6068       ldr      r0, [r4, #4]
+005a629a 2c66629a 0028       cmp      r0, #0
+005a629c 2c66629c 3ff43ead   beq.w    #0x2c665d1c
+005a62a0 2c6662a0 5ef788f7   bl       #0x2c1c51b4
+005a62a4 2c6662a4 0023       movs     r3, #0
+005a62a6 2c6662a6 6360       str      r3, [r4, #4]
+005a62a8 2c6662a8 38e5       b        #0x2c665d1c
+005a62aa 2c6662aa 4022       movs     r2, #0x40
+005a62ac 2c6662ac 5846       mov      r0, fp
+005a62ae 2c6662ae 0749       ldr      r1, [pc, #0x1c] ; literal[0x5a62cc]=0x2c8f4e44 'A000000836432D50444B010101020001'
+005a62b0 2c6662b0 58f7c2f2   bl       #0x2c1be838
+005a62b4 2c6662b4 237a       ldrb     r3, [r4, #8]
+005a62b6 2c6662b6 66f3c303   bfi      r3, r6, #3, #1
+005a62ba 2c6662ba 2372       strb     r3, [r4, #8]
+005a62bc 2c6662bc 6ae6       b        #0x2c665f94
+005a62be 2c6662be 8246       mov      sl, r0
+005a62c0 2c6662c0 4ff00609   mov.w    sb, #6
+005a62c4 2c6662c4 2de0       b        #0x2c666322
+005a62c6 2c6662c6 00bf       nop      
+005a62c8 2c6662c8 c8bc       pop      {r3, r6, r7}
+005a62ca 2c6662ca 0e20       movs     r0, #0xe
+005a62cc 2c6662cc 444e       ldr      r6, [pc, #0x110] ; literal[0x5a63e0]=0x72230382
+005a62ce 2c6662ce 8f2c       cmp      r4, #0x8f
+005a62d0 2c6662d0 52bd       pop      {r1, r4, r6, pc}
+005a62d2 2c6662d2 0e20       movs     r0, #0xe
+005a62d4 2c6662d4 54bd       pop      {r2, r4, r6, pc}
+005a62d6 2c6662d6 0e20       movs     r0, #0xe
+005a62d8 2c6662d8 f007       lsls     r0, r6, #0x1f
+005a62da 2c6662da 0b20       movs     r0, #0xb
+005a62dc 2c6662dc d004       lsls     r0, r2, #0x13
+005a62de 2c6662de a22c       cmp      r4, #0xa2
+005a62e0 2c6662e0 3467       str      r4, [r6, #0x70]
+005a62e2 2c6662e2 912c       cmp      r4, #0x91
+005a62e4 2c6662e4 4071       strb     r0, [r0, #5]
+005a62e6 2c6662e6 912c       cmp      r4, #0x91
+005a62e8 2c6662e8 3471       strb     r4, [r6, #4]
+005a62ea 2c6662ea 912c       cmp      r4, #0x91
+005a62ec 2c6662ec b05e       ldrsh    r0, [r6, r2]
+005a62ee 2c6662ee 912c       cmp      r4, #0x91
+005a62f0 2c6662f0 d84d       ldr      r5, [pc, #0x360] ; literal[0x5a6654]=0x2006b0aa
+005a62f2 2c6662f2 8f2c       cmp      r4, #0x8f
+005a62f4 2c6662f4 fc4d       ldr      r5, [pc, #0x3f0] ; literal[0x5a66e8]=0x8204e9d7
+005a62f6 2c6662f6 8f2c       cmp      r4, #0x8f
+005a62f8 2c6662f8 c069       ldr      r0, [r0, #0x1c]
+005a62fa 2c6662fa 8f2c       cmp      r4, #0x8f
+005a62fc 2c6662fc 12f00803   ands     r3, r2, #8
+005a6300 2c666300 3ad1       bne      #0x2c666378
+005a6302 2c666302 12f00408   ands     r8, r2, #4
+005a6306 2c666306 56d1       bne      #0x2c6663b6
+005a6308 2c666308 12f00203   ands     r3, r2, #2
+005a630c 2c66630c 70d1       bne      #0x2c6663f0
+005a630e 2c66630e 12f0       .byte    0x12, 0xf0

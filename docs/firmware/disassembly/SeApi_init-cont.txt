@@ -1,0 +1,382 @@
+0058bc50 2c64bc50 8ca8       add      r0, sp, #0x230
+0058bc52 2c64bc52 0e20       movs     r0, #0xe
+0058bc54 2c64bc54 0f23       movs     r3, #0xf
+0058bc56 2c64bc56 9d48       ldr      r0, [pc, #0x274] ; literal[0x58becc]=0xc64b251
+0058bc58 2c64bc58 a9f80030   strh.w   r3, [sb]
+0058bc5c 2c64bc5c 08f0f2f8   bl       #0x2c653e44
+0058bc60 2c64bc60 0446       mov      r4, r0
+0058bc62 2c64bc62 0028       cmp      r0, #0
+0058bc64 2c64bc64 98d1       bne      #0x2c64bb98
+0058bc66 2c64bc66 9a4b       ldr      r3, [pc, #0x268] ; literal[0x58bed0]=0x200ea898
+0058bc68 2c64bc68 42f21071   movw     r1, #0x2710
+0058bc6c 2c64bc6c 1868       ldr      r0, [r3]
+0058bc6e 2c64bc6e 03f0fffc   bl       #0x2c64f670
+0058bc72 2c64bc72 3278       ldrb     r2, [r6]
+0058bc74 2c64bc74 002a       cmp      r2, #0
+0058bc76 2c64bc76 00f0b780   beq.w    #0x2c64bde8
+0058bc7a 2c64bc7a 964b       ldr      r3, [pc, #0x258] ; literal[0x58bed4]=0x200ea92c
+0058bc7c 2c64bc7c 1146       mov      r1, r2
+0058bc7e 2c64bc7e 1888       ldrh     r0, [r3]
+0058bc80 2c64bc80 b0f5986f   cmp.w    r0, #0x4c0
+0058bc84 2c64bc84 00f0fc80   beq.w    #0x2c64be80
+0058bc88 2c64bc88 012a       cmp      r2, #1
+0058bc8a 2c64bc8a 00f08581   beq.w    #0x2c64bf98
+0058bc8e 2c64bc8e 5a88       ldrh     r2, [r3, #2]
+0058bc90 2c64bc90 b2f5986f   cmp.w    r2, #0x4c0
+0058bc94 2c64bc94 00f0f480   beq.w    #0x2c64be80
+0058bc98 2c64bc98 0229       cmp      r1, #2
+0058bc9a 2c64bc9a 00f04581   beq.w    #0x2c64bf28
+0058bc9e 2c64bc9e 9a88       ldrh     r2, [r3, #4]
+0058bca0 2c64bca0 b2f5986f   cmp.w    r2, #0x4c0
+0058bca4 2c64bca4 00f0ec80   beq.w    #0x2c64be80
+0058bca8 2c64bca8 b0f5826f   cmp.w    r0, #0x410
+0058bcac 2c64bcac 00f04381   beq.w    #0x2c64bf36
+0058bcb0 2c64bcb0 5a88       ldrh     r2, [r3, #2]
+0058bcb2 2c64bcb2 b2f5826f   cmp.w    r2, #0x410
+0058bcb6 2c64bcb6 00f03e81   beq.w    #0x2c64bf36
+0058bcba 2c64bcba 0229       cmp      r1, #2
+0058bcbc 2c64bcbc 04d9       bls      #0x2c64bcc8
+0058bcbe 2c64bcbe 9b88       ldrh     r3, [r3, #4]
+0058bcc0 2c64bcc0 b3f5826f   cmp.w    r3, #0x410
+0058bcc4 2c64bcc4 00f03781   beq.w    #0x2c64bf36
+0058bcc8 2c64bcc8 0123       movs     r3, #1
+0058bcca 2c64bcca 88f80030   strb.w   r3, [r8]
+0058bcce 2c64bcce 002c       cmp      r4, #0
+0058bcd0 2c64bcd0 7ff462af   bne.w    #0x2c64bb98
+0058bcd4 2c64bcd4 1ae7       b        #0x2c64bb0c
+0058bcd6 2c64bcd6 0128       cmp      r0, #1
+0058bcd8 2c64bcd8 3ff413af   beq.w    #0x2c64bb02
+0058bcdc 2c64bcdc 8b7f       ldrb     r3, [r1, #0x1e]
+0058bcde 2c64bcde 012b       cmp      r3, #1
+0058bce0 2c64bce0 63d0       beq      #0x2c64bdaa
+0058bce2 2c64bce2 7c4b       ldr      r3, [pc, #0x1f0] ; literal[0x58bed4]=0x200ea92c
+0058bce4 2c64bce4 fbe6       b        #0x2c64bade
+0058bce6 2c64bce6 2246       mov      r2, r4
+0058bce8 2c64bce8 0320       movs     r0, #3
+0058bcea 2c64bcea 7b49       ldr      r1, [pc, #0x1ec] ; literal[0x58bed8]=0x2c913e88 'SeApi: NFA_HciRegister error: %d'
+0058bcec 2c64bcec 72f7e4f6   bl       #0x2c1beab8
+0058bcf0 2c64bcf0 3fe7       b        #0x2c64bb72
+0058bcf2 2c64bcf2 4ff4a553   mov.w    r3, #0x14a0
+0058bcf6 2c64bcf6 2820       movs     r0, #0x28
+0058bcf8 2c64bcf8 bb81       strh     r3, [r7, #0xc]
+0058bcfa 2c64bcfa f9f74ff9   bl       #0x2c644f9c
+0058bcfe 2c64bcfe 774b       ldr      r3, [pc, #0x1dc] ; literal[0x58bedc]=0x200ea8ac
+0058bd00 2c64bd00 1860       str      r0, [r3]
+0058bd02 2c64bd02 0028       cmp      r0, #0
+0058bd04 2c64bd04 6bd0       beq      #0x2c64bdde
+0058bd06 2c64bd06 4ff00303   mov.w    r3, #3
+0058bd0a 2c64bd0a 0120       movs     r0, #1
+0058bd0c 2c64bd0c 07f10c01   add.w    r1, r7, #0xc
+0058bd10 2c64bd10 a9f80030   strh.w   r3, [sb]
+0058bd14 2c64bd14 04f0feff   bl       #0x2c650d14
+0058bd18 2c64bd18 0446       mov      r4, r0
+0058bd1a 2c64bd1a 3860       str      r0, [r7]
+0058bd1c 2c64bd1c 0028       cmp      r0, #0
+0058bd1e 2c64bd1e 49d1       bne      #0x2c64bdb4
+0058bd20 2c64bd20 42f21071   movw     r1, #0x2710
+0058bd24 2c64bd24 2868       ldr      r0, [r5]
+0058bd26 2c64bd26 03f0a3fc   bl       #0x2c64f670
+0058bd2a 2c64bd2a 6d4b       ldr      r3, [pc, #0x1b4] ; literal[0x58bee0]=0x200ea928
+0058bd2c 2c64bd2c 1c78       ldrb     r4, [r3]
+0058bd2e 2c64bd2e 002c       cmp      r4, #0
+0058bd30 2c64bd30 5ed1       bne      #0x2c64bdf0
+0058bd32 2c64bd32 6c4b       ldr      r3, [pc, #0x1b0] ; literal[0x58bee4]=0x200ea984
+0058bd34 2c64bd34 694a       ldr      r2, [pc, #0x1a4] ; literal[0x58bedc]=0x200ea8ac
+0058bd36 2c64bd36 1b68       ldr      r3, [r3]
+0058bd38 2c64bd38 1168       ldr      r1, [r2]
+0058bd3a 2c64bd3a de6a       ldr      r6, [r3, #0x2c]
+0058bd3c 2c64bd3c 0123       movs     r3, #1
+0058bd3e 2c64bd3e 07f10802   add.w    r2, r7, #8
+0058bd42 2c64bd42 1846       mov      r0, r3
+0058bd44 2c64bd44 0731       adds     r1, #7
+0058bd46 2c64bd46 b047       blx      r6
+0058bd48 2c64bd48 644a       ldr      r2, [pc, #0x190] ; literal[0x58bedc]=0x200ea8ac
+0058bd4a 2c64bd4a 1068       ldr      r0, [r2]
+0058bd4c 2c64bd4c 18b1       cbz      r0, #0x2c64bd56
+0058bd4e 2c64bd4e f9f72bf9   bl       #0x2c644fa8
+0058bd52 2c64bd52 624b       ldr      r3, [pc, #0x188] ; literal[0x58bedc]=0x200ea8ac
+0058bd54 2c64bd54 1c60       str      r4, [r3]
+0058bd56 2c64bd56 3e7a       ldrb     r6, [r7, #8]
+0058bd58 2c64bd58 032e       cmp      r6, #3
+0058bd5a 2c64bd5a 7ff4f6ae   bne.w    #0x2c64bb4a
+0058bd5e 2c64bd5e 04f08ff8   bl       #0x2c64fe80
+0058bd62 2c64bd62 0128       cmp      r0, #1
+0058bd64 2c64bd64 00f08a80   beq.w    #0x2c64be7c
+0058bd68 2c64bd68 0123       movs     r3, #1
+0058bd6a 2c64bd6a 5f4c       ldr      r4, [pc, #0x17c] ; literal[0x58bee8]=0x200b059e
+0058bd6c 2c64bd6c 0620       movs     r0, #6
+0058bd6e 2c64bd6e 5f49       ldr      r1, [pc, #0x17c] ; literal[0x58beec]=0x2c91405c '[NFC_STACK] %s: cur_value = %d'
+0058bd70 2c64bd70 5f4a       ldr      r2, [pc, #0x17c] ; literal[0x58bef0]=0x2ca1dc94 'sep_setNfccPwrConfig'
+0058bd72 2c64bd72 2370       strb     r3, [r4]
+0058bd74 2c64bd74 72f7a0f6   bl       #0x2c1beab8
+0058bd78 2c64bd78 1423       movs     r3, #0x14
+0058bd7a 2c64bd7a c020       movs     r0, #0xc0
+0058bd7c 2c64bd7c 2178       ldrb     r1, [r4]
+0058bd7e 2c64bd7e a9f80030   strh.w   r3, [sb]
+0058bd82 2c64bd82 08f09ff8   bl       #0x2c653ec4
+0058bd86 2c64bd86 0028       cmp      r0, #0
+0058bd88 2c64bd88 41d0       beq      #0x2c64be0e
+0058bd8a 2c64bd8a 0320       movs     r0, #3
+0058bd8c 2c64bd8c 5949       ldr      r1, [pc, #0x164] ; literal[0x58bef4]=0x2c91407c 'SeApi: Failed to reset power state to NFCC_DECIDES'
+0058bd8e 2c64bd8e 72f793f6   bl       #0x2c1beab8
+0058bd92 2c64bd92 11e7       b        #0x2c64bbb8
+0058bd94 2c64bd94 0228       cmp      r0, #2
+0058bd96 2c64bd96 18bf       it       ne
+0058bd98 2c64bd98 0120       movne    r0, #1
+0058bd9a 2c64bd9a 3ff4b1ae   beq.w    #0x2c64bb00
+0058bd9e 2c64bd9e 91f83830   ldrb.w   r3, [r1, #0x38]
+0058bda2 2c64bda2 012b       cmp      r3, #1
+0058bda4 2c64bda4 17d0       beq      #0x2c64bdd6
+0058bda6 2c64bda6 4b4b       ldr      r3, [pc, #0x12c] ; literal[0x58bed4]=0x200ea92c
+0058bda8 2c64bda8 a5e6       b        #0x2c64baf6
+0058bdaa 2c64bdaa 0228       cmp      r0, #2
+0058bdac 2c64bdac 18bf       it       ne
+0058bdae 2c64bdae 0020       movne    r0, #0
+0058bdb0 2c64bdb0 f5d1       bne      #0x2c64bd9e
+0058bdb2 2c64bdb2 a6e6       b        #0x2c64bb02
+0058bdb4 2c64bdb4 0320       movs     r0, #3
+0058bdb6 2c64bdb6 2246       mov      r2, r4
+0058bdb8 2c64bdb8 4f49       ldr      r1, [pc, #0x13c] ; literal[0x58bef8]=0x2c914014 'SeApi: NFA_GetConfig call error: %d'
+0058bdba 2c64bdba 72f77df6   bl       #0x2c1beab8
+0058bdbe 2c64bdbe 474b       ldr      r3, [pc, #0x11c] ; literal[0x58bedc]=0x200ea8ac
+0058bdc0 2c64bdc0 1868       ldr      r0, [r3]
+0058bdc2 2c64bdc2 18b1       cbz      r0, #0x2c64bdcc
+0058bdc4 2c64bdc4 f9f7f0f8   bl       #0x2c644fa8
+0058bdc8 2c64bdc8 444b       ldr      r3, [pc, #0x110] ; literal[0x58bedc]=0x200ea8ac
+0058bdca 2c64bdca 1e60       str      r6, [r3]
+0058bdcc 2c64bdcc 0320       movs     r0, #3
+0058bdce 2c64bdce 4b49       ldr      r1, [pc, #0x12c] ; literal[0x58befc]=0x2c914038 'SeApi: Querying JCOP State FAILED'
+0058bdd0 2c64bdd0 72f772f6   bl       #0x2c1beab8
+0058bdd4 2c64bdd4 b6e6       b        #0x2c64bb44
+0058bdd6 2c64bdd6 0028       cmp      r0, #0
+0058bdd8 2c64bdd8 3ff493ae   beq.w    #0x2c64bb02
+0058bddc 2c64bddc 90e6       b        #0x2c64bb00
+0058bdde 2c64bdde 0320       movs     r0, #3
+0058bde0 2c64bde0 4649       ldr      r1, [pc, #0x118] ; literal[0x58befc]=0x2c914038 'SeApi: Querying JCOP State FAILED'
+0058bde2 2c64bde2 72f769f6   bl       #0x2c1beab8
+0058bde6 2c64bde6 e7e6       b        #0x2c64bbb8
+0058bde8 2c64bde8 0123       movs     r3, #1
+0058bdea 2c64bdea 88f80030   strb.w   r3, [r8]
+0058bdee 2c64bdee 8de6       b        #0x2c64bb0c
+0058bdf0 2c64bdf0 0320       movs     r0, #3
+0058bdf2 2c64bdf2 2246       mov      r2, r4
+0058bdf4 2c64bdf4 4249       ldr      r1, [pc, #0x108] ; literal[0x58bf00]=0x2c913ff4 'SeApi: NFA_GetConfig Failed: %d'
+0058bdf6 2c64bdf6 72f75ff6   bl       #0x2c1beab8
+0058bdfa 2c64bdfa 384b       ldr      r3, [pc, #0xe0] ; literal[0x58bedc]=0x200ea8ac
+0058bdfc 2c64bdfc 1868       ldr      r0, [r3]
+0058bdfe 2c64bdfe 0028       cmp      r0, #0
+0058be00 2c64be00 e4d0       beq      #0x2c64bdcc
+0058be02 2c64be02 f9f7d1f8   bl       #0x2c644fa8
+0058be06 2c64be06 354b       ldr      r3, [pc, #0xd4] ; literal[0x58bedc]=0x200ea8ac
+0058be08 2c64be08 3a68       ldr      r2, [r7]
+0058be0a 2c64be0a 1a60       str      r2, [r3]
+0058be0c 2c64be0c dee7       b        #0x2c64bdcc
+0058be0e 2c64be0e 304b       ldr      r3, [pc, #0xc0] ; literal[0x58bed0]=0x200ea898
+0058be10 2c64be10 42f21071   movw     r1, #0x2710
+0058be14 2c64be14 1868       ldr      r0, [r3]
+0058be16 2c64be16 03f02bfc   bl       #0x2c64f670
+0058be1a 2c64be1a 314b       ldr      r3, [pc, #0xc4] ; literal[0x58bee0]=0x200ea928
+0058be1c 2c64be1c 1c78       ldrb     r4, [r3]
+0058be1e 2c64be1e 002c       cmp      r4, #0
+0058be20 2c64be20 40f0a780   bne.w    #0x2c64bf72
+0058be24 2c64be24 374b       ldr      r3, [pc, #0xdc] ; literal[0x58bf04]=0x2c9136fc '/!'
+0058be26 2c64be26 0124       movs     r4, #1
+0058be28 2c64be28 1b68       ldr      r3, [r3]
+0058be2a 2c64be2a 374a       ldr      r2, [pc, #0xdc] ; literal[0x58bf08]=0x200b05d6
+0058be2c 2c64be2c 3b81       strh     r3, [r7, #8]
+0058be2e 2c64be2e 1b0c       lsrs     r3, r3, #0x10
+0058be30 2c64be30 bb72       strb     r3, [r7, #0xa]
+0058be32 2c64be32 0023       movs     r3, #0
+0058be34 2c64be34 1278       ldrb     r2, [r2]
+0058be36 2c64be36 3549       ldr      r1, [pc, #0xd4] ; literal[0x58bf0c]=0x200ea995
+0058be38 2c64be38 a242       cmp      r2, r4
+0058be3a 2c64be3a 0c70       strb     r4, [r1]
+0058be3c 2c64be3c fb60       str      r3, [r7, #0xc]
+0058be3e 2c64be3e 06d0       beq      #0x2c64be4e
+0058be40 2c64be40 3349       ldr      r1, [pc, #0xcc] ; literal[0x58bf10]=0xc64b235
+0058be42 2c64be42 0120       movs     r0, #1
+0058be44 2c64be44 05f00ef8   bl       #0x2c650e64
+0058be48 2c64be48 0df000fe   bl       #0x2c659a4c
+0058be4c 2c64be4c fde5       b        #0x2c64ba4a
+0058be4e 2c64be4e 0424       movs     r4, #4
+0058be50 2c64be50 304a       ldr      r2, [pc, #0xc0] ; literal[0x58bf14]=0x200ea8fc
+0058be52 2c64be52 314b       ldr      r3, [pc, #0xc4] ; literal[0x58bf18]=0x200ea8f8
+0058be54 2c64be54 07f10c00   add.w    r0, r7, #0xc
+0058be58 2c64be58 1060       str      r0, [r2]
+0058be5a 2c64be5a 07f10801   add.w    r1, r7, #8
+0058be5e 2c64be5e 0320       movs     r0, #3
+0058be60 2c64be60 2e4a       ldr      r2, [pc, #0xb8] ; literal[0x58bf1c]=0xc64b655
+0058be62 2c64be62 1c80       strh     r4, [r3]
+0058be64 2c64be64 05f038f8   bl       #0x2c650ed8
+0058be68 2c64be68 0446       mov      r4, r0
+0058be6a 2c64be6a 0028       cmp      r0, #0
+0058be6c 2c64be6c e8d1       bne      #0x2c64be40
+0058be6e 2c64be6e 2c4b       ldr      r3, [pc, #0xb0] ; literal[0x58bf20]=0x200ea890
+0058be70 2c64be70 42f21071   movw     r1, #0x2710
+0058be74 2c64be74 1868       ldr      r0, [r3]
+0058be76 2c64be76 03f0fbfb   bl       #0x2c64f670
+0058be7a 2c64be7a e1e7       b        #0x2c64be40
+0058be7c 2c64be7c 0023       movs     r3, #0
+0058be7e 2c64be7e 74e7       b        #0x2c64bd6a
+0058be80 2c64be80 2822       movs     r2, #0x28
+0058be82 2c64be82 0721       movs     r1, #7
+0058be84 2c64be84 4ff49860   mov.w    r0, #0x4c0
+0058be88 2c64be88 3b60       str      r3, [r7]
+0058be8a 2c64be8a a9f80020   strh.w   r2, [sb]
+0058be8e 2c64be8e 04f03bfa   bl       #0x2c650308
+0058be92 2c64be92 3b68       ldr      r3, [r7]
+0058be94 2c64be94 0446       mov      r4, r0
+0058be96 2c64be96 0028       cmp      r0, #0
+0058be98 2c64be98 40f08480   bne.w    #0x2c64bfa4
+0058be9c 2c64be9c 214b       ldr      r3, [pc, #0x84] ; literal[0x58bf24]=0x200ea89c
+0058be9e 2c64be9e 42f21071   movw     r1, #0x2710
+0058bea2 2c64bea2 1868       ldr      r0, [r3]
+0058bea4 2c64bea4 03f0e4fb   bl       #0x2c64f670
+0058bea8 2c64bea8 0d4b       ldr      r3, [pc, #0x34] ; literal[0x58bee0]=0x200ea928
+0058beaa 2c64beaa 1c78       ldrb     r4, [r3]
+0058beac 2c64beac 3b68       ldr      r3, [r7]
+0058beae 2c64beae 002c       cmp      r4, #0
+0058beb0 2c64beb0 40f08680   bne.w    #0x2c64bfc0
+0058beb4 2c64beb4 3178       ldrb     r1, [r6]
+0058beb6 2c64beb6 0029       cmp      r1, #0
+0058beb8 2c64beb8 96d0       beq      #0x2c64bde8
+0058beba 2c64beba 1a88       ldrh     r2, [r3]
+0058bebc 2c64bebc b2f5826f   cmp.w    r2, #0x410
+0058bec0 2c64bec0 39d0       beq      #0x2c64bf36
+0058bec2 2c64bec2 0129       cmp      r1, #1
+0058bec4 2c64bec4 3ff400af   beq.w    #0x2c64bcc8
+0058bec8 2c64bec8 f2e6       b        #0x2c64bcb0
+0058beca 2c64beca 00bf       nop      
+0058becc 2c64becc 51b2       sxtb     r1, r2
+0058bece 2c64bece 640c       lsrs     r4, r4, #0x11
+0058bed0 2c64bed0 98a8       add      r0, sp, #0x260
+0058bed2 2c64bed2 0e20       movs     r0, #0xe
+0058bed4 2c64bed4 2ca9       add      r1, sp, #0xb0
+0058bed6 2c64bed6 0e20       movs     r0, #0xe
+0058bed8 2c64bed8 883e       subs     r6, #0x88
+0058beda 2c64beda 912c       cmp      r4, #0x91
+0058bedc 2c64bedc aca8       add      r0, sp, #0x2b0
+0058bede 2c64bede 0e20       movs     r0, #0xe
+0058bee0 2c64bee0 28a9       add      r1, sp, #0xa0
+0058bee2 2c64bee2 0e20       movs     r0, #0xe
+0058bee4 2c64bee4 84a9       add      r1, sp, #0x210
+0058bee6 2c64bee6 0e20       movs     r0, #0xe
+0058bee8 2c64bee8 9e05       lsls     r6, r3, #0x16
+0058beea 2c64beea 0b20       movs     r0, #0xb
+0058beec 2c64beec 5c40       eors     r4, r3
+0058beee 2c64beee 912c       cmp      r4, #0x91
+0058bef0 2c64bef0 94dc       bgt      #0x2c64be1c
+0058bef2 2c64bef2 a12c       cmp      r4, #0xa1
+0058bef4 2c64bef4 7c40       eors     r4, r7
+0058bef6 2c64bef6 912c       cmp      r4, #0x91
+0058bef8 2c64bef8 1440       ands     r4, r2
+0058befa 2c64befa 912c       cmp      r4, #0x91
+0058befc 2c64befc 3840       ands     r0, r7
+0058befe 2c64befe 912c       cmp      r4, #0x91
+0058bf00 2c64bf00 f43f       subs     r7, #0xf4
+0058bf02 2c64bf02 912c       cmp      r4, #0x91
+0058bf04 2c64bf04 fc36       adds     r6, #0xfc
+0058bf06 2c64bf06 912c       cmp      r4, #0x91
+0058bf08 2c64bf08 d605       lsls     r6, r2, #0x17
+0058bf0a 2c64bf0a 0b20       movs     r0, #0xb
+0058bf0c 2c64bf0c 95a9       add      r1, sp, #0x254
+0058bf0e 2c64bf0e 0e20       movs     r0, #0xe
+0058bf10 2c64bf10 35b2       sxth     r5, r6
+0058bf12 2c64bf12 640c       lsrs     r4, r4, #0x11
+0058bf14 2c64bf14 fca8       add      r0, sp, #0x3f0
+0058bf16 2c64bf16 0e20       movs     r0, #0xe
+0058bf18 2c64bf18 f8a8       add      r0, sp, #0x3e0
+0058bf1a 2c64bf1a 0e20       movs     r0, #0xe
+0058bf1c 2c64bf1c 55b6       .byte    0x55, 0xb6
+0058bf1e 2c64bf1e 640c       lsrs     r4, r4, #0x11
+0058bf20 2c64bf20 90a8       add      r0, sp, #0x240
+0058bf22 2c64bf22 0e20       movs     r0, #0xe
+0058bf24 2c64bf24 9ca8       add      r0, sp, #0x270
+0058bf26 2c64bf26 0e20       movs     r0, #0xe
+0058bf28 2c64bf28 b0f5826f   cmp.w    r0, #0x410
+0058bf2c 2c64bf2c 03d0       beq      #0x2c64bf36
+0058bf2e 2c64bf2e b2f5826f   cmp.w    r2, #0x410
+0058bf32 2c64bf32 7ff4c9ae   bne.w    #0x2c64bcc8
+0058bf36 2c64bf36 0f23       movs     r3, #0xf
+0058bf38 2c64bf38 0121       movs     r1, #1
+0058bf3a 2c64bf3a 4ff48260   mov.w    r0, #0x410
+0058bf3e 2c64bf3e a9f80030   strh.w   r3, [sb]
+0058bf42 2c64bf42 07f093ff   bl       #0x2c653e6c
+0058bf46 2c64bf46 0446       mov      r4, r0
+0058bf48 2c64bf48 e8b9       cbnz     r0, #0x2c64bf86
+0058bf4a 2c64bf4a 224b       ldr      r3, [pc, #0x88] ; literal[0x58bfd4]=0x200ea898
+0058bf4c 2c64bf4c 42f21071   movw     r1, #0x2710
+0058bf50 2c64bf50 1868       ldr      r0, [r3]
+0058bf52 2c64bf52 03f08dfb   bl       #0x2c64f670
+0058bf56 2c64bf56 204b       ldr      r3, [pc, #0x80] ; literal[0x58bfd8]=0x200ea928
+0058bf58 2c64bf58 1c78       ldrb     r4, [r3]
+0058bf5a 2c64bf5a 002c       cmp      r4, #0
+0058bf5c 2c64bf5c 3ff444af   beq.w    #0x2c64bde8
+0058bf60 2c64bf60 2246       mov      r2, r4
+0058bf62 2c64bf62 0320       movs     r0, #3
+0058bf64 2c64bf64 1d49       ldr      r1, [pc, #0x74] ; literal[0x58bfdc]=0x2c913f64 'SeApi: NFA_EeModeSet on NDEFEE failed %d'
+0058bf66 2c64bf66 72f7a7f5   bl       #0x2c1beab8
+0058bf6a 2c64bf6a 0123       movs     r3, #1
+0058bf6c 2c64bf6c 88f80030   strb.w   r3, [r8]
+0058bf70 2c64bf70 12e6       b        #0x2c64bb98
+0058bf72 2c64bf72 3046       mov      r0, r6
+0058bf74 2c64bf74 2246       mov      r2, r4
+0058bf76 2c64bf76 1a49       ldr      r1, [pc, #0x68] ; literal[0x58bfe0]=0x2c9140b0 'SeApi: NFC_Nfcee_PwrLinkCtrl error: %d'
+0058bf78 2c64bf78 72f79ef5   bl       #0x2c1beab8
+0058bf7c 2c64bf7c 0320       movs     r0, #3
+0058bf7e 2c64bf7e 1949       ldr      r1, [pc, #0x64] ; literal[0x58bfe4]=0x2c91407c 'SeApi: Failed to reset power state to NFCC_DECIDES'
+0058bf80 2c64bf80 72f79af5   bl       #0x2c1beab8
+0058bf84 2c64bf84 dee5       b        #0x2c64bb44
+0058bf86 2c64bf86 0246       mov      r2, r0
+0058bf88 2c64bf88 1749       ldr      r1, [pc, #0x5c] ; literal[0x58bfe8]=0x2c913f90 'SeApi: NFA_EeModeSet on NDEFEE call error %d'
+0058bf8a 2c64bf8a 0320       movs     r0, #3
+0058bf8c 2c64bf8c 72f794f5   bl       #0x2c1beab8
+0058bf90 2c64bf90 0123       movs     r3, #1
+0058bf92 2c64bf92 88f80030   strb.w   r3, [r8]
+0058bf96 2c64bf96 ffe5       b        #0x2c64bb98
+0058bf98 2c64bf98 b0f5826f   cmp.w    r0, #0x410
+0058bf9c 2c64bf9c cbd0       beq      #0x2c64bf36
+0058bf9e 2c64bf9e 88f80020   strb.w   r2, [r8]
+0058bfa2 2c64bfa2 b3e5       b        #0x2c64bb0c
+0058bfa4 2c64bfa4 0246       mov      r2, r0
+0058bfa6 2c64bfa6 1149       ldr      r1, [pc, #0x44] ; literal[0x58bfec]=0x2c913f30 'SeApi: NFA_CeConfigureEseListenTech call error: %d'
+0058bfa8 2c64bfa8 0320       movs     r0, #3
+0058bfaa 2c64bfaa 3b60       str      r3, [r7]
+0058bfac 2c64bfac 72f784f5   bl       #0x2c1beab8
+0058bfb0 2c64bfb0 3b68       ldr      r3, [r7]
+0058bfb2 2c64bfb2 3178       ldrb     r1, [r6]
+0058bfb4 2c64bfb4 0029       cmp      r1, #0
+0058bfb6 2c64bfb6 80d1       bne      #0x2c64beba
+0058bfb8 2c64bfb8 0123       movs     r3, #1
+0058bfba 2c64bfba 88f80030   strb.w   r3, [r8]
+0058bfbe 2c64bfbe ebe5       b        #0x2c64bb98
+0058bfc0 2c64bfc0 2246       mov      r2, r4
+0058bfc2 2c64bfc2 0320       movs     r0, #3
+0058bfc4 2c64bfc4 0a49       ldr      r1, [pc, #0x28] ; literal[0x58bff0]=0x2c913f00 'SeApi: NFA_CeConfigureEseListenTech error: %d'
+0058bfc6 2c64bfc6 3b60       str      r3, [r7]
+0058bfc8 2c64bfc8 72f776f5   bl       #0x2c1beab8
+0058bfcc 2c64bfcc 3b68       ldr      r3, [r7]
+0058bfce 2c64bfce f0e7       b        #0x2c64bfb2
+0058bfd0 2c64bfd0 2246       mov      r2, r4
+0058bfd2 2c64bfd2 f3e5       b        #0x2c64bbbc
+0058bfd4 2c64bfd4 98a8       add      r0, sp, #0x260
+0058bfd6 2c64bfd6 0e20       movs     r0, #0xe
+0058bfd8 2c64bfd8 28a9       add      r1, sp, #0xa0
+0058bfda 2c64bfda 0e20       movs     r0, #0xe
+0058bfdc 2c64bfdc 643f       subs     r7, #0x64
+0058bfde 2c64bfde 912c       cmp      r4, #0x91
+0058bfe0 2c64bfe0 b040       lsls     r0, r6
+0058bfe2 2c64bfe2 912c       cmp      r4, #0x91
+0058bfe4 2c64bfe4 7c40       eors     r4, r7
+0058bfe6 2c64bfe6 912c       cmp      r4, #0x91
+0058bfe8 2c64bfe8 903f       subs     r7, #0x90
+0058bfea 2c64bfea 912c       cmp      r4, #0x91
+0058bfec 2c64bfec 303f       subs     r7, #0x30
+0058bfee 2c64bfee 912c       cmp      r4, #0x91
+0058bff0 2c64bff0 003f       subs     r7, #0
+0058bff2 2c64bff2 912c       cmp      r4, #0x91
+0058bff4 2c64bff4 2de9f04f   push.w   {r4, r5, r6, r7, r8, sb, sl, fp, lr}
+0058bff8 2c64bff8 83b0       sub      sp, #0xc
+0058bffa 2c64bffa 7c4b       ldr      r3, [pc, #0x1f0] ; literal[0x58c1ec]=0x200b05d6
+0058bffc 2c64bffc 00af       add      r7, sp, #0
+0058bffe 2c64bffe 1e78       ldrb     r6, [r3]

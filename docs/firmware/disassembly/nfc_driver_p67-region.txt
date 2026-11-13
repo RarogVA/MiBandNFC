@@ -1,0 +1,709 @@
+00582800 2c642800 b981       strh     r1, [r7, #0xc]
+00582802 2c642802 022b       cmp      r3, #2
+00582804 2c642804 00f09582   beq.w    #0x2c642d32
+00582808 2c642808 4022       movs     r2, #0x40
+0058280a 2c64280a 0021       movs     r1, #0
+0058280c 2c64280c 07f12800   add.w    r0, r7, #0x28
+00582810 2c642810 17f796f8   bl       #0x2c559940
+00582814 2c642814 194a       ldr      r2, [pc, #0x64] ; literal[0x58287c]=0x2ca19bcc 'nfc_check_chipinfo_process'
+00582816 2c642816 1a49       ldr      r1, [pc, #0x68] ; literal[0x582880]=0x2c9131d0 '[NFC_DRV] %s: nfc check chipinfo proc IN'
+00582818 2c642818 0620       movs     r0, #6
+0058281a 2c64281a 7cf74df1   bl       #0x2c1beab8
+0058281e 2c64281e 8022       movs     r2, #0x80
+00582820 2c642820 9bf80830   ldrb.w   r3, [fp, #8]
+00582824 2c642824 dbf80c10   ldr.w    r1, [fp, #0xc]
+00582828 2c642828 bb83       strh     r3, [r7, #0x1c]
+0058282a 2c64282a 94f84030   ldrb.w   r3, [r4, #0x40]
+0058282e 2c64282e 14f801ac   ldrb     sl, [r4, #-0x1]
+00582832 2c642832 c7e90843   strd     r4, r3, [r7, #0x20]
+00582836 2c642836 94f84630   ldrb.w   r3, [r4, #0x46]
+0058283a 2c64283a b961       str      r1, [r7, #0x18]
+0058283c 2c64283c fa83       strh     r2, [r7, #0x1e]
+0058283e 2c64283e 002b       cmp      r3, #0
+00582840 2c642840 00f08181   beq.w    #0x2c642b46
+00582844 2c642844 dff84480   ldr.w    r8, [pc, #0x44] ; literal[0x58288c]=0x2ca19bb8 'nfc_send_process'
+00582848 2c642848 0e4e       ldr      r6, [pc, #0x38] ; literal[0x582884]=0x2c913210 '[NFC_DRV] %s: nfc send proc: write retry'
+0058284a 2c64284a 33e0       b        #0x2c6428b4
+0058284c 2c64284c 309c       ldr      r4, [sp, #0xc0]
+0058284e 2c64284e a12c       cmp      r4, #0xa1
+00582850 2c642850 882f       cmp      r7, #0x88
+00582852 2c642852 912c       cmp      r4, #0x91
+00582854 2c642854 b02f       cmp      r7, #0xb0
+00582856 2c642856 912c       cmp      r4, #0x91
+00582858 2c642858 801a       subs     r0, r0, r2
+0058285a 2c64285a 0600       movs     r6, r0
+0058285c 2c64285c a49e       ldr      r6, [sp, #0x290]
+0058285e 2c64285e 0e20       movs     r0, #0xe
+00582860 2c642860 1125       movs     r5, #0x11
+00582862 2c642862 640c       lsrs     r4, r4, #0x11
+00582864 2c642864 fc9b       ldr      r3, [sp, #0x3f0]
+00582866 2c642866 a12c       cmp      r4, #0xa1
+00582868 2c642868 e030       adds     r0, #0xe0
+0058286a 2c64286a 912c       cmp      r4, #0x91
+0058286c 2c64286c 0c31       adds     r1, #0xc
+0058286e 2c64286e 912c       cmp      r4, #0x91
+00582870 2c642870 e89b       ldr      r3, [sp, #0x3a0]
+00582872 2c642872 a12c       cmp      r4, #0xa1
+00582874 2c642874 2c31       adds     r1, #0x2c
+00582876 2c642876 912c       cmp      r4, #0x91
+00582878 2c642878 5031       adds     r1, #0x50
+0058287a 2c64287a 912c       cmp      r4, #0x91
+0058287c 2c64287c cc9b       ldr      r3, [sp, #0x330]
+0058287e 2c64287e a12c       cmp      r4, #0xa1
+00582880 2c642880 d031       adds     r1, #0xd0
+00582882 2c642882 912c       cmp      r4, #0x91
+00582884 2c642884 1032       adds     r2, #0x10
+00582886 2c642886 912c       cmp      r4, #0x91
+00582888 2c642888 d603       lsls     r6, r2, #0xf
+0058288a 2c64288a 0b20       movs     r0, #0xb
+0058288c 2c64288c b89b       ldr      r3, [sp, #0x2e0]
+0058288e 2c64288e a12c       cmp      r4, #0xa1
+00582890 2c642890 4246       mov      r2, r8
+00582892 2c642892 3146       mov      r1, r6
+00582894 2c642894 0320       movs     r0, #3
+00582896 2c642896 7cf70ff1   bl       #0x2c1beab8
+0058289a 2c64289a 44f62060   movw     r0, #0x4e20
+0058289e 2c64289e 3bf763f0   bl       #0x2c17d968
+005828a2 2c6428a2 94f84630   ldrb.w   r3, [r4, #0x46]
+005828a6 2c6428a6 013b       subs     r3, #1
+005828a8 2c6428a8 dbb2       uxtb     r3, r3
+005828aa 2c6428aa 84f84630   strb.w   r3, [r4, #0x46]
+005828ae 2c6428ae 002b       cmp      r3, #0
+005828b0 2c6428b0 00f04a81   beq.w    #0x2c642b48
+005828b4 2c6428b4 dbf80000   ldr.w    r0, [fp]
+005828b8 2c6428b8 0122       movs     r2, #1
+005828ba 2c6428ba 0368       ldr      r3, [r0]
+005828bc 2c6428bc 07f11801   add.w    r1, r7, #0x18
+005828c0 2c6428c0 1b68       ldr      r3, [r3]
+005828c2 2c6428c2 9847       blx      r3
+005828c4 2c6428c4 0546       mov      r5, r0
+005828c6 2c6428c6 0028       cmp      r0, #0
+005828c8 2c6428c8 e2d1       bne      #0x2c642890
+005828ca 2c6428ca 94f84030   ldrb.w   r3, [r4, #0x40]
+005828ce 2c6428ce 83b1       cbz      r3, #0x2c6428f2
+005828d0 2c6428d0 dff81c93   ldr.w    sb, [pc, #0x31c] ; literal[0x582bf0]=0x2ca19bb8 'nfc_send_process'
+005828d4 2c6428d4 dff81c83   ldr.w    r8, [pc, #0x31c] ; literal[0x582bf4]=0x2c9131fc '[NFC_DRV] %s: %02x'
+005828d8 2c6428d8 661e       subs     r6, r4, #1
+005828da 2c6428da 16f8013f   ldrb     r3, [r6, #1]!
+005828de 2c6428de 4a46       mov      r2, sb
+005828e0 2c6428e0 4146       mov      r1, r8
+005828e2 2c6428e2 0320       movs     r0, #3
+005828e4 2c6428e4 7cf7e8f0   bl       #0x2c1beab8
+005828e8 2c6428e8 94f84030   ldrb.w   r3, [r4, #0x40]
+005828ec 2c6428ec 0135       adds     r5, #1
+005828ee 2c6428ee 9d42       cmp      r5, r3
+005828f0 2c6428f0 f3db       blt      #0x2c6428da
+005828f2 2c6428f2 baf1010f   cmp.w    sl, #1
+005828f6 2c6428f6 8cbf       ite      hi
+005828f8 2c6428f8 4ff00009   movhi.w  sb, #0
+005828fc 2c6428fc 4ff00109   movls.w  sb, #1
+00582900 2c642900 a046       mov      r8, r4
+00582902 2c642902 dff8f4a2   ldr.w    sl, [pc, #0x2f4] ; literal[0x582bf8]=0x2ca19ba4 'nfc_recv_process'
+00582906 2c642906 c7f80490   str.w    sb, [r7, #4]
+0058290a 2c64290a 0025       movs     r5, #0
+0058290c 2c64290c 9e4b       ldr      r3, [pc, #0x278] ; literal[0x582b88]=0x1010060
+0058290e 2c64290e 5246       mov      r2, sl
+00582910 2c642910 0620       movs     r0, #6
+00582912 2c642912 9e49       ldr      r1, [pc, #0x278] ; literal[0x582b8c]=0x2c913258 '[NFC_DRV] %s: nfc recv proc IN'
+00582914 2c642914 7b61       str      r3, [r7, #0x14]
+00582916 2c642916 c7e90655   strd     r5, r5, [r7, #0x18]
+0058291a 2c64291a c7e90855   strd     r5, r5, [r7, #0x20]
+0058291e 2c64291e 7cf7cbf0   bl       #0x2c1beab8
+00582922 2c642922 98f84730   ldrb.w   r3, [r8, #0x47]
+00582926 2c642926 002b       cmp      r3, #0
+00582928 2c642928 00f0fa80   beq.w    #0x2c642b20
+0058292c 2c64292c 41f28830   movw     r0, #0x1388
+00582930 2c642930 3bf71af0   bl       #0x2c17d968
+00582934 2c642934 dbf80400   ldr.w    r0, [fp, #4]
+00582938 2c642938 fd74       strb     r5, [r7, #0x13]
+0058293a 2c64293a 0028       cmp      r0, #0
+0058293c 2c64293c 00f0de80   beq.w    #0x2c642afc
+00582940 2c642940 0368       ldr      r3, [r0]
+00582942 2c642942 9bf81c10   ldrb.w   r1, [fp, #0x1c]
+00582946 2c642946 db68       ldr      r3, [r3, #0xc]
+00582948 2c642948 07f11302   add.w    r2, r7, #0x13
+0058294c 2c64294c 9847       blx      r3
+0058294e 2c64294e fb7c       ldrb     r3, [r7, #0x13]
+00582950 2c642950 002b       cmp      r3, #0
+00582952 2c642952 00f0d780   beq.w    #0x2c642b04
+00582956 2c642956 0124       movs     r4, #1
+00582958 2c642958 0326       movs     r6, #3
+0058295a 2c64295a 07f12803   add.w    r3, r7, #0x28
+0058295e 2c64295e 3b62       str      r3, [r7, #0x20]
+00582960 2c642960 dbf80c30   ldr.w    r3, [fp, #0xc]
+00582964 2c642964 dbf80000   ldr.w    r0, [fp]
+00582968 2c642968 bb61       str      r3, [r7, #0x18]
+0058296a 2c64296a 9bf80830   ldrb.w   r3, [fp, #8]
+0058296e 2c64296e fc83       strh     r4, [r7, #0x1e]
+00582970 2c642970 bb83       strh     r3, [r7, #0x1c]
+00582972 2c642972 7e62       str      r6, [r7, #0x24]
+00582974 2c642974 0368       ldr      r3, [r0]
+00582976 2c642976 2246       mov      r2, r4
+00582978 2c642978 1b68       ldr      r3, [r3]
+0058297a 2c64297a 07f11801   add.w    r1, r7, #0x18
+0058297e 2c64297e 9847       blx      r3
+00582980 2c642980 0028       cmp      r0, #0
+00582982 2c642982 40f04382   bne.w    #0x2c642e0c
+00582986 2c642986 3b6a       ldr      r3, [r7, #0x20]
+00582988 2c642988 5246       mov      r2, sl
+0058298a 2c64298a 0620       movs     r0, #6
+0058298c 2c64298c 9b78       ldrb     r3, [r3, #2]
+0058298e 2c64298e 8049       ldr      r1, [pc, #0x200] ; literal[0x582b90]=0x2c9132c8 '[NFC_DRV] %s: read data len %02x from nfcc'
+00582990 2c642990 7cf792f0   bl       #0x2c1beab8
+00582994 2c642994 3b6a       ldr      r3, [r7, #0x20]
+00582996 2c642996 98f84800   ldrb.w   r0, [r8, #0x48]
+0058299a 2c64299a 9a78       ldrb     r2, [r3, #2]
+0058299c 2c64299c d11c       adds     r1, r2, #3
+0058299e 2c64299e 0144       add      r1, r0
+005829a0 2c6429a0 c9b2       uxtb     r1, r1
+005829a2 2c6429a2 4029       cmp      r1, #0x40
+005829a4 2c6429a4 b960       str      r1, [r7, #8]
+005829a6 2c6429a6 00f22982   bhi.w    #0x2c642dfc
+005829aa 2c6429aa 0244       add      r2, r0
+005829ac 2c6429ac 0333       adds     r3, #3
+005829ae 2c6429ae dbf80000   ldr.w    r0, [fp]
+005829b2 2c6429b2 7a62       str      r2, [r7, #0x24]
+005829b4 2c6429b4 3b62       str      r3, [r7, #0x20]
+005829b6 2c6429b6 0368       ldr      r3, [r0]
+005829b8 2c6429b8 2246       mov      r2, r4
+005829ba 2c6429ba 1b68       ldr      r3, [r3]
+005829bc 2c6429bc 07f11801   add.w    r1, r7, #0x18
+005829c0 2c6429c0 9847       blx      r3
+005829c2 2c6429c2 3860       str      r0, [r7]
+005829c4 2c6429c4 0028       cmp      r0, #0
+005829c6 2c6429c6 40f02f82   bne.w    #0x2c642e28
+005829ca 2c6429ca bc68       ldr      r4, [r7, #8]
+005829cc 2c6429cc 5246       mov      r2, sl
+005829ce 2c6429ce 2346       mov      r3, r4
+005829d0 2c6429d0 0620       movs     r0, #6
+005829d2 2c6429d2 7049       ldr      r1, [pc, #0x1c0] ; literal[0x582b94]=0x2c913344 '[NFC_DRV] %s: nfc total num read %d'
+005829d4 2c6429d4 7cf770f0   bl       #0x2c1beab8
+005829d8 2c6429d8 74b1       cbz      r4, #0x2c6429f8
+005829da 2c6429da ba68       ldr      r2, [r7, #8]
+005829dc 2c6429dc 07f12804   add.w    r4, r7, #0x28
+005829e0 2c6429e0 dff81092   ldr.w    sb, [pc, #0x210] ; literal[0x582bf4]=0x2c9131fc '[NFC_DRV] %s: %02x'
+005829e4 2c6429e4 a618       adds     r6, r4, r2
+005829e6 2c6429e6 14f8013b   ldrb     r3, [r4], #1
+005829ea 2c6429ea 5246       mov      r2, sl
+005829ec 2c6429ec 4946       mov      r1, sb
+005829ee 2c6429ee 0620       movs     r0, #6
+005829f0 2c6429f0 7cf762f0   bl       #0x2c1beab8
+005829f4 2c6429f4 a642       cmp      r6, r4
+005829f6 2c6429f6 f6d1       bne      #0x2c6429e6
+005829f8 2c6429f8 ba6a       ldr      r2, [r7, #0x28]
+005829fa 2c6429fa 7b69       ldr      r3, [r7, #0x14]
+005829fc 2c6429fc 9a42       cmp      r2, r3
+005829fe 2c6429fe 00f08781   beq.w    #0x2c642d10
+00582a02 2c642a02 97f82830   ldrb.w   r3, [r7, #0x28]
+00582a06 2c642a06 402b       cmp      r3, #0x40
+00582a08 2c642a08 00f09180   beq.w    #0x2c642b2e
+00582a0c 2c642a0c 7b68       ldr      r3, [r7, #4]
+00582a0e 2c642a0e 002b       cmp      r3, #0
+00582a10 2c642a10 40f0a580   bne.w    #0x2c642b5e
+00582a14 2c642a14 0620       movs     r0, #6
+00582a16 2c642a16 604a       ldr      r2, [pc, #0x180] ; literal[0x582b98]=0x2ca19b8c 'nfc_chiptype_identify'
+00582a18 2c642a18 6049       ldr      r1, [pc, #0x180] ; literal[0x582b9c]=0x2c9133f0 '[NFC_DRV] %s: nfc chiptype identify IN'
+00582a1a 2c642a1a 9946       mov      sb, r3
+00582a1c 2c642a1c 3d68       ldr      r5, [r7]
+00582a1e 2c642a1e 7cf74bf0   bl       #0x2c1beab8
+00582a22 2c642a22 18f8013c   ldrb     r3, [r8, #-0x1]
+00582a26 2c642a26 4446       mov      r4, r8
+00582a28 2c642a28 012b       cmp      r3, #1
+00582a2a 2c642a2a 40f26481   bls.w    #0x2c642cf6
+00582a2e 2c642a2e 022b       cmp      r3, #2
+00582a30 2c642a30 00f08e81   beq.w    #0x2c642d50
+00582a34 2c642a34 4b46       mov      r3, sb
+00582a36 2c642a36 4e46       mov      r6, sb
+00582a38 2c642a38 574a       ldr      r2, [pc, #0x15c] ; literal[0x582b98]=0x2ca19b8c 'nfc_chiptype_identify'
+00582a3a 2c642a3a 0620       movs     r0, #6
+00582a3c 2c642a3c 5849       ldr      r1, [pc, #0x160] ; literal[0x582ba0]=0x2c913418 '[NFC_DRV] %s: nfc major version %02x'
+00582a3e 2c642a3e 7cf73bf0   bl       #0x2c1beab8
+00582a42 2c642a42 94f84520   ldrb.w   r2, [r4, #0x45]
+00582a46 2c642a46 12b3       cbz      r2, #0x2c642a8e
+00582a48 2c642a48 14f8013c   ldrb     r3, [r4, #-0x1]
+00582a4c 2c642a4c 591e       subs     r1, r3, #1
+00582a4e 2c642a4e 0129       cmp      r1, #1
+00582a50 2c642a50 40f2d480   bls.w    #0x2c642bfc
+00582a54 2c642a54 dbb9       cbnz     r3, #0x2c642a8e
+00582a56 2c642a56 94f84130   ldrb.w   r3, [r4, #0x41]
+00582a5a 2c642a5a 06f00f06   and      r6, r6, #0xf
+00582a5e 2c642a5e 9e42       cmp      r6, r3
+00582a60 2c642a60 00f06181   beq.w    #0x2c642d26
+00582a64 2c642a64 012a       cmp      r2, #1
+00582a66 2c642a66 12d0       beq      #0x2c642a8e
+00582a68 2c642a68 94f84230   ldrb.w   r3, [r4, #0x42]
+00582a6c 2c642a6c 9e42       cmp      r6, r3
+00582a6e 2c642a6e 00f05a81   beq.w    #0x2c642d26
+00582a72 2c642a72 022a       cmp      r2, #2
+00582a74 2c642a74 0bd0       beq      #0x2c642a8e
+00582a76 2c642a76 94f84330   ldrb.w   r3, [r4, #0x43]
+00582a7a 2c642a7a b342       cmp      r3, r6
+00582a7c 2c642a7c 00f05381   beq.w    #0x2c642d26
+00582a80 2c642a80 032a       cmp      r2, #3
+00582a82 2c642a82 04d0       beq      #0x2c642a8e
+00582a84 2c642a84 94f84430   ldrb.w   r3, [r4, #0x44]
+00582a88 2c642a88 9e42       cmp      r6, r3
+00582a8a 2c642a8a 00f04c81   beq.w    #0x2c642d26
+00582a8e 2c642a8e 0320       movs     r0, #3
+00582a90 2c642a90 444a       ldr      r2, [pc, #0x110] ; literal[0x582ba4]=0x2ca19bcc 'nfc_check_chipinfo_process'
+00582a92 2c642a92 4549       ldr      r1, [pc, #0x114] ; literal[0x582ba8]=0x2c913490 '[NFC_DRV] %s: nfc check info proc: match fail'
+00582a94 2c642a94 7cf710f0   bl       #0x2c1beab8
+00582a98 2c642a98 0125       movs     r5, #1
+00582a9a 2c642a9a 0320       movs     r0, #3
+00582a9c 2c642a9c 434a       ldr      r2, [pc, #0x10c] ; literal[0x582bac]=0x2ca19be8 'nfc_check_chipinfo'
+00582a9e 2c642a9e 4449       ldr      r1, [pc, #0x110] ; literal[0x582bb0]=0x2c9134c0 '[NFC_DRV] %s: nfc checkinfo fail'
+00582aa0 2c642aa0 7cf70af0   bl       #0x2c1beab8
+00582aa4 2c642aa4 14f8013c   ldrb     r3, [r4, #-0x1]
+00582aa8 2c642aa8 022b       cmp      r3, #2
+00582aaa 2c642aaa 00f0cc80   beq.w    #0x2c642c46
+00582aae 2c642aae fb68       ldr      r3, [r7, #0xc]
+00582ab0 2c642ab0 4b34       adds     r4, #0x4b
+00582ab2 2c642ab2 0133       adds     r3, #1
+00582ab4 2c642ab4 032b       cmp      r3, #3
+00582ab6 2c642ab6 fb60       str      r3, [r7, #0xc]
+00582ab8 2c642ab8 7ff488ae   bne.w    #0x2c6427cc
+00582abc 2c642abc 1846       mov      r0, r3
+00582abe 2c642abe 3d4a       ldr      r2, [pc, #0xf4] ; literal[0x582bb4]=0x2ca19bfc 'nfc_match_chip_info'
+00582ac0 2c642ac0 3d49       ldr      r1, [pc, #0xf4] ; literal[0x582bb8]=0x2c91356c '[NFC_DRV] %s: nfc match chip info fail'
+00582ac2 2c642ac2 7bf7f9f7   bl       #0x2c1beab8
+00582ac6 2c642ac6 0620       movs     r0, #6
+00582ac8 2c642ac8 3c4a       ldr      r2, [pc, #0xf0] ; literal[0x582bbc]=0x2ca19b58 'nfc_set_chiptype'
+00582aca 2c642aca 3d49       ldr      r1, [pc, #0xf4] ; literal[0x582bc0]=0x2c913540 '[NFC_DRV] %s: nfc set chiptype as unknown'
+00582acc 2c642acc 7bf7f4f7   bl       #0x2c1beab8
+00582ad0 2c642ad0 ff24       movs     r4, #0xff
+00582ad2 2c642ad2 3c48       ldr      r0, [pc, #0xf0] ; literal[0x582bc4]=0x200b04b5
+00582ad4 2c642ad4 5b46       mov      r3, fp
+00582ad6 2c642ad6 0470       strb     r4, [r0]
+00582ad8 2c642ad8 4ff4db72   mov.w    r2, #0x1b6
+00582adc 2c642adc 3a49       ldr      r1, [pc, #0xe8] ; literal[0x582bc8]=0x2ca19c7c
+00582ade 2c642ade 3b48       ldr      r0, [pc, #0xec] ; literal[0x582bcc]=0x2c9135ec '/dev/nfc_sn100'
+00582ae0 2c642ae0 3cf7def2   bl       #0x2c17f0a0
+00582ae4 2c642ae4 0446       mov      r4, r0
+00582ae6 2c642ae6 002c       cmp      r4, #0
+00582ae8 2c642ae8 40f0e480   bne.w    #0x2c642cb4
+00582aec 2c642aec 3848       ldr      r0, [pc, #0xe0] ; literal[0x582bd0]=0x200e9ea4
+00582aee 2c642aee 75f7f7f6   bl       #0x2c1b88e0
+00582af2 2c642af2 2046       mov      r0, r4
+00582af4 2c642af4 6c37       adds     r7, #0x6c
+00582af6 2c642af6 bd46       mov      sp, r7
+00582af8 2c642af8 bde8f08f   pop.w    {r4, r5, r6, r7, r8, sb, sl, fp, pc}
+00582afc 2c642afc 0720       movs     r0, #7
+00582afe 2c642afe 3549       ldr      r1, [pc, #0xd4] ; literal[0x582bd4]=0x2c913278 'nfc get irq pin value: io failed\n'
+00582b00 2c642b00 7bf7daf7   bl       #0x2c1beab8
+00582b04 2c642b04 5246       mov      r2, sl
+00582b06 2c642b06 0620       movs     r0, #6
+00582b08 2c642b08 3349       ldr      r1, [pc, #0xcc] ; literal[0x582bd8]=0x2c913398 '[NFC_DRV] %s: nfc check info proc: detect again'
+00582b0a 2c642b0a 7bf7d5f7   bl       #0x2c1beab8
+00582b0e 2c642b0e 98f84730   ldrb.w   r3, [r8, #0x47]
+00582b12 2c642b12 013b       subs     r3, #1
+00582b14 2c642b14 dbb2       uxtb     r3, r3
+00582b16 2c642b16 88f84730   strb.w   r3, [r8, #0x47]
+00582b1a 2c642b1a 002b       cmp      r3, #0
+00582b1c 2c642b1c 7ff406af   bne.w    #0x2c64292c
+00582b20 2c642b20 4446       mov      r4, r8
+00582b22 2c642b22 0320       movs     r0, #3
+00582b24 2c642b24 1f4a       ldr      r2, [pc, #0x7c] ; literal[0x582ba4]=0x2ca19bcc 'nfc_check_chipinfo_process'
+00582b26 2c642b26 2d49       ldr      r1, [pc, #0xb4] ; literal[0x582bdc]=0x2c91331c '[NFC_DRV] %s: read data from nfcc err'
+00582b28 2c642b28 7bf7c6f7   bl       #0x2c1beab8
+00582b2c 2c642b2c b4e7       b        #0x2c642a98
+00582b2e 2c642b2e 97f82b30   ldrb.w   r3, [r7, #0x2b]
+00582b32 2c642b32 ff2b       cmp      r3, #0xff
+00582b34 2c642b34 7ff46aaf   bne.w    #0x2c642a0c
+00582b38 2c642b38 0320       movs     r0, #3
+00582b3a 2c642b3a 1a4a       ldr      r2, [pc, #0x68] ; literal[0x582ba4]=0x2ca19bcc 'nfc_check_chipinfo_process'
+00582b3c 2c642b3c 2849       ldr      r1, [pc, #0xa0] ; literal[0x582be0]=0x2c9133c8 '[NFC_DRV] %s: core reset resp state err'
+00582b3e 2c642b3e 4446       mov      r4, r8
+00582b40 2c642b40 7bf7baf7   bl       #0x2c1beab8
+00582b44 2c642b44 a8e7       b        #0x2c642a98
+00582b46 2c642b46 0125       movs     r5, #1
+00582b48 2c642b48 264b       ldr      r3, [pc, #0x98] ; literal[0x582be4]=0x200e9eb3
+00582b4a 2c642b4a 1a78       ldrb     r2, [r3]
+00582b4c 2c642b4c 0ab9       cbnz     r2, #0x2c642b52
+00582b4e 2c642b4e 0122       movs     r2, #1
+00582b50 2c642b50 1a70       strb     r2, [r3]
+00582b52 2c642b52 0320       movs     r0, #3
+00582b54 2c642b54 134a       ldr      r2, [pc, #0x4c] ; literal[0x582ba4]=0x2ca19bcc 'nfc_check_chipinfo_process'
+00582b56 2c642b56 2449       ldr      r1, [pc, #0x90] ; literal[0x582be8]=0x2c91323c '[NFC_DRV] %s: send cmd fail'
+00582b58 2c642b58 7bf7aef7   bl       #0x2c1beab8
+00582b5c 2c642b5c 9de7       b        #0x2c642a9a
+00582b5e 2c642b5e 0024       movs     r4, #0
+00582b60 2c642b60 4022       movs     r2, #0x40
+00582b62 2c642b62 2146       mov      r1, r4
+00582b64 2c642b64 07f12800   add.w    r0, r7, #0x28
+00582b68 2c642b68 88f84840   strb.w   r4, [r8, #0x48]
+00582b6c 2c642b6c 16f7e8fe   bl       #0x2c559940
+00582b70 2c642b70 7c60       str      r4, [r7, #4]
+00582b72 2c642b72 cae6       b        #0x2c64290a
+00582b74 2c642b74 0620       movs     r0, #6
+00582b76 2c642b76 0d4a       ldr      r2, [pc, #0x34] ; literal[0x582bac]=0x2ca19be8 'nfc_check_chipinfo'
+00582b78 2c642b78 1c49       ldr      r1, [pc, #0x70] ; literal[0x582bec]=0x2c913188 '[NFC_DRV] %s: nxp hw reset'
+00582b7a 2c642b7a 7bf79df7   bl       #0x2c1beab8
+00582b7e 2c642b7e 5846       mov      r0, fp
+00582b80 2c642b80 fff7e2fc   bl       #0x2c642548
+00582b84 2c642b84 40e6       b        #0x2c642808
+00582b86 2c642b86 00bf       nop      
+00582b88 2c642b88 6000       lsls     r0, r4, #1
+00582b8a 2c642b8a 0101       lsls     r1, r0, #4
+00582b8c 2c642b8c 5832       adds     r2, #0x58
+00582b8e 2c642b8e 912c       cmp      r4, #0x91
+00582b90 2c642b90 c832       adds     r2, #0xc8
+00582b92 2c642b92 912c       cmp      r4, #0x91
+00582b94 2c642b94 4433       adds     r3, #0x44
+00582b96 2c642b96 912c       cmp      r4, #0x91
+00582b98 2c642b98 8c9b       ldr      r3, [sp, #0x230]
+00582b9a 2c642b9a a12c       cmp      r4, #0xa1
+00582b9c 2c642b9c f033       adds     r3, #0xf0
+00582b9e 2c642b9e 912c       cmp      r4, #0x91
+00582ba0 2c642ba0 1834       adds     r4, #0x18
+00582ba2 2c642ba2 912c       cmp      r4, #0x91
+00582ba4 2c642ba4 cc9b       ldr      r3, [sp, #0x330]
+00582ba6 2c642ba6 a12c       cmp      r4, #0xa1
+00582ba8 2c642ba8 9034       adds     r4, #0x90
+00582baa 2c642baa 912c       cmp      r4, #0x91
+00582bac 2c642bac e89b       ldr      r3, [sp, #0x3a0]
+00582bae 2c642bae a12c       cmp      r4, #0xa1
+00582bb0 2c642bb0 c034       adds     r4, #0xc0
+00582bb2 2c642bb2 912c       cmp      r4, #0x91
+00582bb4 2c642bb4 fc9b       ldr      r3, [sp, #0x3f0]
+00582bb6 2c642bb6 a12c       cmp      r4, #0xa1
+00582bb8 2c642bb8 6c35       adds     r5, #0x6c
+00582bba 2c642bba 912c       cmp      r4, #0x91
+00582bbc 2c642bbc 589b       ldr      r3, [sp, #0x160]
+00582bbe 2c642bbe a12c       cmp      r4, #0xa1
+00582bc0 2c642bc0 4035       adds     r5, #0x40
+00582bc2 2c642bc2 912c       cmp      r4, #0x91
+00582bc4 2c642bc4 b504       lsls     r5, r6, #0x12
+00582bc6 2c642bc6 0b20       movs     r0, #0xb
+00582bc8 2c642bc8 7c9c       ldr      r4, [sp, #0x1f0]
+00582bca 2c642bca a12c       cmp      r4, #0xa1
+00582bcc 2c642bcc ec35       adds     r5, #0xec
+00582bce 2c642bce 912c       cmp      r4, #0x91
+00582bd0 2c642bd0 a49e       ldr      r6, [sp, #0x290]
+00582bd2 2c642bd2 0e20       movs     r0, #0xe
+00582bd4 2c642bd4 7832       adds     r2, #0x78
+00582bd6 2c642bd6 912c       cmp      r4, #0x91
+00582bd8 2c642bd8 9833       adds     r3, #0x98
+00582bda 2c642bda 912c       cmp      r4, #0x91
+00582bdc 2c642bdc 1c33       adds     r3, #0x1c
+00582bde 2c642bde 912c       cmp      r4, #0x91
+00582be0 2c642be0 c833       adds     r3, #0xc8
+00582be2 2c642be2 912c       cmp      r4, #0x91
+00582be4 2c642be4 b39e       ldr      r6, [sp, #0x2cc]
+00582be6 2c642be6 0e20       movs     r0, #0xe
+00582be8 2c642be8 3c32       adds     r2, #0x3c
+00582bea 2c642bea 912c       cmp      r4, #0x91
+00582bec 2c642bec 8831       adds     r1, #0x88
+00582bee 2c642bee 912c       cmp      r4, #0x91
+00582bf0 2c642bf0 b89b       ldr      r3, [sp, #0x2e0]
+00582bf2 2c642bf2 a12c       cmp      r4, #0xa1
+00582bf4 2c642bf4 fc31       adds     r1, #0xfc
+00582bf6 2c642bf6 912c       cmp      r4, #0x91
+00582bf8 2c642bf8 a49b       ldr      r3, [sp, #0x290]
+00582bfa 2c642bfa a12c       cmp      r4, #0xa1
+00582bfc 2c642bfc 94f84110   ldrb.w   r1, [r4, #0x41]
+00582c00 2c642c00 06f0f003   and      r3, r6, #0xf0
+00582c04 2c642c04 9942       cmp      r1, r3
+00582c06 2c642c06 15d0       beq      #0x2c642c34
+00582c08 2c642c08 012a       cmp      r2, #1
+00582c0a 2c642c0a 3ff440af   beq.w    #0x2c642a8e
+00582c0e 2c642c0e 94f84210   ldrb.w   r1, [r4, #0x42]
+00582c12 2c642c12 9942       cmp      r1, r3
+00582c14 2c642c14 0ed0       beq      #0x2c642c34
+00582c16 2c642c16 022a       cmp      r2, #2
+00582c18 2c642c18 3ff439af   beq.w    #0x2c642a8e
+00582c1c 2c642c1c 94f84310   ldrb.w   r1, [r4, #0x43]
+00582c20 2c642c20 9942       cmp      r1, r3
+00582c22 2c642c22 07d0       beq      #0x2c642c34
+00582c24 2c642c24 032a       cmp      r2, #3
+00582c26 2c642c26 3ff432af   beq.w    #0x2c642a8e
+00582c2a 2c642c2a 94f84420   ldrb.w   r2, [r4, #0x44]
+00582c2e 2c642c2e 9342       cmp      r3, r2
+00582c30 2c642c30 7ff42daf   bne.w    #0x2c642a8e
+00582c34 2c642c34 0620       movs     r0, #6
+00582c36 2c642c36 984a       ldr      r2, [pc, #0x260] ; literal[0x582e98]=0x2ca19b8c 'nfc_chiptype_identify'
+00582c38 2c642c38 9849       ldr      r1, [pc, #0x260] ; literal[0x582e9c]=0x2c913440 '[NFC_DRV] %s: tms chiptype match 0x%x'
+00582c3a 2c642c3a 7bf73df7   bl       #0x2c1beab8
+00582c3e 2c642c3e 14f8013c   ldrb     r3, [r4, #-0x1]
+00582c42 2c642c42 022b       cmp      r3, #2
+00582c44 2c642c44 10d1       bne      #0x2c642c68
+00582c46 2c642c46 dbf80400   ldr.w    r0, [fp, #4]
+00582c4a 2c642c4a 0028       cmp      r0, #0
+00582c4c 2c642c4c 00f00c81   beq.w    #0x2c642e68
+00582c50 2c642c50 0368       ldr      r3, [r0]
+00582c52 2c642c52 0022       movs     r2, #0
+00582c54 2c642c54 9b68       ldr      r3, [r3, #8]
+00582c56 2c642c56 9bf82010   ldrb.w   r1, [fp, #0x20]
+00582c5a 2c642c5a 9847       blx      r3
+00582c5c 2c642c5c 5846       mov      r0, fp
+00582c5e 2c642c5e fff773fc   bl       #0x2c642548
+00582c62 2c642c62 002d       cmp      r5, #0
+00582c64 2c642c64 7ff423af   bne.w    #0x2c642aae
+00582c68 2c642c68 d7f80ca0   ldr.w    sl, [r7, #0xc]
+00582c6c 2c642c6c 8c4b       ldr      r3, [pc, #0x230] ; literal[0x582ea0]=0x200b03d4
+00582c6e 2c642c6e 0aeb8a0a   add.w    sl, sl, sl, lsl #2
+00582c72 2c642c72 caeb0a1a   rsb      sl, sl, sl, lsl #4
+00582c76 2c642c76 13f80a40   ldrb.w   r4, [r3, sl]
+00582c7a 2c642c7a 012c       cmp      r4, #1
+00582c7c 2c642c7c 08d0       beq      #0x2c642c90
+00582c7e 2c642c7e 0620       movs     r0, #6
+00582c80 2c642c80 884a       ldr      r2, [pc, #0x220] ; literal[0x582ea4]=0x2ca19b58 'nfc_set_chiptype'
+00582c82 2c642c82 002c       cmp      r4, #0
+00582c84 2c642c84 7ff421af   bne.w    #0x2c642aca
+00582c88 2c642c88 8749       ldr      r1, [pc, #0x21c] ; literal[0x582ea8]=0x2c913518 '[NFC_DRV] %s: nfc set chiptype as nxp'
+00582c8a 2c642c8a 7bf715f7   bl       #0x2c1beab8
+00582c8e 2c642c8e 20e7       b        #0x2c642ad2
+00582c90 2c642c90 0620       movs     r0, #6
+00582c92 2c642c92 844a       ldr      r2, [pc, #0x210] ; literal[0x582ea4]=0x2ca19b58 'nfc_set_chiptype'
+00582c94 2c642c94 8549       ldr      r1, [pc, #0x214] ; literal[0x582eac]=0x2c9134e4 '[NFC_DRV] %s: nfc set chiptype as thn31'
+00582c96 2c642c96 864d       ldr      r5, [pc, #0x218] ; literal[0x582eb0]=0x200b04b5
+00582c98 2c642c98 7bf70ef7   bl       #0x2c1beab8
+00582c9c 2c642c9c 4ff4db72   mov.w    r2, #0x1b6
+00582ca0 2c642ca0 5b46       mov      r3, fp
+00582ca2 2c642ca2 8449       ldr      r1, [pc, #0x210] ; literal[0x582eb4]=0x2ca19c4c
+00582ca4 2c642ca4 8448       ldr      r0, [pc, #0x210] ; literal[0x582eb8]=0x2c91350c '/dev/thn31/'
+00582ca6 2c642ca6 2c70       strb     r4, [r5]
+00582ca8 2c642ca8 3cf7faf1   bl       #0x2c17f0a0
+00582cac 2c642cac 0446       mov      r4, r0
+00582cae 2c642cae 002c       cmp      r4, #0
+00582cb0 2c642cb0 3ff41caf   beq.w    #0x2c642aec
+00582cb4 2c642cb4 2246       mov      r2, r4
+00582cb6 2c642cb6 8149       ldr      r1, [pc, #0x204] ; literal[0x582ebc]=0x2c913594 'ERROR: Failed to register driver: %d\n'
+00582cb8 2c642cb8 0720       movs     r0, #7
+00582cba 2c642cba 7bf7fdf6   bl       #0x2c1beab8
+00582cbe 2c642cbe 5846       mov      r0, fp
+00582cc0 2c642cc0 82f778f2   bl       #0x2c1c51b4
+00582cc4 2c642cc4 7e48       ldr      r0, [pc, #0x1f8] ; literal[0x582ec0]=0x200e9ea4
+00582cc6 2c642cc6 75f70bf6   bl       #0x2c1b88e0
+00582cca 2c642cca 002c       cmp      r4, #0
+00582ccc 2c642ccc bff611af   bge.w    #0x2c642af2
+00582cd0 2c642cd0 0320       movs     r0, #3
+00582cd2 2c642cd2 7c4a       ldr      r2, [pc, #0x1f0] ; literal[0x582ec4]=0x2ca19c30 'nfc_driver_p67_initialize'
+00582cd4 2c642cd4 7c49       ldr      r1, [pc, #0x1f0] ; literal[0x582ec8]=0x2c9135bc '[NFC_DRV] %s: ERROR: Error registering sn110\n'
+00582cd6 2c642cd6 7bf7eff6   bl       #0x2c1beab8
+00582cda 2c642cda 2046       mov      r0, r4
+00582cdc 2c642cdc 6c37       adds     r7, #0x6c
+00582cde 2c642cde bd46       mov      sp, r7
+00582ce0 2c642ce0 bde8f08f   pop.w    {r4, r5, r6, r7, r8, sb, sl, fp, pc}
+00582ce4 2c642ce4 0620       movs     r0, #6
+00582ce6 2c642ce6 794a       ldr      r2, [pc, #0x1e4] ; literal[0x582ecc]=0x2ca19be8 'nfc_check_chipinfo'
+00582ce8 2c642ce8 7949       ldr      r1, [pc, #0x1e4] ; literal[0x582ed0]=0x2c91316c '[NFC_DRV] %s: tms hw reset'
+00582cea 2c642cea 7bf7e5f6   bl       #0x2c1beab8
+00582cee 2c642cee 5846       mov      r0, fp
+00582cf0 2c642cf0 fff72afc   bl       #0x2c642548
+00582cf4 2c642cf4 88e5       b        #0x2c642808
+00582cf6 2c642cf6 bb68       ldr      r3, [r7, #8]
+00582cf8 2c642cf8 033b       subs     r3, #3
+00582cfa 2c642cfa 94f84820   ldrb.w   r2, [r4, #0x48]
+00582cfe 2c642cfe 9b1a       subs     r3, r3, r2
+00582d00 2c642d00 5833       adds     r3, #0x58
+00582d02 2c642d02 07f11002   add.w    r2, r7, #0x10
+00582d06 2c642d06 1344       add      r3, r2
+00582d08 2c642d08 13f8406c   ldrb     r6, [r3, #-0x40]
+00582d0c 2c642d0c 3346       mov      r3, r6
+00582d0e 2c642d0e 93e6       b        #0x2c642a38
+00582d10 2c642d10 0620       movs     r0, #6
+00582d12 2c642d12 704a       ldr      r2, [pc, #0x1c0] ; literal[0x582ed4]=0x2ca19ba4 'nfc_recv_process'
+00582d14 2c642d14 7049       ldr      r1, [pc, #0x1c0] ; literal[0x582ed8]=0x2c913368 '[NFC_DRV] %s: recv nfcc power on ntf, continue'
+00582d16 2c642d16 7bf7cff6   bl       #0x2c1beab8
+00582d1a 2c642d1a 98f84730   ldrb.w   r3, [r8, #0x47]
+00582d1e 2c642d1e 002b       cmp      r3, #0
+00582d20 2c642d20 7ff404ae   bne.w    #0x2c64292c
+00582d24 2c642d24 6de6       b        #0x2c642a02
+00582d26 2c642d26 0620       movs     r0, #6
+00582d28 2c642d28 5b4a       ldr      r2, [pc, #0x16c] ; literal[0x582e98]=0x2ca19b8c 'nfc_chiptype_identify'
+00582d2a 2c642d2a 6c49       ldr      r1, [pc, #0x1b0] ; literal[0x582edc]=0x2c913468 '[NFC_DRV] %s: nxp chiptype match 0x%x'
+00582d2c 2c642d2c 7bf7c4f6   bl       #0x2c1beab8
+00582d30 2c642d30 85e7       b        #0x2c642c3e
+00582d32 2c642d32 dbf80400   ldr.w    r0, [fp, #4]
+00582d36 2c642d36 0028       cmp      r0, #0
+00582d38 2c642d38 00f0a880   beq.w    #0x2c642e8c
+00582d3c 2c642d3c 0368       ldr      r3, [r0]
+00582d3e 2c642d3e 0122       movs     r2, #1
+00582d40 2c642d40 9b68       ldr      r3, [r3, #8]
+00582d42 2c642d42 9bf82010   ldrb.w   r1, [fp, #0x20]
+00582d46 2c642d46 9847       blx      r3
+00582d48 2c642d48 5846       mov      r0, fp
+00582d4a 2c642d4a fff7fdfb   bl       #0x2c642548
+00582d4e 2c642d4e 5be5       b        #0x2c642808
+00582d50 2c642d50 bb68       ldr      r3, [r7, #8]
+00582d52 2c642d52 043b       subs     r3, #4
+00582d54 2c642d54 d1e7       b        #0x2c642cfa
+00582d56 2c642d56 0320       movs     r0, #3
+00582d58 2c642d58 614a       ldr      r2, [pc, #0x184] ; literal[0x582ee0]=0x2ca19c20 'nfc_irq_init'
+00582d5a 2c642d5a 6249       ldr      r1, [pc, #0x188] ; literal[0x582ee4]=0x2c913080 '[NFC_DRV] %s: ERROR: bes_ioexpander_initialize failed\n'
+00582d5c 2c642d5c 7bf7acf6   bl       #0x2c1beab8
+00582d60 2c642d60 0320       movs     r0, #3
+00582d62 2c642d62 584a       ldr      r2, [pc, #0x160] ; literal[0x582ec4]=0x2ca19c30 'nfc_driver_p67_initialize'
+00582d64 2c642d64 6049       ldr      r1, [pc, #0x180] ; literal[0x582ee8]=0x2c9130b8 '[NFC_DRV] %s: nfc irq initialize fail'
+00582d66 2c642d66 7bf7a7f6   bl       #0x2c1beab8
+00582d6a 2c642d6a dbf80400   ldr.w    r0, [fp, #4]
+00582d6e 2c642d6e 0028       cmp      r0, #0
+00582d70 2c642d70 00f08680   beq.w    #0x2c642e80
+00582d74 2c642d74 0368       ldr      r3, [r0]
+00582d76 2c642d76 0222       movs     r2, #2
+00582d78 2c642d78 1b68       ldr      r3, [r3]
+00582d7a 2c642d7a 9bf82410   ldrb.w   r1, [fp, #0x24]
+00582d7e 2c642d7e 9847       blx      r3
+00582d80 2c642d80 dbf80400   ldr.w    r0, [fp, #4]
+00582d84 2c642d84 0222       movs     r2, #2
+00582d86 2c642d86 0368       ldr      r3, [r0]
+00582d88 2c642d88 9bf82010   ldrb.w   r1, [fp, #0x20]
+00582d8c 2c642d8c 1b68       ldr      r3, [r3]
+00582d8e 2c642d8e 9847       blx      r3
+00582d90 2c642d90 dbf80400   ldr.w    r0, [fp, #4]
+00582d94 2c642d94 0222       movs     r2, #2
+00582d96 2c642d96 0368       ldr      r3, [r0]
+00582d98 2c642d98 9bf81c10   ldrb.w   r1, [fp, #0x1c]
+00582d9c 2c642d9c 1b68       ldr      r3, [r3]
+00582d9e 2c642d9e 9847       blx      r3
+00582da0 2c642da0 dbf80400   ldr.w    r0, [fp, #4]
+00582da4 2c642da4 0222       movs     r2, #2
+00582da6 2c642da6 0368       ldr      r3, [r0]
+00582da8 2c642da8 9bf82810   ldrb.w   r1, [fp, #0x28]
+00582dac 2c642dac 1b68       ldr      r3, [r3]
+00582dae 2c642dae 9847       blx      r3
+00582db0 2c642db0 dbf80400   ldr.w    r0, [fp, #4]
+00582db4 2c642db4 2246       mov      r2, r4
+00582db6 2c642db6 0368       ldr      r3, [r0]
+00582db8 2c642db8 9bf82410   ldrb.w   r1, [fp, #0x24]
+00582dbc 2c642dbc 9b68       ldr      r3, [r3, #8]
+00582dbe 2c642dbe 9847       blx      r3
+00582dc0 2c642dc0 dbf80400   ldr.w    r0, [fp, #4]
+00582dc4 2c642dc4 2246       mov      r2, r4
+00582dc6 2c642dc6 0368       ldr      r3, [r0]
+00582dc8 2c642dc8 9bf82010   ldrb.w   r1, [fp, #0x20]
+00582dcc 2c642dcc 9b68       ldr      r3, [r3, #8]
+00582dce 2c642dce 9847       blx      r3
+00582dd0 2c642dd0 dbf80400   ldr.w    r0, [fp, #4]
+00582dd4 2c642dd4 2246       mov      r2, r4
+00582dd6 2c642dd6 0368       ldr      r3, [r0]
+00582dd8 2c642dd8 9bf81c10   ldrb.w   r1, [fp, #0x1c]
+00582ddc 2c642ddc 9b68       ldr      r3, [r3, #8]
+00582dde 2c642dde 9847       blx      r3
+00582de0 2c642de0 dbf80400   ldr.w    r0, [fp, #4]
+00582de4 2c642de4 2246       mov      r2, r4
+00582de6 2c642de6 0368       ldr      r3, [r0]
+00582de8 2c642de8 9bf82810   ldrb.w   r1, [fp, #0x28]
+00582dec 2c642dec 9b68       ldr      r3, [r3, #8]
+00582dee 2c642dee 9847       blx      r3
+00582df0 2c642df0 5846       mov      r0, fp
+00582df2 2c642df2 82f7dff1   bl       #0x2c1c51b4
+00582df6 2c642df6 6ff01204   mvn      r4, #0x12
+00582dfa 2c642dfa 7ae6       b        #0x2c642af2
+00582dfc 2c642dfc 0b46       mov      r3, r1
+00582dfe 2c642dfe 3046       mov      r0, r6
+00582e00 2c642e00 344a       ldr      r2, [pc, #0xd0] ; literal[0x582ed4]=0x2ca19ba4 'nfc_recv_process'
+00582e02 2c642e02 3a49       ldr      r1, [pc, #0xe8] ; literal[0x582eec]=0x2c9132f4 '[NFC_DRV] %s: nfc data len %d overflow'
+00582e04 2c642e04 4446       mov      r4, r8
+00582e06 2c642e06 7bf757f6   bl       #0x2c1beab8
+00582e0a 2c642e0a 8ae6       b        #0x2c642b22
+00582e0c 2c642e0c 314a       ldr      r2, [pc, #0xc4] ; literal[0x582ed4]=0x2ca19ba4 'nfc_recv_process'
+00582e0e 2c642e0e 3046       mov      r0, r6
+00582e10 2c642e10 3749       ldr      r1, [pc, #0xdc] ; literal[0x582ef0]=0x2c91329c '[NFC_DRV] %s: read header from nfcc fail'
+00582e12 2c642e12 7bf751f6   bl       #0x2c1beab8
+00582e16 2c642e16 374b       ldr      r3, [pc, #0xdc] ; literal[0x582ef4]=0x200e9eb3
+00582e18 2c642e18 4446       mov      r4, r8
+00582e1a 2c642e1a 1a78       ldrb     r2, [r3]
+00582e1c 2c642e1c 002a       cmp      r2, #0
+00582e1e 2c642e1e 7ff480ae   bne.w    #0x2c642b22
+00582e22 2c642e22 0122       movs     r2, #1
+00582e24 2c642e24 1a70       strb     r2, [r3]
+00582e26 2c642e26 7ce6       b        #0x2c642b22
+00582e28 2c642e28 2a4a       ldr      r2, [pc, #0xa8] ; literal[0x582ed4]=0x2ca19ba4 'nfc_recv_process'
+00582e2a 2c642e2a 3046       mov      r0, r6
+00582e2c 2c642e2c 3249       ldr      r1, [pc, #0xc8] ; literal[0x582ef8]=0x2c91331c '[NFC_DRV] %s: read data from nfcc err'
+00582e2e 2c642e2e 7bf743f6   bl       #0x2c1beab8
+00582e32 2c642e32 304b       ldr      r3, [pc, #0xc0] ; literal[0x582ef4]=0x200e9eb3
+00582e34 2c642e34 4446       mov      r4, r8
+00582e36 2c642e36 1a78       ldrb     r2, [r3]
+00582e38 2c642e38 002a       cmp      r2, #0
+00582e3a 2c642e3a 7ff472ae   bne.w    #0x2c642b22
+00582e3e 2c642e3e f0e7       b        #0x2c642e22
+00582e40 2c642e40 0320       movs     r0, #3
+00582e42 2c642e42 204a       ldr      r2, [pc, #0x80] ; literal[0x582ec4]=0x2ca19c30 'nfc_driver_p67_initialize'
+00582e44 2c642e44 2d49       ldr      r1, [pc, #0xb4] ; literal[0x582efc]=0x2c91304c '[NFC_DRV] %s: bes io ioexpander initialize failed!\n'
+00582e46 2c642e46 7bf737f6   bl       #0x2c1beab8
+00582e4a 2c642e4a d1e7       b        #0x2c642df0
+00582e4c 2c642e4c 0620       movs     r0, #6
+00582e4e 2c642e4e 1d4a       ldr      r2, [pc, #0x74] ; literal[0x582ec4]=0x2ca19c30 'nfc_driver_p67_initialize'
+00582e50 2c642e50 2b49       ldr      r1, [pc, #0xac] ; literal[0x582f00]=0x2c912fd0 '[NFC_DRV] %s: not support nfc\n'
+00582e52 2c642e52 7bf731f6   bl       #0x2c1beab8
+00582e56 2c642e56 6ff00b04   mvn      r4, #0xb
+00582e5a 2c642e5a 4ae6       b        #0x2c642af2
+00582e5c 2c642e5c 0320       movs     r0, #3
+00582e5e 2c642e5e 194a       ldr      r2, [pc, #0x64] ; literal[0x582ec4]=0x2ca19c30 'nfc_driver_p67_initialize'
+00582e60 2c642e60 2849       ldr      r1, [pc, #0xa0] ; literal[0x582f04]=0x2c91301c '[NFC_DRV] %s: bes i2c bus initialize failed!\n'
+00582e62 2c642e62 7bf729f6   bl       #0x2c1beab8
+00582e66 2c642e66 c3e7       b        #0x2c642df0
+00582e68 2c642e68 0320       movs     r0, #3
+00582e6a 2c642e6a 274a       ldr      r2, [pc, #0x9c] ; literal[0x582f08]=0x2ca19b7c 'thn31_bl_enable'
+00582e6c 2c642e6c 2749       ldr      r1, [pc, #0x9c] ; literal[0x582f0c]=0x2c9131a4 '[NFC_DRV] %s: tms bl enale: param invalid\n'
+00582e6e 2c642e6e 7bf723f6   bl       #0x2c1beab8
+00582e72 2c642e72 f3e6       b        #0x2c642c5c
+00582e74 2c642e74 0320       movs     r0, #3
+00582e76 2c642e76 134a       ldr      r2, [pc, #0x4c] ; literal[0x582ec4]=0x2ca19c30 'nfc_driver_p67_initialize'
+00582e78 2c642e78 2549       ldr      r1, [pc, #0x94] ; literal[0x582f10]=0x2c912ff0 '[NFC_DRV] %s: Failed to allocate instance\n'
+00582e7a 2c642e7a 7bf71df6   bl       #0x2c1beab8
+00582e7e 2c642e7e eae7       b        #0x2c642e56
+00582e80 2c642e80 0320       movs     r0, #3
+00582e82 2c642e82 244a       ldr      r2, [pc, #0x90] ; literal[0x582f14]=0x2ca19c10 'nfc_gpio_deinit'
+00582e84 2c642e84 1749       ldr      r1, [pc, #0x5c] ; literal[0x582ee4]=0x2c913080 '[NFC_DRV] %s: ERROR: bes_ioexpander_initialize failed\n'
+00582e86 2c642e86 7bf717f6   bl       #0x2c1beab8
+00582e8a 2c642e8a b1e7       b        #0x2c642df0
+00582e8c 2c642e8c 0320       movs     r0, #3
+00582e8e 2c642e8e 1e4a       ldr      r2, [pc, #0x78] ; literal[0x582f08]=0x2ca19b7c 'thn31_bl_enable'
+00582e90 2c642e90 1e49       ldr      r1, [pc, #0x78] ; literal[0x582f0c]=0x2c9131a4 '[NFC_DRV] %s: tms bl enale: param invalid\n'
+00582e92 2c642e92 7bf711f6   bl       #0x2c1beab8
+00582e96 2c642e96 57e7       b        #0x2c642d48
+00582e98 2c642e98 8c9b       ldr      r3, [sp, #0x230]
+00582e9a 2c642e9a a12c       cmp      r4, #0xa1
+00582e9c 2c642e9c 4034       adds     r4, #0x40
+00582e9e 2c642e9e 912c       cmp      r4, #0x91
+00582ea0 2c642ea0 d403       lsls     r4, r2, #0xf
+00582ea2 2c642ea2 0b20       movs     r0, #0xb
+00582ea4 2c642ea4 589b       ldr      r3, [sp, #0x160]
+00582ea6 2c642ea6 a12c       cmp      r4, #0xa1
+00582ea8 2c642ea8 1835       adds     r5, #0x18
+00582eaa 2c642eaa 912c       cmp      r4, #0x91
+00582eac 2c642eac e434       adds     r4, #0xe4
+00582eae 2c642eae 912c       cmp      r4, #0x91
+00582eb0 2c642eb0 b504       lsls     r5, r6, #0x12
+00582eb2 2c642eb2 0b20       movs     r0, #0xb
+00582eb4 2c642eb4 4c9c       ldr      r4, [sp, #0x130]
+00582eb6 2c642eb6 a12c       cmp      r4, #0xa1
+00582eb8 2c642eb8 0c35       adds     r5, #0xc
+00582eba 2c642eba 912c       cmp      r4, #0x91
+00582ebc 2c642ebc 9435       adds     r5, #0x94
+00582ebe 2c642ebe 912c       cmp      r4, #0x91
+00582ec0 2c642ec0 a49e       ldr      r6, [sp, #0x290]
+00582ec2 2c642ec2 0e20       movs     r0, #0xe
+00582ec4 2c642ec4 309c       ldr      r4, [sp, #0xc0]
+00582ec6 2c642ec6 a12c       cmp      r4, #0xa1
+00582ec8 2c642ec8 bc35       adds     r5, #0xbc
+00582eca 2c642eca 912c       cmp      r4, #0x91
+00582ecc 2c642ecc e89b       ldr      r3, [sp, #0x3a0]
+00582ece 2c642ece a12c       cmp      r4, #0xa1
+00582ed0 2c642ed0 6c31       adds     r1, #0x6c
+00582ed2 2c642ed2 912c       cmp      r4, #0x91
+00582ed4 2c642ed4 a49b       ldr      r3, [sp, #0x290]
+00582ed6 2c642ed6 a12c       cmp      r4, #0xa1
+00582ed8 2c642ed8 6833       adds     r3, #0x68
+00582eda 2c642eda 912c       cmp      r4, #0x91
+00582edc 2c642edc 6834       adds     r4, #0x68
+00582ede 2c642ede 912c       cmp      r4, #0x91
+00582ee0 2c642ee0 209c       ldr      r4, [sp, #0x80]
+00582ee2 2c642ee2 a12c       cmp      r4, #0xa1
+00582ee4 2c642ee4 8030       adds     r0, #0x80
+00582ee6 2c642ee6 912c       cmp      r4, #0x91
+00582ee8 2c642ee8 b830       adds     r0, #0xb8
+00582eea 2c642eea 912c       cmp      r4, #0x91
+00582eec 2c642eec f432       adds     r2, #0xf4
+00582eee 2c642eee 912c       cmp      r4, #0x91
+00582ef0 2c642ef0 9c32       adds     r2, #0x9c
+00582ef2 2c642ef2 912c       cmp      r4, #0x91
+00582ef4 2c642ef4 b39e       ldr      r6, [sp, #0x2cc]
+00582ef6 2c642ef6 0e20       movs     r0, #0xe
+00582ef8 2c642ef8 1c33       adds     r3, #0x1c
+00582efa 2c642efa 912c       cmp      r4, #0x91
+00582efc 2c642efc 4c30       adds     r0, #0x4c
+00582efe 2c642efe 912c       cmp      r4, #0x91

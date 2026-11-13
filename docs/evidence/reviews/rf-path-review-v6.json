@@ -1,0 +1,37 @@
+{
+  "scope": "Read-only static RF path review of exact p67glt 3.201.026 backend; runtime observations below were reported by root, who captures the raw proof. No device actions or source edits by this reviewer.",
+  "static_checks": [
+    "RF_INTF_ACTIVATED_NTF: full packet index4 interface2 ISO_DEP, index5 protocol4, index6 listen bit0x80 match primary nfc_ncif_proc_activate layout. Activation/deactivation are forwarded unchanged to the original stack.",
+    "Data interception accepts static RF connection0 only after ISO_DEP listen activation and exact 8-byte synthetic AID SELECT F04D424150445501; unrelated initial SELECT and later reselect are forwarded.",
+    "NFA_SendRawFrame exact wrapper0x0c650dcd copies response into queue. Exact action0x2c650874 accepts RF state4/5 and sends static connection0 through NFC_SendData0x2c65b79c. Its API success means enqueue only; RF receipt is separately demonstrated by the reader."
+  ],
+  "root_reported_runtime": {
+    "version": "watchface v6",
+    "info": "cached v=20 chip=00 feat=00063E1A aid=1 lmrt=1030 ctrl=255",
+    "start_sequence": 858178272,
+    "ready": "SET accepted and GET verification passed after prepending synthetic AID",
+    "select_nfc_tx_time": "796224.604",
+    "select_bt_rx_sequence": 268435457,
+    "select_bt_rx_time": "796224.664",
+    "select_nfc_rx": "9000 at796224.712",
+    "challenge_bt_rx_sequence": 268435458,
+    "challenge_bt_rx_time": "796224.809",
+    "challenge_nfc_response_time": "796224.954",
+    "pass": "run1 seq268435458 reported396.5ms at796225.056",
+    "cleanup": "STOP858178273 progressed through RF stop and route restoration to STOPPED; QUERY858178274 returned STOPPED at796225.348"
+  },
+  "limits": [
+    "One synthetic test establishes the demonstrated NFC-to-BLE-to-Pixel-to-BLE-to-NFC path on this exact model/build; it does not establish payment/MirPay integration or repeatability across firmware/controllers.",
+    "Initial synthetic SELECT must fit one NCI DATA packet. CAPDU maximum261 bytes, RAPDU258. The module adds no WTX handling; broader timing/field-loss/reader interoperability has not been established.",
+    "Queued send return is not RF delivery acknowledgement. Successful reader response and nonce/proof correlation are the end-to-end evidence.",
+    "Existing stock routing updates have no proven global transaction lock. Preserve current cleanup/recovery checks. The native module must remain resident until reboot even after STOPPED.",
+    "A prior long-idle control timeout may indicate a suspended UI/poll timer; cause is unconfirmed. No new modifications are warranted by this successful session alone."
+  ],
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

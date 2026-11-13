@@ -1,0 +1,54 @@
+{
+  "status": "PASS: bounded static binding/lifecycle review and host regression",
+  "source_sha256": {
+    "prototype/band/transport.c": "5232ca9280f8389b2f0fa6586913ce4d4582b8a5e511787156d8dd8fffa3d454",
+    "prototype/band/transport_fingerprints.h": "d1af18964eb689305106e3bb4756d05dc584a9a79ebf5d668978541962624c6e",
+    "prototype/tests/transport_test.c": "043576f9d68aa6d7b711fe6f2b505c5026809310751ab3ef43d624f6676de841",
+    "prototype/band/module.c": "356a2e5d733e5fb864ecda656596c4150a808149e9d89d24a6f53e7bc6a61461"
+  },
+  "exact_binding": {
+    "read_address": "0x2c35603c",
+    "thumb_call_pointer": "0x2c35603d",
+    "return_signature": "void *(void)",
+    "first24": "80b582b000af79f6abfe3a460146074802f000fb20b93868",
+    "control_flow": [
+      "getpid at0x2c1cfd9c",
+      "manager_get_instance(\"local\",pid,&handle) at0x2c358650",
+      "return nonnull handle on success; else bluetooth_create_instance at0x2c355fc8"
+    ],
+    "old_binding": "0x2c63b444 merely loads global RAM pointer at0x200e9a18; no current-task-group selection"
+  },
+  "control_context": [
+    "module constructor only creates timer; initialization_complete release/acquire gate prevents early callback work",
+    "transport_start/current_instance/register/add_table called from first LVGL poll",
+    "subsequent advertising/notify/cleanup firmware calls remain on control/poll thread",
+    "Bluetooth callbacks only publish bounded state; no synchronous client IPC called there"
+  ],
+  "ownership": [
+    "Returned process-level singleton may be borrowed/shared or newly created by getter. Module must not delete it.",
+    "Success/failure/stop retain singleton until reboot; only newly registered service/table and owned advertiser handles are cleaned.",
+    "Module remains resident; callback tables and registration_slot have static lifetime."
+  ],
+  "failure_lifecycle": [
+    "register error1 returns-61, clears running, reports state0, skips add_table and advertising",
+    "module booted=-1 prevents transport retry and both transport_poll/nfc_probe_poll; timer continues clock sampling",
+    "No NFC mutation or false READY becomes reachable on this failed-start path"
+  ],
+  "validation": [
+    "All8 binding fingerprints independently matched exact firmware",
+    "Independent clang ASAN+UBSAN+-Wall+-Wextra+-Werror transport_test PASS",
+    "New fork-isolated register-error regression verifies no service/table/advertiser/notifies and retained singleton"
+  ],
+  "limits": [
+    "No device or phone access performed.",
+    "Runtime errno not recovered; correcting client-context selection is supported statically, but disappearance of hardware -61 remains unverified.",
+    "The older diagnostics/transport-start/FINDINGS.txt ownership section describes earlier considered designs; v3 intentionally chooses no-delete shared singleton contract."
+  ],
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

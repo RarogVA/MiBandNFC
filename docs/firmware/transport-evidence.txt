@@ -1,0 +1,170 @@
+ARCHIVE CONTEXT (project cleanup, 2026-11-13): This is a historical static-analysis note. Statements such as "not runtime tested" describe the analysis stage, not the latest project status. Later v6/Android 0.4 produced one complete synthetic hardware PASS with verified cleanup; see ../evidence/pixel-gatt-v6-observation.json and ../evidence/README.md. That run does not validate every binding, timing case or fault path. References to removed clones/build outputs below are provenance, not current build dependencies.
+
+Custom GATT transport for the synthetic APDU laboratory module
+Target: Xiaomi Smart Band 10 Pro Ceramic GL / miwear.watch.p67glt / 3.201.026.
+Firmware SHA256 66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40.
+Static bindings + host tests and reported v2 startup failure; no v3 runtime success claim.
+
+CHOICE
+Band is BLE peripheral/GATT server. Pixel is BLE central/GATT client.
+Own service UUID 7dbb0001-8e51-4f89-a9cb-9d40bb8c0e31.
+Pixel writes RX 7dbb0002-8e51-4f89-a9cb-9d40bb8c0e31 with response.
+Band notifies TX 7dbb0003-8e51-4f89-a9cb-9d40bb8c0e31; standard CCC 0x2902.
+The experimental CCC descriptor is WRITE-only: the supported Android client
+writes0100 directly and never reads it. General CCC reads are not implemented.
+Separate handle-based advertiser, local name MB-APDU, service UUID in ADV.
+No Mi Fitness authentication/pairing changes, no interception of Xiaomi service,
+no adapter reset, no stopping or replacing an existing Xiaomi advertisement.
+If the controller lacks a free advertising/service slot, this reports an error.
+
+EXACT BINDINGS (ALL THUMB POINTERS = ADDRESS | 1)
+0x2c35603c bluetooth_get_instance(): selects the CURRENT task group's instance
+using getpid()/manager_get_instance("local",pid,...), creates only if absent.
+0x2c357594 bt_gatts_register_service(instance, &handle, callback_table).
+0x2c357674 bt_gatts_unregister_service(handle).
+0x2c357764 bt_gatts_add_attr_table(handle, database).
+0x2c35783c bt_gatts_remove_attr_table(handle, first_attribute_id).
+0x2c357974 bt_gatts_notify(handle, peer_address, attribute_id, bytes, uint16_len).
+0x2c357f68 bt_le_start_advertising(instance, params, adv, advlen, scan, scanlen, callbacks).
+0x2c358018 bt_le_stop_advertising(instance, owned_advertiser_handle).
+transport_fingerprints.h contains first 24 bytes of all eight entry points.
+transport_start checks all eight before making any firmware API call.
+
+IDENTIFICATION METHOD
+The firmware contains the original OpenVela bttool GATT demonstration including
+its register/start/notify command descriptors and diagnostic strings. Following
+the command table yields register_cmd 0x2c36d6c4, start_cmd 0x2c36d644 and
+notify_custom 0x2c36d224. Their call sites independently identify the APIs above.
+Stock miwear_gatt_service_register at 0x2c63ed4c calls the stock instance getter
+0x2c63b444 then the SAME register/add APIs (calls at 0x2c63ed66/74/7c).
+Thus these are application-side Bluetooth socket wrappers, not direct
+controller functions guessed from strings. The original stock getter identified
+the API call sites, but is no longer used by the prototype. Socket descriptor
+lookup uses the CALLING task group's file table; a process-global MiWear client
+pointer alone does not establish a valid descriptor in the LVGL task group.
+Bluetooth API calls are kept outside that loop's callbacks to avoid self-deadlock.
+register_service retains the address of its output handle slot (remote+12);
+unregister clears that slot. Our registration_slot therefore has module/static
+lifetime and is separately published atomically for callback readers.
+
+The adv bttool command calls 0x2c357f68 at 0x2c36b7a0; its handle-stop command
+calls 0x2c358018 at 0x2c36b34e. The wrapper allocates a new advertiser object and
+the stop wrapper serializes only that object's remote handle. It does not stop
+all advertising and the prototype never uses the stop-by-ID/global APIs.
+
+ABI VERIFIED IN MACHINE CODE
+bt_gatts_add_attr_table walks attributes with stride 0x38 (56 bytes).
+UUID starts at +4 and copies 20 bytes. type +24, properties +28, permissions
++32, response mode +36, read callback +40, write callback +44, length +48,
+value pointer +52. It serializes 36 bytes per attribute to the IPC request.
+Our four attributes require 144 bytes, below its exact 360-byte bound.
+The table structure is {int32 count; attr* pointer}; callback table is size40.
+Advertising wrapper copies exactly 0x1c (28) bytes of parameters; its API has
+the same seven arguments as the official header. Both ADV buffers are copied
+synchronously before return. Own address type UNKNOWN lets the stack choose.
+GATT UUID bytes use little-endian storage, verified in bt_uuid_to_string.
+
+PRIMARY SOURCE CROSS-CHECK
+https://github.com/open-vela/frameworks_bluetooth/tree/c423c51e69acad244b1d44f138918cbedbc70d40
+Local clone ../../firmware/platform/frameworks_bluetooth.
+framework/include/bt_gatts.h:99-116 attribute/database structures; :336-348 callbacks.
+framework/include/bt_gatt_defs.h:47-60 enums, :75-96 flags, :99-162 macros.
+framework/socket/bt_gatts.c:64 register, :198 add_attr_table serialization.
+tools/gatt_server.c:161-180 custom service; :694-738 register; :430-454 notify.
+framework/include/bt_le_advertiser.h:112-147 callback, parameter and start API.
+framework/socket/bt_le_advertiser.c:30-89 new advertiser and handle-only stop.
+tools/adv.c:335 start; service/src/advertising.c:183-216 allocates a new adv ID.
+framework/common/bt_uuid.c:165-185 confirms UUID byte ordering.
+service/profiles/gatt/gatts_service.c:292-311 sends ATT write response before
+dispatching its app callback; Android's write completion means link acceptance,
+not successful application handling. The explicit STATUS handshake and matched
+APDU challenge response establish handling at the application layer.
+Current public source is corroboration; exact firmware disassembly controls ABI.
+Excerpts saved in transport-disassembly/.
+
+FRAME AND THREAD CONTRACT
+Header: 4d42, version01, type01=request /02=response /03=status /04=control,
+sequence uint32 big-endian, payload length uint16 big-endian (10 header bytes).
+Request <=261, response 2..258, STATUS UTF8 1..128, CONTROL exactly1 byte.
+Root owns pending-sequence matching and real 3-second monotonic timeout.
+Native outbound accepts1/2/3; inbound accepts2/4. Android writes consecutive
+ATT fragments; native notifies <=20 bytes and waits for each notify completion.
+This works at MTU23 without depending on negotiation. One outbound frame queued.
+Callbacks only copy into bounded ring/update atomics; poll dispatches user code.
+transport_poll receives actual monotonic milliseconds. Missing notification
+completion or a partial inbound frame times out after1500ms and invalidates the
+session. Peer-address bytes use atomic loads/stores, and notify snapshots them
+with a generation check. Callbacks never spin waiting for the UI thread.
+Each received byte carries a connection generation. Disconnect/subscription
+changes invalidate partial old frames; a control immediately following CCC is
+preserved. Additional peers cannot feed the currently pinned session.
+Generation is reconciled before every consumed byte and before transmitting,
+including a CCC callback arriving midway through one poll. During a delivered
+frame callback, transport_frame_generation() exposes its captured epoch; the
+parent must compare it with transport_generation() and cancel stale NFC state.
+The service carries synthetic data only; no transport authentication is claimed.
+
+V3 CURRENT-TASK-GROUP CORRECTION
+Hardware v2 reported TRANSPORT_START rc=-61,state=0; this means registration
+returned1 before add_table or advertising. Exact wrapper/server tracing in
+../diagnostics/transport-start/FINDINGS.txt identifies1 as socket send failure,
+not duplicate-GATT rejection. The v2.1 Lua diagnostic found no matching IPC log,
+so the actual errno and precise fd failure remain unknown. This getter change
+corrects the client-context selection; it is a candidate fix, not confirmed
+hardware success or a proven explanation of the missing errno.
+The first24 bytes at0x2c35603c are verified against the exact image and replace
+the stock-getter fingerprint. Its code calls getpid0x2c1cfd9c, then manager lookup
+0x2c358650 with the literal "local", then create0x2c355fc8 only on absence.
+The returned process-level singleton may already be shared. We retain it until
+reboot on every success/failure/stop path and never bind/call instance deletion.
+Only our newly registered service/table and owned advertising handle are removed.
+Host regression runs register_error=1 in a separate process, checks -61 and
+state0, no add_table/advertising/notification or service cleanup, and retention
+of the returned singleton. This verifies local control flow, not firmware IPC.
+
+V4 CCC CALLBACK CORRECTION
+Hardware v3 registered/discovered the service and Android completed a CCC write,
+but native status remained BLE/rc0/state69905 (subscribed bit20 unset). The exact
+socket server ADD_ATTR_TABLE parser at0x2c354626 compares rsp_type with1 only;
+the bne at0x354632 skips installation of its read/write IPC bridge for mode2.
+The newer public SDK handles1 OR2, which had concealed this exact-firmware
+difference. See transport-disassembly/cccd-ipc-bridge-filter.txt.
+CCCD now uses response1 (ATTR_RSP_BY_APP) and WRITE permission2, with our existing
+cccd_written callback. The exact client callback ABI is unchanged and verified
+in write-callback-abi.txt: localhandle,arg3; value,arg4; length,arg5; offset,arg6.
+The service ACKs writes before callback dispatch, so no extra write response is
+needed. Independently checked lower SAL descriptors do not carry rsp_type; this
+change does not alter the controller's CCC bookkeeping or notification checks.
+Mode1 reads would require an application read callback and a deferred response
+from the control thread. We do not advertise READ permission or add that API in
+this iteration; this descriptor intentionally supports only the lab client.
+Host writes now pass through the modeled exact server bridge condition rather
+than calling cccd_written directly. Reverting CCC to2 loses subscription despite
+the modeled ATT acknowledgement and fails the regression. No v4 device success
+is claimed until the callback/STATUS/APDU exchange is actually observed.
+
+LIFECYCLE
+start registers only BLE. No NFC action occurs here. ready requires own attribute
+table-added callback AND TX CCC notification subscription; generic BT connection
+is insufficient. App CONTROL/STATUS and NFC logic are owned by the parent module.
+Root must inspect generation() and cancel its pending NFC request on changes.
+stop removes only own table/service/advertiser, leaves module code resident, and
+retires this transport until reboot. This avoids reuse while old asynchronous
+callbacks may still exist. NFC START/STOP controls do not call transport_stop.
+Actual service capacity, radio coexistence, Android service discovery/cache,
+and runtime callbacks require a hardware test; no such test was performed here.
+
+VALIDATION
+NDK clang28.2.13676358 ARM Cortex-M33 Thumb, hard float fpv5-sp-d16, -Os,
+freestanding, -Wall -Wextra -Werror: compiled transport.o successfully.
+llvm-nm -u transport.o: empty (no unsupported runtime/helper imports).
+Host test prototype/tests/transport_test.c passed both ordinary and ASAN/UBSAN:
+- CONTROL fragmented one byte at a time immediately after CCC, before first poll.
+- Full261-byte CAPDU /258-byte RAPDU and20-byte notification fragmentation.
+- Busy queue, wrong peer, nonzero write offset, oversized RAPDU rejection.
+- Partial old frame discarded across disconnect/reconnect generations.
+- Mid-poll subscription change clears a partial frame; late old bytes are ignored.
+- Missing notification completion timeout, including uint32 clock wrap.
+- Partial input frame timeout; STATUS notification framing.
+- Cleanup stops only the owned advertiser; retired transport cannot restart.
+Host tests verify our framing/state code, not device firmware API behavior.

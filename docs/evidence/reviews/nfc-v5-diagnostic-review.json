@@ -1,0 +1,64 @@
+{
+  "status": "PASS: bounded independent v5 NFC diagnostic review; no new blocker identified",
+  "source_sha256": {
+    "prototype/band/nfc_probe.c": "a014de5b0d54e815ed341006e7694e4188eb7790edc12ed49955bdc64aab82d9",
+    "prototype/band/nfc_probe.h": "319bda900f9da39c982f7287f3867eaa4eda51f90eb2c2cb934cc14dc69218ae",
+    "prototype/band/nfc_fingerprints.h": "60359ac58a764de98d1dd22e1faeb697bb2f37e245e6553a4af21feff4f1a3d5",
+    "prototype/tests/nfc_probe_test.c": "5eb8a1f04719a76296067c8d6d27089e7b867c04d797aff59b25712dabcb25cc"
+  },
+  "reviewed_build": {
+    "elf_sha256": "c71cb376bc2637dac71c75e0b64af0784d16450776b81eb17b9f1e52a46467d8",
+    "elf_bytes": 29828,
+    "build_test_result": "Parent reports full5 native suites+111JVM and ARM build PASS; reviewer independently reran NFC host test below."
+  },
+  "framing_and_abi": [
+    "GET_ROUTING command is exactly21 02 00 with total API length3.",
+    "Exact NFA_SendNxpNciCommand0x2c650ed8 allocates length+20 and copies command bytes before returning/enqueueing; local stack packet does not escape.",
+    "NFC_SendNxpNciCommand0x2c65d724 retains callback in queued BT_HDR; queue0x2c65b9a8 publishes it for current request.",
+    "Exact response dispatcher0x2c65ab98 passes event=(packet[1]&0x3f)|0x40, BT_HDR length, full NCI packet pointer. Expected GET success/error callback shape event42,len4,41 02 01 status is consistent."
+  ],
+  "concurrency": [
+    "Callback writes event,length,prefix before release-store completion. Poll reads callback fields only after acquire-exchange sees a completion and outstanding request.",
+    "A single command_pending request is enforced and remains held through timeout; no next command can replace callback fields before poll formats the current error. Exact dispatcher clears callback after invocation.",
+    "Raw HAL response prefix is a separate atomic uint32 witness. It is not used for command acceptance, completion, status, or routing snapshots.",
+    "Diagnostic string is formatted/read by the control poll thread; callbacks do not format strings, call file APIs, or log."
+  ],
+  "bounds": [
+    "Callback copy is at most8 bytes and zero bytes for null pointer or length0.",
+    "uint16 callback length decimal buffer5 handles65535.",
+    "Formatter bounds every append to diagnostic[122] and terminates it. Max121 text chars+ERROR prefix6 fits127-byte module STATUS capacity.",
+    "Raw prefix reads4 bytes only after validated full NCI header length and n>=4."
+  ],
+  "version_read": {
+    "getter_va": "0x2c65b200",
+    "literal_base": "0x200eb5f4",
+    "offset": "0x1f8",
+    "ram_byte": "0x200eb7ec",
+    "fact": "Independent disassembly confirms ldrb from this byte. Read occurs once after fingerprint preflight and discovery-state gates. All13 NFC fingerprints independently match exact firmware."
+  },
+  "message_lifecycle": [
+    "NFC_REJECT labels a well-formed matching callback with nonzero controller status; NFC_BAD_RSP labels malformed/wrong-event/wrong-opcode/notification callback.",
+    "fail→START_END→ERROR preserves diagnostic text; subsequent STOP can reportStopped while nfc_probe_diagnostic retains the response evidence.",
+    "Evidence resets only when next START passes preflight/discovery gates. Failed preflight and wrong-discovery-state attempts preserve it."
+  ],
+  "independent_tests": {
+    "command": "clang -std=c11 -Wall -Wextra -Werror -g -DNFC_PROBE_HOST_TEST=1 -fsanitize=address,undefined -fno-omit-frame-pointer tests/nfc_probe_test.c band/nfc_probe.c band/route_table.c",
+    "result": "PASS",
+    "coverage": "Existing lifecycle/restoration/ownership tests plus8 callback cases: controller reject, short payload, extended payload with prefix truncation, null pointer+length65535, wrong event, wrong opcode, notification callback despite good raw response, zero length. Tests require no SET, unchanged routes, bounded text, finalERROR and STOP retention, and version-read gate."
+  },
+  "remaining_limits": [
+    "Current hardware error text alone cannot establish controller rejection because old code conflated bad response parsing with statusFF. New actual callback/raw bytes are still needed.",
+    "Raw response may belong to concurrent stock traffic; it is evidence only and has no transaction correlation.",
+    "NXP command callback path can intercept some notifications; acceptance rules remain unchanged and reject unexpected callback shape.",
+    "Host tests validate local model and bounds, not real NFCC support or runtime NCI interleaving."
+  ],
+  "source_edits_by_reviewer": false,
+  "device_actions": false,
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

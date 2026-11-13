@@ -1,0 +1,39 @@
+{
+  "status": "PASS: bounded independent v4 CCCD review",
+  "sha256": {
+    "prototype/band/transport.c": "cc9e6b61aa19c4b3bab471456a7565c9b5627df5daa49e1e9a4ba16c2cf47142",
+    "prototype/band/transport_fingerprints.h": "d1af18964eb689305106e3bb4756d05dc584a9a79ebf5d668978541962624c6e",
+    "prototype/tests/transport_test.c": "566a0fae0da44e9445f065e0a4aca5977128813d71beca4f40dd6933b2f40331"
+  },
+  "exact_firmware_evidence": "At0x2c354626, serialized response byte compared with1; bne at0x2c354632 bypasses strd callback bridge install at0x2c354634. Prior mode2 therefore ACKed without cccd_written notification.",
+  "reviewed_cccd": {
+    "id": 3,
+    "uuid": "2902",
+    "response_mode": 1,
+    "permissions": 2,
+    "properties": 0,
+    "write_callback": "cccd_written",
+    "read_callback": null
+  },
+  "checks": [
+    "Existing CCC write callback validates service/id3/offset0/length2 and notification enable0100; pins peer and increments generation.",
+    "RX id4 response1 and write ABI unchanged.",
+    "No added read-response/other firmware API; binding set remains8 and fingerprint header unchanged from independently verified v3.",
+    "No READ permission is advertised for CCC, matching null read callback. Android lab client writes0100 directly and does not issue CCC read.",
+    "Host mock now routes CCC/RX through exact response==1 server bridge model before local callback.",
+    "Independent ASAN+UBSAN+-Wall+-Wextra+-Werror transport test passed, including ready-after-CCC assertion and startup-failure/cleanup/session tests."
+  ],
+  "limits": [
+    "This write-only experimental descriptor is intended for the lab client; general CCC read interoperability is not claimed.",
+    "Hardware callback/STATUS verification remains pending; Android0.3 blocks NFC until read-only QUERY00 returns STOPPED with matching sequence and completedATT write."
+  ],
+  "source_edits_by_reviewer": false,
+  "device_actions": false,
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

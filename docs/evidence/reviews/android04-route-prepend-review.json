@@ -1,0 +1,56 @@
+{
+  "status": "PASS: bounded route prepend review and Android 0.4 implementation/build; no device actions",
+  "source_sha256": {
+    "prototype/band/route_table.c": "2a15d640bf782604463e23d2eadcb69b4720191d220eb026d253fd279a2b2b76",
+    "prototype/tests/route_table_test.c": "8c03d49552faf600e895561a853556373f4b2277b556071b5fb23a34f3907551",
+    "prototype/android/src/dev/mbapdu/probe/MainActivity.java": "1637e67e06bc016a679b1e768b42bb70093ecf6d87033cd47bc1b5b691cf6719",
+    "prototype/android/src/dev/mbapdu/probe/InfoRequest.java": "c3376186cf9bda112a546d0c04b5c163e6edb63955e5236d6385d3c23cfb486e",
+    "prototype/android/tests/dev/mbapdu/probe/ProtocolTest.java": "9d9dbcc9adca402dece86a8d6f441e368c7e643edc5715865bf76424fd3ae362"
+  },
+  "android_build": {
+    "apk": "<historical-project>/prototype/android/build/mbapdu-lab-debug.apk",
+    "sha256": "326d2ba5ba50c63781befc4555344f9eba0a9d576b9f37e5df26af5883b4d6f5",
+    "bytes": 37257,
+    "min_sdk": 33,
+    "target_sdk": 36,
+    "version_code": 4,
+    "version_name": "0.4-read-only-info",
+    "permissions": [
+      "android.permission.BLUETOOTH_CONNECT",
+      "android.permission.BLUETOOTH_SCAN",
+      "android.permission.NFC"
+    ],
+    "tests": "JVM protocol/proof tests passed",
+    "hardware_tested": false,
+    "installed": false
+  },
+  "checks": [
+    "131 JVM assertions PASS, APK v3 signature and zipalign verified, exact existing three permissions retained.",
+    "CONTROL03 INFO uses fresh uint32 sequence, independent InfoRequest gate and 5-second timeout.",
+    "Only matching nonempty INFO plus successful completed ATT write confirms result; wrong sequence/status, failed write, timeout and disconnect cannot confirm.",
+    "INFO cannot create or reset QUERY preflight evidence and has no ReaderMode or START send path.",
+    "No INFO submission during START/STOP/reader/transceive or another pending control. START remains blocked while INFO pending.",
+    "A single vertical ScrollView makes all controls reachable; visual rendering on the real Pixel is not tested.",
+    "Independent route suite rebuilt with ASAN/UBSAN and Wall/Wextra/Werror: PASS.",
+    "Prepend capacity and AID-conflict gates execute before mutation; backward shift preserves all baseline bytes and their relative order; exact removal restores byte-identical baseline."
+  ],
+  "primary_order_evidence": [
+    "AOSP fixed commit7066f224aaa6c240a58c8329219936e07753b019, src/nfa/ee/nfa_ee_act.cc:3027-3055 loops routing classes AID through Technology, appending empty AID at the end of AID class.",
+    "Same commit src/nfa/include/nfa_ee_int.h:535-538 assigns order AID=1, SystemCode=3, Protocol=4, Technology=5; APDU slot2 has no builder implementation in this source.",
+    "Same nfa_ee_act.cc:428-495 documents and implements keeping empty AID after nonempty AIDs.",
+    "Local copies retained under nci-set-primary. Direct publisher-hosted normative NCI2 text was not located; do not describe AOSP implementation alone as conclusive normative proof."
+  ],
+  "remaining_limits": [
+    "Existing baseline entries are deliberately not sorted or changed. Prepend corrects new AID placement, not arbitrary preexisting vendor routing order.",
+    "Hardware STATUS03 is NCI_STATUS_FAILED and does not by itself establish order as the failure cause.",
+    "INFO hardware behavior and 0.4 UI still require parent-run device verification.",
+    "Synthetic NFC/APDU end-to-end success remains unproved."
+  ],
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

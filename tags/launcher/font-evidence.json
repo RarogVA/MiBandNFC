@@ -1,0 +1,136 @@
+{
+  "scope": "Read-only firmware analysis recorded for a future compact UI; no implementation or device changes.",
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "hardware_validation": {
+    "new_font_bindings": false,
+    "compact_ui": false,
+    "note": "The existing v1 page used style RAM0x200d68fc on hardware. Its configured size is established offline by initialization code; the smaller styles and factory calls have not been tested by this project on the band."
+  },
+  "family_table": {
+    "address": "0x2c9ef654",
+    "index_1_pointer": "0x2c89aca4",
+    "index_1_name": "MiSans-Medium",
+    "index_0_name": "MiSans-Demibold",
+    "index_2_name": "MiSans-Regular",
+    "index_8_name": "MiSans-Semibold"
+  },
+  "predefined_styles": [
+    {
+      "ram_address": "0x200d68fc",
+      "family_index": 1,
+      "family": "MiSans-Medium",
+      "configured_size_px": 40,
+      "flags": 0,
+      "initialization": "0x2c44bfc8..0x2c44bfdc",
+      "proof": "style_init at bfca; r2=0 at bfce; r1=40 at bfd0; r0=1 at bfd2; font factory call at bfd4; style font setter at bfdc; literal0x2c44c16c points to style"
+    },
+    {
+      "ram_address": "0x200d689c",
+      "family_index": 1,
+      "family": "MiSans-Medium",
+      "configured_size_px": 22,
+      "flags": 0,
+      "initialization": "0x2c44c088..0x2c44c09c",
+      "style_literal": "0x2c44c18c"
+    },
+    {
+      "ram_address": "0x200d6890",
+      "family_index": 1,
+      "family": "MiSans-Medium",
+      "configured_size_px": 20,
+      "flags": 0,
+      "initialization": "0x2c44c0a0..0x2c44c0b4",
+      "style_literal": "0x2c44c190"
+    },
+    {
+      "ram_address": "0x200d6884",
+      "family_index": 1,
+      "family": "MiSans-Medium",
+      "configured_size_px": 17,
+      "flags": 0,
+      "initialization": "0x2c44c0b8..0x2c44c0cc",
+      "style_literal": "0x2c44c194"
+    },
+    {
+      "ram_address": "0x200d68f0",
+      "family_index": 1,
+      "family": "MiSans-Medium",
+      "configured_size_px": 36,
+      "flags": 0,
+      "initialization": "0x2c44bfe0..0x2c44bff4"
+    },
+    {
+      "ram_address": "0x200d6a1c",
+      "family_index": 0,
+      "family": "MiSans-Demibold",
+      "configured_size_px": 32,
+      "flags": 0,
+      "initialization": "0x2c44bd00..0x2c44bd14"
+    }
+  ],
+  "candidate_bindings": {
+    "miwear_font_create": {
+      "read_address": "0x2c443134",
+      "thumb_pointer": "0x2c443135",
+      "signature": "const void *(*)(unsigned family_index, unsigned size, unsigned flags)",
+      "proof": "Checks index<=9, resolves name via0x2c9ef654, passes existing r1/r2 to vg_font_create at0x2c780248. Native style initialization passes flags=0.",
+      "example": "miwear_font_create(1, 18, 0)"
+    },
+    "vg_font_create": {
+      "read_address": "0x2c780248",
+      "thumb_pointer": "0x2c780249",
+      "signature": "const void *(*)(const char *family, unsigned size, unsigned flags)",
+      "proof": "r0=name, r1=size, r2=flags. Creates descriptor {name pointer at+0, uint16 size at+4, uint16 flags at+6}; font manager cache viaRAM0x200ccd74. Diagnostic literal0x2ca73c28 names function vg_font_create.",
+      "example": "vg_font_create(\"MiSans-Medium\", 18, 0)",
+      "caveat": "Flags are not the Lua Font weight parameter. Do not pass 400 just because Lua uses normal weight 400."
+    },
+    "lv_style_init": {
+      "read_address": "0x2c557f00",
+      "thumb_pointer": "0x2c557f01",
+      "veneer_target": "0x0029061d",
+      "signature": "void (*)(void *style)",
+      "proof": "Every verified font-style initialization calls it before setting the font. Predefined style slots are12 bytes apart. A future own style requires explicit ABI/lifetime validation."
+    },
+    "lv_style_set_text_font": {
+      "read_address": "0x2c557ce8",
+      "thumb_pointer": "0x2c557ce9",
+      "veneer_target": "0x00290eb9",
+      "signature": "void (*)(void *style, const void *font)",
+      "proof": "Native font-style initializers pass factory result inr1 and style address inr0."
+    },
+    "lvx_obj_set_style_text": {
+      "read_address": "0x2c44a66c",
+      "thumb_pointer": "0x2c44a66d",
+      "signature": "void (*)(void *object, void *style, unsigned opacity, unsigned selector)",
+      "proof": "Existing project binding. Removes/adds baseline style0x200d6668 and supplied style, then sets opacity. It does not take a font size directly."
+    }
+  },
+  "fallback": {
+    "font_pointer": "0x2c9bd380",
+    "proof": "miwear_font_create returns this when underlying factory givesNULL; Lua Font special-cases its built-in default14px using same pointer.",
+    "future_requirement": "A successful non-null pointer alone does not prove the requested size was created. Detect fallback/error before promising exact typography."
+  },
+  "inspection_bytes_24": {
+    "0x2c44bfc8": "68480bf199ff002228210120f7f7aef8014664480bf184fe",
+    "0x2c44bfdc": "0bf184fe63480bf18dff002224210120f7f7a2f801465f48",
+    "0x2c44c088": "40480bf139ff002216210120f7f74ef801463c480bf124fe",
+    "0x2c44c0a0": "3b480bf12dff002214210120f7f742f8014637480bf118fe",
+    "0x2c44c0b8": "36480bf121ff002211210120f7f736f8014632480bf10cfe",
+    "0x2c443134": "b0b5092882b0044602af08d80e4b53f8204020463df37ef8",
+    "0x2c780248": "2de9f04304460d46164685b0dff8b48002af082200213846",
+    "0x2c557f00": "5ff800f01d0629005ff800f0ddf2041c5ff800f0d59a2700",
+    "0x2c557ce8": "5ff800f0b90e29005ff800f0f5fd041c5ff800f00d06031c",
+    "0x2c44a66c": "2de9f041134c0e4694f800c0904604461d4600afbcf1000f"
+  },
+  "next_implementation_constraints": [
+    "User requested visualization first; no compact UI implementation or installation is authorized by this evidence record.",
+    "Keep frozen v1/v2 sources and ELF files unchanged.",
+    "Prefer existing 22/20/17 styles for an initial compact implementation if accepted; exact16/18 require new guarded bindings and device acceptance.",
+    "Configured font size is not the final rendered line height; use native text metrics or content-derived layout rather than guessed fixed text heights.",
+    "Any newly created style/font must stay valid for as long as live labels reference it. Do not mutate shared firmware styles."
+  ],
+  "primary_reference": "https://github.com/m0tral/MiWatchNativeApps/tree/cd644697993b73f9fb83bedf4aad48de0e1d7d4a",
+  "reference_scope": "Primary repository identifies the existing style RAM addresses and lvx_obj_set_style_text binding. Sizes, family table, initialization sites and candidate factory ABI above are derived from the exact local firmware, not claimed as repository documentation."
+}

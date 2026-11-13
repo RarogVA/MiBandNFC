@@ -1,0 +1,76 @@
+{
+  "name": "Roundabout RU NFC + NFC Tags UI v1",
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "date": "2026-11-13",
+  "files": {
+    "nfc-tags-setup-v1-p67glt-3.201.026.face": {
+      "bytes": 230557,
+      "sha256": "1a5369ee5acecc5d61cd7b7c2defb388c8f84322880647e939fa8f8fe3b4644d"
+    },
+    "nfc-tags-ui-v1-p67glt-3.201.026.elf": {
+      "bytes": 6708,
+      "sha256": "8821ef2c46987f2bd72676ab4c2375245d06cabd2b12dde3f17abe4e449715f6"
+    },
+    "roundabout-ru-nfc-p67glt.face": {
+      "bytes": 3320601,
+      "sha256": "2a7e7ff2b89b0845bf1cf96a63a0f844082d5be8d47b5c38312a480870bfa475"
+    },
+    "roundabout-ru-nfc-preview.png": {
+      "bytes": 51491,
+      "sha256": "68e5abc9892671761b2ff5ba9cb07fffa7b09a850ca1e3fc3034947d9bfa8bf2"
+    },
+    "roundabout-ru-nfc-styles.png": {
+      "bytes": 263958,
+      "sha256": "299c7b5a5c964408b06e62230a5adb1746d69134055162ca670692830fd4bad8"
+    }
+  },
+  "watchface_id": "999999994",
+  "installer_id": "999999993",
+  "native_app_id": 212,
+  "native_app_name": "dev.mbapdu.tags",
+  "android": "../tags/tag-bridge-0.3.apk",
+  "core": "../tags/tag-bridge-v2-p67glt-3.201.026.elf",
+  "core_sha256": "91f63ed22532c81ba14c0f4d4e6271ace8b55df0a664c6eec8d706b7788c0673",
+  "scope": {
+    "bottom_circle_opens_tag_page": true,
+    "other_two_circles_preserved": true,
+    "original_face_preserved": true,
+    "core_unchanged": true,
+    "automatic_nfc_start": false,
+    "stop_on_page_close": false,
+    "rf_wake_implemented": false,
+    "registration_until_reboot": true,
+    "general_launcher_icon_added": false
+  },
+  "validation": {
+    "host_sanitizers": "PASS",
+    "firmware_fingerprints": 24,
+    "dual_elf_slot_audit": "PASS",
+    "all_eight_themes_resource_audit": "PASS",
+    "four_previews_visually_reviewed": true,
+    "roundabout_reproducible": true
+  },
+  "hardware": {
+    "status": "V1_OPEN_AND_METADATA_PASS_COMPACT_UI_MOCKUP_REQUESTED",
+    "setup_transfer_notify_100_percent": true,
+    "roundabout_transfer_completed": true,
+    "native_registration_verified": true,
+    "circle_open_verified": true,
+    "back_verified": false,
+    "ndef_readback_verified": false,
+    "user_setup_status": [
+      "NFC_TAGS_UI1",
+      "READY",
+      "0",
+      "END"
+    ],
+    "selected_tag_display_verified": true,
+    "query_stopped_sequence": 1446798741,
+    "tag_ok_sequence": 1446798742,
+    "known_ui_issues": [
+      "UI v1 uses 40 px style and fixed geometry; user reported overlaps.",
+      "UI v2 scroll candidate is built but not installed; latest request is a compact no-scroll mockup first."
+    ]
+  }
+}

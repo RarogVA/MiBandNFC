@@ -1,0 +1,50 @@
+{
+  "project": "Tag Bridge",
+  "date": "2026-11-13",
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "android_version": "0.3",
+  "watchface_version": 2,
+  "files": {
+    "tag-bridge-0.3.apk": {
+      "bytes": 45449,
+      "sha256": "afbb082b791753129049d491bca6a0e6c510d0e4448aa810a9b3b80f7ad098a5"
+    },
+    "tag-bridge-v2-p67glt-3.201.026.face": {
+      "bytes": 230557,
+      "sha256": "82a42f736c1c722cfed55e9ee7da840fce154c3252ffdbf3b0f0694ffe5510ea"
+    },
+    "tag-bridge-v2-p67glt-3.201.026.elf": {
+      "bytes": 28680,
+      "sha256": "91f63ed22532c81ba14c0f4d4e6271ace8b55df0a664c6eec8d706b7788c0673"
+    }
+  },
+  "validation": {
+    "jvm_assertions": 170,
+    "native_asan_ubsan_suites": 6,
+    "firmware_fingerprints_verified": 32,
+    "baseline_repack_byte_identical": true
+  },
+  "hardware_test": {
+    "result": "PASS",
+    "scope": "One complete physical Type 4 NDEF readback after one failed attempt",
+    "apk_installed_on_pixel": true,
+    "catalog_creation_smoke": "PASS",
+    "catalog_survived_apk_update": true,
+    "face_version": 2,
+    "band_selected_tag_display_confirmed": true,
+    "expected_ble_service_found": true,
+    "ndef_bytes": 23,
+    "apdu_count": 6,
+    "ndef_matches_catalogue": true,
+    "independent_ble_att_proof": true,
+    "stop_and_post_stop_query_confirmed": true,
+    "final_stop_and_disconnect_confirmed": true,
+    "background_or_sleep_tested": false,
+    "physical_tag_scanning_tested": false,
+    "evidence": "../../docs/evidence/tags/pixel-0.3-v2-readback.json"
+  },
+  "scope": "NDEF content as read-only Type 4 over BLE; selected metadata on band; no UID/key/access rights emulation; no Mir Pay integration",
+  "elf_resource_bytes": 31272,
+  "elf_spare_bytes": 2592
+}

@@ -1,0 +1,63 @@
+{
+  "name": "Roundabout RU",
+  "id": "999999995",
+  "original_name": "Roundabout",
+  "original_version": "1.1.20",
+  "original_id": "120917397222",
+  "device_model": "miwear.watch.p67glt",
+  "date": "2026-11-13",
+  "files": {
+    "roundabout-ru-p67glt.face": {
+      "bytes": 3079695,
+      "sha256": "b7875710957e54f4feee042ff1bcbc766f2fb49afc8cde19d4e047aa0e3bd3b2"
+    },
+    "roundabout-ru-preview.png": {
+      "bytes": 50978,
+      "sha256": "87fedd14c911c83c2b03968f183f7b5cbe1d0d198791b641b4264d07f130871d"
+    },
+    "roundabout-ru-styles.png": {
+      "bytes": 261669,
+      "sha256": "c2f62cca4534808e87792fa3b1991af62fc92bbd965c1a7d1bb000537ce7e39c"
+    }
+  },
+  "scope": {
+    "translated_live_pngs": 111,
+    "translated_preview_images": 4,
+    "labels": [
+      "Шаги",
+      "ЧСС",
+      "Ккал",
+      "Активность",
+      "Стоя",
+      "ч.",
+      "ПН",
+      "ВТ",
+      "СР",
+      "ЧТ",
+      "ПТ",
+      "СБ",
+      "ВС"
+    ],
+    "am_pm_retained": true,
+    "original_preserved": true,
+    "separate_watchface_identity": true,
+    "nfc_tag_shortcut_added": false
+  },
+  "validation": {
+    "byte_identical_reproduction_from_saved_original_zip": true,
+    "codec_tests_pass": 4,
+    "layout_and_actions_preserved": true,
+    "new_images_decode_exactly": true,
+    "offline_previews_visually_reviewed": true
+  },
+  "device_installation": {
+    "installed": false,
+    "hardware_display_verified": false,
+    "download_copy_pending": false,
+    "download_copy_sha256_verified": true
+  },
+  "reports": [
+    "../../tags/roundabout/pack_validation.json",
+    "../../tags/roundabout/pack_reproducibility.json"
+  ]
+}

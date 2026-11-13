@@ -1,0 +1,16 @@
+{
+  "generator": "shortcut_build.py --generate-assets",
+  "font": "Arial Bold.ttf",
+  "font_sha256": "d72db21f9242aedd6b917d8549ad5921766b24d5f8d0becfda2ff4c620b3c2e0",
+  "palette": "256 RGBA, new artwork only",
+  "files": {
+    "theme_0.png": "629824f78a64ba7a7b63b2f97f5bcf17b05abb328699e776a07d75c1db121722",
+    "theme_1.png": "442fb61a6e51183f2cedb3d983f42ea7136cf490a8b0a1c1d3db61104f1a28cc",
+    "theme_2.png": "8a24ca5f111248d0ea4be46185832ecc72c1f9cfb5b3f86739df475dc33eb51e",
+    "theme_3.png": "cc7f0b9072dbc007e8bb747ccdad4ea4513f4ff2f4729b01b9623b11b4f637f8",
+    "theme_4.png": "629824f78a64ba7a7b63b2f97f5bcf17b05abb328699e776a07d75c1db121722",
+    "theme_5.png": "442fb61a6e51183f2cedb3d983f42ea7136cf490a8b0a1c1d3db61104f1a28cc",
+    "theme_6.png": "442fb61a6e51183f2cedb3d983f42ea7136cf490a8b0a1c1d3db61104f1a28cc",
+    "theme_7.png": "442fb61a6e51183f2cedb3d983f42ea7136cf490a8b0a1c1d3db61104f1a28cc"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "id": "999999993",
+  "bytes": 230557,
+  "sha256": "1a5369ee5acecc5d61cd7b7c2defb388c8f84322880647e939fa8f8fe3b4644d",
+  "core_sha256": "91f63ed22532c81ba14c0f4d4e6271ace8b55df0a664c6eec8d706b7788c0673",
+  "launcher_sha256": "8821ef2c46987f2bd72676ab4c2375245d06cabd2b12dde3f17abe4e449715f6",
+  "launcher_bytes": 6708,
+  "lua_bytes": 3920,
+  "constructor": {
+    "section_type": "SHT_INIT_ARRAY",
+    "bytes": 4,
+    "relocation_type": 38,
+    "target": "module_constructor",
+    "pointer": "0x211"
+  },
+  "records": [
+    {
+      "name": "app/lua/main.lua",
+      "offset": 156931,
+      "name_at": 156951,
+      "namesize": 16,
+      "start": 156967,
+      "end": 161496,
+      "length": 4529
+    },
+    {
+      "name": "app/lua/main.lua",
+      "offset": 161496,
+      "name_at": 161516,
+      "namesize": 16,
+      "start": 161532,
+      "end": 166061,
+      "length": 4529
+    },
+    {
+      "name": "app/lua/apdu_lab_probe_3.201.026.elf",
+      "offset": 166061,
+      "name_at": 166081,
+      "namesize": 36,
+      "start": 166117,
+      "end": 197389,
+      "length": 31272
+    },
+    {
+      "name": "app/lua/delete_trash.bin",
+      "offset": 197389,
+      "name_at": 197409,
+      "namesize": 24,
+      "start": 197433,
+      "end": 202565,
+      "length": 5132
+    },
+    {
+      "name": "app/lua/ok.bin",
+      "offset": 202565,
+      "name_at": 202585,
+      "namesize": 14,
+      "start": 202599,
+      "end": 205939,
+      "length": 3340
+    },
+    {
+      "name": "app/lua/close.bin",
+      "offset": 205939,
+      "name_at": 205959,
+      "namesize": 17,
+      "start": 205976,
+      "end": 209316,
+      "length": 3340
+    },
+    {
+      "name": "app/lua/pause.bin",
+      "offset": 209316,
+      "name_at": 209336,
+      "namesize": 17,
+      "start": 209353,
+      "end": 212693,
+      "length": 3340
+    },
+    {
+      "name": "app/lua/launcher.elf",
+      "offset": 212693,
+      "name_at": 212713,
+      "namesize": 20,
+      "start": 212733,
+      "end": 222574,
+      "length": 9841
+    },
+    {
+      "name": "app/lua/stop.bin",
+      "offset": 222574,
+      "name_at": 222594,
+      "namesize": 16,
+      "start": 222610,
+      "end": 225950,
+      "length": 3340
+    },
+    {
+      "name": "app/lua/main.bin",
+      "offset": 225950,
+      "name_at": 225970,
+      "namesize": 16,
+      "start": 225986,
+      "end": 229326,
+      "length": 3340
+    },
+    {
+      "name": "app/lua/ru_RU.txt",
+      "offset": 229326,
+      "name_at": 229346,
+      "namesize": 17,
+      "start": 229363,
+      "end": 230039,
+      "length": 676
+    },
+    {
+      "name": "app/lua/en_US.txt",
+      "offset": 230039,
+      "name_at": 230059,
+      "namesize": 17,
+      "start": 230076,
+      "end": 230557,
+      "length": 481
+    }
+  ],
+  "hardware_tested": false
+}

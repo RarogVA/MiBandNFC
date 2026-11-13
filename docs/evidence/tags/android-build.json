@@ -1,0 +1,44 @@
+{
+  "apk": "tags/android/build/tag-bridge-debug.apk",
+  "sha256": "afbb082b791753129049d491bca6a0e6c510d0e4448aa810a9b3b80f7ad098a5",
+  "bytes": 45449,
+  "min_sdk": 33,
+  "target_sdk": 36,
+  "version_code": 3,
+  "version_name": "0.3",
+  "permissions": [
+    "android.permission.BLUETOOTH_CONNECT",
+    "android.permission.BLUETOOTH_SCAN",
+    "android.permission.NFC"
+  ],
+  "tests": "JVM Type4 NDEF/protocol/session gate tests passed",
+  "hardware_tested": false,
+  "installed": false,
+  "jvm_assertions": 170,
+  "scope": "Local 0.3 build; refresh retains active GATT link; hardware pending",
+  "cache_refresh": {
+    "condition": "Expected0011 missing and legacy0001 present before CCCD",
+    "max_refresh_per_explicit_connect": 1,
+    "retains_gatt_connection": true,
+    "explicit_discovery_delay_ms": 3000,
+    "explicit_discovery_attempts_max": 1,
+    "discovery_cccd_timeout_ms": 5000,
+    "duplicate_cccd_guard": true,
+    "cancellation": "source GATT plus generation and explicit-connect token guards; disconnect/shutdown cancels",
+    "refresh_true_means": "request accepted, not refresh completed",
+    "no_hidden_api_bypass": true
+  },
+  "source_sha256": {
+    "tags/android/src/dev/mbapdu/tags/BleTransport.java": "96070f26b3d90f4960a46ff44e303901cd8274bc9e90e04cb7b18f2b9b52fcd0",
+    "tags/android/src/dev/mbapdu/tags/BridgeTransport.java": "a707245eb11059d6e8b9eedb22d0948fdefa1ce1fe8eec0fe74e0675072e1e11",
+    "tags/android/src/dev/mbapdu/tags/CacheRefreshGate.java": "d9f7ec96a18eb1104c3e4647a05602cc966d6add73d7d0a121189262bc0fb5a6",
+    "tags/android/src/dev/mbapdu/tags/Catalog.java": "6768db21ce075831d2be20edc31f6443f6170b76892e2f3c46b5d7bb330ed2fe",
+    "tags/android/src/dev/mbapdu/tags/CommandGate.java": "7da4d37a435763cf54efc7ee9b338e7003adb29ec7fbbd44aa1b35fefbe127b1",
+    "tags/android/src/dev/mbapdu/tags/MainActivity.java": "985a5a722518b3a14bc168115dc7b9289a9d9cb5d55acf318f1a900c04bdb920",
+    "tags/android/src/dev/mbapdu/tags/NdefReadback.java": "7615a16b11334a2d69e341d75bef5fd49927cf7480c12c43a62e27545f822b9e",
+    "tags/android/src/dev/mbapdu/tags/Protocol.java": "3a7064a58e46210ad19c375f79616406ae393e48f4bcb892a1d98c5e86d70628",
+    "tags/android/src/dev/mbapdu/tags/ReadbackProof.java": "c2812157dce92d64a42777db49e096b0eda87ca68132d7e66618c36a7cae823b",
+    "tags/android/src/dev/mbapdu/tags/TagRecord.java": "121aed866d99166a3abdf784eddaafcb4ae53c95ec0ac31968cc1b115214d931",
+    "tags/android/src/dev/mbapdu/tags/Type4Ndef.java": "50a733046234cb8bd88cd42b7dbdbab5221fbf802e42601c3130e51f2398b9d8"
+  }
+}

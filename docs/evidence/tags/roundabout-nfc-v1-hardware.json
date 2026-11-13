@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-13",
+  "profile": "Roundabout RU NFC + native NFC Tags UI v1",
+  "hardware": {
+    "status": "V1_OPEN_AND_METADATA_PASS_COMPACT_UI_MOCKUP_REQUESTED",
+    "setup_transfer_notify_100_percent": true,
+    "roundabout_transfer_completed": true,
+    "native_registration_verified": true,
+    "circle_open_verified": true,
+    "back_verified": false,
+    "ndef_readback_verified": false,
+    "user_setup_status": [
+      "NFC_TAGS_UI1",
+      "READY",
+      "0",
+      "END"
+    ],
+    "selected_tag_display_verified": true,
+    "query_stopped_sequence": 1446798741,
+    "tag_ok_sequence": 1446798742,
+    "known_ui_issues": [
+      "UI v1 uses 40 px style and fixed geometry; user reported overlaps.",
+      "UI v2 scroll candidate is built but not installed; latest request is a compact no-scroll mockup first."
+    ]
+  },
+  "artifacts": {
+    "nfc-tags-setup-v1-p67glt-3.201.026.face": {
+      "bytes": 230557,
+      "sha256": "1a5369ee5acecc5d61cd7b7c2defb388c8f84322880647e939fa8f8fe3b4644d"
+    },
+    "nfc-tags-ui-v1-p67glt-3.201.026.elf": {
+      "bytes": 6708,
+      "sha256": "8821ef2c46987f2bd72676ab4c2375245d06cabd2b12dde3f17abe4e449715f6"
+    },
+    "roundabout-ru-nfc-p67glt.face": {
+      "bytes": 3320601,
+      "sha256": "2a7e7ff2b89b0845bf1cf96a63a0f844082d5be8d47b5c38312a480870bfa475"
+    }
+  },
+  "selected_test_tag": {
+    "name": "NFC-Test",
+    "technology": "NDEF",
+    "original_uid": null,
+    "uid_dash_is_expected": true
+  },
+  "observations": [
+    "User confirmed NFC_TAGS_UI1 / READY / 0 / END after fresh reboot and installer.",
+    "First Roundabout transfer was interrupted with Notify disconnected; repeat completed.",
+    "User confirmed bottom circle opens NFC-tags page.",
+    "Two initial QUERY requests timed out; cause not established.",
+    "After user explicitly kept screen awake, QUERY #1446798741 returned STOPPED and metadata #1446798742 returned TAG_OK.",
+    "User confirmed NFC-Test, UID dash and support text appear.",
+    "User requested vertical scrolling and reported overlapping layout."
+  ],
+  "nfc_started_in_this_run": false,
+  "ndef_readback_repeated": false,
+  "limitations": [
+    "Page back/reopen not yet explicitly confirmed.",
+    "v2 layout requires its own hardware check."
+  ],
+  "phone_cleanup": {
+    "screen_off_timeout_restored_ms": 30000,
+    "tag_app_stopped_to_disconnect_ble": true,
+    "additional_stop_ack_recorded": false,
+    "nfc_start_was_never_sent": true
+  },
+  "next_ui": "User requested compact card mockup first; no v2 installation."
+}

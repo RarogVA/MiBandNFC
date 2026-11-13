@@ -1,0 +1,228 @@
+005a52c0 2c6652c0 012c       cmp      r4, #1
+005a52c2 2c6652c2 13d0       beq      #0x2c6652ec
+005a52c4 2c6652c4 4ff6ff71   movw     r1, #0xffff
+005a52c8 2c6652c8 764a       ldr      r2, [pc, #0x1d8] ; literal[0x5a54a4]=0x200ebe60
+005a52ca 2c6652ca 7748       ldr      r0, [pc, #0x1dc] ; literal[0x5a54a8]=0x200b0820
+005a52cc 2c6652cc 1368       ldr      r3, [r2]
+005a52ce 2c6652ce 0068       ldr      r0, [r0]
+005a52d0 2c6652d0 0133       adds     r3, #1
+005a52d2 2c6652d2 8842       cmp      r0, r1
+005a52d4 2c6652d4 1360       str      r3, [r2]
+005a52d6 2c6652d6 03d1       bne      #0x2c6652e0
+005a52d8 2c6652d8 1437       adds     r7, #0x14
+005a52da 2c6652da bd46       mov      sp, r7
+005a52dc 2c6652dc bde8f083   pop.w    {r4, r5, r6, r7, r8, sb, pc}
+005a52e0 2c6652e0 e0f71ef9   bl       #0x2c645520
+005a52e4 2c6652e4 1437       adds     r7, #0x14
+005a52e6 2c6652e6 bd46       mov      sp, r7
+005a52e8 2c6652e8 bde8f083   pop.w    {r4, r5, r6, r7, r8, sb, pc}
+005a52ec 2c6652ec 6f4d       ldr      r5, [pc, #0x1bc] ; literal[0x5a54ac]=0x200ebd3c
+005a52ee 2c6652ee 2b78       ldrb     r3, [r5]
+005a52f0 2c6652f0 03bb       cbnz     r3, #0x2c665334
+005a52f2 2c6652f2 6f4b       ldr      r3, [pc, #0x1bc] ; literal[0x5a54b0]=0x200b07dc
+005a52f4 2c6652f4 0022       movs     r2, #0
+005a52f6 2c6652f6 1868       ldr      r0, [r3]
+005a52f8 2c6652f8 0a21       movs     r1, #0xa
+005a52fa 2c6652fa a830       adds     r0, #0xa8
+005a52fc 2c6652fc fef7a6fb   bl       #0x2c663a4c
+005a5300 2c665300 0028       cmp      r0, #0
+005a5302 2c665302 c0f2c380   blt.w    #0x2c66548c
+005a5306 2c665306 4ff6ff76   movw     r6, #0xffff
+005a530a 2c66530a 664c       ldr      r4, [pc, #0x198] ; literal[0x5a54a4]=0x200ebe60
+005a530c 2c66530c dff89881   ldr.w    r8, [pc, #0x198] ; literal[0x5a54a8]=0x200b0820
+005a5310 2c665310 2368       ldr      r3, [r4]
+005a5312 2c665312 d8f80000   ldr.w    r0, [r8]
+005a5316 2c665316 0133       adds     r3, #1
+005a5318 2c665318 b042       cmp      r0, r6
+005a531a 2c66531a 2360       str      r3, [r4]
+005a531c 2c66531c 54d1       bne      #0x2c6653c8
+005a531e 2c66531e 0020       movs     r0, #0
+005a5320 2c665320 e0f76ef8   bl       #0x2c645400
+005a5324 2c665324 4ff6ff73   movw     r3, #0xffff
+005a5328 2c665328 9842       cmp      r0, r3
+005a532a 2c66532a c8f80000   str.w    r0, [r8]
+005a532e 2c66532e 00f08b80   beq.w    #0x2c665448
+005a5332 2c665332 4fe0       b        #0x2c6653d4
+005a5334 2c665334 e7f76afb   bl       #0x2c64ca0c
+005a5338 2c665338 2b78       ldrb     r3, [r5]
+005a533a 2c66533a 002b       cmp      r3, #0
+005a533c 2c66533c d9d0       beq      #0x2c6652f2
+005a533e 2c66533e 5d4b       ldr      r3, [pc, #0x174] ; literal[0x5a54b4]=0x200ebd00
+005a5340 2c665340 1c70       strb     r4, [r3]
+005a5342 2c665342 0422       movs     r2, #4
+005a5344 2c665344 0024       movs     r4, #0
+005a5346 2c665346 5c49       ldr      r1, [pc, #0x170] ; literal[0x5a54b8]=0x200ebce4
+005a5348 2c665348 5c4b       ldr      r3, [pc, #0x170] ; literal[0x5a54bc]=0x200ebd3b
+005a534a 2c66534a 5d48       ldr      r0, [pc, #0x174] ; literal[0x5a54c0]=0x200ebd04
+005a534c 2c66534c 1a70       strb     r2, [r3]
+005a534e 2c66534e 0c70       strb     r4, [r1]
+005a5350 2c665350 53f7f2f2   bl       #0x2c1b8938
+005a5354 2c665354 0620       movs     r0, #6
+005a5356 2c665356 5b4a       ldr      r2, [pc, #0x16c] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a5358 2c665358 5b49       ldr      r1, [pc, #0x16c] ; literal[0x5a54c8]=0x2c916d94 '[NFC_STACK] %s: nfc manager control start-step2\n'
+005a535a 2c66535a 59f7adf3   bl       #0x2c1beab8
+005a535e 2c66535e 5b48       ldr      r0, [pc, #0x16c] ; literal[0x5a54cc]=0x200ebd10
+005a5360 2c665360 53f71ef3   bl       #0x2c1b89a0
+005a5364 2c665364 e7f752fb   bl       #0x2c64ca0c
+005a5368 2c665368 0020       movs     r0, #0
+005a536a 2c66536a e0f749f8   bl       #0x2c645400
+005a536e 2c66536e 4ff6ff73   movw     r3, #0xffff
+005a5372 2c665372 9842       cmp      r0, r3
+005a5374 2c665374 0446       mov      r4, r0
+005a5376 2c665376 6fd0       beq      #0x2c665458
+005a5378 2c665378 0620       movs     r0, #6
+005a537a 2c66537a 524a       ldr      r2, [pc, #0x148] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a537c 2c66537c 5449       ldr      r1, [pc, #0x150] ; literal[0x5a54d0]=0x2c916dc8 '[NFC_STACK] %s: ecc timer begin\n'
+005a537e 2c66537e 59f79bf3   bl       #0x2c1beab8
+005a5382 2c665382 0023       movs     r3, #0
+005a5384 2c665384 42f21071   movw     r1, #0x2710
+005a5388 2c665388 524a       ldr      r2, [pc, #0x148] ; literal[0x5a54d4]=0xc664a05
+005a538a 2c66538a 2046       mov      r0, r4
+005a538c 2c66538c e0f778f8   bl       #0x2c645480
+005a5390 2c665390 0022       movs     r2, #0
+005a5392 2c665392 5148       ldr      r0, [pc, #0x144] ; literal[0x5a54d8]=0x200ebd40
+005a5394 2c665394 1146       mov      r1, r2
+005a5396 2c665396 53f751f2   bl       #0x2c1b883c
+005a539a 2c66539a 0130       adds     r0, #1
+005a539c 2c66539c 70d0       beq      #0x2c665480
+005a539e 2c66539e 0023       movs     r3, #0
+005a53a0 2c6653a0 4e4c       ldr      r4, [pc, #0x138] ; literal[0x5a54dc]=0x200ebd4c
+005a53a2 2c6653a2 1946       mov      r1, r3
+005a53a4 2c6653a4 2046       mov      r0, r4
+005a53a6 2c6653a6 4e4a       ldr      r2, [pc, #0x138] ; literal[0x5a54e0]=0xc664f2d
+005a53a8 2c6653a8 52f71ef6   bl       #0x2c1b7fe8
+005a53ac 2c6653ac 0028       cmp      r0, #0
+005a53ae 2c6653ae 5dd1       bne      #0x2c66546c
+005a53b0 2c6653b0 2068       ldr      r0, [r4]
+005a53b2 2c6653b2 66f7bff2   bl       #0x2c1cb934
+005a53b6 2c6653b6 0028       cmp      r0, #0
+005a53b8 2c6653b8 8ed0       beq      #0x2c6652d8
+005a53ba 2c6653ba 0346       mov      r3, r0
+005a53bc 2c6653bc 414a       ldr      r2, [pc, #0x104] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a53be 2c6653be 0320       movs     r0, #3
+005a53c0 2c6653c0 4849       ldr      r1, [pc, #0x120] ; literal[0x5a54e4]=0x2c916e40 '[NFC_STACK] %s: ecc pthread detach fail:%d\n'
+005a53c2 2c6653c2 59f779f3   bl       #0x2c1beab8
+005a53c6 2c6653c6 87e7       b        #0x2c6652d8
+005a53c8 2c6653c8 e0f7aaf8   bl       #0x2c645520
+005a53cc 2c6653cc d8f80030   ldr.w    r3, [r8]
+005a53d0 2c6653d0 b342       cmp      r3, r6
+005a53d2 2c6653d2 a4d0       beq      #0x2c66531e
+005a53d4 2c6653d4 0120       movs     r0, #1
+005a53d6 2c6653d6 2368       ldr      r3, [r4]
+005a53d8 2c6653d8 3946       mov      r1, r7
+005a53da 2c6653da 0344       add      r3, r0
+005a53dc 2c6653dc 2360       str      r3, [r4]
+005a53de 2c6653de 63f747f5   bl       #0x2c1c8e70
+005a53e2 2c6653e2 dff828c1   ldr.w    ip, [pc, #0x128] ; literal[0x5a550c]=0x431bde83
+005a53e6 2c6653e6 2368       ldr      r3, [r4]
+005a53e8 2c6653e8 d8f80000   ldr.w    r0, [r8]
+005a53ec 2c6653ec d7e901e4   ldrd     lr, r4, [r7, #4]
+005a53f0 2c6653f0 8cfb04c8   smull    ip, r8, ip, r4
+005a53f4 2c6653f4 d7f80090   ldr.w    sb, [r7]
+005a53f8 2c6653f8 4feae47c   asr.w    ip, r4, #0x1f
+005a53fc 2c6653fc cceba84c   rsb      ip, ip, r8, asr #18
+005a5400 2c665400 4fea4914   lsl.w    r4, sb, #5
+005a5404 2c665404 4fea4e18   lsl.w    r8, lr, #5
+005a5408 2c665408 b4eb0904   subs.w   r4, r4, sb
+005a540c 2c66540c 48ead968   orr.w    r8, r8, sb, lsr #27
+005a5410 2c665410 68eb0e08   sbc.w    r8, r8, lr
+005a5414 2c665414 4fea8808   lsl.w    r8, r8, #2
+005a5418 2c665418 48ea9478   orr.w    r8, r8, r4, lsr #30
+005a541c 2c66541c a400       lsls     r4, r4, #2
+005a541e 2c66541e 14eb0904   adds.w   r4, r4, sb
+005a5422 2c665422 4eeb080e   adc.w    lr, lr, r8
+005a5426 2c665426 4feace0e   lsl.w    lr, lr, #3
+005a542a 2c66542a 4eea547e   orr.w    lr, lr, r4, lsr #29
+005a542e 2c66542e e400       lsls     r4, r4, #3
+005a5430 2c665430 14eb0c04   adds.w   r4, r4, ip
+005a5434 2c665434 2c4e       ldr      r6, [pc, #0xb0] ; literal[0x5a54e8]=0x200ebe68
+005a5436 2c665436 4eebec7e   adc.w    lr, lr, ip, asr #31
+005a543a 2c66543a 40f6b831   movw     r1, #0xbb8
+005a543e 2c66543e 2b4a       ldr      r2, [pc, #0xac] ; literal[0x5a54ec]=0xc664951
+005a5440 2c665440 c6e9004e   strd     r4, lr, [r6]
+005a5444 2c665444 e0f71cf8   bl       #0x2c645480
+005a5448 2c665448 0121       movs     r1, #1
+005a544a 2c66544a 1a4a       ldr      r2, [pc, #0x68] ; literal[0x5a54b4]=0x200ebd00
+005a544c 2c66544c 2b78       ldrb     r3, [r5]
+005a544e 2c66544e 1170       strb     r1, [r2]
+005a5450 2c665450 002b       cmp      r3, #0
+005a5452 2c665452 87d0       beq      #0x2c665364
+005a5454 2c665454 75e7       b        #0x2c665342
+005a5456 2c665456 7047       bx       lr
+005a5458 2c665458 254b       ldr      r3, [pc, #0x94] ; literal[0x5a54f0]=0x200ebd20
+005a545a 2c66545a 1868       ldr      r0, [r3]
+005a545c 2c66545c 0028       cmp      r0, #0
+005a545e 2c66545e 3ff43baf   beq.w    #0x2c6652d8
+005a5462 2c665462 244b       ldr      r3, [pc, #0x90] ; literal[0x5a54f4]=0xc6652b1
+005a5464 2c665464 0360       str      r3, [r0]
+005a5466 2c665466 e7f7bbfa   bl       #0x2c64c9e0
+005a546a 2c66546a 35e7       b        #0x2c6652d8
+005a546c 2c66546c 0346       mov      r3, r0
+005a546e 2c66546e 154a       ldr      r2, [pc, #0x54] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a5470 2c665470 0320       movs     r0, #3
+005a5472 2c665472 2149       ldr      r1, [pc, #0x84] ; literal[0x5a54f8]=0x2c916e14 '[NFC_STACK] %s: ecc thread create fail:%d\n'
+005a5474 2c665474 59f720f3   bl       #0x2c1beab8
+005a5478 2c665478 1748       ldr      r0, [pc, #0x5c] ; literal[0x5a54d8]=0x200ebd40
+005a547a 2c66547a 53f731f2   bl       #0x2c1b88e0
+005a547e 2c66547e 2be7       b        #0x2c6652d8
+005a5480 2c665480 0320       movs     r0, #3
+005a5482 2c665482 104a       ldr      r2, [pc, #0x40] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a5484 2c665484 1d49       ldr      r1, [pc, #0x74] ; literal[0x5a54fc]=0x2c916dec '[NFC_STACK] %s: ecc sem create fail\n'
+005a5486 2c665486 59f717f3   bl       #0x2c1beab8
+005a548a 2c66548a 25e7       b        #0x2c6652d8
+005a548c 2c66548c 0320       movs     r0, #3
+005a548e 2c66548e 1c4b       ldr      r3, [pc, #0x70] ; literal[0x5a5500]=0x2c916d34 'nfc_app_msg_send(&g_app_ctrl->MsgQ_Stack_Up, RF_MSG, NULL)'
+005a5490 2c665490 0c4a       ldr      r2, [pc, #0x30] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a5492 2c665492 1c49       ldr      r1, [pc, #0x70] ; literal[0x5a5504]=0x2c916490 '[NFC_STACK] %s: ERROR: %s is less than 0\n'
+005a5494 2c665494 59f710f3   bl       #0x2c1beab8
+005a5498 2c665498 0320       movs     r0, #3
+005a549a 2c66549a 0a4a       ldr      r2, [pc, #0x28] ; literal[0x5a54c4]=0x2ca205f0 'rfFieldStatusCb'
+005a549c 2c66549c 1a49       ldr      r1, [pc, #0x68] ; literal[0x5a5508]=0x2c916d70 '[NFC_STACK] %s: error send RF_MSG\n'
+005a549e 2c66549e 59f70bf3   bl       #0x2c1beab8
+005a54a2 2c6654a2 30e7       b        #0x2c665306
+005a54a4 2c6654a4 60be       bkpt     #0x60
+005a54a6 2c6654a6 0e20       movs     r0, #0xe
+005a54a8 2c6654a8 2008       lsrs     r0, r4, #0x20
+005a54aa 2c6654aa 0b20       movs     r0, #0xb
+005a54ac 2c6654ac 3cbd       pop      {r2, r3, r4, r5, pc}
+005a54ae 2c6654ae 0e20       movs     r0, #0xe
+005a54b0 2c6654b0 dc07       lsls     r4, r3, #0x1f
+005a54b2 2c6654b2 0b20       movs     r0, #0xb
+005a54b4 2c6654b4 00bd       pop      {pc}
+005a54b6 2c6654b6 0e20       movs     r0, #0xe
+005a54b8 2c6654b8 e4bc       pop      {r2, r5, r6, r7}
+005a54ba 2c6654ba 0e20       movs     r0, #0xe
+005a54bc 2c6654bc 3bbd       pop      {r0, r1, r3, r4, r5, pc}
+005a54be 2c6654be 0e20       movs     r0, #0xe
+005a54c0 2c6654c0 04bd       pop      {r2, pc}
+005a54c2 2c6654c2 0e20       movs     r0, #0xe
+005a54c4 2c6654c4 f005       lsls     r0, r6, #0x17
+005a54c6 2c6654c6 a22c       cmp      r4, #0xa2
+005a54c8 2c6654c8 946d       ldr      r4, [r2, #0x58]
+005a54ca 2c6654ca 912c       cmp      r4, #0x91
+005a54cc 2c6654cc 10bd       pop      {r4, pc}
+005a54ce 2c6654ce 0e20       movs     r0, #0xe
+005a54d0 2c6654d0 c86d       ldr      r0, [r1, #0x5c]
+005a54d2 2c6654d2 912c       cmp      r4, #0x91
+005a54d4 2c6654d4 054a       ldr      r2, [pc, #0x14] ; literal[0x5a54ec]=0xc664951
+005a54d6 2c6654d6 660c       lsrs     r6, r4, #0x11
+005a54d8 2c6654d8 40bd       pop      {r6, pc}
+005a54da 2c6654da 0e20       movs     r0, #0xe
+005a54dc 2c6654dc 4cbd       pop      {r2, r3, r6, pc}
+005a54de 2c6654de 0e20       movs     r0, #0xe
+005a54e0 2c6654e0 2d4f       ldr      r7, [pc, #0xb4] ; literal[0x5a5598]=0xaf02b083
+005a54e2 2c6654e2 660c       lsrs     r6, r4, #0x11
+005a54e4 2c6654e4 406e       ldr      r0, [r0, #0x64]
+005a54e6 2c6654e6 912c       cmp      r4, #0x91
+005a54e8 2c6654e8 68be       bkpt     #0x68
+005a54ea 2c6654ea 0e20       movs     r0, #0xe
+005a54ec 2c6654ec 5149       ldr      r1, [pc, #0x144] ; literal[0x5a5634]=0x4a064b0a
+005a54ee 2c6654ee 660c       lsrs     r6, r4, #0x11
+005a54f0 2c6654f0 20bd       pop      {r5, pc}
+005a54f2 2c6654f2 0e20       movs     r0, #0xe
+005a54f4 2c6654f4 b152       strh     r1, [r6, r2]
+005a54f6 2c6654f6 660c       lsrs     r6, r4, #0x11
+005a54f8 2c6654f8 146e       ldr      r4, [r2, #0x60]
+005a54fa 2c6654fa 912c       cmp      r4, #0x91
+005a54fc 2c6654fc ec6d       ldr      r4, [r5, #0x5c]
+005a54fe 2c6654fe 912c       cmp      r4, #0x91

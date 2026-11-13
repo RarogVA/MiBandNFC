@@ -1,0 +1,8 @@
+{
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "result": "PASS",
+  "output": "launcher parser, registration, lifecycle, file race, and manual refresh: PASS\n"
+}

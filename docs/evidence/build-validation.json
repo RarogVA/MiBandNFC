@@ -1,0 +1,66 @@
+{
+  "checked_on": "2026-11-13",
+  "scope": "Local rebuild after project cleanup; no device access, installation or new hardware test.",
+  "toolchain": {
+    "python": "3.9.6",
+    "jdk": "OpenJDK Homebrew 25.0.2",
+    "android_sdk_platform": 36,
+    "android_build_tools": "36.0.0",
+    "aapt2": "2.20-13193326",
+    "d8": "8.10.9-dev a7ad18a70460b799d0482e497c109a75bf7f91de",
+    "apksigner": "0.9",
+    "ndk": "28.2.13676358",
+    "clang": "Android (13624864, +pgo, -bolt, +lto, -mlgo, based on r530567e) clang version 19.0.1 (https://android.googlesource.com/toolchain/llvm-project 97a699bf4812a18fb657c2779f5296a4ab2694d2)"
+  },
+  "commands": [
+    {
+      "command": "python3 tools/build_band.py",
+      "result": "PASS; linked constructor and relocation verified; no undefined symbols; ELF/FACE equal frozen releases"
+    },
+    {
+      "command": "python3 android/build.py",
+      "result": "PASS; 131 JVM assertions; expected three permissions; APK signature and alignment verified; repeated build stable"
+    },
+    {
+      "command": "python3 diagnostics/mirpay-access/build.py",
+      "result": "PASS; zero permissions; package/version retained; APK signature and alignment verified; repeated build stable"
+    }
+  ],
+  "android_signer_certificate_sha256": "64eab39c0f2b0948cf68b5144a603f325123589c92217825d62fa5015647d532",
+  "artifacts": [
+    {
+      "rebuilt": "android/build/mbapdu-lab-debug.apk",
+      "sha256": "7e118772926bbfa7ff7f3f31d4a9862266f302ecdc84a2c5a8d53cd9f8a98c28",
+      "frozen_release": "releases/apdu-lab-0.4.apk",
+      "same_zip_entry_payloads_as_release": true,
+      "same_signer_as_release": true,
+      "two_consecutive_builds_byte_identical": true
+    },
+    {
+      "rebuilt": "diagnostics/mirpay-access/build/mirpay-access-check-debug.apk",
+      "sha256": "4be8f1cce661c158b362a65cdca5198e061a7879c0c63533d97f32bd2cf58a21",
+      "frozen_release": "releases/mirpay-access-check-0.1.apk",
+      "same_zip_entry_payloads_as_release": true,
+      "same_signer_as_release": true,
+      "two_consecutive_builds_byte_identical": true
+    },
+    {
+      "rebuilt": "build/apdu_lab_3.201.026.elf",
+      "sha256": "6c231fe8ab36cac7b076a40e467b03a4a67bb5b63ed6e9aa9f3c04dad2ff5bb8",
+      "frozen_release": "releases/apdu-lab-v6-p67glt-3.201.026.elf",
+      "byte_identical_to_release": true
+    },
+    {
+      "rebuilt": "build/apdu-lab-p67glt-3.201.026.face",
+      "sha256": "6ae1ef45f34c947ebfd043d786f280acfe6bbfef40df614c1a0b8390d870e7c5",
+      "frozen_release": "releases/apdu-lab-v6-p67glt-3.201.026.face",
+      "byte_identical_to_release": true
+    }
+  ],
+  "notes": [
+    "Frozen release files were not overwritten.",
+    "Rebuilt APK bytes differ from frozen releases because ZIP timestamps are now fixed at 1980-01-01 and the container is re-signed. Every ZIP entry payload, package, version and signer is unchanged.",
+    "Reproducibility is verified with this local toolchain and preserved signer; a new checkout without the private local debug key generates a different signer.",
+    "Debug key is stored under .local/signing and excluded from the project bundle."
+  ]
+}

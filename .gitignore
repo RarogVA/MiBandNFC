@@ -1,0 +1,18 @@
+# Local signing identity: preserve on this machine, never package or commit.
+.local/
+
+# All generated outputs; checked-in releases are deliberately not ignored.
+build/
+__pycache__/
+*.py[cod]
+*.o
+*.dSYM/
+.DS_Store
+.idea/
+.vscode/
+.pytest_cache/
+.mypy_cache/
+node_modules/
+*.idsig
+*.dex
+*.class

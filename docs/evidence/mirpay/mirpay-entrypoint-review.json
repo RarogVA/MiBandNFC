@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-13",
+  "scope": "Offline static review of installed-equivalent Mir Pay 1.65.1.350 recovered payload, exported entrypoints, and current primary Android HCE documentation. No hardware, backend, payment data, token requests, app patching or permission bypass.",
+  "apk": {
+    "path": "<historical-project>/apk/mirpay-installed.apk",
+    "sha256": "582a646febbb3a5120cbf6fca335216b6f02f467ba483e71f2fc861dc58a456c",
+    "version": "1.65.1.350",
+    "versionCode": 407
+  },
+  "manifest_hce": {
+    "path": "<historical-project>/apk/jadx/resources/AndroidManifest.xml",
+    "line": 216,
+    "component": "ru.nspk.mirpay/.mElxqzEFDfFhA",
+    "exported": true,
+    "permission": "android.permission.BIND_NFC_SERVICE",
+    "intent_action": "android.nfc.cardemulation.action.HOST_APDU_SERVICE",
+    "meta_xml": "res/xml/apduservice.xml",
+    "category": "payment"
+  },
+  "recovered_hce": {
+    "class": "com.ekassir.mirpay.app.services.HceService2",
+    "source": "docs/evidence/mirpay/entrypoints/HceService2.java",
+    "extends_HostApduService_line": 46,
+    "processCommandApdu_line": 1413,
+    "process_method_path": "processCommandApdu(byte[], Bundle) initializes session via J0 when needed; calls private P0; P0 dispatches gVar.a(byte[], correlationId) and returns response bytes.",
+    "P0_line": 1039,
+    "onDeactivated_line": 1355,
+    "qualification": "Manifest alias to recovered payload class mapping was not separately reconstructed in this subtask. The manifest HCE component permission applies regardless of its private implementation. Recovered HceService2 is an actual local HCE implementation, not a documented exported SDK method."
+  },
+  "sdk_host": {
+    "manifest_line": 227,
+    "class": "com.ekassir.mirpay.app.services.SdkHostService",
+    "manifest_permission": null,
+    "exported": true,
+    "onBind_line": 805,
+    "onBind": "returns Messenger binder",
+    "dispatcher_line": 582,
+    "dispatcher": "q first calls ea.b0.u; UnsupportedOperationException falls back to r/s legacy branch",
+    "parser": {
+      "source": "docs/evidence/mirpay/entrypoints/LegacySdkParser.java",
+      "class": "uc.a",
+      "line": 11,
+      "contract": "Message.what accepts integer cases0..7 only; unknown value throws IllegalArgumentException; Bundle string fields parse request payload and session identifier."
+    }
+  },
+  "sdk_commands": [
+    {
+      "what": 0,
+      "enum_raw": "c",
+      "behavior": "Legacy SDK session initialization; validates SDK version, registered device/update/integrity/issuer state and returns a session identifier with wallet/device identifiers.",
+      "source": "SdkHostService.java",
+      "line": 735
+    },
+    {
+      "what": 1,
+      "enum_raw": "f",
+      "behavior": "List issuer-filtered card metadata via existing SDK session. No APDU request.",
+      "source": "SdkHostService.java",
+      "line": 719
+    },
+    {
+      "what": 2,
+      "enum_raw": "e",
+      "behavior": "Return status/metadata for tokenReference scoped to issuer/session. No APDU request.",
+      "source": "SdkHostService.java",
+      "line": 696
+    },
+    {
+      "what": 3,
+      "enum_raw": "a",
+      "behavior": "Return add-card Green Corridor Activity Intent.",
+      "source": "SdkHostService.java",
+      "line": 679
+    },
+    {
+      "what": 4,
+      "enum_raw": "d",
+      "behavior": "New SDK session initialization through w50.b: checks version/environment/registration/update; validates JWS using certificate provider; returns SDK session metadata.",
+      "source": "SdkPrimary.java",
+      "line": 559,
+      "validation_source": "SdkInit.java",
+      "validation_line": 100
+    },
+    {
+      "what": 5,
+      "enum_raw": "h",
+      "behavior": "Existing valid SDK session required. Return InAppActivity VIEW Intent with mirpay://pay.mironline.ru/inapp/{paymentToken}. This paymentToken is an in-app request parameter, not a raw NFC APDU or phone card-emulation token export.",
+      "source": "SdkPrimary.java",
+      "line": 724,
+      "intent_source": "SdkPaymentIntent.java",
+      "intent_line": 37
+    },
+    {
+      "what": 6,
+      "enum_raw": "b",
+      "behavior": "Return configured app-store IDs/names/links.",
+      "source": "SdkPrimary.java",
+      "line": 682
+    },
+    {
+      "what": 7,
+      "enum_raw": "g",
+      "behavior": "Return manual card-entry Activity Intent (EnterCardScenario.Sdk).",
+      "source": "SdkPrimary.java",
+      "line": 717
+    }
+  ],
+  "sdk_conclusion": "No APDU submission command is exposed among the eight parsed SDK command cases. Exported=true on SdkHostService does not turn the local HCE engine into an external relay API. In-app Intent dispatch does not process contactless terminal APDUs.",
+  "other_exported_services": [
+    {
+      "name": "com.google.android.gms.auth.api.signin.RevocationBoundService",
+      "permission": "com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION",
+      "purpose": "Google sign-in revocation"
+    },
+    {
+      "name": ".mBagdqojbAEqc",
+      "permission": "android.permission.BIND_JOB_SERVICE",
+      "purpose": "OS job service"
+    },
+    {
+      "name": ".cjrEykBxiebzo",
+      "permission": null,
+      "actions": [
+        "com.huawei.push.msg.NOTIFY_MSG",
+        "com.huawei.push.msg.PASSBY_MSG"
+      ],
+      "purpose": "Huawei push receiver service, not a declared HCE or app2app SDK endpoint"
+    }
+  ],
+  "android_primary_sources": [
+    {
+      "url": "https://developer.android.com/develop/connectivity/nfc/hce",
+      "verified": "2026-11-13",
+      "sections": [
+        "Service manifest declaration and AID registration",
+        "HCE and security"
+      ],
+      "finding": "BIND_NFC_SERVICE ensures only the OS can bind/communicate; incoming APDUs come from the OS NFC controller path."
+    },
+    {
+      "url": "https://developer.android.com/reference/android/Manifest.permission#BIND_NFC_SERVICE",
+      "verified": "2026-11-13",
+      "finding": "Protection level signature; only system can bind to HostApduService/OffHostApduService."
+    }
+  ],
+  "practical_result": "On an ordinary unprivileged Android application, no supported path was found to feed the band BLE APDUs into the installed Mir Pay phone HCE engine. Building the transport succeeded; an explicit supported Mir Pay external-transport API or authorized vendor integration is a separate prerequisite. This is not a claim of physical impossibility with different software/OS or extra hardware.",
+  "limitations": [
+    "Static decompilation can omit malformed/protected paths; SDK dispatch examined specifically, not a mathematical proof across every native byte.",
+    "Overlapping recovered DEX causes JADX duplicate class warnings; main payload input and origin recorded; prior validation reproduced payload bytes independently.",
+    "No SDK command was sent to the live wallet. No card metadata or payment credentials retrieved.",
+    "Original user Downloads attachment directory no longer exists; analysis uses retained independently verified recovered DEX."
+  ],
+  "generated_sources": {
+    "SdkPaymentIntent.java": {
+      "path": "docs/evidence/mirpay/entrypoints/SdkPaymentIntent.java",
+      "sha256": "8611bc05ca6d59e8260aec822c162ffab4ef53d394328722f51f16de31d0d088"
+    },
+    "SdkCommands.java": {
+      "path": "docs/evidence/mirpay/entrypoints/SdkCommands.java",
+      "sha256": "1cf1f5e75cedb3bf30570060e463078d83e43c233ad850563cfa01dcd1a91749"
+    },
+    "LegacySdkParser.java": {
+      "path": "docs/evidence/mirpay/entrypoints/LegacySdkParser.java",
+      "sha256": "c4d2493ebf1e5833fd7c65dc55fc0d3c6a8b33814aa94b121f685ae0982d267e"
+    },
+    "SdkHostService.java": {
+      "path": "docs/evidence/mirpay/entrypoints/SdkHostService.java",
+      "sha256": "5ad8c2189049253ddfc362b81a4b27a6801b87f43ec81724c6156d4beb21c45f"
+    },
+    "SdkInit.java": {
+      "path": "docs/evidence/mirpay/entrypoints/SdkInit.java",
+      "sha256": "aff8f90e74c6689e06ced6d69b4d2112cc928d7871cc60bd07d5f420614fc1ec"
+    },
+    "SdkPrimary.java": {
+      "path": "docs/evidence/mirpay/entrypoints/SdkPrimary.java",
+      "sha256": "161dae6974335243f0895137c57a7b243678a81ffee12157bb9a61dcd1e902e2"
+    },
+    "HceService2.java": {
+      "path": "docs/evidence/mirpay/entrypoints/HceService2.java",
+      "sha256": "e60707e8b082bd0667aac050618ebd3f5929e8fda930a5e7b7f53b88bb865bb8"
+    }
+  },
+  "changed_files": [
+    "integration/evidence/mirpay-entrypoint-review.json"
+  ],
+  "_archive_context": "Historical static review. The original fragment hashes below include absolute JADX source-location comments. During project cleanup only that personal path prefix was redacted in copied Java fragments; code bytes apart from those comments are unchanged. Current copy hashes are separately listed in project_copy_sha256. Removed APK/decompiled paths remain provenance, not active dependencies.",
+  "project_copy_sha256": {
+    "docs/evidence/mirpay/entrypoints/HceService2.java": "8e26843557dd634b090488a78d8d882fdefcb463aa8c0495a07e1d80a8dce1fa",
+    "docs/evidence/mirpay/entrypoints/LegacySdkParser.java": "a42a02417b852cb08415e94d33f640600ccb5d26a2833d6d19bcc41c2b0f1d02",
+    "docs/evidence/mirpay/entrypoints/SdkCommands.java": "d4a7722f7f31f16cc4708fd26474b1c4fe68f5ec5098c642e890aa53eb21707b",
+    "docs/evidence/mirpay/entrypoints/SdkHostService.java": "431dd51e71ebdf993e7589ac8c288daa7e874ea821ec849c0f273b36f192497a",
+    "docs/evidence/mirpay/entrypoints/SdkInit.java": "e5f0f77edffd30bc7138546d4f570375cd65f38c814e8419d7fbfa9ee8fbc1a8",
+    "docs/evidence/mirpay/entrypoints/SdkPaymentIntent.java": "dd53e87dffec9e5b72556fb3b3632c692c514ba6de47dfc051bd5eb14ec1aff5",
+    "docs/evidence/mirpay/entrypoints/SdkPrimary.java": "465076bcd0eb9d7e2815d0692a725d06949c9fcffd74071ba3f7824f808cd03b"
+  }
+}

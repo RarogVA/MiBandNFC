@@ -1,0 +1,40 @@
+{
+  "project": "APDU Band Bridge",
+  "date": "2026-11-13",
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "android_apk_version": "0.4",
+  "watchface_version": 6,
+  "files": {
+    "apdu-lab-0.4.apk": {
+      "bytes": 37257,
+      "sha256": "326d2ba5ba50c63781befc4555344f9eba0a9d576b9f37e5df26af5883b4d6f5"
+    },
+    "apdu-lab-v6-p67glt-3.201.026.face": {
+      "bytes": 230557,
+      "sha256": "6ae1ef45f34c947ebfd043d786f280acfe6bbfef40df614c1a0b8390d870e7c5"
+    },
+    "apdu-lab-v6-p67glt-3.201.026.elf": {
+      "bytes": 31112,
+      "sha256": "6c231fe8ab36cac7b076a40e467b03a4a67bb5b63ed6e9aa9f3c04dad2ff5bb8"
+    },
+    "mirpay-access-check-0.1.apk": {
+      "bytes": 16777,
+      "sha256": "fa66bf9ecf0570009bdacf4502efe30deb8afc7ea19cb5c49317acd03c8cf43b"
+    }
+  },
+  "hardware_test": {
+    "result": "PASS",
+    "scope": "One synthetic NFC-BLE-Pixel-BLE-NFC run with SELECT and fresh challenge",
+    "duration_ms": 396.5,
+    "stop_and_post_stop_query_confirmed": true,
+    "evidence": "../docs/evidence/pixel-gatt-v6-observation.json"
+  },
+  "mirpay_integration": {
+    "status": "blocked_on_stock_pixel",
+    "evidence": "../docs/evidence/mirpay/pixel-mirpay-access-report.json",
+    "payment_tested": false
+  },
+  "elf_resource_bytes": 31272,
+  "elf_spare_bytes": 160
+}

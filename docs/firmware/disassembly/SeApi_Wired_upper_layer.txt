@@ -1,0 +1,123 @@
+005aa5ac 2c66a5ac 0c4b       ldr      r3, [pc, #0x30] ; literal[0x5aa5e0]=0x200ebb01
+005aa5ae 2c66a5ae 1a78       ldrb     r2, [r3]
+005aa5b0 2c66a5b0 02b1       cbz      r2, #0x2c66a5b4
+005aa5b2 2c66a5b2 7047       bx       lr
+005aa5b4 2c66a5b4 0346       mov      r3, r0
+005aa5b6 2c66a5b6 80b5       push     {r7, lr}
+005aa5b8 2c66a5b8 0a49       ldr      r1, [pc, #0x28] ; literal[0x5aa5e4]=0x200b07dc
+005aa5ba 2c66a5ba 0b4a       ldr      r2, [pc, #0x2c] ; literal[0x5aa5e8]=0x200ebee2
+005aa5bc 2c66a5bc 0868       ldr      r0, [r1]
+005aa5be 2c66a5be 00af       add      r7, sp, #0
+005aa5c0 2c66a5c0 0221       movs     r1, #2
+005aa5c2 2c66a5c2 5830       adds     r0, #0x58
+005aa5c4 2c66a5c4 1370       strb     r3, [r2]
+005aa5c6 2c66a5c6 f9f741fa   bl       #0x2c663a4c
+005aa5ca 2c66a5ca 0028       cmp      r0, #0
+005aa5cc 2c66a5cc 00db       blt      #0x2c66a5d0
+005aa5ce 2c66a5ce 80bd       pop      {r7, pc}
+005aa5d0 2c66a5d0 0320       movs     r0, #3
+005aa5d2 2c66a5d2 064b       ldr      r3, [pc, #0x18] ; literal[0x5aa5ec]=0x2c919734 'nfc_app_msg_send(&g_app_ctrl->MsgQ_App_Down, WIREDENABLE, (void*)(&enableWired_send))'
+005aa5d4 2c66a5d4 064a       ldr      r2, [pc, #0x18] ; literal[0x5aa5f0]=0x2ca20b64 'SeApi_WiredEnable_upper_layer'
+005aa5d6 2c66a5d6 0749       ldr      r1, [pc, #0x1c] ; literal[0x5aa5f4]=0x2c916490 '[NFC_STACK] %s: ERROR: %s is less than 0\n'
+005aa5d8 2c66a5d8 54f76ef2   bl       #0x2c1beab8
+005aa5dc 2c66a5dc 80bd       pop      {r7, pc}
+005aa5de 2c66a5de 00bf       nop      
+005aa5e0 2c66a5e0 01bb       cbnz     r1, #0x2c66a624
+005aa5e2 2c66a5e2 0e20       movs     r0, #0xe
+005aa5e4 2c66a5e4 dc07       lsls     r4, r3, #0x1f
+005aa5e6 2c66a5e6 0b20       movs     r0, #0xb
+005aa5e8 2c66a5e8 e2be       bkpt     #0xe2
+005aa5ea 2c66a5ea 0e20       movs     r0, #0xe
+005aa5ec 2c66a5ec 3497       str      r7, [sp, #0xd0]
+005aa5ee 2c66a5ee 912c       cmp      r4, #0x91
+005aa5f0 2c66a5f0 640b       lsrs     r4, r4, #0xd
+005aa5f2 2c66a5f2 a22c       cmp      r4, #0xa2
+005aa5f4 2c66a5f4 9064       str      r0, [r2, #0x48]
+005aa5f6 2c66a5f6 912c       cmp      r4, #0x91
+005aa5f8 2c66a5f8 f8b5       push     {r3, r4, r5, r6, r7, lr}
+005aa5fa 2c66a5fa 1a4b       ldr      r3, [pc, #0x68] ; literal[0x5aa664]=0x200ebb01
+005aa5fc 2c66a5fc 0546       mov      r5, r0
+005aa5fe 2c66a5fe 1b78       ldrb     r3, [r3]
+005aa600 2c66a600 00af       add      r7, sp, #0
+005aa602 2c66a602 abb9       cbnz     r3, #0x2c66a630
+005aa604 2c66a604 38b3       cbz      r0, #0x2c66a656
+005aa606 2c66a606 0e46       mov      r6, r1
+005aa608 2c66a608 0120       movs     r0, #1
+005aa60a 2c66a60a 1821       movs     r1, #0x18
+005aa60c 2c66a60c 5af7bcf5   bl       #0x2c1c5188
+005aa610 2c66a610 0446       mov      r4, r0
+005aa612 2c66a612 60b1       cbz      r0, #0x2c66a62e
+005aa614 2c66a614 0123       movs     r3, #1
+005aa616 2c66a616 1449       ldr      r1, [pc, #0x50] ; literal[0x5aa668]=0x200b07dc
+005aa618 2c66a618 0246       mov      r2, r0
+005aa61a 2c66a61a 0868       ldr      r0, [r1]
+005aa61c 2c66a61c 2560       str      r5, [r4]
+005aa61e 2c66a61e 0321       movs     r1, #3
+005aa620 2c66a620 a680       strh     r6, [r4, #4]
+005aa622 2c66a622 5830       adds     r0, #0x58
+005aa624 2c66a624 a371       strb     r3, [r4, #6]
+005aa626 2c66a626 f9f711fa   bl       #0x2c663a4c
+005aa62a 2c66a62a 0028       cmp      r0, #0
+005aa62c 2c66a62c 05db       blt      #0x2c66a63a
+005aa62e 2c66a62e f8bd       pop      {r3, r4, r5, r6, r7, pc}
+005aa630 2c66a630 0028       cmp      r0, #0
+005aa632 2c66a632 fcd0       beq      #0x2c66a62e
+005aa634 2c66a634 5af7bef5   bl       #0x2c1c51b4
+005aa638 2c66a638 f8bd       pop      {r3, r4, r5, r6, r7, pc}
+005aa63a 2c66a63a 0320       movs     r0, #3
+005aa63c 2c66a63c 0b4b       ldr      r3, [pc, #0x2c] ; literal[0x5aa66c]=0x2c919798 'nfc_app_msg_send(&g_app_ctrl->MsgQ_App_Down, WIREDTRANSCEIVE, (void*)param)'
+005aa63e 2c66a63e 0c4a       ldr      r2, [pc, #0x30] ; literal[0x5aa670]=0x2ca20b40 'SeApi_WiredTransceive_upper_layer'
+005aa640 2c66a640 0c49       ldr      r1, [pc, #0x30] ; literal[0x5aa674]=0x2c916490 '[NFC_STACK] %s: ERROR: %s is less than 0\n'
+005aa642 2c66a642 54f739f2   bl       #0x2c1beab8
+005aa646 2c66a646 2068       ldr      r0, [r4]
+005aa648 2c66a648 08b1       cbz      r0, #0x2c66a64e
+005aa64a 2c66a64a 5af7b3f5   bl       #0x2c1c51b4
+005aa64e 2c66a64e 2046       mov      r0, r4
+005aa650 2c66a650 5af7b0f5   bl       #0x2c1c51b4
+005aa654 2c66a654 f0e7       b        #0x2c66a638
+005aa656 2c66a656 0320       movs     r0, #3
+005aa658 2c66a658 074b       ldr      r3, [pc, #0x1c] ; literal[0x5aa678]=0x2c91978c 'pXmitBuffer'
+005aa65a 2c66a65a 054a       ldr      r2, [pc, #0x14] ; literal[0x5aa670]=0x2ca20b40 'SeApi_WiredTransceive_upper_layer'
+005aa65c 2c66a65c 0749       ldr      r1, [pc, #0x1c] ; literal[0x5aa67c]=0x2c915eb0 '[NFC_STACK] %s: ERROR: %s is null\n'
+005aa65e 2c66a65e 54f72bf2   bl       #0x2c1beab8
+005aa662 2c66a662 f8bd       pop      {r3, r4, r5, r6, r7, pc}
+005aa664 2c66a664 01bb       cbnz     r1, #0x2c66a6a8
+005aa666 2c66a666 0e20       movs     r0, #0xe
+005aa668 2c66a668 dc07       lsls     r4, r3, #0x1f
+005aa66a 2c66a66a 0b20       movs     r0, #0xb
+005aa66c 2c66a66c 9897       str      r7, [sp, #0x260]
+005aa66e 2c66a66e 912c       cmp      r4, #0x91
+005aa670 2c66a670 400b       lsrs     r0, r0, #0xd
+005aa672 2c66a672 a22c       cmp      r4, #0xa2
+005aa674 2c66a674 9064       str      r0, [r2, #0x48]
+005aa676 2c66a676 912c       cmp      r4, #0x91
+005aa678 2c66a678 8c97       str      r7, [sp, #0x230]
+005aa67a 2c66a67a 912c       cmp      r4, #0x91
+005aa67c 2c66a67c b05e       ldrsh    r0, [r6, r2]
+005aa67e 2c66a67e 912c       cmp      r4, #0x91
+005aa680 2c66a680 80b5       push     {r7, lr}
+005aa682 2c66a682 094b       ldr      r3, [pc, #0x24] ; literal[0x5aa6a8]=0x200b07dc
+005aa684 2c66a684 0022       movs     r2, #0
+005aa686 2c66a686 1868       ldr      r0, [r3]
+005aa688 2c66a688 0121       movs     r1, #1
+005aa68a 2c66a68a 00af       add      r7, sp, #0
+005aa68c 2c66a68c 5830       adds     r0, #0x58
+005aa68e 2c66a68e f9f7ddf9   bl       #0x2c663a4c
+005aa692 2c66a692 0028       cmp      r0, #0
+005aa694 2c66a694 00db       blt      #0x2c66a698
+005aa696 2c66a696 80bd       pop      {r7, pc}
+005aa698 2c66a698 0320       movs     r0, #3
+005aa69a 2c66a69a 044b       ldr      r3, [pc, #0x10] ; literal[0x5aa6ac]=0x2c9197e4 'nfc_app_msg_send(&g_app_ctrl->MsgQ_App_Down, READCARD, NULL)'
+005aa69c 2c66a69c 044a       ldr      r2, [pc, #0x10] ; literal[0x5aa6b0]=0x2ca20b24 'SeApi_ReadCard_upper_layer'
+005aa69e 2c66a69e 0549       ldr      r1, [pc, #0x14] ; literal[0x5aa6b4]=0x2c916490 '[NFC_STACK] %s: ERROR: %s is less than 0\n'
+005aa6a0 2c66a6a0 54f70af2   bl       #0x2c1beab8
+005aa6a4 2c66a6a4 80bd       pop      {r7, pc}
+005aa6a6 2c66a6a6 00bf       nop      
+005aa6a8 2c66a6a8 dc07       lsls     r4, r3, #0x1f
+005aa6aa 2c66a6aa 0b20       movs     r0, #0xb
+005aa6ac 2c66a6ac e497       str      r7, [sp, #0x390]
+005aa6ae 2c66a6ae 912c       cmp      r4, #0x91
+005aa6b0 2c66a6b0 240b       lsrs     r4, r4, #0xc
+005aa6b2 2c66a6b2 a22c       cmp      r4, #0xa2
+005aa6b4 2c66a6b4 9064       str      r0, [r2, #0x48]
+005aa6b6 2c66a6b6 912c       cmp      r4, #0x91

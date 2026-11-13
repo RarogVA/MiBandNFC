@@ -1,0 +1,23 @@
+{
+  "recorder.face": {
+    "sha256": "1d3be2b0c95c21ffa834485a45e326d0d98eeea54be94a1afd086df454e0901c",
+    "source": "User supplied recorder.face, https://4pda.to/forum/index.php?showtopic=1108114&view=findpost&p=138618220",
+    "role": "Fixed-layout packaging template; original Lua/ELF replaced, preview assets retained"
+  },
+  "vela_ap.bin": {
+    "sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+    "size": 10339356,
+    "role": "Read-only fingerprint verification; not a flashing instruction"
+  },
+  "ota": {
+    "model": "miwear.watch.p67glt",
+    "installed_firmware": "3.201.026",
+    "source": "https://mos-res-abroad-cdn.home.mi.com/default/e34148c0806208d86071600eb725887b_upd_miwear.watch.p67glt.bin",
+    "size": 70729723,
+    "sha256": "0cced8fc41585531b7b84a3a0343062ba0653715760d6326da38bf048cee07ad",
+    "first_32_hex": "504b03041400080808000000213a000000000000000000000000060004006f74",
+    "note": "Model/installed version and OTA URL extracted from existing Mi Fitness logs. OTA AP header and ROMFS build.prop independently confirm target version3.201.026. Downloaded with TLS certificate validation. SHA256 recorded; signature trust chain not independently certified.",
+    "verified_image_version": "3.201.026",
+    "customer_version": "CONBINE_LTALM080_T3.201.026_09041709"
+  }
+}

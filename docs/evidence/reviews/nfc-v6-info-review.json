@@ -1,0 +1,143 @@
+{
+  "reviewer": "wear_integration",
+  "reviewed_at_utc": "2026-11-12T22:05:32.857804+00:00",
+  "result": "PASS",
+  "unresolved_material_findings": [],
+  "scope": "Independent frozen v6 NFCINFO cached RAM fields, exact firmware fingerprints, read-only call path, and bounded Android INFO correlation review. No hardware interaction or source edits.",
+  "firmware": {
+    "model": "miwear.watch.p67glt",
+    "version": "3.201.026",
+    "file": "firmware/extracted/vela_ap.bin",
+    "sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+    "load_base": "0x2c0c0000"
+  },
+  "reviewed_sha256": {
+    "prototype/band/nfc_probe.c": "4d9d8e7c8409aaabb07beec861d5804878552058c6f83bc9f6b9a24d1e401b31",
+    "prototype/band/nfc_probe.h": "41f8a02df5e3e38d5e629799d7a2304834e47cc81f3718eb9c5dddd05d21e48a",
+    "prototype/band/nfc_fingerprints.h": "6fbae0da1835b437920a25b1e06526da2ac4f157e9ab3f1b995b142d911ea53f",
+    "prototype/band/nfc_bindings.json": "cfaa02a79af7840dcddd00ff053b2699bd1d17efaae7020845f3339401b70ee6",
+    "prototype/band/module.c": "a9ab071066e477d0435724a656f426a2fea3790eecc97d5f9739bb80cf34aed9",
+    "prototype/tests/nfc_probe_test.c": "bd7f924dfd60930d794ff0f243ae3dfd87510d7d748f3e69e2355c57b771f5ac",
+    "prototype/android/src/dev/mbapdu/probe/InfoRequest.java": "c3376186cf9bda112a546d0c04b5c163e6edb63955e5236d6385d3c23cfb486e",
+    "prototype/android/src/dev/mbapdu/probe/MainActivity.java": "1637e67e06bc016a679b1e768b42bb70093ecf6d87033cd47bc1b5b691cf6719",
+    "prototype/build/apdu_lab_3.201.026.elf": "6c231fe8ab36cac7b076a40e467b03a4a67bb5b63ed6e9aa9f3c04dad2ff5bb8"
+  },
+  "ram_fields": [
+    {
+      "field": "NCI version",
+      "address": "0x200eb7ec",
+      "type": "uint8_t",
+      "proof": "Getter 0x2c65b200 reads nfc_cb+0x1f8; getter and base literal covered by matching 24-byte fingerprint."
+    },
+    {
+      "field": "NFCC Features",
+      "address": "0x200eb6b4",
+      "type": "uint32_t little endian",
+      "proof": "nfc_enabled success path 0x65b372 reads raw four feature bytes; 0x65b37c stores at nfc_cb+0xc0."
+    },
+    {
+      "field": "Max LMRT",
+      "address": "0x200eb6b8",
+      "type": "uint16_t little endian",
+      "proof": "0x65b378 reads response features+5; 0x65b384 stores nfc_cb+0xc4. Independent stock size getter 0x65b218 reads same offset."
+    },
+    {
+      "field": "Max control payload",
+      "address": "0x200eb6bb",
+      "type": "uint8_t",
+      "proof": "0x65b38a reads response features+7; 0x65b390 stores nfc_cb+0xc7."
+    },
+    {
+      "field": "chip family",
+      "address": "0x200b04b5",
+      "type": "uint8_t",
+      "proof": "Pure getter 0x6425f0. Runtime matcher stores 0=NXP at 0x642ad6 after NXP branch,1=THN31 at0x642ca6,FF=unknown at0x642ad6 after failure branch. Value0 is family only, not SN100 model proof."
+    }
+  ],
+  "feature_layout": {
+    "source": "https://android.googlesource.com/platform/system/nfc/+/d3867f5bade8b8771580eb8ed27dc8de4dc1422a/src/nci_packets.pdl#187",
+    "byte1_bits": {
+      "1": "technology",
+      "2": "protocol",
+      "3": "AID",
+      "4": "system code",
+      "5": "APDU pattern",
+      "6": "forced NFCEE"
+    },
+    "aid_mask_u32le": "0x00000800",
+    "assessment": "(features>>11)&1 is correct; advertised capability is not proof of accepted DH route or successful HCE."
+  },
+  "fingerprints": {
+    "matched": 17,
+    "total": 17,
+    "exact_byte_comparison": "PASS",
+    "new_proof_points": [
+      "0x2c6425f0 chip getter + literal",
+      "0x2c65b35a cached-control-block load",
+      "0x2c65b37c feature/LMRT/control stores",
+      "0x2c65b504 control-block literal"
+    ]
+  },
+  "native_read_only_checks": [
+    "Full preflight precedes version read; version==0x20 precedes remaining cached RAM reads.",
+    "Preflight checks are reads only; active foreign or own HAL hook causes unavailable.",
+    "nfc_probe_info calls no install/restore, discovery, command, response, or route mutation APIs.",
+    "Info formatting uses a separate bounded static buffer and preserves g.diagnostic and retained status.",
+    "CONTROL03 module branch requires no desired/active/cleanup state, returns INFO response, and does not enter START or STOP branch.",
+    "Cached wording accurately describes startup cache rather than a fresh controller query."
+  ],
+  "android_bounded_review": {
+    "result": "PASS",
+    "checks": [
+      "Independent InfoRequest object; INFO cannot establish or replace QUERY verification.",
+      "Both matching sequence and completed successful ATT write required in either arrival order.",
+      "INFO timeout/completion retain sequence and consume late replies; disconnect resets identity.",
+      "INFO is blocked during QUERY/START/STOP/reader/transceive; START is blocked while INFO pending.",
+      "CONTROL payload03 only; confirmInfo changes display/state of INFO request, never enables ReaderMode."
+    ]
+  },
+  "validation": [
+    {
+      "check": "Exact firmware fingerprint comparison",
+      "result": "PASS 17/17"
+    },
+    {
+      "check": "Host C -Wall -Wextra -Werror -fsyntax-only on frozen NFC probe, route table and test",
+      "result": "PASS"
+    },
+    {
+      "check": "ARM cortex-m33 hard-float freestanding -Werror -fsyntax-only on frozen NFC probe",
+      "result": "PASS"
+    },
+    {
+      "check": "Reran existing agent-built ASAN/UBSAN nfc_probe_info_test executable",
+      "result": "PASS; lifecycle, preservation, fragmentation, recovery and INFO nonmutation/cache-gate assertions"
+    },
+    {
+      "check": "Reran existing Java ProtocolTest classes",
+      "result": "PASS 131 assertions"
+    },
+    {
+      "check": "Optional detect_leaks=1 attempt",
+      "result": "Platform ASAN rejected this unsupported option before tests; rerun without leak option passed."
+    }
+  ],
+  "packaging_note": {
+    "change": "build_band.py additionally removes nonallocated .comment compiler banner; existing .ARM.exidx removal is preexisting. Compiler identity remains in band-build.json.",
+    "current_elf_bytes": 31112,
+    "section_inspection": "llvm-readelf confirms .comment absent; .text/.rodata/.data/.bss, .init_array and its relocation remain.",
+    "constructor": "band-build.json reports 4-byte SHT_INIT_ARRAY, relocation38 to module_constructor; parent reports pack validation PASS."
+  },
+  "limits": [
+    "No physical v6 test performed by reviewer.",
+    "RAM fields are cached and do not independently prove controller routing acceptance.",
+    "Existing binaries were rerun; review did not rebuild or alter artifacts, per read-only source scope."
+  ],
+  "_archive_context": {
+    "kind": "Historical review of the revision and scope stated in this file.",
+    "interpretation": "Source hashes, paths, test counts and hardware_tested=false remain records of that review. They are not claims about the current tree or latest hardware state.",
+    "latest_hardware_evidence": "docs/evidence/pixel-gatt-v6-observation.json",
+    "latest_hardware_scope": "One v6/Android 0.4 synthetic physical NFC/BLE round trip passed with verified cleanup; no Mir Pay payment test.",
+    "path_provenance": "See docs/evidence/README.md; removed historical build/decompile artifacts are intentionally not recreated."
+  }
+}

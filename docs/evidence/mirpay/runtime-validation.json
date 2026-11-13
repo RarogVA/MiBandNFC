@@ -1,0 +1,15 @@
+{
+  "installed_apk_sha256": "fa66bf9ecf0570009bdacf4502efe30deb8afc7ea19cb5c49317acd03c8cf43b",
+  "local_build_matches_installed": true,
+  "probe_version": "0.1",
+  "device": "Pixel 8a Android17 sdk37",
+  "result": "bind_security_exception",
+  "mirpay_version": "1.65.1.350",
+  "target_signer_sha256": [
+    "4ead9f31ba0a2e8d42143cae06b558788bd4d6299504f84885a550886fb3fed2"
+  ],
+  "source_sha256": "9fcee17b59cf82e42fe0a266948d384939918fdd7dfb71f015e5218d20d5d33b",
+  "payment_commands_sent": false,
+  "probe_closed_and_uninstalled_after_report": true,
+  "working_bridge_release_hashes_unchanged": true
+}

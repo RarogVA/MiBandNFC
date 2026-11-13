@@ -1,0 +1,196 @@
+0058ce7c 2c64ce7c 2de9f043   push.w   {r4, r5, r6, r7, r8, sb, lr}
+0058ce80 2c64ce80 83b0       sub      sp, #0xc
+0058ce82 2c64ce82 674b       ldr      r3, [pc, #0x19c] ; literal[0x58d020]=0x200ea995
+0058ce84 2c64ce84 02af       add      r7, sp, #8
+0058ce86 2c64ce86 1b78       ldrb     r3, [r3]
+0058ce88 2c64ce88 83b1       cbz      r3, #0x2c64ceac
+0058ce8a 2c64ce8a 664b       ldr      r3, [pc, #0x198] ; literal[0x58d024]=0x200b05d6
+0058ce8c 2c64ce8c 1d78       ldrb     r5, [r3]
+0058ce8e 2c64ce8e 012d       cmp      r5, #1
+0058ce90 2c64ce90 05d0       beq      #0x2c64ce9e
+0058ce92 2c64ce92 0124       movs     r4, #1
+0058ce94 2c64ce94 2046       mov      r0, r4
+0058ce96 2c64ce96 0437       adds     r7, #4
+0058ce98 2c64ce98 bd46       mov      sp, r7
+0058ce9a 2c64ce9a bde8f083   pop.w    {r4, r5, r6, r7, r8, sb, pc}
+0058ce9e 2c64ce9e 0446       mov      r4, r0
+0058cea0 2c64cea0 02f0b6fe   bl       #0x2c64fc10
+0058cea4 2c64cea4 8442       cmp      r4, r0
+0058cea6 2c64cea6 07d1       bne      #0x2c64ceb8
+0058cea8 2c64cea8 0024       movs     r4, #0
+0058ceaa 2c64ceaa f3e7       b        #0x2c64ce94
+0058ceac 2c64ceac 0424       movs     r4, #4
+0058ceae 2c64ceae 2046       mov      r0, r4
+0058ceb0 2c64ceb0 0437       adds     r7, #4
+0058ceb2 2c64ceb2 bd46       mov      sp, r7
+0058ceb4 2c64ceb4 bde8f083   pop.w    {r4, r5, r6, r7, r8, sb, pc}
+0058ceb8 2c64ceb8 1f23       movs     r3, #0x1f
+0058ceba 2c64ceba 5b4e       ldr      r6, [pc, #0x16c] ; literal[0x58d028]=0x200ea88c
+0058cebc 2c64cebc 3380       strh     r3, [r6]
+0058cebe 2c64cebe 03f0c1ff   bl       #0x2c650e44
+0058cec2 2c64cec2 0246       mov      r2, r0
+0058cec4 2c64cec4 0028       cmp      r0, #0
+0058cec6 2c64cec6 78d1       bne      #0x2c64cfba
+0058cec8 2c64cec8 dff88481   ldr.w    r8, [pc, #0x184] ; literal[0x58d050]=0x200ea89c
+0058cecc 2c64cecc dff89891   ldr.w    sb, [pc, #0x198] ; literal[0x58d068]=0x200ea928
+0058ced0 2c64ced0 42f21071   movw     r1, #0x2710
+0058ced4 2c64ced4 d8f80000   ldr.w    r0, [r8]
+0058ced8 2c64ced8 02f0cafb   bl       #0x2c64f670
+0058cedc 2c64cedc 99f80020   ldrb.w   r2, [sb]
+0058cee0 2c64cee0 002a       cmp      r2, #0
+0058cee2 2c64cee2 7fd1       bne      #0x2c64cfe4
+0058cee4 2c64cee4 3580       strh     r5, [r6]
+0058cee6 2c64cee6 514d       ldr      r5, [pc, #0x144] ; literal[0x58d02c]=0x200ea8d8
+0058cee8 2c64cee8 2a70       strb     r2, [r5]
+0058ceea 2c64ceea 03f05fff   bl       #0x2c650dac
+0058ceee 2c64ceee 42f21071   movw     r1, #0x2710
+0058cef2 2c64cef2 d8f80000   ldr.w    r0, [r8]
+0058cef6 2c64cef6 02f0bbfb   bl       #0x2c64f670
+0058cefa 2c64cefa 4d4b       ldr      r3, [pc, #0x134] ; literal[0x58d030]=0x200ea982
+0058cefc 2c64cefc 1b78       ldrb     r3, [r3]
+0058cefe 2c64cefe b3b3       cbz      r3, #0x2c64cf6e
+0058cf00 2c64cf00 4c4a       ldr      r2, [pc, #0x130] ; literal[0x58d034]=0x200ea92c
+0058cf02 2c64cf02 1188       ldrh     r1, [r2]
+0058cf04 2c64cf04 b1f5986f   cmp.w    r1, #0x4c0
+0058cf08 2c64cf08 0bd0       beq      #0x2c64cf22
+0058cf0a 2c64cf0a 012b       cmp      r3, #1
+0058cf0c 2c64cf0c 2fd0       beq      #0x2c64cf6e
+0058cf0e 2c64cf0e 5188       ldrh     r1, [r2, #2]
+0058cf10 2c64cf10 b1f5986f   cmp.w    r1, #0x4c0
+0058cf14 2c64cf14 05d0       beq      #0x2c64cf22
+0058cf16 2c64cf16 022b       cmp      r3, #2
+0058cf18 2c64cf18 29d0       beq      #0x2c64cf6e
+0058cf1a 2c64cf1a 9388       ldrh     r3, [r2, #4]
+0058cf1c 2c64cf1c b3f5986f   cmp.w    r3, #0x4c0
+0058cf20 2c64cf20 25d1       bne      #0x2c64cf6e
+0058cf22 2c64cf22 4ff0070c   mov.w    ip, #7
+0058cf26 2c64cf26 cde90044   strd     r4, r4, [sp]
+0058cf2a 2c64cf2a 0023       movs     r3, #0
+0058cf2c 2c64cf2c 2246       mov      r2, r4
+0058cf2e 2c64cf2e 2146       mov      r1, r4
+0058cf30 2c64cf30 4ff49860   mov.w    r0, #0x4c0
+0058cf34 2c64cf34 a6f800c0   strh.w   ip, [r6]
+0058cf38 2c64cf38 06f0f4ff   bl       #0x2c653f24
+0058cf3c 2c64cf3c 90b9       cbnz     r0, #0x2c64cf64
+0058cf3e 2c64cf3e 2046       mov      r0, r4
+0058cf40 2c64cf40 02f060fe   bl       #0x2c64fc04
+0058cf44 2c64cf44 3c4b       ldr      r3, [pc, #0xf0] ; literal[0x58d038]=0x200ea898
+0058cf46 2c64cf46 42f21071   movw     r1, #0x2710
+0058cf4a 2c64cf4a 1868       ldr      r0, [r3]
+0058cf4c 2c64cf4c 02f090fb   bl       #0x2c64f670
+0058cf50 2c64cf50 99f80040   ldrb.w   r4, [sb]
+0058cf54 2c64cf54 5cb1       cbz      r4, #0x2c64cf6e
+0058cf56 2c64cf56 2346       mov      r3, r4
+0058cf58 2c64cf58 0320       movs     r0, #3
+0058cf5a 2c64cf5a 384a       ldr      r2, [pc, #0xe0] ; literal[0x58d03c]=0x2ca1dc80 'SeApi_SeConfigure'
+0058cf5c 2c64cf5c 3849       ldr      r1, [pc, #0xe0] ; literal[0x58d040]=0x2c914394 'SeApi: %s: NFA_EeSetDefaultTechRouting ESE error: %d'
+0058cf5e 2c64cf5e 71f7abf5   bl       #0x2c1beab8
+0058cf62 2c64cf62 97e7       b        #0x2c64ce94
+0058cf64 2c64cf64 0022       movs     r2, #0
+0058cf66 2c64cf66 0320       movs     r0, #3
+0058cf68 2c64cf68 3649       ldr      r1, [pc, #0xd8] ; literal[0x58d044]=0x2c9143cc 'SeApi: NFA_EeSetDefaultTechRouting for ESE call error: %d'
+0058cf6a 2c64cf6a 71f7a5f5   bl       #0x2c1beab8
+0058cf6e 2c64cf6e 0923       movs     r3, #9
+0058cf70 2c64cf70 3380       strh     r3, [r6]
+0058cf72 2c64cf72 07f00df8   bl       #0x2c653f90
+0058cf76 2c64cf76 0446       mov      r4, r0
+0058cf78 2c64cf78 d0b9       cbnz     r0, #0x2c64cfb0
+0058cf7a 2c64cf7a 2f4b       ldr      r3, [pc, #0xbc] ; literal[0x58d038]=0x200ea898
+0058cf7c 2c64cf7c 42f21071   movw     r1, #0x2710
+0058cf80 2c64cf80 1868       ldr      r0, [r3]
+0058cf82 2c64cf82 02f075fb   bl       #0x2c64f670
+0058cf86 2c64cf86 99f80040   ldrb.w   r4, [sb]
+0058cf8a 2c64cf8a 8cb9       cbnz     r4, #0x2c64cfb0
+0058cf8c 2c64cf8c 1e23       movs     r3, #0x1e
+0058cf8e 2c64cf8e 3380       strh     r3, [r6]
+0058cf90 2c64cf90 03f048ff   bl       #0x2c650e24
+0058cf94 2c64cf94 a0bb       cbnz     r0, #0x2c64d000
+0058cf96 2c64cf96 42f21071   movw     r1, #0x2710
+0058cf9a 2c64cf9a d8f80000   ldr.w    r0, [r8]
+0058cf9e 2c64cf9e 02f067fb   bl       #0x2c64f670
+0058cfa2 2c64cfa2 99f80020   ldrb.w   r2, [sb]
+0058cfa6 2c64cfa6 002a       cmp      r2, #0
+0058cfa8 2c64cfa8 35d1       bne      #0x2c64d016
+0058cfaa 2c64cfaa 0123       movs     r3, #1
+0058cfac 2c64cfac 2b70       strb     r3, [r5]
+0058cfae 2c64cfae 7be7       b        #0x2c64cea8
+0058cfb0 2c64cfb0 0320       movs     r0, #3
+0058cfb2 2c64cfb2 2549       ldr      r1, [pc, #0x94] ; literal[0x58d048]=0x2c914408 'SeApi: NFA_EeUpdateNow Routing failed \n'
+0058cfb4 2c64cfb4 71f780f5   bl       #0x2c1beab8
+0058cfb8 2c64cfb8 6ce7       b        #0x2c64ce94
+0058cfba 2c64cfba 2449       ldr      r1, [pc, #0x90] ; literal[0x58d04c]=0x2c914248 'SeApi: NFA_StopRfDiscovery call error: %d'
+0058cfbc 2c64cfbc 0320       movs     r0, #3
+0058cfbe 2c64cfbe 71f77bf5   bl       #0x2c1beab8
+0058cfc2 2c64cfc2 3580       strh     r5, [r6]
+0058cfc4 2c64cfc4 03f0f2fe   bl       #0x2c650dac
+0058cfc8 2c64cfc8 214b       ldr      r3, [pc, #0x84] ; literal[0x58d050]=0x200ea89c
+0058cfca 2c64cfca 42f21071   movw     r1, #0x2710
+0058cfce 2c64cfce 1868       ldr      r0, [r3]
+0058cfd0 2c64cfd0 02f04efb   bl       #0x2c64f670
+0058cfd4 2c64cfd4 0323       movs     r3, #3
+0058cfd6 2c64cfd6 194a       ldr      r2, [pc, #0x64] ; literal[0x58d03c]=0x2ca1dc80 'SeApi_SeConfigure'
+0058cfd8 2c64cfd8 1846       mov      r0, r3
+0058cfda 2c64cfda 1e49       ldr      r1, [pc, #0x78] ; literal[0x58d054]=0x2c91436c 'SeApi: %s: StopRfDiscovery error: %d'
+0058cfdc 2c64cfdc 71f76cf5   bl       #0x2c1beab8
+0058cfe0 2c64cfe0 0324       movs     r4, #3
+0058cfe2 2c64cfe2 57e7       b        #0x2c64ce94
+0058cfe4 2c64cfe4 1c49       ldr      r1, [pc, #0x70] ; literal[0x58d058]=0x2c914220 'SeApi: NFA_StopRfDiscovery error: %d'
+0058cfe6 2c64cfe6 0320       movs     r0, #3
+0058cfe8 2c64cfe8 71f766f5   bl       #0x2c1beab8
+0058cfec 2c64cfec 3580       strh     r5, [r6]
+0058cfee 2c64cfee 03f0ddfe   bl       #0x2c650dac
+0058cff2 2c64cff2 42f21071   movw     r1, #0x2710
+0058cff6 2c64cff6 d8f80000   ldr.w    r0, [r8]
+0058cffa 2c64cffa 02f039fb   bl       #0x2c64f670
+0058cffe 2c64cffe e9e7       b        #0x2c64cfd4
+0058d000 2c64d000 0246       mov      r2, r0
+0058d002 2c64d002 1649       ldr      r1, [pc, #0x58] ; literal[0x58d05c]=0x2c914458 'SeApi: NFA_StartRfDiscovery call error: %d'
+0058d004 2c64d004 0320       movs     r0, #3
+0058d006 2c64d006 71f757f5   bl       #0x2c1beab8
+0058d00a 2c64d00a 0322       movs     r2, #3
+0058d00c 2c64d00c 1449       ldr      r1, [pc, #0x50] ; literal[0x58d060]=0x2c914484 'SeApi: StartRfDiscovery error: %d'
+0058d00e 2c64d00e 1046       mov      r0, r2
+0058d010 2c64d010 71f752f5   bl       #0x2c1beab8
+0058d014 2c64d014 e4e7       b        #0x2c64cfe0
+0058d016 2c64d016 0320       movs     r0, #3
+0058d018 2c64d018 1249       ldr      r1, [pc, #0x48] ; literal[0x58d064]=0x2c914430 'SeApi: NFA_StartRfDiscovery error: %d'
+0058d01a 2c64d01a 71f74df5   bl       #0x2c1beab8
+0058d01e 2c64d01e f4e7       b        #0x2c64d00a
+0058d020 2c64d020 95a9       add      r1, sp, #0x254
+0058d022 2c64d022 0e20       movs     r0, #0xe
+0058d024 2c64d024 d605       lsls     r6, r2, #0x17
+0058d026 2c64d026 0b20       movs     r0, #0xb
+0058d028 2c64d028 8ca8       add      r0, sp, #0x230
+0058d02a 2c64d02a 0e20       movs     r0, #0xe
+0058d02c 2c64d02c d8a8       add      r0, sp, #0x360
+0058d02e 2c64d02e 0e20       movs     r0, #0xe
+0058d030 2c64d030 82a9       add      r1, sp, #0x208
+0058d032 2c64d032 0e20       movs     r0, #0xe
+0058d034 2c64d034 2ca9       add      r1, sp, #0xb0
+0058d036 2c64d036 0e20       movs     r0, #0xe
+0058d038 2c64d038 98a8       add      r0, sp, #0x260
+0058d03a 2c64d03a 0e20       movs     r0, #0xe
+0058d03c 2c64d03c 80dc       bgt      #0x2c64cf40
+0058d03e 2c64d03e a12c       cmp      r4, #0xa1
+0058d040 2c64d040 9443       bics     r4, r2
+0058d042 2c64d042 912c       cmp      r4, #0x91
+0058d044 2c64d044 cc43       mvns     r4, r1
+0058d046 2c64d046 912c       cmp      r4, #0x91
+0058d048 2c64d048 0844       add      r0, r1
+0058d04a 2c64d04a 912c       cmp      r4, #0x91
+0058d04c 2c64d04c 4842       rsbs     r0, r1, #0
+0058d04e 2c64d04e 912c       cmp      r4, #0x91
+0058d050 2c64d050 9ca8       add      r0, sp, #0x270
+0058d052 2c64d052 0e20       movs     r0, #0xe
+0058d054 2c64d054 6c43       muls     r4, r5, r4
+0058d056 2c64d056 912c       cmp      r4, #0x91
+0058d058 2c64d058 2042       tst      r0, r4
+0058d05a 2c64d05a 912c       cmp      r4, #0x91
+0058d05c 2c64d05c 5844       add      r0, fp
+0058d05e 2c64d05e 912c       cmp      r4, #0x91
+0058d060 2c64d060 8444       add      ip, r0
+0058d062 2c64d062 912c       cmp      r4, #0x91
+0058d064 2c64d064 3044       add      r0, r6
+0058d066 2c64d066 912c       cmp      r4, #0x91
+0058d068 2c64d068 28a9       add      r1, sp, #0xa0
+0058d06a 2c64d06a 0e20       movs     r0, #0xe

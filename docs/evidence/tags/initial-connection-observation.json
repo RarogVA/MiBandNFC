@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-13",
+  "apk_version": "0.2",
+  "face_version": 1,
+  "band_user_report": "NFC Tags v1: UID none, Display only unsupported, OFFLINE",
+  "pixel_observation": {
+    "expected_service": "7dbb0011-8e51-4f89-a9cb-9d40bb8c0e31",
+    "expected_service_found": false,
+    "legacy_service_found": "7dbb0001-8e51-4f89-a9cb-9d40bb8c0e31",
+    "bluetooth_toggle_changed_result": false,
+    "gatt_refresh_returned": true,
+    "bounded_refresh_retry_found_expected_service": false,
+    "nfc_start_sent": false,
+    "nfc_readback_performed": false,
+    "catalog_survived_apk_update": true,
+    "fixture_ndef_bytes": 23,
+    "screen_timeout_restored_ms": 30000
+  },
+  "next_step": "Connection and one NDEF readback are now confirmed; next work is background/sleep operation and reading a real physical NDEF tag.",
+  "evidence_kind": "Assistant observation and user replies; not a raw controller trace",
+  "diagnostic_face_v2": {
+    "transfer_reported_complete": true,
+    "native_elf_unchanged_from_v1": true,
+    "user_diagnostics_reply_pending": false,
+    "user_reported_stage": "ble",
+    "user_reported_rc": 0,
+    "user_reported_state": 69905,
+    "state_hex": "0x11111",
+    "decoded": {
+      "running": 1,
+      "table_added": 1,
+      "advertising": 1,
+      "advertising_attempted": 1,
+      "service_handle": 1,
+      "subscribed": 0
+    },
+    "identity_limitation": "Shared /tmp/apdu_lab_state does not prove which resident module wrote this record"
+  },
+  "resolution": {
+    "gatt_discovery_fixed_in_apk": "0.3",
+    "connection_kept_alive_during_refresh": true,
+    "new_service_found": true,
+    "successful_readback_report": "pixel-0.3-v2-readback.json",
+    "note": "First QUERY still timed out; reconnect with awake band succeeded. Sleep causality not proven."
+  }
+}

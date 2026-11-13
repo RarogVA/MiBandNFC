@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-13",
+  "scope": "Read-only static exact phone code and official web documentation. No hardware, pairing/session execution, backend calls, card data, payment keys, signature spoofing or OS permission bypass.",
+  "conclusion": "No supported conversion from the demonstrated custom Vela/native APDU bridge to Mir Pay wearable payments was established. The inspected Devices channel provisions/manages a separate watch wallet; implementing its transport is not a phone-HCE APDU ingress. A separate licensed Mir HCE SDK exists, potentially relevant to a new wallet integration but not proven to expose existing Mir Pay credentials or support BLE/Vela transport.",
+  "exact_phone_findings": [
+    {
+      "file": "validation/decompiled/watch-command-verified.java",
+      "lines": [
+        13,
+        23,
+        57
+      ],
+      "finding": "WatchCommand finite enum contains session init/accept, device bind/binded, card list/add and errors; no raw APDU processing command in this enum."
+    },
+    {
+      "file": "validation/decompiled/db0-a-verified.java",
+      "lines": [
+        38,
+        40,
+        210,
+        374
+      ],
+      "finding": "Generic wearable transport uses standard SPP plus FFE0/FFE1 wake and int32-length frames. Common serial UUID does not imply custom APDU service compatibility."
+    },
+    {
+      "file": "integration/evidence/wear-qb0-a.java",
+      "lines": [
+        31,
+        50
+      ],
+      "finding": "Frames serialize/parse a WatchMessageContainer JSON object, not a raw APDU stream."
+    },
+    {
+      "file": "integration/evidence/wear-pb0-b.java",
+      "lines": [
+        38,
+        61
+      ],
+      "finding": "SESSION_ACCEPT transitions through peer-key state or device binding. Successful transport/session setup is separate from card enrollment."
+    },
+    {
+      "file": "integration/evidence/wear-pb0-c.java",
+      "lines": [
+        28,
+        40
+      ],
+      "finding": "DEVICE_BINDED handles peer key persistence and transitions to card-management state. This is not evidence of backend payment registration or a usable wallet."
+    },
+    {
+      "file": "integration/evidence/wear-pb0-d.java",
+      "lines": [
+        33,
+        77
+      ],
+      "finding": "Connected-state handlers protect add-card request payload and decode AddCardResponse/CardListResponse. No terminal APDU branch in this inspected state."
+    },
+    {
+      "file": "integration/evidence/wear-ib0-q.java",
+      "lines": [
+        9,
+        12,
+        41
+      ],
+      "finding": "PlatformTypeDto lists Android/HarmonyOS/WearOS; no Vela value. Enum content alone is not a complete supported-device allowlist."
+    }
+  ],
+  "watch_code_limit": {
+    "attachment_present_now": false,
+    "retained_evidence": "band/supplied-protocol-review.json",
+    "prior_findings": "Earlier watch analysis described HarmonyOS local HceService, local apduProcessor, and ADD_CARD_REQUEST leading to CARD_ENROLLMENT. Original generated watch mjs files are absent now, so these claims are retained historical evidence, not freshly reread source. No full watch unpack attempted."
+  },
+  "official_sources": [
+    {
+      "url": "https://pay.mironline.ru/help/",
+      "title": "Mir Pay: Помощь",
+      "retrieval": "Official-domain search result refreshed this turn; direct open returned502",
+      "summary": "Guaranteed watch support lists Huawei Watch5/Ultimate2 on HarmonyOS5+. Setup installs Mir Pay on the watch; Devices assists separate card addition and activation. Watch security requires a screen lock. Xiaomi/Vela compatibility is not documented here."
+    },
+    {
+      "url": "https://www.nspk.ru/cards-mir/soft",
+      "title": "Программное обеспечение НСПК",
+      "retrieval": "Official-domain search result crawled today; direct open502, local urllib certificate chain error; TLS not bypassed",
+      "summary": "Mir Pay SDK app2app handles issuer-app tokenization and in-app commerce. Separately, Mir HCE SDK for Android includes wallet tokenization, instance registration/authentication, protected token/key storage and NFC POS transactions. SDK access requires registration, licensing and portal access. Public descriptions do not promise BLE APDU transport, Vela support or access to another installed Mir Pay wallet."
+    }
+  ],
+  "missing_for_supported_implementation": [
+    "A supplied SDK and integration contract that permits the selected external APDU transport, or a documented Mir Pay external-device APDU entrypoint.",
+    "For a separate wallet: authorized application-instance registration and supported token provisioning/lifecycle, rather than copying an existing phone token.",
+    "A supported watch wallet runtime/SDK for Vela if payments are to execute locally on the band; HarmonyOS app code cannot be assumed portable native ARM code."
+  ],
+  "files_sha256": {
+    "validation/decompiled/watch-command-verified.java": "cb6050a97a17eab4dd575f75f6c742fabccdc22ad09fc4421d57026828783e3a",
+    "validation/decompiled/db0-a-verified.java": "2de21550569ca0cba55309e697b9eabe320b56d90736a33fb64c87fe1cd79781",
+    "integration/evidence/wear-ib0-q.java": "b8d4bb1affc99fdf8121331eefbf9da8a6dcb6a0821d29df37570f59be482681",
+    "integration/evidence/wear-pb0-b.java": "22ab51ab3fd6bc9046fa2c2e5901f590d890e9c4b8ddf7f5b73bf099723f1f01",
+    "integration/evidence/wear-pb0-c.java": "6c2232e04b0d960ddcf737878d0db9147d468b423d863d917e5e9931edf83790",
+    "integration/evidence/wear-pb0-d.java": "0aa3fb3c0aa178cc1248b07e216c8dccd2af69b91418b278bcc1356d25e33011",
+    "integration/evidence/wear-pb0-e.java": "cea2c4cd239cf3ae41b30788c2f29a189d951dd407b5ad4deff3cf97e144df15",
+    "integration/evidence/wear-qb0-a.java": "85e0e365af3a3777d74e5622b5d6f6abc3b85037b12bf7d7bdf187fc01972555",
+    "integration/evidence/wear-hb0-f.java": "5c4695225df4b874e16a6e5e88e348b1dc4336e2d176417655be75390d3420e0",
+    "band/supplied-protocol-review.json": "0ab4d972283968288ab0728576a1f3a2d8083febfffd4378e9aca67da94fe255"
+  },
+  "phone_recovery_provenance": "validation/evidence/validation-summary.json independently reproduced recovered-3.dex from official/install-matching Mir Pay1.65.1.350 APK; this turn targeted classes decompiled again with checksum verification disabled for overlapping DEX. No binary repair or execution."
+}

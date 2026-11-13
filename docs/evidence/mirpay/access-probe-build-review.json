@@ -1,0 +1,41 @@
+{
+  "status": "BUILD_AND_STATIC_REVIEW_PASS",
+  "hardware_tested": false,
+  "artifact": {
+    "apk": "<historical-project>/integration/android/build/mirpay-access-check-debug.apk",
+    "sha256": "fa66bf9ecf0570009bdacf4502efe30deb8afc7ea19cb5c49317acd03c8cf43b",
+    "bytes": 16777,
+    "permissions": [],
+    "version_code": 1,
+    "version_name": "0.1-access-check",
+    "min_sdk": 33,
+    "target_sdk": 36,
+    "scope": "Metadata + ordinary HCE bind only; no Binder transactions/APDUs/payment data",
+    "installed": false,
+    "hardware_tested": false,
+    "source_sha256": {
+      "src/dev/mbapdu/compat/MainActivity.java": "9fcee17b59cf82e42fe0a266948d384939918fdd7dfb71f015e5218d20d5d33b"
+    }
+  },
+  "scope_review": {
+    "requested_permissions": [],
+    "target_package": "ru.nspk.mirpay",
+    "service_discovery": "Only HOST_APDU_SERVICE within target package; exactly one enabled exported candidate required",
+    "bind": "Single ordinary bindService attempt; SecurityException caught; callback/timeout cleanup for accepted binding",
+    "returned_binder_use": "None: no descriptor lookup, transact, Messenger, reflection or APDU message",
+    "stored_data": "Public package/service/permission metadata, signer certificate hash and bind outcome only",
+    "private_storage": "Own files/report.json; debuggable run-as supports operator retrieval"
+  },
+  "validation": [
+    "javac and D8 SDK36 compilation passed",
+    "APK v3 signature verified",
+    "zipalign check passed",
+    "aapt2 confirms package and zero requested permissions"
+  ],
+  "limitations": [
+    "No device interaction by author",
+    "A bind success would not establish APDU/payment support",
+    "No artificial unit tests added for framework-controlled permission enforcement"
+  ],
+  "_archive_context": "Historical build/static review; hardware_tested=false is its review scope. Subsequent ordinary HCE bind on stock Pixel is recorded in runtime-validation.json and pixel-mirpay-access-report.json. No payment APDU was sent."
+}

@@ -1,0 +1,18 @@
+{
+  "package": "ru.nspk.mirpay",
+  "package_evidence": [
+    "android.nfc.cardemulation.action.HOST_APDU_SERVICE:",
+    "9ea2fec ru.nspk.mirpay/.mElxqzEFDfFhA filter 8a252a5 permission android.permission.BIND_NFC_SERVICE",
+    "Action: \"android.nfc.cardemulation.action.HOST_APDU_SERVICE\"",
+    "versionCode=407 minSdk=24 targetSdk=35",
+    "versionName=1.65.1.350"
+  ],
+  "device": {
+    "ro.product.model": "Pixel 8a",
+    "ro.build.version.release": "17",
+    "ro.build.version.sdk": "37",
+    "ro.boot.verifiedbootstate": "green",
+    "ro.boot.flash.locked": "1"
+  },
+  "scope": "public package and OS metadata; no carddata"
+}

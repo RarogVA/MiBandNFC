@@ -1,0 +1,44 @@
+ARCHIVE CONTEXT (project cleanup, 2026-11-13): This is a historical static-analysis note. Statements such as "not runtime tested" describe the analysis stage, not the latest project status. Later v6/Android 0.4 produced one complete synthetic hardware PASS with verified cleanup; see ../evidence/pixel-gatt-v6-observation.json and ../evidence/README.md. That run does not validate every binding, timing case or fault path. References to removed clones/build outputs below are provenance, not current build dependencies.
+
+Exact p67glt / 3.201.026 monotonic clock binding
+
+Firmware SHA256:
+66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40
+
+clock_gettime: code 0x2c1c8e70, Thumb pointer 0x2c1c8e71.
+Discovery: supplied recorder ELF .text+0x1128 (now_ms) calls this pointer with
+clock id 0 and a 16-byte temporary. Recorder's helper uses only seconds;
+we did NOT reuse that coarse or realtime helper.
+
+Independent disassembly:
+0x2c1c8e7e compares clock ID with 1; 0x2c1c8e82 branches to 0x2c1c8ea0.
+ID4 takes the same branch. That path passes output pointer to 0x2c1c9024.
+ID0 takes a different path and adds the global wall-clock base at 0x200bf538.
+This is the expected CLOCK_MONOTONIC=1 / CLOCK_BOOTTIME=4 vs CLOCK_REALTIME=0
+dispatch, consistent with OpenVela/NuttX source listed below.
+
+0x2c1c9024 obtains elapsed ticks from 0x2c17d2d0, converts them to a timespec,
+stores seconds low32 at output+0 (0x2c1c908c), seconds high32 at output+4
+(0x2c1c9072), and nanoseconds32 at output+8 (0x2c1c908e).
+This independently verifies the 64-bit seconds / 32-bit nanoseconds layout.
+The caller allocates 16 bytes, preserving ARM 8-byte alignment.
+The conversion includes a 100000 ns factor (literal 0x186a0); our code does
+not depend on the tick frequency and uses the returned nanoseconds directly.
+
+native_clock.c verifies first 24 bytes of BOTH functions before calling them.
+It returns uint32 milliseconds modulo 2^32, suitable for unsigned elapsed
+differences over a 3-second timeout. Any ABI fingerprint/range/error failure
+returns -1; the caller must fail closed, not advance a synthetic UI counter.
+
+Primary sources:
+https://github.com/open-vela/nuttx/blob/dev/include/time.h
+  CLOCK_MONOTONIC=1, CLOCK_PROCESS_CPUTIME_ID=2, CLOCK_THREAD_CPUTIME_ID=3,
+  CLOCK_BOOTTIME=4. Current source is semantic corroboration, not firmware ABI.
+https://github.com/open-vela/nuttx/blob/dev/sched/clock/clock_gettime.c
+  MONOTONIC/BOOTTIME use elapsed system time; REALTIME adds wall-clock base.
+Local official feature runtime generated ABI header:
+../../firmware/platform/frameworks_runtimes_feature/rust/feature_frm/sys/src/feature_framework.rs
+  lines1998-1999 time_t=i64, clockid_t=int; lines2044-2046 timespec;
+  lines332-336 clock IDs. Exact layout evidence is the machine code above.
+
+No runtime clock call was performed on the device during this analysis.

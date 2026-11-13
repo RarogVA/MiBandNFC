@@ -1,0 +1,78 @@
+{
+  "face_id": "999999992",
+  "name": "Roundabout RU NFC 2",
+  "bytes": 3397615,
+  "sha256": "a9d798b9e7f612b31e1bb7368f7714dee67e4353a9b34dfaa77f91deb5ae3cc8",
+  "ui_version": 2,
+  "ui_module": "NFC_Tags_Catalog_UI_V2",
+  "core_version": 1,
+  "baseline_sha256": "2a7e7ff2b89b0845bf1cf96a63a0f844082d5be8d47b5c38312a480870bfa475",
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "normal_themes": [
+    0,
+    2,
+    3,
+    4
+  ],
+  "unchanged_resource_entries": 2464,
+  "changed_prefix_bytes": 80,
+  "editor_boundary": {
+    "uid": "0x20001a3",
+    "old_pixels": [
+      69,
+      69
+    ],
+    "new_pixels": [
+      84,
+      84
+    ],
+    "widget_position": [
+      126,
+      274
+    ],
+    "themes": 8
+  },
+  "resources": [
+    {
+      "name": "app/lua/main.lua",
+      "bytes": 6786,
+      "sha256": "1b41cd5898dccc0772a93dee9415e7ae56112e7d3474739316dce11f9e7c25c5"
+    },
+    {
+      "name": "app/lua/catalog_core_v1.elf",
+      "bytes": 37840,
+      "sha256": "f3d3fde87de70310adccfb318ef06092f7523635c993752521f56f956a5e17f1"
+    },
+    {
+      "name": "app/lua/catalog_ui_v2.elf",
+      "bytes": 10628,
+      "sha256": "b9acb2d04c0ca40528a39786af18723c6128f5277bdf8d0550fad079689ebcdc"
+    },
+    {
+      "name": "app/lua/left.bin",
+      "bytes": 2060,
+      "sha256": "390f3c670b81d3f77e8bfaa481bbbc4bb20326f23f1271b82ce7debefc6ad74a"
+    },
+    {
+      "name": "app/lua/right.bin",
+      "bytes": 2060,
+      "sha256": "bb35f247260c8a460c2f26caff889ddc087c52b257274d6a38e3c91c42da082f"
+    },
+    {
+      "name": "app/lua/refresh.bin",
+      "bytes": 2060,
+      "sha256": "4ff8cef577ed6097d0eda0afe00ea343357c15d1097fee6537ab64de4169060c"
+    }
+  ],
+  "preserved": "All baseline clock/metric payloads, image previews, other buttons and AOD rendering; lower-circle Widget references change for Lua and corrected editBox",
+  "manual_bootstrap_only": true,
+  "automatic_nfc_start": false,
+  "hardware_validated": false,
+  "remaining_hardware_checks": [
+    "Lua inside ordinary Widget initializes and receives tap",
+    "Both files extract into face directory",
+    "First-tap UI deferred open",
+    "Later native shortcut pass-through",
+    "Reboot and repeat"
+  ]
+}

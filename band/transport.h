@@ -11,6 +11,10 @@
 #define TRANSPORT_TAG 5u
 #define TRANSPORT_MAX_TAG 128u
 #endif
+#ifdef TAG_CATALOG_PROFILE
+#define TRANSPORT_CATALOG 6u
+#define TRANSPORT_SELECTION 7u
+#endif
 typedef void (*transport_frame_cb)(uint8_t type, uint32_t sequence,
                                   const uint8_t *payload, uint16_t length);
 /* Exact p67glt 3.201.026 only. Calls must originate from the module's single

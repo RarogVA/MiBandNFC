@@ -72,7 +72,7 @@ public final class TagTest {
         rejected(()->new Protocol.Frame(Protocol.CONTROL,1,new byte[2]),"control length");
         rejected(()->new Protocol.Frame(Protocol.TAG,1,new byte[129]),"metadata cap");
         rejected(()->new Protocol.Frame(Protocol.RESPONSE,1,new byte[1]),"response SW required");
-        rejected(()->new Protocol.Frame(6,1,new byte[1]),"unknown kind");
+        rejected(()->new Protocol.Frame(8,1,new byte[1]),"unknown kind");
         byte[] bad=wire.clone();bad[8]=1;bad[9]=1;rejected(()->new Protocol.Parser().feed(bad,f->{}),"oversized header");
 
         CommandGate gate=new CommandGate();gate.begin(9,"TAG_OK");gate.status(8,"TAG_OK");gate.write(9,true);require(!gate.complete(),"wrong seq never completes");
@@ -121,6 +121,7 @@ public final class TagTest {
         require(!refresh.waitForRediscovery(retry)&&!refresh.claimExplicitDiscovery(retry),"automatic success suppresses delayed explicit discover");
         refresh.begin();require(!refresh.current(retry),"second explicit connect cancels previous work");
         require(refresh.claimSetup()&&!refresh.attempted(),"normal service discovery needs no cache refresh");
-        System.out.println("PASS "+checks+" assertions: Type4 NDEF, metadata/framing, STATUS+ATT gates, independent readback and bounded cache refresh");
+        checks+=CatalogTest.run();
+        System.out.println("PASS "+checks+" assertions: Type4 NDEF, catalog vectors/bounds, selection identity/reconnect races, STATUS+ATT gates, independent readback and bounded cache refresh");
     }
 }

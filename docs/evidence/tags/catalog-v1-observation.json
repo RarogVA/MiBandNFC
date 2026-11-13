@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-13",
+  "face_sha256": "3489284f67a19cb1d521933b7c2f99ce2602c2ac509a06c3723e48e01c77fdf2",
+  "apk_sha256": "2cbd196e9ed073504ca2f68ded891982583140dd983bf4a42c0ccb3481a73819",
+  "observed": "Notify 99% then completion; Pixel live diagnostic statuses below",
+  "statuses": [
+    "STATUS #1471636239 STOPPED",
+    "STATUS #1471636240 CATALOG_V1",
+    "STATUS #1471636242 CAT_BEGIN",
+    "STATUS #1471636243 CAT_DATA:143",
+    "STATUS #1471636244 CAT_COMMIT:12",
+    "STATUS #536870913 SELECT_OK",
+    "STATUS #536870914 SELECT_OK",
+    "STATUS #536870915 SELECT_OK",
+    "STATUS #536870916 SELECT_OK",
+    "STATUS #536870917 SELECT_OK",
+    "STATUS #536870918 SELECT_OK",
+    "STATUS #536870919 SELECT_OK"
+  ],
+  "band_visual_confirmation": "User confirmed first-tap page opening and synchronization. User photograph shows NFC-Test, NDEF badge, navigation/refresh controls and green module OK. UI1 had a square 180x180 card; UI2 changes are pending hardware check.",
+  "nfc_readback": "not performed on this version",
+  "user_confirmed_sync": true
+}

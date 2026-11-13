@@ -1,3 +1,6 @@
+#ifdef TAG_CATALOG_PROFILE
+#include "../catalog/core.c"
+#else
 /* Single control loop for read-only NFC Type 4 NDEF sharing. No payment AIDs.
  * This module stays resident until reboot: asynchronous firmware callbacks
  * may outlive a user action, so there is deliberately no rmmod/destructor. */
@@ -279,3 +282,4 @@ __attribute__((constructor)) static void module_constructor(void) {
     (void)module_initialize();
 }
 #endif
+#endif /* TAG_CATALOG_PROFILE */

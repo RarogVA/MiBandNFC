@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "results": {
+    "catalog": "catalog SHA256, Android golden fixture, UTF8/NDEF bounds, 32x1024 capacity, atomic storage/faults/reload: PASS",
+    "core": "catalog core: capability, transactional sync, offline API, STOP-before-select, exact handshake, epochs, health and NFC deadlines: PASS",
+    "transport": "catalog transport: type6<=261/type7exact57 fragments, ATT send, malformed bounds and epochs: PASS"
+  }
+}

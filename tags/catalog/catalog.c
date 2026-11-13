@@ -11,7 +11,7 @@ static int utf8(const uint8_t *p,size_t n){
   if(c<0x80){if(c<32||c==127)return 0;continue;}
   if(c>=0xc2&&c<=0xdf){more=1;min=0x80;c&=31;}else if(c>=0xe0&&c<=0xef){more=2;min=0x800;c&=15;}else if(c>=0xf0&&c<=0xf4){more=3;min=0x10000;c&=7;}else return 0;
   if(more>n-i)return 0;while(more--){uint8_t v=p[i++];if((v&0xc0)!=0x80)return 0;c=(c<<6)|(v&63);}
-  if(c<min||c>0x10ffff||(c>=0xd800&&c<=0xdfff)||(c>=0x80&&c<=0x9f)||c==0x2028||c==0x2029)return 0;
+  if(c<min||c>0x10ffff||(c>=0xd800&&c<=0xdfff)||(c>=0x80&&c<=0x9f))return 0;
  }return 1;
 }
 int catalog_ndef_valid(const uint8_t *p,size_t n){

@@ -4,6 +4,7 @@ from pathlib import Path
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -33,17 +34,23 @@ def main():
         if p.exists(): shutil.rmtree(p)
         p.mkdir()
     core = [ROOT / ('src/dev/mbapdu/tags/' + name + '.java')
-            for name in ['Protocol', 'Type4Ndef', 'CommandGate', 'ReadbackProof', 'NdefReadback', 'CacheRefreshGate']]
+            for name in ['Protocol', 'Type4Ndef', 'CommandGate', 'ReadbackProof', 'NdefReadback', 'CacheRefreshGate', 'CatalogWire', 'SelectionGate']]
     test_sources = sorted((ROOT / 'tests').rglob('*.java'))
     run([JAVA / 'bin/javac', '--release', '8', '-d', BUILD / 'tests'] + core + test_sources)
-    run([JAVA / 'bin/java', '-cp', BUILD / 'tests', 'dev.mbapdu.tags.TagTest'])
+    test_output = subprocess.check_output([str(JAVA / 'bin/java'), '-cp', str(BUILD / 'tests'), 'dev.mbapdu.tags.TagTest'], text=True, env=ENV, cwd=ROOT)
+    print(test_output, end='')
+    assertion_match = re.search(r'^PASS (\d+) assertions:', test_output, re.M)
+    if not assertion_match: raise SystemExit('Missing JVM test success marker')
+    assertion_count = int(assertion_match.group(1))
     if '--test-only' in sys.argv: return
     sources = sorted((ROOT / 'src').rglob('*.java'))
     run([JAVA / 'bin/javac', '--release', '8', '-Xlint:deprecation', '-cp', ANDROID, '-d', BUILD / 'classes'] + sources)
     run([BT / 'd8', '--min-api', '33', '--lib', ANDROID, '--output', BUILD / 'dex'] + sorted((BUILD / 'classes').rglob('*.class')))
     raw = BUILD / 'unsigned.apk'
+    resources = BUILD / 'resources.zip'
+    run([BT / 'aapt2', 'compile', '--dir', ROOT / 'res', '-o', resources])
     run([BT / 'aapt2', 'link', '-I', ANDROID, '--manifest', ROOT / 'AndroidManifest.xml', '-o', raw,
-         '--min-sdk-version', '33', '--target-sdk-version', '36', '--version-code', '3', '--version-name', '0.3'])
+         '--min-sdk-version', '33', '--target-sdk-version', '36', '--version-code', '5', '--version-name', '0.4.1', resources])
     append_dex(raw, BUILD / 'dex')
     aligned = BUILD / 'aligned.apk'
     run([BT / 'zipalign', '-f', '4', raw, aligned])
@@ -55,12 +62,14 @@ def main():
     run([BT / 'zipalign', '-c', '4', apk])
     permissions = subprocess.check_output([str(BT / 'aapt'), 'dump', 'permissions', str(apk)], text=True, env=ENV)
     expected = {'android.permission.NFC', 'android.permission.BLUETOOTH_SCAN', 'android.permission.BLUETOOTH_CONNECT'}
-    import re
     actual = set(re.findall(r"uses-permission: name='([^']+)'", permissions))
     if actual != expected: raise SystemExit('Unexpected APK permissions: ' + repr(actual))
     result = {'apk': str(apk), 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(), 'bytes': apk.stat().st_size,
-              'min_sdk': 33, 'target_sdk': 36, 'version_code': 3, 'version_name': '0.3', 'permissions': sorted(actual),
-              'tests': 'JVM Type4 NDEF/protocol/session gate tests passed', 'hardware_tested': False, 'installed': False}
+              'min_sdk': 33, 'target_sdk': 36, 'version_code': 5, 'version_name': '0.4.1', 'permissions': sorted(actual),
+              'tests': 'JVM Type4 NDEF/catalog codec/selection identity and session gate tests passed',
+              'jvm_assertions': assertion_count, 'hardware_tested': False, 'installed': False,
+              'source_sha256': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                                for p in sorted(sources + test_sources + list((ROOT / 'res').rglob('*.xml')) + [ROOT / 'build.py', ROOT / 'AndroidManifest.xml'])}}
     (BUILD / 'build-result.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result, indent=2))
 

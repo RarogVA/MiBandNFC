@@ -1,0 +1,34 @@
+{
+  "source": "https://github.com/google/material-design-icons",
+  "license": "Apache-2.0",
+  "modified": "Rasterized and encoded as Vela I8",
+  "files": {
+    "left": {
+      "source_sha256": "74e629a34d9c70d3a58423a69f293b79608572e0ffedbaebcd355d6e5504cc11",
+      "image_sha256": "390f3c670b81d3f77e8bfaa481bbbc4bb20326f23f1271b82ce7debefc6ad74a",
+      "bytes": 2060,
+      "size": [
+        32,
+        32
+      ]
+    },
+    "right": {
+      "source_sha256": "390662dc8ec4b8a4e670afaec43c1391127441630e4d95c838a4c622d82f1e1b",
+      "image_sha256": "bb35f247260c8a460c2f26caff889ddc087c52b257274d6a38e3c91c42da082f",
+      "bytes": 2060,
+      "size": [
+        32,
+        32
+      ]
+    },
+    "refresh": {
+      "source_sha256": "664bd99290acdcd6ddfcacc7760b5f45aa0325648b8f29edf7b3fad36303a7b0",
+      "image_sha256": "4ff8cef577ed6097d0eda0afe00ea343357c15d1097fee6537ab64de4169060c",
+      "bytes": 2060,
+      "size": [
+        32,
+        32
+      ]
+    }
+  }
+}

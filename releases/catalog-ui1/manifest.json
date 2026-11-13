@@ -1,0 +1,101 @@
+{
+  "name": "Roundabout RU NFC 2 + Catalog v1",
+  "date": "2026-11-13",
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "face_id": "999999992",
+  "status": "experimental; hardware verification pending",
+  "hardware": {
+    "apk_installed": true,
+    "face_transferred": true,
+    "first_tap_bootstrap": true,
+    "catalog_sync": true,
+    "nfc_readback": false,
+    "notify_99_then_completion": true,
+    "catalog_revision_observed": 12,
+    "selection_acknowledgements_observed": 7,
+    "native_ui1_photo": "NFC-Test / NDEF / OK; user confirms catalog synchronization"
+  },
+  "features": [
+    "Horizontal bottom captions; all numeric resources and their original angles/positions preserved",
+    "Right Kcal and heart-rate captions shifted 12px right, unchanged y",
+    "Lower edit frame 84x84 aligned with the live circle",
+    "Manual first-tap module bootstrap and native catalog screen",
+    "Up to 32 stored records; next/previous buttons; no scrolling",
+    "No automatic NFC start or RF wake",
+    "Centered bootstrap status; existing-directory mkdir error handled by verified file probe"
+  ],
+  "files": {
+    "roundabout-ru-nfc2-p67glt.face": {
+      "bytes": 3712010,
+      "sha256": "3489284f67a19cb1d521933b7c2f99ce2602c2ac509a06c3723e48e01c77fdf2"
+    },
+    "catalog-core-v1.elf": {
+      "bytes": 37840,
+      "sha256": "f3d3fde87de70310adccfb318ef06092f7523635c993752521f56f956a5e17f1"
+    },
+    "nfc-tags-catalog-ui-v1.elf": {
+      "bytes": 10688,
+      "sha256": "173f59ce025149e14e99dd662c3c947e5243c872dd4fece2992d2cbc75a9812b"
+    },
+    "roundabout-preview.png": {
+      "bytes": 50977,
+      "sha256": "53e2cde4620c28682dcd4c1f27438e58530645e180e2345db35d7e8d1d7815ae"
+    },
+    "roundabout-styles.png": {
+      "bytes": 261383,
+      "sha256": "4eb151200179202e8d10995c39b6c041857c9fcc14ab205af307f6c94e494b1b"
+    },
+    "core-build.json": {
+      "bytes": 3728,
+      "sha256": "acccc972fb3b79991b12b750e91c82732fee1a98d96d3b4088a79a81ae8b5795"
+    },
+    "core-tests.json": {
+      "bytes": 493,
+      "sha256": "273bba4cc017926dcafd07c6c4a1277a45140fefd39be1e92e4153ecc602a54a"
+    },
+    "ui-build.json": {
+      "bytes": 2284,
+      "sha256": "e46391deb6e4b3c91959034060e4ebb867d2257884daeef7ce48bdc4f6b4a7c2"
+    },
+    "ui-tests.json": {
+      "bytes": 1527,
+      "sha256": "d0a95bfcc7c3f3319695cceb7de3d2ef38de93325c351164f6eafefda618177b"
+    },
+    "face-validation.json": {
+      "bytes": 1431,
+      "sha256": "a1e2806b737fda1d8cc04869c01047abca28caf847d9769029d37b67e3ff40a8"
+    },
+    "labels-validation.json": {
+      "bytes": 33352,
+      "sha256": "ad4fb9f39c50225336a2cacf0ae788d3899acb6a613dc55a141992c2007efda1"
+    },
+    "clearance-validation.json": {
+      "bytes": 5223,
+      "sha256": "9d6bdf7d5eec8d84f038d781f2f17c62d0f15c8e571c2541ac9bbb3e5b9e2d8b"
+    },
+    "tag-bridge-0.4.1.apk": {
+      "bytes": 62152,
+      "sha256": "2cbd196e9ed073504ca2f68ded891982583140dd983bf4a42c0ccb3481a73819"
+    },
+    "android-build.json": {
+      "bytes": 3115,
+      "sha256": "c40fb421092c657e2f5d39295fe8efeae58c8a9fd7a7ea1f6b3eb3ecc69c961f"
+    },
+    "editor-validation.json": {
+      "bytes": 1686,
+      "sha256": "5f80e9f6d199e16d0ae11df7d9c0c0d5a0800aec6c11be242f67e111126b60f5"
+    }
+  },
+  "android_version": "0.4.1",
+  "hardware_observations": [
+    {
+      "face_sha256": "023ccedae7e67199a653e9cb7fc7022b123cbf390df4312efb0cb90217da4330",
+      "notify_completed": true,
+      "user_confirmed_face": true,
+      "without_reboot": "REBOOT in lower circle, off-center",
+      "after_reboot": "FAIL in lower circle; native UI did not open"
+    }
+  ],
+  "evidence": "../../docs/evidence/tags/catalog-v1-observation.json"
+}

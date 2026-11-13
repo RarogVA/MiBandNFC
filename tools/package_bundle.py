@@ -21,7 +21,7 @@ def include(path):
     selected.add(path)
 
 
-for name in ['README.md', '.gitignore', 'Makefile']:
+for name in ['README.md', '.gitignore', 'Makefile', 'NOTICE.md', 'LICENSE']:
     path = ROOT / name
     if path.exists(): include(path)
 if not (ROOT / 'README.md').is_file():
@@ -35,10 +35,15 @@ for folder, patterns in {
     'watchface': ['*.lua'],
     'diagnostics/mirpay-access': ['build.py', 'AndroidManifest.xml', 'README.txt', 'README.md', 'src/**/*.java'],
     'docs': ['**/*.md', '**/*.txt', '**/*.json', '**/*.java'],
+    'docs/concepts': ['*.png', '*.py'],
     'tags': ['README.md', 'build_band.py', 'build_launcher_face.py', 'test_host.py'],
-    'tags/android': ['build.py', 'AndroidManifest.xml', 'README.md', 'src/**/*.java', 'tests/**/*.java'],
+    'tags/android': ['build.py', 'test_device.py', 'AndroidManifest.xml', 'README.md', 'src/**/*.java', 'tests/**/*.java', 'device-tests/**/*.java'],
+    'tags/android/res': ['**/*.xml', '**/*.png'],
     'tags/band': ['*.c', '*.h'],
+    'tags/catalog': ['*.c', '*.h', '*.py', '*.md', 'tests/*.c', 'tests/*.h'],
+    'tags/bootstrap': ['*.c', '*.h', '*.py', '*.lua', '*.md', '*.json', '*.png'],
     'tags/launcher': ['*.c', '*.h', '*.ld', '*.py', '*.md', '*.json', 'THIRD_PARTY_LICENSE'],
+    'tags/launcher/icons': ['*.py', '*.svg', '*.png', '*.bin', '*.json', 'LICENSE'],
     'tags/tests': ['*.c', '*.h'],
     'tags/watchface': ['*.lua'],
     'tags/ui-research': ['*.py', '**/*.md', '**/*.txt', '**/*.json'],
@@ -90,10 +95,14 @@ def include_release_set(relative_folder, optional=False):
     if not manifest_path.is_file() or not checksums_path.is_file():
         raise ValueError('Release set needs both manifest.json and SHA256SUMS: ' + relative_folder)
     manifest = json.loads(manifest_path.read_text())
-    if not isinstance(manifest.get('files'), dict) or not manifest['files']:
+    files = manifest.get('files')
+    # Android UI snapshots predate the multi-artifact release schema.
+    if files is None and all(key in manifest for key in ('apk', 'bytes', 'sha256')):
+        files = {manifest['apk']: {'bytes': manifest['bytes'], 'sha256': manifest['sha256']}}
+    if not isinstance(files, dict) or not files:
         raise ValueError('Release manifest must list files: ' + relative_folder)
     checksums = []
-    for name, record in manifest['files'].items():
+    for name, record in files.items():
         if Path(name).name != name or not name or name in {'manifest.json', 'SHA256SUMS'}:
             raise ValueError('Release entries must be simple artifact filenames: ' + name)
         path = release_root / name
@@ -106,7 +115,9 @@ def include_release_set(relative_folder, optional=False):
         raise ValueError('SHA256SUMS differs from manifest.json: ' + relative_folder)
     include(manifest_path)
     include(checksums_path)
-    release_sets.append((relative_folder, manifest['files']))
+    if (release_root / 'README.md').is_file():
+        include(release_root / 'README.md')
+    release_sets.append((relative_folder, files))
 
 
 include_release_set('releases')
@@ -115,6 +126,10 @@ include_release_set('releases')
 include_release_set('releases/tags', optional=True)
 include_release_set('releases/roundabout', optional=True)
 include_release_set('releases/roundabout-nfc', optional=True)
+include_release_set('releases/catalog', optional=True)
+include_release_set('releases/catalog-ui1', optional=True)
+include_release_set('releases/tags-ui', optional=True)
+include_release_set('releases/tags-ui-0.4.1', optional=True)
 
 bundle = ROOT / 'build/apdu-band-bridge.zip'
 bundle.parent.mkdir(exist_ok=True)

@@ -1,0 +1,51 @@
+{
+  "apk": "tag-bridge-0.4-ui.apk",
+  "sha256": "09bdb6c2c7d1fdd8155faaeb52a1b7f4cdc0c905f27cd121bde3ce6daa0c7df4",
+  "bytes": 62076,
+  "min_sdk": 33,
+  "target_sdk": 36,
+  "version_code": 4,
+  "version_name": "0.4",
+  "permissions": [
+    "android.permission.BLUETOOTH_CONNECT",
+    "android.permission.BLUETOOTH_SCAN",
+    "android.permission.NFC"
+  ],
+  "tests": "JVM Type4 NDEF/catalog codec/selection identity and session gate tests passed",
+  "jvm_assertions": 615,
+  "hardware_tested": false,
+  "installed": true,
+  "source_sha256": {
+    "AndroidManifest.xml": "464a73e8645686ae217fa5bd096cd0092671aa59a4857456cd3179484d5cd583",
+    "build.py": "3d8b69d4ee1bf6af5309cb8cbf735c8e036f905ffe3fabbf6d2d31aca88ea0f4",
+    "res/drawable/ic_nfc_foreground.xml": "49d725aa4e182b21da0edfaa9db5d85c5d2c3413420963e3079185711caa5a37",
+    "res/drawable/ic_nfc_monochrome.xml": "6ec2c695d97957aa57710e333774b70a517a19fce3a785c55571deebed61a934",
+    "res/mipmap-anydpi-v26/ic_launcher.xml": "09311ee07f0fa4e6d797b393f338773429733b81ce88ea9ebfcb19c528593980",
+    "res/values/colors.xml": "cfcb2d5272d00b879b336493b93121a4e3415a28aa720b595f946a4f5f6605f5",
+    "src/dev/mbapdu/tags/AppStyle.java": "2514b3f51f72238c15e552ccbdbaf9eb5a4e290794e75b4d5d5dab53b1b9f6d6",
+    "src/dev/mbapdu/tags/BleTransport.java": "e0b964fa6c9b38b76fbb89a37c5e838b3a6cd540ffb306c1fdb32828e6151a01",
+    "src/dev/mbapdu/tags/BridgeTransport.java": "a707245eb11059d6e8b9eedb22d0948fdefa1ce1fe8eec0fe74e0675072e1e11",
+    "src/dev/mbapdu/tags/CacheRefreshGate.java": "d9f7ec96a18eb1104c3e4647a05602cc966d6add73d7d0a121189262bc0fb5a6",
+    "src/dev/mbapdu/tags/Catalog.java": "3986c3f80d847ec3c2652a198208dac03a19c64d62a44df7469b4bb80da36b6f",
+    "src/dev/mbapdu/tags/CatalogWire.java": "eb3587683343cc5d7a6cd60208d8324ec34a9b930eb3e7990f18df098467e046",
+    "src/dev/mbapdu/tags/CommandGate.java": "549574c095a3c5a1ad8934e71d7acc7a21e57ddec56612bae952984cb43a34fe",
+    "src/dev/mbapdu/tags/MainActivity.java": "6e1182e9a738aa27ff9a16c09ede7e757074adc20d5941897bdd3759fc20afd3",
+    "src/dev/mbapdu/tags/NdefReadback.java": "7615a16b11334a2d69e341d75bef5fd49927cf7480c12c43a62e27545f822b9e",
+    "src/dev/mbapdu/tags/Protocol.java": "b44ebb6cfab6e913c00c7f0ffa225587c4aa9fe8bd9f1ec4b2079daf5202e18d",
+    "src/dev/mbapdu/tags/ReadbackProof.java": "c2812157dce92d64a42777db49e096b0eda87ca68132d7e66618c36a7cae823b",
+    "src/dev/mbapdu/tags/SelectionGate.java": "dad16e53e0b615f063e1ea0767b0f8c59c99305026ffc81866f56c889f839e88",
+    "src/dev/mbapdu/tags/TagRecord.java": "9806ca6a035b324d52e45ec3f2ffcd435b0834afdf2fd67e71524d889c20c931",
+    "src/dev/mbapdu/tags/Type4Ndef.java": "50a733046234cb8bd88cd42b7dbdbab5221fbf802e42601c3130e51f2398b9d8",
+    "tests/dev/mbapdu/tags/CatalogTest.java": "9a25bd62ca9bec5efefa8282e903ef521e07b708cc460e0c2ed981aec9432ad5",
+    "tests/dev/mbapdu/tags/TagTest.java": "84d3e7b8810a6ca43cad70b74ad7782b226000b63907633d5906b6f305fd8020"
+  },
+  "ui_tested_on": "Google Pixel 8a, 2026-11-13",
+  "ui_checks": [
+    "Black main screen and system insets",
+    "BLE dialog opens/closes",
+    "Debug dialog opens/closes",
+    "Three existing records and selected ID preserved",
+    "Adaptive launcher icon packaged"
+  ],
+  "nfc_catalog_hardware_test": "Not performed by this UI update"
+}

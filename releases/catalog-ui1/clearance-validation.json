@@ -1,0 +1,230 @@
+{
+  "face_sha256": "3489284f67a19cb1d521933b7c2f99ce2602c2ac509a06c3723e48e01c77fdf2",
+  "method": "Chebyshev distance: all live progress-frame alpha pixels versus final Calories/heart-rate glyph alpha; icon columns excluded",
+  "results": [
+    {
+      "theme": 0,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 0,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 0,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 0,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 1,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 1,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 1,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 1,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 2,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 2,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 2,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 2,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 3,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 3,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 3,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 3,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 4,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 4,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 4,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 4,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 5,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 5,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 5,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 5,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 6,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 6,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 6,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 6,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 7,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "right",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 7,
+      "label": "\u0427\u0421\u0421",
+      "side": "right",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    },
+    {
+      "theme": 7,
+      "label": "\u041a\u043a\u0430\u043b",
+      "side": "left",
+      "minimum_pixel_distance": 4,
+      "empty_pixel_gap": 3
+    },
+    {
+      "theme": 7,
+      "label": "\u0427\u0421\u0421",
+      "side": "left",
+      "minimum_pixel_distance": 3,
+      "empty_pixel_gap": 2
+    }
+  ]
+}

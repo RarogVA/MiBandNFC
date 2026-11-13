@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 final class TagRecord {
-    final String id,uid,technology,details;String name;final byte[] ndef;long revision=1;
+    final String id,uid,technology,details;String name;final byte[] ndef;long revision=1;boolean syncToBand;
     TagRecord(String id,String name,String uid,String technology,String details,byte[] ndef) {
         this.id=id;this.name=name;this.uid=uid;this.technology=technology;this.details=details;
         this.ndef=ndef==null?null:ndef.clone();
@@ -64,7 +64,7 @@ final class TagRecord {
         }catch(Exception e){return "NDEF · "+ndef.length+" байт";}
     }
     JSONObject json() throws JSONException {
-        JSONObject o=new JSONObject();o.put("id",id);o.put("revision",revision);o.put("name",name);o.put("uid",uid);o.put("technology",technology);o.put("details",details);
+        JSONObject o=new JSONObject();o.put("id",id);o.put("revision",revision);o.put("name",name);o.put("uid",uid);o.put("technology",technology);o.put("details",details);o.put("syncToBand",syncToBand);
         if(ndef!=null)o.put("ndef",Base64.encodeToString(ndef,Base64.NO_WRAP));return o;
     }
     static TagRecord fromJson(JSONObject o) throws Exception {
@@ -75,6 +75,6 @@ final class TagRecord {
         long revision=o.optLong("revision",1);
         if(revision<1 || revision>0xffffffffL)throw new IllegalArgumentException("Invalid record revision");
         TagRecord result=new TagRecord(id,name,uid,o.getString("technology"),o.getString("details"),bytes);
-        result.revision=revision;return result;
+        result.revision=revision;result.syncToBand=o.has("syncToBand")?o.getBoolean("syncToBand"):true;return result;
     }
 }

@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,8 +17,11 @@ final class Catalog {
     private final AtomicFile file;
     Catalog(Context context){file=new AtomicFile(new File(context.getFilesDir(),"tag-catalog.json"));}
     void load() throws Exception {
-        if(!file.getBaseFile().exists())return;
-        byte[] bytes=file.readFully();if(bytes.length>150000)throw new IllegalArgumentException("Слишком большой каталог");
+        byte[] bytes;
+        try{bytes=file.readFully();}catch(FileNotFoundException e){
+            if(!file.getBaseFile().exists() && !new File(file.getBaseFile().getPath()+".bak").exists())return;throw e;
+        }
+        if(bytes.length>150000)throw new IllegalArgumentException("Слишком большой каталог");
         JSONObject data=new JSONObject(new String(bytes,StandardCharsets.UTF_8));
         int version=data.getInt("version");
         if(version!=1 && version!=2)throw new IllegalArgumentException("Неизвестная версия каталога");
@@ -45,6 +49,7 @@ final class Catalog {
         revision++;if(modified!=null)modified.revision++;
     }
     TagRecord find(String id){for(TagRecord record:records)if(record.id.equals(id))return record;return null;}
-    CatalogWire.Snapshot snapshot(){ArrayList<CatalogWire.Entry> entries=new ArrayList<>();for(TagRecord record:records)entries.add(record.wire());return new CatalogWire.Snapshot(revision,entries);}
+    int syncCount(){int count=0;for(TagRecord record:records)if(record.syncToBand)count++;return count;}
+    CatalogWire.Snapshot snapshot(){ArrayList<CatalogWire.Entry> entries=new ArrayList<>();for(TagRecord record:records)if(record.syncToBand)entries.add(record.wire());return new CatalogWire.Snapshot(revision,entries);}
     void advanceAbove(long observed) {if(observed>=0xffffffffL)throw new IllegalStateException("Исчерпана ревизия каталога браслета");if(revision<=observed)revision=observed+1;}
 }

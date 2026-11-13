@@ -1,0 +1,66 @@
+{
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "ranges": [
+    {
+      "purpose": "mkdir_command_table",
+      "start": "0x2c9b72d4",
+      "end": "0x2c9b72e4",
+      "bytes": "04ad842cc9c91f0c020300000cad842c"
+    },
+    {
+      "purpose": "mkdir_handler",
+      "start": "0x2c1fc9c8",
+      "end": "0x2c1fcab8",
+      "bytes": "2de9f04782b0002481460d461646dff8e88002af03e0baf1700f08bf0124424631462846c6f7a4ffb0f1ff3f8246f2d1c6f7c8ff0368ab423fdac6f7c3ff03461b68484656f8231002f08cfb0546a0b3bcb32f21c1f788ff4ff000082f2604460de084f80080a2f755fab0f1000a36db20462f2100f8016bc1f776ff044640f2ff112846002cecd1a2f744fab0f1000a1edab6f7f7f90368112b19d0d9f81840b6f7f0f90246126848460092104b2a461049a047284602f081fb5046bd46bde8f08740f2ff11a2f725fab0f1000a0cdb284602f073fb5046bd46bde8f087b6f7d1f90368112bc3d0d8e7b6f7cbf9d5e7"
+    },
+    {
+      "purpose": "mkdir_final_eexist_return",
+      "start": "0x2c1fca50",
+      "end": "0x2c1fcaa6",
+      "bytes": "a2f744fab0f1000a1edab6f7f7f90368112b19d0d9f81840b6f7f0f90246126848460092104b2a461049a047284602f081fb5046bd46bde8f08740f2ff11a2f725fab0f1000a0cdb284602f073fb5046bd46bde8f087"
+    },
+    {
+      "purpose": "extract_all_themes",
+      "start": "0x2c7b99c8",
+      "end": "0x2c7b9a30",
+      "bytes": "2de9f041c2b002af05460c4690461df061f848b30646184b4ff4807253f82810384604f625f721464ff48072384604f6e3f696f8961091b101390cb2e1b2013c3a46284624b21df06ffa631cf6d130461df056f807f58077bd46bde8f0813a4628461df061faf2e7"
+    },
+    {
+      "purpose": "process_kind5",
+      "start": "0x2c7d6ef0",
+      "end": "0x2c7d6f14",
+      "bytes": "90b587b002af68b13c1d009405237860ba600068084a3973fbf750f800201437bd4690bd"
+    },
+    {
+      "purpose": "iterate_entire_kind5_table",
+      "start": "0x2c7d1fac",
+      "end": "0x2c7d1ff6",
+      "bytes": "2de9f04383b002afd7f8208060b3164652b31c460546fff72bfb002815db0b2c17d8eb680c3303ebc40953f83430d9f8044053b100256268404654f80c1bb047d9f8003001359d42f5d3"
+    },
+    {
+      "purpose": "file_write_callback",
+      "start": "0x2c7d66c0",
+      "end": "0x2c7d67d8",
+      "bytes": "2de9f043c3b0d0f80090884602af017ab9f1000f69d005464246d9f80400faf76bfd0646002866d04ff4807269683846e8f5a2f04ff4807237493846e8f560f04ff4807231693846e8f55af0384682f5f3fa044688b1431c3b4401e0013c0cd013f8012d2f2af9d1002138463955ecf5f1f600284cd12f233b554ff4d27240f207413846c8f528f6041e14db31462246d9f80000fbf7ccfbf8b94246297ad9f80400faf7bdfd2046b2f5d0f207f58277bd46bde8f083194b00970320184a1949e8f59af14246297ad9f80400faf7a8fd07f58277bd46bde8f08303200f4b104a11490097e8f588f1d7e703200f4b0c4a0f49e8f581f10320084b094a0d49cdf80080e8f579f107f58277bd46bde8f08338467af467fdaee7"
+    },
+    {
+      "purpose": "file_data_loader",
+      "start": "0x2c7d1ef0",
+      "end": "0x2c7d1f98",
+      "bytes": "2de9f0430023c3b00093cc6816464a6881462244006802af1432d1f80880ccf583f7002939dbb8f1000f29d0b8f5807f4246394628bf4ff48072d9f80000cdf503f6051e22db1bd0002401e0ac4214da2a1b39193046cef5ddf700280444f5da0320114b114a1249ecf5aef54ff0ff3007f58277bd46bde8f083b8eb0508d5d1002007f58277bd46bde8f0830320064b064a0849ecf598f5e8e70320024b034a0549ecf591f5e1e7"
+    },
+    {
+      "purpose": "script_path_trailing_slash",
+      "start": "0x2c7f2a62",
+      "end": "0x2c7f2aae",
+      "bytes": "3046cbf5e6f40546002800f0d48066f542f9034658b1421c2a4401e0013b06d012f8011d2f29f9d100222b445a70684b694a062069490095ccf50df02946204609f621fd664920460af6bbf8"
+    }
+  ],
+  "conclusions": {
+    "mkdir": "Final mkdir returns -1 on EEXIST even with -p: errno17 branch reaches cleanup without normalizing the saved rc. Intermediate EEXIST is handled by continuing.",
+    "extraction": "The installation caller traverses all themes; the resource processor traverses every record of kind5, independent of Widget/Layout references. No extra ELF children are required.",
+    "script_path": "The Lua VM SCRIPT_PATH ends with a slash; direct resource-name concatenation matches the original Recorder."
+  },
+  "fix": "Attempt mkdir, then require write/close/readback of a fixed temporary probe; remove it after success.",
+  "hardware_evidence": "User reported early FAIL before UI, without a captured stage. After the probe fix, user confirmed the UI works and tags synchronize. The exact original failing branch is inferred from static code and changed behavior, not a recorded device trace."
+}

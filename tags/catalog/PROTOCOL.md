@@ -74,6 +74,10 @@ handler before replying. ACK from Pixel: `[02]` plus the same 56 bytes and the
 same MB sequence. Native replies `SELECT_OK` on that sequence only after the
 tuple matches and NFC is STOPPED. Exact duplicate ACKs for the current accepted
 tuple are idempotent. Unsolicited/stale/mismatched ACKs are rejected.
+The handshake deadline is 30 seconds, allowing Pixel to finish capability and
+catalog-summary queries before processing an early REQUEST. After expiry, a
+new catalog QUERY rearms the selected entry's request; a still-live request is
+not duplicated. The APDU deadline remains 3 seconds.
 
 A disconnect, CCC/session-generation change, catalog commit, local selection
 change, or STOP/fault invalidates outstanding selection requests and/or active
@@ -95,10 +99,14 @@ does not start NFC.
 ## Local API and persistence
 
 `api.h` is the versioned UI contract. Catalog entries remain readable without
-BLE and survive reboot. `/tmp/tag_catalog_api` publishes the resident API table;
-it is not itself evidence of a live module. The UI checks ABI magic/version/size,
-pointer bounds and module identity before calling `health`, whose poll age and
-heartbeat establish whether the existing core loop is advancing. Selection and
+BLE and survive reboot. The core registers its own provider app ID `0xD6`, name
+`dev.mbapdu.catalog.api.v1`, without a launcher entry or pages. The UI uses the
+verified firmware app lookup, checks the exact provider name, then calls its
+native name callback. The returned static blob is `char label[32]` containing
+`NFC Catalog API v1` plus the API table. The UI validates label, API magic,
+version, size and profile before calling `health`, whose poll age and heartbeat
+establish whether the existing core loop is advancing. No function pointer read
+from a file is ever executed. Selection and
 STOP are queued through this C API and processed by that same loop; no extra
 10-ms filesystem polling task is added. No offscreen operation or RF wake is
 implemented. The core and its API remain resident until reboot, never rmmod.

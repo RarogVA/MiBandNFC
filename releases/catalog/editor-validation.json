@@ -1,0 +1,93 @@
+{
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "live_widget_origin": [
+    126,
+    274
+  ],
+  "live_widget_extent": [
+    84,
+    84
+  ],
+  "editor_preview_position": "(cached_slot_x - 3, cached_slot_y - 3)",
+  "editor_frame_position": "(cached_slot_x - 3, cached_slot_y - 3)",
+  "old_frame_size": [
+    69,
+    69
+  ],
+  "old_preview_size": [
+    84,
+    84
+  ],
+  "old_frame_center_relative_to_shared_origin": [
+    34.5,
+    34.5
+  ],
+  "old_preview_center_relative_to_shared_origin": [
+    42,
+    42
+  ],
+  "old_center_delta": [
+    -7.5,
+    -7.5
+  ],
+  "new_frame_size": [
+    84,
+    84
+  ],
+  "new_preview_size": [
+    84,
+    84
+  ],
+  "new_centers_relative_to_shared_origin": [
+    42,
+    42
+  ],
+  "new_center_delta": [
+    0,
+    0
+  ],
+  "new_ring_design": {
+    "shape": "circle",
+    "ellipse_pixel_coordinates": [
+      2,
+      2,
+      81,
+      81
+    ],
+    "stroke_pixels": 2,
+    "same_geometry_as_live_icon": true
+  },
+  "alpha_boxes": {
+    "old_frame": [
+      3,
+      3,
+      66,
+      66
+    ],
+    "new_frame": [
+      0,
+      0,
+      84,
+      84
+    ],
+    "live_icon": [
+      0,
+      0,
+      84,
+      84
+    ]
+  },
+  "evidence": [
+    {
+      "purpose": "preview_xy_minus3",
+      "start": "0x2c560054",
+      "bytes": "e268a1683046033a0339f8f747ff"
+    },
+    {
+      "purpose": "editbox_xy_minus3",
+      "start": "0x2c560082",
+      "bytes": "7b683046da1eabf10301f8f730ff"
+    }
+  ],
+  "limitations": "Editor cached-slot coordinates can be scaled by the editor. This check proves preview and frame share the exact same native origin and equal dimensions, not an unobserved device screenshot."
+}

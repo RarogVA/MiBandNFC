@@ -1,5 +1,9 @@
 # Native NFC-tags page
 
+This document describes the frozen legacy single-tag UI profiles. For the
+current catalog UI2, its layout, build commands and validation status, see
+[Catalog v1 and Roundabout RU NFC 2](../../docs/catalog-v1.md).
+
 Small resident module for `miwear.watch.p67glt`, firmware **3.201.026** only.
 It registers its own native app `dev.mbapdu.tags`, ID **0xD4 / 212**, page **0**.
 The separately packaged Roundabout RU NFC watchface opens this app from one

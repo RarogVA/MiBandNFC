@@ -1,0 +1,56 @@
+{
+  "face_id": "999999992",
+  "name": "Roundabout RU NFC 2",
+  "bytes": 3714298,
+  "sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
+  "ui_version": 2,
+  "core_version": 1,
+  "embedded_files": [
+    {
+      "name": "app/lua/main.lua",
+      "source": "tags/bootstrap/main.lua",
+      "bytes": 6786,
+      "sha256": "1b41cd5898dccc0772a93dee9415e7ae56112e7d3474739316dce11f9e7c25c5"
+    },
+    {
+      "name": "app/lua/catalog_core_v1.elf",
+      "source": "tags/catalog/build/catalog_core_v1.elf",
+      "bytes": 37840,
+      "sha256": "f3d3fde87de70310adccfb318ef06092f7523635c993752521f56f956a5e17f1"
+    },
+    {
+      "name": "app/lua/catalog_ui_v2.elf",
+      "source": "tags/launcher/build/nfc_tags_catalog_ui_v2.elf",
+      "bytes": 10628,
+      "sha256": "b9acb2d04c0ca40528a39786af18723c6128f5277bdf8d0550fad079689ebcdc"
+    },
+    {
+      "name": "app/lua/left.bin",
+      "source": "tags/launcher/icons/left.bin",
+      "bytes": 2060,
+      "sha256": "390f3c670b81d3f77e8bfaa481bbbc4bb20326f23f1271b82ce7debefc6ad74a"
+    },
+    {
+      "name": "app/lua/right.bin",
+      "source": "tags/launcher/icons/right.bin",
+      "bytes": 2060,
+      "sha256": "bb35f247260c8a460c2f26caff889ddc087c52b257274d6a38e3c91c42da082f"
+    },
+    {
+      "name": "app/lua/refresh.bin",
+      "source": "tags/launcher/icons/refresh.bin",
+      "bytes": 2060,
+      "sha256": "4ff8cef577ed6097d0eda0afe00ea343357c15d1097fee6537ab64de4169060c"
+    }
+  ],
+  "verified_normal_themes": [
+    0,
+    2,
+    3,
+    4
+  ],
+  "native_app_id": 212,
+  "original_data_resources_byteidentical": 490,
+  "previous_releases_unchanged": true,
+  "hardware_validated": false
+}

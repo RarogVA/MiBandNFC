@@ -1,0 +1,32 @@
+{
+  "before_sha256": "023ccedae7e67199a653e9cb7fc7022b123cbf390df4312efb0cb90217da4330",
+  "after_sha256": "c963064f619b352f5bc71f0499a2a98f4d11f709bcf3ddbe250184941b9f3f64",
+  "changed_resources": [
+    [
+      0,
+      "0x5000000",
+      "app/lua/main.lua"
+    ],
+    [
+      2,
+      "0x5000000",
+      "app/lua/main.lua"
+    ],
+    [
+      3,
+      "0x5000000",
+      "app/lua/main.lua"
+    ],
+    [
+      4,
+      "0x5000000",
+      "app/lua/main.lua"
+    ]
+  ],
+  "all_other_resource_payloads_byteidentical": true,
+  "all_four_preview_payloads_byteidentical": true,
+  "native_elf_unchanged": true,
+  "live_circle_editor_and_numeric_resources_unchanged": true,
+  "change": "Remove fixed width=80 from transient Lua status label; center intrinsic text in the same84x84 circle",
+  "hardware_validated": false
+}

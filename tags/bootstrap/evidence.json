@@ -1,0 +1,99 @@
+{
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "ranges": [
+    {
+      "purpose": "widget_file_child",
+      "start": "0x2c7d0d0e",
+      "end": "0x2c7d0d1e",
+      "bytes": "01913b6c4a46009320463346f968f9f7"
+    },
+    {
+      "purpose": "file_lua_extension",
+      "start": "0x2c7c9fc4",
+      "end": "0x2c7c9fd8",
+      "bytes": "07f110008df54eff47498ef54bfa0546002861d1"
+    },
+    {
+      "purpose": "file_outer_bubble",
+      "start": "0x2c7c9ff8",
+      "end": "0x2c7ca002",
+      "bytes": "4ff4804120468df54bfe"
+    },
+    {
+      "purpose": "file_inner_bubble",
+      "start": "0x2c7ca032",
+      "end": "0x2c7ca03c",
+      "bytes": "4ff48041606d8df52efe"
+    },
+    {
+      "purpose": "file_lua_context",
+      "start": "0x2c7ca03c",
+      "end": "0x2c7ca064",
+      "bytes": "2e4b2f4a18682f4b7a60bb60636d3a4607f11001c7f80c903b6028f00ffea067c0b1294928f0a8fe"
+    },
+    {
+      "purpose": "widget_native_launch",
+      "start": "0x2c7d1024",
+      "end": "0x2c7d106e",
+      "bytes": "284680f431fa3d1d2c2249468146284688f584fc07f13003fb6109231e4aa7f80a90ba611d4a3b737a62a36c93f84420920606d5a9f13709b9f1010f5a6d07d93a61174b28469b689847"
+    },
+    {
+      "purpose": "lua_execute_system",
+      "start": "0x2c61ac48",
+      "end": "0x2c61ac74",
+      "bytes": "0023b0b501211a4600af0546e3f7b6fc044698f7f7f00022034620461a60e7f7b5f40146284614b1e3f744fb"
+    },
+    {
+      "purpose": "launch_dispatch_initializer",
+      "start": "0x2ca9bffc",
+      "end": "0x2ca9c000",
+      "bytes": "1ded7a0c"
+    },
+    {
+      "purpose": "lua_onPressed_event1",
+      "start": "0x2c7e9114",
+      "end": "0x2c7e9134",
+      "bytes": "98b50446002300af012213f6b1f920460122022112f662fb2046fff7f7fe98bd"
+    },
+    {
+      "purpose": "lua_onClicked_event7",
+      "start": "0x2c7e90f4",
+      "end": "0x2c7e9114",
+      "bytes": "98b50446002300af072213f6c1f920460122022112f672fb2046fff707ff98bd"
+    },
+    {
+      "purpose": "lua_event_callback_no_stop",
+      "start": "0x2c7ee674",
+      "end": "0x2c7ee732",
+      "bytes": "2de9f041c568044600af28460df674f8d4f800800646414628460df6c9ff284928460ef66bf94ff0ff3128460df6fefd00283dd00368abb38368002b32ddd0f80ce003eb43035800f446002306e02189914208d083420cf10c0c23d03ef813200633002af3d1dcf80820931c1ad0d317134928460ef68af9414628460df698ff0f4928460ef63af90023228928460df6bffe2846fff736fd0346002202212846db689847314628460df632f8bde8f0814ff0ff312846034a0ff638fcf2e7"
+    }
+  ],
+  "runtime_launch_slot": "0x200b7368",
+  "expected_launch_pointer": [
+    "0x0c7aed1d",
+    "0x2c7aed1d"
+  ],
+  "system": "0x2c2025d5",
+  "manual_tap_only": true,
+  "hardware_validated": false,
+  "ready_handshake": {
+    "marker": "/tmp/nfc_tags_catalog_ui_ready",
+    "exact_value": "catalog_ui_v2\n",
+    "loaded_marker_is_not_ready": true,
+    "timer_period_ms": 100,
+    "maximum_timer_ticks": 30,
+    "late_ready": "onPressed event1 sets EVENT_BUBBLE before native SHORT_CLICKED event4",
+    "lua_callback_dispatch": "Calls Lua with 2 arguments, 0 results; no stop-bubbling call or event mutation",
+    "ui_version": 2,
+    "legacy_loaded_or_ready_requires_reboot": "catalog_ui_v1\n",
+    "attempt_guards": [
+      "/tmp/NFC_Tags_Catalog_UI_V1_attempted",
+      "/tmp/NFC_Tags_Catalog_UI_V2_attempted"
+    ]
+  },
+  "timer_api_reference": {
+    "source": "references/recorder.face app/lua/main.lua",
+    "sha256": "5da7c06dbb600d50b1fcf0500916894371b7633135850cfdfc32db80afa42b58",
+    "syntax": "lvgl.Timer{period=100,paused=true,cb=function(t)...end}; timer:resume(); timer:pause()"
+  }
+}

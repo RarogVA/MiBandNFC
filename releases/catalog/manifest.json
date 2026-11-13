@@ -4,16 +4,17 @@
   "model": "miwear.watch.p67glt",
   "firmware": "3.201.026",
   "face_id": "999999991",
-  "status": "UI1/UI2 catalog operation confirmed; UI3 border and layout acceptance pending",
+  "status": "UI3 visual fixes and module OK confirmed by user after reboot/open check; catalog NFC readback pending",
   "hardware": {
     "apk_installed": true,
     "face_transferred": true,
-    "first_tap_bootstrap": false,
+    "first_tap_bootstrap": true,
     "catalog_sync": "confirmed on unchanged core with UI1/UI2",
     "nfc_readback": false,
-    "visual_acceptance_pending": true,
+    "visual_acceptance_pending": false,
     "prior_id_replacement": "User reports Notify does not replace an existing face. Fresh ID991 created for UI3.",
-    "notify_progress_then_completion": "99% then Update completed; freshly selected NFC3 ID991 file"
+    "notify_progress_then_completion": "99% then Update completed; freshly selected NFC3 ID991 file",
+    "visual_acceptance": "2026-11-14: user confirmed no square, no page border, no bottom message row, module OK"
   },
   "features": [
     "Horizontal bottom captions; all numeric resources and their original angles/positions preserved",

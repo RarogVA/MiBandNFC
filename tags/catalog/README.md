@@ -26,7 +26,9 @@ build outputs. First-tap bootstrap, catalog synchronization and selection have
 been observed on the band with UI1; see the [hardware observation](../../docs/evidence/tags/catalog-v1-observation.json).
 A later user photograph also confirms UI2 showing the selected tag and module
 OK. UI3 fixes the visible border and spacing without changing this core.
-UI3, catalog NFC readback and reboot persistence still require hardware checks;
+The user confirmed UI3 opening, removed borders/message row and module OK
+after the requested reboot on 2026-11-14. Catalog NFC readback, catalog reboot
+persistence and broader UI states still require hardware checks;
 the [current integration status](../../docs/catalog-v1.md) distinguishes these
 from the earlier single-tag NFC pass.
 

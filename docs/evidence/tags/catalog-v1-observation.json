@@ -17,7 +17,7 @@
     "STATUS #536870918 SELECT_OK",
     "STATUS #536870919 SELECT_OK"
   ],
-  "band_visual_confirmation": "User confirmed UI1 first-tap page opening and synchronization. Later UI2 photograph confirms NFC-Test, NDEF, green OK and icon-only reload. User identified inherited root borders, a square around the watchface shortcut, and unused bottom space; UI3 addresses these and is awaiting device acceptance.",
+  "band_visual_confirmation": "User confirmed UI1 first-tap page opening and synchronization. Later UI2 photograph confirms NFC-Test, NDEF, green OK and icon-only reload. User identified inherited root borders, a square around the watchface shortcut, and unused bottom space; The user subsequently confirmed the UI3 fixes and module OK after the requested reboot/open check on NFC3 ID991.",
   "nfc_readback": "not performed on this version",
   "user_confirmed_sync": true,
   "ui2_face_sha256": "16fabe79c5046b1f33c65d91857db137d8f51df3c59d5940807b9caf71c203bf",
@@ -30,6 +30,15 @@
     "face_sha256": "219ef64db3add938ff684aadfa289585a2c8b88ffade47ca1b1b9284d5dfc180",
     "phone_file": "Roundabout-RU-NFC3-UI3.face",
     "transfer": "Selected exact fresh-ID file in Notify; observed 99%, then Update completed.",
-    "visual_acceptance": "pending user check after selecting NFC3 and rebooting"
+    "visual_acceptance": "User confirmed after requested NFC3 selection, reboot and lower-circle tap: square and page border removed, no bottom message row, module OK.",
+    "user_reply": "Да, всё исправлено, статус OK",
+    "confirmed_checks": [
+      "first-tap page opening after requested reboot",
+      "no square around lower watchface circle",
+      "no page border",
+      "no bottom message row",
+      "module OK"
+    ],
+    "scope": "User-reported visual/bootstrap check only; no new NFC readback, catalog persistence stress test, or all-theme/AOD validation."
   }
 }

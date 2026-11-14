@@ -35,7 +35,6 @@ for folder, patterns in {
     'watchface': ['*.lua'],
     'diagnostics/mirpay-access': ['build.py', 'AndroidManifest.xml', 'README.txt', 'README.md', 'src/**/*.java'],
     'docs': ['**/*.md', '**/*.txt', '**/*.json', '**/*.java'],
-    'docs/concepts': ['*.png', '*.py'],
     'tags': ['README.md', 'build_band.py', 'build_launcher_face.py', 'test_host.py'],
     'tags/android': ['build.py', 'test_device.py', 'AndroidManifest.xml', 'README.md', 'src/**/*.java', 'tests/**/*.java', 'device-tests/**/*.java'],
     'tags/android/res': ['**/*.xml', '**/*.png'],

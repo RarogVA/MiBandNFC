@@ -1,10 +1,10 @@
 {
-  "face_id": "999999991",
-  "name": "Roundabout RU NFC 3",
-  "bytes": 3398011,
-  "sha256": "351c2b6c74f8be0b4050b0a88b11cf16ccb58853ec3ca3e43d8c47f6685fcf81",
-  "ui_version": 3,
-  "ui_module": "NFC_Tags_Catalog_UI_V3",
+  "face_id": "999999990",
+  "name": "Roundabout RU NFC 4",
+  "bytes": 3622539,
+  "sha256": "40975e0bb12c883d7aa99a4f54a3c0fb54615ef8d7479bd6151d599348873453",
+  "ui_version": 4,
+  "ui_module": "NFC_Tags_Catalog_UI_V4",
   "core_version": 1,
   "baseline_sha256": "2a7e7ff2b89b0845bf1cf96a63a0f844082d5be8d47b5c38312a480870bfa475",
   "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
@@ -15,7 +15,7 @@
     4
   ],
   "unchanged_resource_entries": 2464,
-  "changed_prefix_bytes": 80,
+  "changed_prefix_bytes": 81,
   "editor_boundary": {
     "uid": "0x20001a3",
     "old_pixels": [
@@ -35,8 +35,8 @@
   "resources": [
     {
       "name": "app/lua/main.lua",
-      "bytes": 7026,
-      "sha256": "1a5583c0c2cbf8b57cdd67ac0c5ccc9231f53ca93a70756051019be012d046bf"
+      "bytes": 7284,
+      "sha256": "22d6843e17801156de60b42f8ea1ae383d1b68777b2f49cf290c8119cc500396"
     },
     {
       "name": "app/lua/catalog_core_v1.elf",
@@ -44,24 +44,69 @@
       "sha256": "f3d3fde87de70310adccfb318ef06092f7523635c993752521f56f956a5e17f1"
     },
     {
-      "name": "app/lua/catalog_ui_v3.elf",
-      "bytes": 10784,
-      "sha256": "721431bcd5e662a1722ef363d4dd0aef3d2ce9e330bf36368a8da02b2126b72d"
+      "name": "app/lua/catalog_ui_v4.elf",
+      "bytes": 12560,
+      "sha256": "f1937d8f44022943f7f5a2bb15be2f3173fea12e163f0ed3d74217791847bfbb"
     },
     {
-      "name": "app/lua/left.bin",
-      "bytes": 2060,
-      "sha256": "390f3c670b81d3f77e8bfaa481bbbc4bb20326f23f1271b82ce7debefc6ad74a"
+      "name": "app/lua/card-v4.bin",
+      "bytes": 71452,
+      "sha256": "bfbfd047968eba5d710fef0ae820927445d81c36fea64e76c69e5f6312dfa79e"
     },
     {
-      "name": "app/lua/right.bin",
-      "bytes": 2060,
-      "sha256": "bb35f247260c8a460c2f26caff889ddc087c52b257274d6a38e3c91c42da082f"
+      "name": "app/lua/controls-v4.bin",
+      "bytes": 46350,
+      "sha256": "c752b47b729f5cfa74b68beeca209541d6bf786df7aff10c4999c7cadb6995fb"
     },
     {
-      "name": "app/lua/refresh.bin",
+      "name": "app/lua/status-ok-v4.bin",
+      "bytes": 17010,
+      "sha256": "6c73a558833d02397aa348128aa9f7e1962d0471d9749f6dbcad6c424683eb24"
+    },
+    {
+      "name": "app/lua/status-fail-v4.bin",
+      "bytes": 17010,
+      "sha256": "122a1f1d96e80fa45c9a7c34e0d5aff85b05654cb868ae7a21a711a14abe2f81"
+    },
+    {
+      "name": "app/lua/status-busy0-v4.bin",
+      "bytes": 17010,
+      "sha256": "f6ff8c8c588b5b59945bd64fcb6a6b8e83485c09979d963ce16db802319d47e0"
+    },
+    {
+      "name": "app/lua/status-busy1-v4.bin",
+      "bytes": 17010,
+      "sha256": "0d7396a13e8265fd0d9d2aabf423bc86da9f6330288fb20a24cf29b836d81416"
+    },
+    {
+      "name": "app/lua/status-busy2-v4.bin",
+      "bytes": 17010,
+      "sha256": "f8edd46091be8f404a28c1b3a5d3f4a5b3d3e2f3b5d82647d308b4076c7a2ba8"
+    },
+    {
+      "name": "app/lua/status-busy3-v4.bin",
+      "bytes": 17010,
+      "sha256": "cd1244ed170c0541033b8a81fabfdf954b0880146b83973b4c00171a62a3359f"
+    },
+    {
+      "name": "app/lua/left-v4.bin",
       "bytes": 2060,
-      "sha256": "4ff8cef577ed6097d0eda0afe00ea343357c15d1097fee6537ab64de4169060c"
+      "sha256": "da21747ab82197c4e1010aeb285cc129fac07f2f3d47f10001ba350f6214f51d"
+    },
+    {
+      "name": "app/lua/right-v4.bin",
+      "bytes": 2060,
+      "sha256": "2cc67806eb3910a438c21841903bb522a31a63e419b26c3717e02272e3ad8a0c"
+    },
+    {
+      "name": "app/lua/left-off-v4.bin",
+      "bytes": 2060,
+      "sha256": "81baddd742814484dd49d0c061a1e85df3a4e802457096cbc5f616fe7292e408"
+    },
+    {
+      "name": "app/lua/right-off-v4.bin",
+      "bytes": 2060,
+      "sha256": "7f522c61e1157c9aa1e16ab59551c7be75470acaaf6bb729068d3d5b16d8431c"
     }
   ],
   "preserved": "All baseline clock/metric payloads, image previews, other buttons and AOD rendering; lower-circle Widget references change for Lua and corrected editBox",

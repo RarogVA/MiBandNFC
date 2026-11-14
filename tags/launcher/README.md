@@ -1,7 +1,7 @@
 # Native NFC-tags page
 
-This document describes the frozen legacy single-tag UI profiles. For the
-current catalog UI3, its layout, build commands and validation status, see
+This document describes the frozen legacy single-tag UI profiles. For the Pult UI4 build see [UI4](UI4.md). For the
+released catalog UI3, its layout, build commands and validation status, see
 [Catalog v1 and Roundabout RU NFC 2](../../docs/catalog-v1.md).
 
 Small resident module for `miwear.watch.p67glt`, firmware **3.201.026** only.

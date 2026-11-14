@@ -17,14 +17,14 @@ def main():
             addr=int(a,16);data=bytes(int(v.strip(),16) for v in values.split(",") if v.strip())
             if len(data)!=24 or firmware[addr-0x2c0c0000:addr-0x2c0c0000+24]!=data:raise SystemExit("Bad fingerprint "+a)
             checked.append(a)
-    if len(checked)!=35:raise SystemExit("Expected all 35 UI firmware gates")
+    if len(checked)!=38:raise SystemExit("Expected all 38 UI firmware gates")
     OUT.mkdir(parents=True,exist_ok=True);objects=[]
     flags=[f for f in b.FLAGS if not f.startswith(("-DNFC_","-DTRANSPORT_"))]
     for source in SOURCES:
         obj=OUT/(Path(source).stem+"-catalog.o")
         b.run([b.BIN/"clang",*flags,"-I",ROOT/"tags/launcher","-c",ROOT/source,"-o",obj])
         b.run([b.BIN/"llvm-objcopy","--remove-section=.ARM.exidx*","--remove-section=.comment",obj]);objects.append(obj)
-    elf=OUT/"nfc_tags_catalog_ui_v3.elf"
+    elf=OUT/"nfc_tags_catalog_ui_v4.elf"
     b.run([b.BIN/"ld.lld","-r","-T",ROOT/"band/module.ld","-o",elf,*objects])
     before=elf.read_bytes();b.check_elf(before)
     b.run([b.BIN/"llvm-objcopy","--strip-unneeded","--keep-symbol=module_constructor",elf])
@@ -33,8 +33,8 @@ def main():
     undefined=b.run([b.BIN/"llvm-nm","--undefined-only",elf]).strip()
     if undefined:raise SystemExit(undefined)
     entry,constructor=b.check_elf(data)
-    inputs=SOURCES+["tags/launcher/catalog_ui_bindings.h","tags/launcher/bindings.h","tags/launcher/abi.h","tags/catalog/api.h","tags/bootstrap/launch.h","tags/launcher/fingerprints.h","tags/launcher/build_catalog_ui.py"]
-    report=dict(model="miwear.watch.p67glt",firmware="3.201.026",profile="catalog-ui-v3",app_id=212,
+    inputs=SOURCES+["tags/launcher/catalog_ui_bindings.h","tags/launcher/catalog_layout.h","tags/launcher/catalog_assets.h","tags/launcher/bindings.h","tags/launcher/abi.h","tags/catalog/api.h","tags/bootstrap/launch.h","tags/launcher/fingerprints.h","tags/launcher/build_catalog_ui.py"]
+    report=dict(model="miwear.watch.p67glt",firmware="3.201.026",profile="catalog-ui-v4",app_id=212,
                 elf_bytes=len(data),elf_sha256=hashlib.sha256(data).hexdigest(),constructor=constructor,
                 fingerprints=checked,hardware_tested=False,
                 source_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in inputs})

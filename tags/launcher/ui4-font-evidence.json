@@ -1,0 +1,27 @@
+{
+  "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
+  "scope": "UI4 uses existing resident MiSans-Demibold styles, no font creation or shared-style writes",
+  "title": {
+    "ram": "0x200d69f8",
+    "size": 26,
+    "family": 0,
+    "family_name": "MiSans-Demibold",
+    "initializer": "0x2c44bd48..0x2c44bd5c",
+    "literal": "0x2c44be70"
+  },
+  "technology": {
+    "ram": "0x200d69d4",
+    "size": 20,
+    "family": 0,
+    "family_name": "MiSans-Demibold",
+    "initializer": "0x2c44bd90..0x2c44bda4",
+    "literal": "0x2c44be7c"
+  },
+  "proof": "Each initializer calls style_init, passes r2=0, r1=size and r0=r2 (family 0) to 0x2c443134, then applies returned font to the literal style pointer through 0x2c557ce8.",
+  "runtime_fingerprints": {
+    "0x2c44bd48": "49480cf1d9f800221a211046f7f7eef9014645480bf1c4ff",
+    "0x2c44bd90": "3a480cf1b5f8002214211046f7f7caf9014636480bf1a0ff",
+    "0x2c44be70": "f8690d20ec690d20e0690d20d4690d20c8690d20bc690d20"
+  },
+  "hardware_tested": false
+}

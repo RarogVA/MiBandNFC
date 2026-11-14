@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--face",type=Path,default=ROOT/"build/roundabout-ru-nfc3-final.face")
+    parser.add_argument("--face",type=Path,default=ROOT/"build/roundabout-ru-nfc4-final.face")
     args=parser.parse_args();data=args.face.read_bytes()
     entries={(t,u):(o,s,k) for t,k,u,o,s,p in index_entries(data)}
     with zipfile.ZipFile(ROOT/"references/roundabout-original.zip") as z:

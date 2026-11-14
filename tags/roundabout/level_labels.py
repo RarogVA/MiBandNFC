@@ -42,7 +42,7 @@ def horizontal(before,spec,render,font):
                 "new_text_box":[x,y,x+glyph.width,y+glyph.height],"protected_icon_unchanged":True}
 
 def build(args):
-    original=args.input.read_bytes();require(original[0x28:0x68].split(b"\0")[0]==b"999999991","Only new ID991 may be modified")
+    original=args.input.read_bytes();require(original[0x28:0x68].split(b"\0")[0]==b"999999990","Only new ID990 may be modified")
     require(sha(args.source_zip.read_bytes())==SOURCE_SHA,"Source archive hash mismatch")
     source=extract_original(args.source_zip)
     mapping=json.loads(args.map.read_text())
@@ -150,13 +150,13 @@ def build(args):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--input",type=Path,default=ROOT/"build/roundabout-ru-nfc3.face")
-    p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc3-final.face")
+    p.add_argument("--input",type=Path,default=ROOT/"build/roundabout-ru-nfc4.face")
+    p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc4-final.face")
     p.add_argument("--source-zip",type=Path,default=ROOT/"references/roundabout-original.zip")
     p.add_argument("--map",type=Path,default=Path(__file__).with_name("localization-map.json"))
     p.add_argument("--font",type=Path,default=Path(DEFAULT_FONT))
     p.add_argument("--report",type=Path,default=Path(__file__).with_name("level_labels_validation.json"))
-    p.add_argument("--preview",type=Path,default=ROOT/"build/roundabout-ru-nfc3-final.png")
+    p.add_argument("--preview",type=Path,default=ROOT/"build/roundabout-ru-nfc4-final.png")
     args=p.parse_args();require(args.input.resolve()!=args.output.resolve(),"Use a separate output")
     build(args)
 

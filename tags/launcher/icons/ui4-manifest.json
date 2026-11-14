@@ -1,0 +1,113 @@
+{
+  "profile": "catalog-ui-v4",
+  "assets": [
+    {
+      "name": "card-v4.bin",
+      "bytes": 71452,
+      "sha256": "bfbfd047968eba5d710fef0ae820927445d81c36fea64e76c69e5f6312dfa79e",
+      "size": [
+        326,
+        216
+      ]
+    },
+    {
+      "name": "controls-v4.bin",
+      "bytes": 46350,
+      "sha256": "c752b47b729f5cfa74b68beeca209541d6bf786df7aff10c4999c7cadb6995fb",
+      "size": [
+        326,
+        139
+      ]
+    },
+    {
+      "name": "status-ok-v4.bin",
+      "bytes": 17010,
+      "sha256": "6c73a558833d02397aa348128aa9f7e1962d0471d9749f6dbcad6c424683eb24",
+      "size": [
+        326,
+        49
+      ]
+    },
+    {
+      "name": "status-fail-v4.bin",
+      "bytes": 17010,
+      "sha256": "122a1f1d96e80fa45c9a7c34e0d5aff85b05654cb868ae7a21a711a14abe2f81",
+      "size": [
+        326,
+        49
+      ]
+    },
+    {
+      "name": "status-busy0-v4.bin",
+      "bytes": 17010,
+      "sha256": "f6ff8c8c588b5b59945bd64fcb6a6b8e83485c09979d963ce16db802319d47e0",
+      "size": [
+        326,
+        49
+      ]
+    },
+    {
+      "name": "status-busy1-v4.bin",
+      "bytes": 17010,
+      "sha256": "0d7396a13e8265fd0d9d2aabf423bc86da9f6330288fb20a24cf29b836d81416",
+      "size": [
+        326,
+        49
+      ]
+    },
+    {
+      "name": "status-busy2-v4.bin",
+      "bytes": 17010,
+      "sha256": "f8edd46091be8f404a28c1b3a5d3f4a5b3d3e2f3b5d82647d308b4076c7a2ba8",
+      "size": [
+        326,
+        49
+      ]
+    },
+    {
+      "name": "status-busy3-v4.bin",
+      "bytes": 17010,
+      "sha256": "cd1244ed170c0541033b8a81fabfdf954b0880146b83973b4c00171a62a3359f",
+      "size": [
+        326,
+        49
+      ]
+    },
+    {
+      "name": "left-v4.bin",
+      "bytes": 2060,
+      "sha256": "da21747ab82197c4e1010aeb285cc129fac07f2f3d47f10001ba350f6214f51d",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "left-off-v4.bin",
+      "bytes": 2060,
+      "sha256": "81baddd742814484dd49d0c061a1e85df3a4e802457096cbc5f616fe7292e408",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "right-v4.bin",
+      "bytes": 2060,
+      "sha256": "2cc67806eb3910a438c21841903bb522a31a63e419b26c3717e02272e3ad8a0c",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "right-off-v4.bin",
+      "bytes": 2060,
+      "sha256": "7f522c61e1157c9aa1e16ab59551c7be75470acaaf6bb729068d3d5b16d8431c",
+      "size": [
+        32,
+        32
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "profile": "catalog-ui-v4",
+  "display": [
+    336,
+    480
+  ],
+  "status": [
+    5,
+    5,
+    326,
+    49
+  ],
+  "card": [
+    5,
+    87,
+    326,
+    216
+  ],
+  "controls": [
+    5,
+    336,
+    326,
+    139
+  ],
+  "navigation_height": 72,
+  "refresh_height": 67,
+  "side_margin": 5,
+  "status_to_card_gap": 33,
+  "card_to_controls_gap": 33,
+  "fonts": {
+    "title": 26,
+    "type": 20,
+    "status": 20,
+    "refresh": 23
+  },
+  "rounded_safe_area": "PASS",
+  "asset_roundtrip": "PASS",
+  "asset_count": 12,
+  "asset_bytes": 228102,
+  "preview": "offline render with actual assets; dynamic system text approximate, not a device screenshot",
+  "hardware_tested": false
+}

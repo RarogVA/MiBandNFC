@@ -2,7 +2,7 @@
 -- Evaluating this file never loads a module or starts NFC. Only a manual tap
 -- can copy/load the modules. The ordinary Widget remains the app launcher.
 local lvgl=require("lvgl")
-local UI_VERSION="catalog_ui_v3\n"
+local UI_VERSION="catalog_ui_v4\n"
 local CORE_VERSION="catalog_v1\n"
 local function read(path,n)
  local f=io.open(path,"rb");if not f then return nil end
@@ -122,7 +122,8 @@ else
   end
   if read("/tmp/NFC_Tags_Catalog_UI_V1_attempted") or
      read("/tmp/NFC_Tags_Catalog_UI_V2_attempted") or
-     read("/tmp/NFC_Tags_Catalog_UI_V3_attempted") then
+     read("/tmp/NFC_Tags_Catalog_UI_V3_attempted") or
+     read("/tmp/NFC_Tags_Catalog_UI_V4_attempted") then
    show("REBOOT");busy=false;return
   end
   show("LOAD")
@@ -135,14 +136,18 @@ else
    failure("DIR",probe);busy=false;return
   end
   os.remove(probe)
-  -- Preserve both ELFs for the native retry button before attempting insmod.
-  -- Icon failures do not prevent the native page from loading.
+  -- Preserve both ELFs and all audited UI4 artwork before attempting insmod.
   local core_copied=copy("catalog_core_v1.elf","/data/tag_catalog/core-catalog.elf")
-  local ui_copied,ui_error,ui_path=copy("catalog_ui_v3.elf","/data/tag_catalog/ui-catalog-v3.elf")
-  copy("left.bin","/data/tag_catalog/left.bin")
-  copy("right.bin","/data/tag_catalog/right.bin")
-  copy("refresh.bin","/data/tag_catalog/refresh.bin")
+  local ui_copied,ui_error,ui_path=copy("catalog_ui_v4.elf","/data/tag_catalog/ui-catalog-v4.elf")
   if not ui_copied then failure("UI "..ui_error,ui_path);busy=false;return end
+  local artwork={"card-v4.bin","controls-v4.bin","status-ok-v4.bin","status-fail-v4.bin",
+   "status-busy0-v4.bin","status-busy1-v4.bin","status-busy2-v4.bin","status-busy3-v4.bin",
+   "left-v4.bin","right-v4.bin","left-off-v4.bin","right-off-v4.bin"}
+  for _,name in ipairs(artwork) do
+   if not copy(name,"/data/tag_catalog/"..name) then
+    failure("UI ART","/data/tag_catalog/"..name);busy=false;return
+   end
+  end
   if core~=CORE_VERSION and core_copied and not read("/tmp/Tag_Catalog_V1_attempted") then
    if load("/data/tag_catalog/core-catalog.elf","Tag_Catalog_V1") then
     mark("/tmp/tag_catalog_v1_loaded",CORE_VERSION)
@@ -153,7 +158,7 @@ else
   if not mark("/tmp/nfc_tags_ui_open_request",UI_VERSION) then
    failure("UI REQ","/tmp/nfc_tags_ui_open_request");busy=false;return
   end
-  if not load("/data/tag_catalog/ui-catalog-v3.elf","NFC_Tags_Catalog_UI_V3") then
+  if not load("/data/tag_catalog/ui-catalog-v4.elf","NFC_Tags_Catalog_UI_V4") then
    show("REBOOT");busy=false;return
   end
   if not mark("/tmp/nfc_tags_ui_loaded",UI_VERSION) then

@@ -8,7 +8,8 @@
 struct ui_obj {
     struct ui_obj *parent;
     int x,y,width,height,align;
-    unsigned font,long_mode,flags,color,style_reset;
+    unsigned font,long_mode,flags,color,style_reset,text_align,bold;
+    char image_path[96];
     char text[256];
     void (*click)(ui_event *);
 };
@@ -96,7 +97,9 @@ ui_obj *ui_button(ui_obj *p,void *data){assert(!data);return object(p);}
 ui_obj *ui_image(ui_obj *p,void *data){assert(!data);ui_obj *o=object(p);if(o)image_count++;return o;}
 static int valid(ui_obj *o){if(!o){invalid_objects++;return 0;}return 1;}
 void ui_remove_style_all(ui_obj *o) {
-    assert(o&&o->parent==&parent&&o!=&parent);
+    assert(o&&o!=&parent);
+    ui_obj *ancestor=o->parent;while(ancestor&&ancestor!=&parent)ancestor=ancestor->parent;
+    assert(ancestor==&parent);
     /* Reset must precede explicit geometry/background, and never touch PM. */
     CHECK(!o->width&&!o->height&&!o->align&&!o->font&&!o->color&&!o->style_reset);
     o->style_reset=1;
@@ -108,15 +111,15 @@ void ui_event_cb(ui_obj *o,void (*cb)(ui_event *),uint8_t f,void *data){if(valid
 void ui_text(ui_obj *o,const char *value){if(valid(o)){assert(value&&strlen(value)<sizeof(o->text));strcpy(o->text,value);}}
 void ui_style(ui_obj *o,void *style,uint8_t opacity,uint32_t sel){
     if(valid(o)){assert(opacity==255&&!sel);uintptr_t s=(uintptr_t)style;
-        o->font=s==0x200d689c?22:s==0x200d6890?20:s==0x200d6884?17:0;assert(o->font);}
+        o->font=s==0x200d69f8?26:s==0x200d69d4?20:0;o->bold=1;assert(o->font);}
 }
 void ui_bg(ui_obj *o,uint32_t color,uint32_t sel){assert(!sel);if(valid(o))o->color=color;}
 void ui_opa(ui_obj *o,uint8_t opacity,uint32_t sel){assert(opacity==255&&!sel);(void)valid(o);}
 #define PAD(name) void name(ui_obj *o,int32_t n,uint32_t sel){assert(!n&&!sel);(void)valid(o);}
 PAD(ui_pad_left) PAD(ui_pad_right) PAD(ui_pad_top) PAD(ui_pad_bottom)
-void ui_text_align(ui_obj *o,uint8_t a,uint32_t s){assert(a==2&&!s);(void)valid(o);}
+void ui_text_align(ui_obj *o,uint8_t a,uint32_t s){assert((a==1||a==2)&&!s);if(valid(o))o->text_align=a;}
 void ui_long_mode(ui_obj *o,uint8_t m){assert(m==1);if(valid(o))o->long_mode=m;}
-void ui_image_src(ui_obj *o,const void *p){assert(p);(void)valid(o);}
+void ui_image_src(ui_obj *o,const void *p){assert(p&&strlen(p)<96);if(valid(o))strcpy(o->image_path,p);}
 static int health_mock(tag_catalog_health *out){health_calls++;*out=health_value;return health_rc;}
 static int get_mock(uint32_t rev,uint16_t index,tag_catalog_entry *out) {
     get_calls++;if(get_rc||rev!=health_value.catalog_revision||index>=health_value.count)return -1;
@@ -133,7 +136,7 @@ static const char *provider_name(void){name_calls++;return (const char *)&blob;}
 static void reset(void) {
     memset(nodes,0,sizeof(nodes));memset(timers,0,sizeof(timers));memset(files,0,sizeof(files));
     memset(&app,0,sizeof(app));memset(&page,0,sizeof(page));pages[0]=0;
-    title=badge=module_badge=module_text=previous=next=0;refresh_timer=load_timer=0;
+    handles_clear();refresh_timer=load_timer=service_timer=0;service_ticks=service_frame=0;
     refresh_count=initialized=revision=0;initialization_result=-1;current=-1;total=0;api=0;
     node_count=timer_count=file_count=alloc_attempts=fail_allocation=image_count=0;
     invalid_objects=install_count=open_count=insmod_count=select_count=start_count=stop_count=0;
@@ -152,6 +155,7 @@ static void reset(void) {
     for(unsigned i=0;i<3;i++){entries[i].id[15]=(uint8_t)(i+1);entries[i].revision=i+9;entries[i].kind=1;
         strcpy(entries[i].name,i==1?"NFC-Test":"Длинное русское название NFC-метки");strcpy(entries[i].technology,"NDEF");strcpy(entries[i].uid,"AABBCCDD");}
     memset(&parent,0,sizeof(parent));parent.width=336;parent.height=480;
+    for(unsigned i=0;i<sizeof(ui4_assets)/sizeof(ui4_assets[0]);i++)put(ui4_assets[i],"artwork");
 }
 static void open_page(void){CHECK(create(0,&parent,0)==0);CHECK(!invalid_objects);}
 static void trust_test(void) {
@@ -181,29 +185,33 @@ static void layout_test(void) {
     reset();provider_present=1;open_page();ui_obj *root=&nodes[0];
     CHECK(root->width==336&&root->height==480&&!(root->flags&0x10));
     CHECK(root->style_reset==1&&root->color==0xff000000u&&!parent.style_reset);
-    box(title->parent,40,32,256,128);
-    box(previous,40,204,120,56);box(next,176,204,120,56);
-    box(control(refreshed),40,304,256,56);
-    box(module_badge,105,400,66,48);box(control(load_clicked),183,400,48,48);
-    CHECK(previous->x==title->parent->x&&next->x+next->width==title->parent->x+title->parent->width);
-    CHECK(title->font==20&&title->width==232&&title->height==48&&title->long_mode==1);
-    CHECK(badge->font==17&&module_text->font==20);
+    box(title->parent,5,87,326,216);
+    CHECK(title->parent->style_reset&&!(title->parent->flags&0x12u));
+    box(previous->parent,5,336,326,139);
+    box(previous,0,0,163,72);box(next,163,0,163,72);
+    box(control(refreshed),0,72,326,67);
+    box(module_badge,5,5,326,49);CHECK(control(load_clicked)==module_badge);
+    CHECK(title->font==26&&title->width==222&&title->height==60&&title->long_mode==1&&title->text_align==1);
+    CHECK(badge->font==20&&badge->text_align==2&&badge->bold&&title->bold);
+    CHECK(badge->y==23&&badge->height==31&&title->y==98&&badge->y+badge->height<title->y);
+    CHECK(title->parent->y+title->parent->height+33==previous->parent->y);
+    CHECK(module_badge->y+module_badge->height+33==title->parent->y);
     for(unsigned i=1;i<node_count;i++) {
         ui_obj *o=&nodes[i];int x=o->align==9?(o->parent->width-o->width)/2+o->x:o->x;
         int y=o->align==9?(o->parent->height-o->height)/2+o->y:o->y;
         CHECK(x>=0&&y>=0&&x+o->width<=o->parent->width&&y+o->height<=o->parent->height);
         CHECK(!strstr(o->text,"AABBCCDD"));if(o->font)CHECK(o->height>=(int)o->font);
         CHECK(strcmp(o->text,"NFC-метки")&&strcmp(o->text,"Модуль")&&strcmp(o->text,"Загрузить"));
+        if(o->click)CHECK(o->style_reset&&o->width>=44&&o->height>=44&&!(o->flags&0x10u));
+        if(o->image_path[0])CHECK(!(o->flags&0x12u));
         if(o->parent==root)for(unsigned j=1;j<i;j++)if(nodes[j].parent==root)CHECK(!overlap(o,&nodes[j]));
     }
-    CHECK(!strcmp(title->text,"NFC-Test")&&!strcmp(badge->text,"NDEF")&&!strcmp(module_text->text,"OK"));
-    CHECK(module_badge->y+module_badge->height==448);
-    /* With the notice field removed, exactly six children form the page:
-     * card, previous, next, refresh, status badge and reload icon button. */
-    unsigned children=0;for(unsigned i=1;i<node_count;i++)children+=nodes[i].parent==root;CHECK(children==6);
+    CHECK(!strcmp(title->text,"NFC-Test")&&!strcmp(badge->text,"NDEF")&&service_state==0);
+    CHECK(strstr(module_surface->image_path,"status-ok-v4.bin"));
+    CHECK(previous->parent->y+previous->parent->height==475);
+    unsigned children=0;for(unsigned i=1;i<node_count;i++)children+=nodes[i].parent==root;CHECK(children==3);
     CHECK(!start_count&&!stop_count&&!insmod_count&&!live_timers());
-    reset();put("/data/tag_catalog/left.bin","icon");put("/data/tag_catalog/right.bin","icon");put("/data/tag_catalog/refresh.bin","icon");
-    open_page();CHECK(image_count==3);destroy(0,&parent,0);
+    CHECK(image_count==5);destroy(0,&parent,0);
 }
 static void registration_test(void) {
     for(unsigned i=0;i<3;i++){reset();if(i==0)firmware_ok=0;if(i==1)bindings_ok=0;if(i==2)launch_ok=0;
@@ -212,19 +220,19 @@ static void registration_test(void) {
     CHECK(module_initialize()==-1&&!live_timers()); /* Resident failed initialization stays explicitly failed. */
     reset();CHECK(module_initialize()==0&&module_initialize()==0&&live_timers()==1);
     tick(500);CHECK(ui_present&&install_count==1&&!live_timers());
-    CHECK(!app.icon&&!page.on_back&&!strcmp(diagnostic_value(),"NFC_CATALOG_UI3\nREADY\n0\nEND\n"));
-    CHECK(file("/tmp/nfc_tags_catalog_ui_ready",0)&&!strcmp(file("/tmp/nfc_tags_catalog_ui_ready",0)->data,"catalog_ui_v3\n"));
+    CHECK(!app.icon&&!page.on_back&&!strcmp(diagnostic_value(),"NFC_CATALOG_UI4\nREADY\n0\nEND\n"));
+    CHECK(file("/tmp/nfc_tags_catalog_ui_ready",0)&&!strcmp(file("/tmp/nfc_tags_catalog_ui_ready",0)->data,"catalog_ui_v4\n"));
     reset();ui_present=1;module_initialize();tick(500);CHECK(!install_count&&strstr(diagnostic_value(),"ID_OCCUPIED"));
     reset();install_rc=-12;install_partial=1;module_initialize();tick(500);
     CHECK(ui_present&&strstr(diagnostic_value(),"REGISTER_FAILED")&&!open_count);
     reset();install_wrong=1;module_initialize();tick(500);CHECK(strstr(diagnostic_value(),"REGISTER_FAILED"));
-    reset();put("/tmp/nfc_tags_ui_open_request","catalog_ui_v3\n");module_initialize();tick(500);
+    reset();put("/tmp/nfc_tags_ui_open_request","catalog_ui_v4\n");module_initialize();tick(500);
     CHECK(open_count==1&&file("/tmp/nfc_tags_ui_open_request",0)->length==0);
-    static const char *invalid_requests[]={"catalog_ui_v1\n","catalog_ui_v2\n","catalog_ui_v3","catalog_ui_v3\nextra","garbage",""};
+    static const char *invalid_requests[]={"catalog_ui_v1\n","catalog_ui_v2\n","catalog_ui_v3\n","catalog_ui_v4","catalog_ui_v4\nextra","garbage",""};
     for(unsigned i=0;i<sizeof(invalid_requests)/sizeof(invalid_requests[0]);i++) {
         reset();put("/tmp/nfc_tags_ui_open_request",invalid_requests[i]);module_initialize();tick(500);CHECK(!open_count);
     }
-    reset();put("/tmp/nfc_tags_ui_open_request","catalog_ui_v3\n");file("/tmp/nfc_tags_ui_open_request",0)->close_error=-1;
+    reset();put("/tmp/nfc_tags_ui_open_request","catalog_ui_v4\n");file("/tmp/nfc_tags_ui_open_request",0)->close_error=-1;
     module_initialize();tick(500);CHECK(!open_count);
     reset();write_failure_path="/tmp/nfc_tags_catalog_ui_ready";module_initialize();tick(500);
     CHECK(ui_present&&strstr(diagnostic_value(),"MARKER_FAILED")&&!open_count);
@@ -242,11 +250,12 @@ static void selection_test(void) {
     get_rc=0;health_value.count=0;health_value.selected_index=-1;update();go_next(0);
     CHECK(select_count==4&&!strcmp(title->text,"Нет меток"));
     health_value.count=3;health_value.selected_index=0;entries[0].kind=0;strcpy(entries[0].technology,"NfcA IsoDep");update();
-    CHECK(!strcmp(badge->text,"ISO-DEP"));health_value.loop_live=0;update();CHECK(!strcmp(module_text->text,"FAIL"));
+    CHECK(!strcmp(badge->text,"ISO-DEP"));health_value.loop_live=0;update();CHECK(service_state==1);
     health_rc=-1;update();CHECK(!strcmp(title->text,"Нет модуля"));
     CHECK(!start_count&&!stop_count&&!insmod_count);
 }
 static void lifecycle_test(void) {
+    reset();file("/data/tag_catalog/card-v4.bin",0)->present=0;CHECK(create(0,&parent,0)==-1&&!title&&!live_timers());
     reset();provider_present=1;open_page();unsigned allocation_count=alloc_attempts;
     CHECK(create(0,&parent,0)==-1);go_next(0);CHECK(live_timers()==1);
     destroy(0,&parent,0);CHECK(!live_timers()&&!title&&!api);
@@ -255,7 +264,7 @@ static void lifecycle_test(void) {
     for(unsigned fail=1;fail<=allocation_count;fail++) {
         reset();fail_allocation=fail;int rc=create(0,&parent,0);
         CHECK(!invalid_objects);
-        if(rc){CHECK(!title&&!badge&&!module_text&&!previous&&!next);
+        if(rc){CHECK(!title&&!badge&&!module_surface&&!previous&&!next);
             go_next(0);refreshed(0);load_clicked(0);CHECK(!invalid_objects&&!live_timers());}
         destroy(0,&parent,0);CHECK(!live_timers());fail_allocation=0;open_page();destroy(0,&parent,0);
     }
@@ -266,29 +275,51 @@ static void loader_test(void) {
     static const char *guards[]={"/tmp/Tag_Catalog_V1_attempted","/tmp/apdu_lab_loaded","/tmp/tag_catalog_loaded"};
     for(unsigned i=0;i<3;i++)for(unsigned close_error=0;close_error<2;close_error++) {
         reset();put(guards[i],"present");file(guards[i],0)->close_error=close_error?-1:0;open_page();load_clicked(0);tick(50);
-        CHECK(!insmod_count&&strstr(notice_value(),"перезагрузка"));destroy(0,&parent,0);
+        CHECK(!insmod_count&&strstr(notice_value(),"перезагрузка")&&!live_timers()&&service_state==1);destroy(0,&parent,0);
     }
     for(unsigned failure=0;failure<3;failure++) {
         reset();open_page();if(!failure)write_failure_path="/tmp/Tag_Catalog_V1_attempted";
         if(failure==1)write_short=1;if(failure==2)write_close=-1;
-        load_clicked(0);tick(50);CHECK(!insmod_count&&strstr(notice_value(),"сохранить"));destroy(0,&parent,0);
+        load_clicked(0);tick(50);CHECK(!insmod_count&&strstr(notice_value(),"сохранить")&&service_state==1&&!live_timers());destroy(0,&parent,0);
     }
-    reset();open_page();load_clicked(0);load_clicked(0);CHECK(live_timers()==1);tick(50);
-    CHECK(insmod_count==1&&file("/tmp/tag_catalog_v1_loaded",0)->present&&live_timers()==1);
-    for(unsigned i=0;i<40;i++)tick(500);CHECK(!live_timers());
-    load_clicked(0);tick(50);CHECK(insmod_count==1);destroy(0,&parent,0);open_page();load_clicked(0);tick(50);CHECK(insmod_count==1);
-    reset();insmod_rc=-1;open_page();load_clicked(0);tick(50);CHECK(insmod_count==1&&!file("/tmp/tag_catalog_v1_loaded",0));
+    reset();open_page();load_clicked(0);load_clicked(0);CHECK(live_timers()==1&&service_state==2&&service_busy);tick(50);
+    CHECK(insmod_count==1&&file("/tmp/tag_catalog_v1_loaded",0)->present&&live_timers()==1&&service_state==2);
+    tick(200);CHECK(strstr(module_surface->image_path,"busy1"));
+    tick(200);CHECK(strstr(module_surface->image_path,"busy2"));
+    tick(200);CHECK(strstr(module_surface->image_path,"busy3"));
+    tick(200);CHECK(strstr(module_surface->image_path,"busy0"));
+    refreshed(0);CHECK(service_state==2);load_clicked(0);CHECK(insmod_count==1&&live_timers()==1);
+    for(unsigned i=4;i<100;i++)tick(200);
+    CHECK(!live_timers()&&!service_busy&&service_state==1&&strstr(notice_value(),"20 секунд"));
+    load_clicked(0);tick(50);CHECK(insmod_count==1&&!live_timers());destroy(0,&parent,0);open_page();load_clicked(0);tick(50);CHECK(insmod_count==1);
+    reset();insmod_rc=-1;open_page();load_clicked(0);tick(50);CHECK(insmod_count==1&&!file("/tmp/tag_catalog_v1_loaded",0)&&service_state==1&&!live_timers());
     load_clicked(0);tick(50);CHECK(insmod_count==1);destroy(0,&parent,0);
     reset();open_page();load_clicked(0);provider_present=1;tick(50);
-    CHECK(!insmod_count&&!live_timers()&&strstr(notice_value(),"уже загружен"));
+    CHECK(!insmod_count&&live_timers()==1&&service_state==2);tick(200);CHECK(!live_timers()&&service_state==0&&!service_busy);
     reset();open_page();load_clicked(0);put("/tmp/Tag_Catalog_V1_attempted","1\n");tick(50);
     CHECK(!insmod_count&&strstr(notice_value(),"перезагрузка"));
-    reset();provider_present=1;open_page();load_clicked(0);CHECK(!insmod_count&&!live_timers());
-    health_value.loop_live=0;load_clicked(0);CHECK(!insmod_count&&strstr(notice_value(),"перезагрузка"));
+    reset();provider_present=1;open_page();load_clicked(0);CHECK(service_state==2);tick(50);tick(200);CHECK(!insmod_count&&!live_timers()&&service_state==0);
+    health_value.error=-1;load_clicked(0);tick(50);tick(200);CHECK(service_state==1&&!live_timers()&&!insmod_count);
+    health_value.error=0;health_value.loop_live=0;load_clicked(0);tick(50);for(unsigned i=0;i<100;i++)tick(200);CHECK(service_state==1&&!live_timers()&&!insmod_count);
+    reset();open_page();timer_fail=1;load_clicked(0);CHECK(service_state==1&&!live_timers()&&!insmod_count);
+    reset();open_page();load_clicked(0);timer_fail=1;tick(50);CHECK(service_state==1&&!live_timers()&&insmod_count==1);
+    CHECK(!start_count&&!stop_count);
+}
+static void pause_test(void) {
+    reset();open_page();load_clicked(0);pause_page(0,&parent,0);tick(50);
+    CHECK(!live_timers()&&!insmod_count&&!service_busy&&!page_active);
+    load_clicked(0);go_next(0);refreshed(0);CHECK(!live_timers());
+    provider_present=1;resume_page(0,&parent,0);CHECK(page_active&&service_state==0&&!live_timers());
+    go_next(0);CHECK(live_timers()==1);pause_page(0,&parent,0);CHECK(!live_timers());
+    resume_page(0,&parent,0);load_clicked(0);tick(50);CHECK(live_timers()==1);
+    destroy(0,&parent,0);tick(200);CHECK(!live_timers()&&!title&&!module_surface);
+    reset();open_page();load_clicked(0);tick(50);provider_present=1;health_value.loop_live=0;tick(200);
+    CHECK(service_state==2);health_value.loop_live=1;tick(200);CHECK(service_state==0&&!live_timers());
+    go_next(0);health_value.selected_index=2;tick(500);CHECK(!live_timers()&&!strcmp(title->text,entries[2].name));
     CHECK(!start_count&&!stop_count);
 }
 int main(void) {
-    trust_test();layout_test();registration_test();selection_test();lifecycle_test();loader_test();
+    trust_test();layout_test();registration_test();selection_test();lifecycle_test();loader_test();pause_test();
     if(failures){fprintf(stderr,"catalog UI: %u of %u checks failed\n",failures,checks);return 1;}
     printf("catalog UI trust, geometry, registration, selection, lifecycle and guarded loader: %u checks PASS\n",checks);return 0;
 }

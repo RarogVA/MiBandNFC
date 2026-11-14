@@ -1,0 +1,1636 @@
+{
+  "input_sha256": "40975e0bb12c883d7aa99a4f54a3c0fb54615ef8d7479bd6151d599348873453",
+  "output_sha256": "067bb30ca29ddd2a25f73ff07c2ce11aa719940145231fdc8dd1f34a66229c40",
+  "bytes": 3939222,
+  "source_sha256": "ef28f70549660bc5f8a126c6e4dbcc53e13511d222863e405eade28b03766738",
+  "changed_images": 80,
+  "changed_resource_payloads": 80,
+  "unchanged_resource_entries": 2460,
+  "changed_prefix_bytes": 392,
+  "records": [
+    {
+      "uid": "0x2000006",
+      "frames": [
+        {
+          "file": "fa3fb90.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            31,
+            85,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000008",
+      "frames": [
+        {
+          "file": "cf89df6.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            33,
+            93,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200000a",
+      "frames": [
+        {
+          "file": "e563c20.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            29,
+            81,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200000c",
+      "frames": [
+        {
+          "file": "f4f81f1.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            51,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200000e",
+      "frames": [
+        {
+          "file": "ee992b8.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000012",
+      "frames": [
+        {
+          "file": "00c3e26.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            66,
+            33,
+            102,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000014",
+      "frames": [
+        {
+          "file": "0913877.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            41,
+            34,
+            136,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000016",
+      "frames": [
+        {
+          "file": "d2d0eb9.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            59,
+            33,
+            100,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000018",
+      "frames": [
+        {
+          "file": "5251e9c.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200001a",
+      "frames": [
+        {
+          "file": "a83b251.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            47,
+            29,
+            89,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000080",
+      "frames": [
+        {
+          "file": "61f848a.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            31,
+            85,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000081",
+      "frames": [
+        {
+          "file": "84ce115.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            33,
+            93,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000082",
+      "frames": [
+        {
+          "file": "1fd7f82.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            29,
+            81,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000083",
+      "frames": [
+        {
+          "file": "632a669.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            51,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000084",
+      "frames": [
+        {
+          "file": "e2862d2.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000085",
+      "frames": [
+        {
+          "file": "7fca60e.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            66,
+            33,
+            102,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000086",
+      "frames": [
+        {
+          "file": "1ee36ec.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            41,
+            34,
+            136,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000087",
+      "frames": [
+        {
+          "file": "1acca22.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            59,
+            33,
+            100,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000088",
+      "frames": [
+        {
+          "file": "2e459f2.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000089",
+      "frames": [
+        {
+          "file": "f5f124e.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            47,
+            29,
+            89,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000b7",
+      "frames": [
+        {
+          "file": "609a183.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            31,
+            85,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000b9",
+      "frames": [
+        {
+          "file": "68b7fef.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            33,
+            93,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000bb",
+      "frames": [
+        {
+          "file": "e72a17e.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            29,
+            81,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000bd",
+      "frames": [
+        {
+          "file": "11ac5ba.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            51,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000bf",
+      "frames": [
+        {
+          "file": "ea1de53.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000c1",
+      "frames": [
+        {
+          "file": "c914211.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            66,
+            33,
+            102,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000c3",
+      "frames": [
+        {
+          "file": "db1f48a.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            41,
+            34,
+            136,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000c5",
+      "frames": [
+        {
+          "file": "c328a2f.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            59,
+            33,
+            100,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000c7",
+      "frames": [
+        {
+          "file": "f137972.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000c9",
+      "frames": [
+        {
+          "file": "1ff4d6c.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            47,
+            29,
+            89,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000f1",
+      "frames": [
+        {
+          "file": "e4a06fc.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            31,
+            85,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000f3",
+      "frames": [
+        {
+          "file": "e052764.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            33,
+            93,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000f5",
+      "frames": [
+        {
+          "file": "351bcf0.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            29,
+            81,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000f7",
+      "frames": [
+        {
+          "file": "7018f7c.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            51,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000f9",
+      "frames": [
+        {
+          "file": "4d12134.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000fb",
+      "frames": [
+        {
+          "file": "686152e.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            66,
+            33,
+            102,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000fd",
+      "frames": [
+        {
+          "file": "6ceb57f.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            41,
+            34,
+            136,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x20000ff",
+      "frames": [
+        {
+          "file": "e4ab8cc.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            59,
+            33,
+            100,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000101",
+      "frames": [
+        {
+          "file": "a9e3f01.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000103",
+      "frames": [
+        {
+          "file": "3acfef2.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            47,
+            29,
+            89,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000129",
+      "frames": [
+        {
+          "file": "180daff.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            48,
+            31,
+            84,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200012b",
+      "frames": [
+        {
+          "file": "b39a037.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            32,
+            95,
+            44
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200012d",
+      "frames": [
+        {
+          "file": "cf2a733.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            39,
+            29,
+            80,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200012f",
+      "frames": [
+        {
+          "file": "c2097a6.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000131",
+      "frames": [
+        {
+          "file": "72fb472.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000133",
+      "frames": [
+        {
+          "file": "389d4d6.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            68,
+            33,
+            104,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000135",
+      "frames": [
+        {
+          "file": "50aea0a.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            31,
+            130,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000137",
+      "frames": [
+        {
+          "file": "a689600.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            61,
+            34,
+            102,
+            47
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000139",
+      "frames": [
+        {
+          "file": "3068772.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200013b",
+      "frames": [
+        {
+          "file": "88e0d24.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            48,
+            29,
+            91,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000155",
+      "frames": [
+        {
+          "file": "8602dee.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            31,
+            85,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000156",
+      "frames": [
+        {
+          "file": "f72ebe5.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            33,
+            93,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000157",
+      "frames": [
+        {
+          "file": "1fe6dd0.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            29,
+            81,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000158",
+      "frames": [
+        {
+          "file": "46d0ca4.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            51,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000159",
+      "frames": [
+        {
+          "file": "cd2e8d4.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200015a",
+      "frames": [
+        {
+          "file": "1aaaff1.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            66,
+            33,
+            102,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200015b",
+      "frames": [
+        {
+          "file": "ea4769a.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            41,
+            34,
+            136,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200015c",
+      "frames": [
+        {
+          "file": "5b34b40.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            59,
+            33,
+            100,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200015d",
+      "frames": [
+        {
+          "file": "9b09276.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200015e",
+      "frames": [
+        {
+          "file": "3de76d0.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            47,
+            29,
+            89,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200016d",
+      "frames": [
+        {
+          "file": "7b76fba.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            31,
+            85,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200016e",
+      "frames": [
+        {
+          "file": "2bee041.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            33,
+            93,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200016f",
+      "frames": [
+        {
+          "file": "cf0b930.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            29,
+            81,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000170",
+      "frames": [
+        {
+          "file": "ecea305.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            51,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000171",
+      "frames": [
+        {
+          "file": "b70c618.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000172",
+      "frames": [
+        {
+          "file": "125a1af.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            66,
+            33,
+            102,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000173",
+      "frames": [
+        {
+          "file": "8eed839.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            41,
+            34,
+            136,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000174",
+      "frames": [
+        {
+          "file": "0ab7f8f.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            59,
+            33,
+            100,
+            46
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000175",
+      "frames": [
+        {
+          "file": "0f9626e.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000176",
+      "frames": [
+        {
+          "file": "e874308.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            47,
+            29,
+            89,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000184",
+      "frames": [
+        {
+          "file": "0af0409.png",
+          "text": "ЧСС",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            48,
+            31,
+            84,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000185",
+      "frames": [
+        {
+          "file": "5f8f0a1.png",
+          "text": "Активность",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            0,
+            32,
+            95,
+            44
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000186",
+      "frames": [
+        {
+          "file": "8373fea.png",
+          "text": "Стоя",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            39,
+            29,
+            80,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000187",
+      "frames": [
+        {
+          "file": "659ea76.png",
+          "text": "Шаги",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            49,
+            26,
+            93,
+            38
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000188",
+      "frames": [
+        {
+          "file": "2d0f9d9.png",
+          "text": "Ккал",
+          "old_rotation": 32,
+          "new_rotation": 0,
+          "shift_x": 12,
+          "shift_y": 0,
+          "new_text_box": [
+            52,
+            30,
+            91,
+            42
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x2000189",
+      "frames": [
+        {
+          "file": "57c2119.png",
+          "text": "ЧСС",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            68,
+            33,
+            104,
+            45
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200018a",
+      "frames": [
+        {
+          "file": "c11dba1.png",
+          "text": "Активность",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            40,
+            31,
+            130,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200018b",
+      "frames": [
+        {
+          "file": "75cba70.png",
+          "text": "Стоя",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            61,
+            34,
+            102,
+            47
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200018c",
+      "frames": [
+        {
+          "file": "768e598.png",
+          "text": "Ккал",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            57,
+            31,
+            96,
+            43
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    },
+    {
+      "uid": "0x200018d",
+      "frames": [
+        {
+          "file": "00a30d6.png",
+          "text": "Шаги",
+          "old_rotation": -32,
+          "new_rotation": 0,
+          "shift_x": 0,
+          "shift_y": 0,
+          "new_text_box": [
+            48,
+            29,
+            91,
+            41
+          ],
+          "protected_icon_unchanged": true
+        }
+      ]
+    }
+  ],
+  "previews": [
+    {
+      "theme": 0,
+      "changed_pixels": 1025,
+      "outside_label_support_unchanged": true
+    },
+    {
+      "theme": 2,
+      "changed_pixels": 1026,
+      "outside_label_support_unchanged": true
+    },
+    {
+      "theme": 3,
+      "changed_pixels": 1025,
+      "outside_label_support_unchanged": true
+    },
+    {
+      "theme": 4,
+      "changed_pixels": 1063,
+      "outside_label_support_unchanged": true
+    }
+  ],
+  "positions_and_numeric_sources_unchanged": true,
+  "hardware_validated": false
+}

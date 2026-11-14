@@ -10,13 +10,15 @@ import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"roundabout"))
 from pack_roundabout import rgba,encode_frame,rebuild_image,parse_image,decode_frame
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"launcher"))
+from build_card import ASSET_NAMES
 
 ROOT=Path(__file__).resolve().parents[2]
 BASE_SHA="2a7e7ff2b89b0845bf1cf96a63a0f844082d5be8d47b5c38312a480870bfa475"
 FW_SHA="66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40"
 NORMAL=(0,2,3,4)
-FACE_ID="999999991"
-FACE_NAME="Roundabout RU NFC 3"
+FACE_ID="999999990"
+FACE_NAME="Roundabout RU NFC 4"
 
 def require(ok,message):
     if not ok: raise ValueError(message)
@@ -66,13 +68,15 @@ def build(args):
     require(file_resource(reference_name,reference_data)==recorder[offset:offset+size],"FileResource reference roundtrip failed")
     resources=[("app/lua/main.lua",args.lua.read_bytes()),
                ("app/lua/catalog_core_v1.elf",args.core.read_bytes()),
-               ("app/lua/catalog_ui_v3.elf",args.ui.read_bytes())]
+               ("app/lua/catalog_ui_v4.elf",args.ui.read_bytes())]
     for name,payload in resources[1:]:require(payload[:4]==b"\x7fELF",f"Not an ELF: {name}")
-    for spec in args.extra:
+    extras=args.extra or [name+".bin="+str(ROOT/"tags/launcher/icons"/(name+".bin")) for name in ASSET_NAMES]
+    for spec in extras:
         name,path=spec.split("=",1)
-        require(name in ("left.bin","right.bin","refresh.bin"),"Only the three audited icon filenames are accepted")
+        require(name in {n+".bin" for n in ASSET_NAMES},"Only audited UI4 artwork filenames are accepted")
         resources.append(("app/lua/"+name,Path(path).read_bytes()))
     require(len({n for n,_ in resources})==len(resources),"Duplicate embedded filename")
+    require({n for n,_ in resources[3:]}=={"app/lua/"+n+".bin" for n in ASSET_NAMES},"All UI4 artwork is required")
     output=bytearray(original)
     before=list(entries(original));old={(t,u):(off,size,pos) for t,k,u,off,size,pos in before}
     require(not any(k==5 for _,k,*_ in before),"Baseline unexpectedly has FileResources")
@@ -145,7 +149,7 @@ def build(args):
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_bytes(output)
     report={"face_id":FACE_ID,"name":FACE_NAME,"bytes":len(output),"sha256":sha(output),
-            "ui_version":3,"ui_module":"NFC_Tags_Catalog_UI_V3","core_version":1,
+            "ui_version":4,"ui_module":"NFC_Tags_Catalog_UI_V4","core_version":1,
             "baseline_sha256":BASE_SHA,"firmware_sha256":FW_SHA,"normal_themes":list(NORMAL),
             "unchanged_resource_entries":unchanged,"changed_prefix_bytes":len(changed),
             "editor_boundary":{"uid":hex(editbox_uid),"old_pixels":[69,69],"new_pixels":[84,84],"widget_position":[126,274],"themes":8},
@@ -166,7 +170,7 @@ def main():
     p.add_argument("--core",type=Path,required=True)
     p.add_argument("--ui",type=Path,required=True)
     p.add_argument("--extra",action="append",default=[],metavar="NAME=PATH")
-    p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc3.face")
+    p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc4.face")
     p.add_argument("--report",type=Path,default=Path(__file__).with_name("validation.json"))
     build(p.parse_args())
 

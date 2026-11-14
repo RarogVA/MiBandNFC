@@ -1,3 +1,11 @@
+# UI4 — v1.0.0
+
+The working tree now builds **Roundabout RU NFC 4**, ID `999999990`, with UI4.
+The approved Pult screen is implemented with bold labels and bounded service checks.
+The user reported checking UI4 before the v1.0.0 release. See
+[UI4 build notes](../launcher/UI4.md) for the current build. The UI3 recipe
+below documents tag `v0.4.2-alpha.1`; use that tag to reproduce UI3.
+
 # Manual bootstrap from Roundabout
 
 Target: the user's Mi Smart Band 10 Pro Ceramic GL (`miwear.watch.p67glt`), firmware **3.201.026** only. This adds a small Lua child to the existing lower NFC circle in the four normal Roundabout themes. Clock, metric resources, other buttons and AOD remain native. The separate candidate is **Roundabout RU NFC 3**, ID `999999991`; released IDs `999999995` and `999999994` are immutable inputs. This fresh ID avoids Notify reusing the already-installed ID `999999992`; the previous NFC 2 files are preserved. Only the face ID and its 33 localized titles change from the UI3 NFC 2 candidate; the Lua, core/UI ELFs, icons and all live/preview resources are identical.

@@ -11,7 +11,7 @@
 static const char app_name[]="dev.mbapdu.tags";
 static ui_app app;
 static ui_page page,*pages[1];
-static ui_obj *title,*badge,*module_badge,*module_surface,*previous,*next,*previous_image,*next_image;
+static ui_obj *title,*title_heavy,*badge,*module_badge,*module_surface,*previous,*next,*previous_image,*next_image;
 static ui_timer *refresh_timer,*load_timer,*service_timer;
 static unsigned refresh_count,initialized,service_ticks,service_frame;
 static int initialization_result=-1,service_busy,service_state=-1,page_active;
@@ -90,17 +90,22 @@ static void nav_update(void) {
     ui_image_src(previous_image,ui4_assets[current>0?8:10]);
     ui_image_src(next_image,ui4_assets[total>0&&current+1<total?9:11]);
 }
+/* A second resident-font pass adds weight without changing font metrics,
+ * creating a font, or mutating the firmware's shared style. */
+static void title_text(const char *value) {
+    ui_text(title,value);ui_text(title_heavy,value);
+}
 static void update(void) {
     if(!title||!page_active)return;
     tag_catalog_health health;
     api=provider();int available=api&&api->health(&health)==0;
     if(!service_busy)service_draw(available&&health.loop_live&&!health.error?0:1);
-    if(!available){current=-1;total=0;revision=0;ui_text(title,"Нет модуля");ui_text(badge,"—");nav_update();return;}
+    if(!available){current=-1;total=0;revision=0;title_text("Нет модуля");ui_text(badge,"—");nav_update();return;}
     revision=health.catalog_revision;total=health.count;current=health.selected_index;
-    if(current<0||current>=total){ui_text(title,total?"Выберите метку":"Нет меток");ui_text(badge,"—");nav_update();return;}
+    if(current<0||current>=total){title_text(total?"Выберите метку":"Нет меток");ui_text(badge,"—");nav_update();return;}
     tag_catalog_entry entry;
-    if(api->get(revision,(uint16_t)current,&entry)!=0){ui_text(title,"Обновите данные");ui_text(badge,"—");nav_update();return;}
-    ui_text(title,entry.name);
+    if(api->get(revision,(uint16_t)current,&entry)!=0){title_text("Обновите данные");ui_text(badge,"—");nav_update();return;}
+    title_text(entry.name);
     const char *kind=entry.kind==1?"NDEF":contains(entry.technology,"IsoDep")?"ISO-DEP":
         contains(entry.technology,"NfcA")?"NFC-A":contains(entry.technology,"NfcB")?"NFC-B":"Сведения";
     ui_text(badge,kind);nav_update();
@@ -167,7 +172,7 @@ static void load_clicked(ui_event *e) {
     if(!load_timer)service_finish(0,"Не удалось запустить проверку");
 }
 static void handles_clear(void) {
-    title=badge=module_badge=module_surface=previous=next=previous_image=next_image=0;api=0;
+    title=title_heavy=badge=module_badge=module_surface=previous=next=previous_image=next_image=0;api=0;
     page_active=0;service_state=-1;service_busy=0;selection_target=-1;
 }
 static void timers_stop(void) {
@@ -194,7 +199,8 @@ static int create(void *pm,ui_obj *parent,void *data) {
     ui_obj *card=owned(root,CARD_X,CARD_Y,CARD_W,CARD_H,0);if(!card)goto failed;
     if(!surface(card,ui4_assets[0],0,0,CARD_W,CARD_H))goto failed;
     title=text(card,"Нет меток",TITLE_X,TITLE_Y,TITLE_W,TITLE_H,TITLE_FONT,1);
-    badge=text(card,"—",TYPE_X,TYPE_Y+1,TYPE_W,TYPE_H-1,TYPE_FONT,2);
+    title_heavy=text(card,"Нет меток",TITLE_X+TITLE_WEIGHT_OFFSET,TITLE_Y,TITLE_W,TITLE_H,TITLE_FONT,1);
+    badge=text(card,"—",TYPE_X,TYPE_Y+(TYPE_H-TYPE_TEXT_H)/2,TYPE_W,TYPE_TEXT_H,TYPE_FONT,2);
     ui_obj *controls=owned(root,CONTROLS_X,CONTROLS_Y,CONTROLS_W,CONTROLS_H,0);if(!controls)goto failed;
     if(!surface(controls,ui4_assets[1],0,0,CONTROLS_W,CONTROLS_H))goto failed;
     previous=owned(controls,0,NAV_Y,NAV_W,NAV_H,go_previous);
@@ -203,7 +209,7 @@ static int create(void *pm,ui_obj *parent,void *data) {
     previous_image=surface(previous,ui4_assets[8],65,20,32,32);
     next_image=surface(next,ui4_assets[9],65,20,32,32);
     if(!owned(controls,0,REFRESH_Y,CONTROLS_W,REFRESH_H,refreshed))goto failed;
-    if(!title||!badge||!previous_image||!next_image)goto failed;
+    if(!title||!title_heavy||!badge||!previous_image||!next_image)goto failed;
     page_active=1;service_state=-1;update();diagnostic("NFC_CATALOG_UI4\nPAGE_OPEN\n0\nEND\n");return 0;
 failed:
     handles_clear();diagnostic("NFC_CATALOG_UI4\nUI_ALLOC\n-1\nEND\n");return -1;

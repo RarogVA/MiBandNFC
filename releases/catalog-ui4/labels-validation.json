@@ -1,7 +1,7 @@
 {
-  "input_sha256": "40975e0bb12c883d7aa99a4f54a3c0fb54615ef8d7479bd6151d599348873453",
-  "output_sha256": "067bb30ca29ddd2a25f73ff07c2ce11aa719940145231fdc8dd1f34a66229c40",
-  "bytes": 3939222,
+  "input_sha256": "6e4c723a8744be85ce5d2feeb62fdb37c7c78c9993e756ec73c091531f991d04",
+  "output_sha256": "1a141da188c2392f32763b18c70307dec1739d46c53f37d0314de06f57cd2d8e",
+  "bytes": 3939406,
   "source_sha256": "ef28f70549660bc5f8a126c6e4dbcc53e13511d222863e405eade28b03766738",
   "changed_images": 80,
   "changed_resource_payloads": 80,

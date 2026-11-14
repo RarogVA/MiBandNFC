@@ -192,8 +192,10 @@ static void layout_test(void) {
     box(control(refreshed),0,72,326,67);
     box(module_badge,5,5,326,49);CHECK(control(load_clicked)==module_badge);
     CHECK(title->font==26&&title->width==222&&title->height==60&&title->long_mode==1&&title->text_align==1);
+    box(title_heavy,TITLE_X+1,TITLE_Y,TITLE_W,TITLE_H);
+    CHECK(title_heavy->font==title->font&&title_heavy->long_mode==title->long_mode&&title_heavy->text_align==title->text_align);
     CHECK(badge->font==20&&badge->text_align==2&&badge->bold&&title->bold);
-    CHECK(badge->y==23&&badge->height==31&&title->y==98&&badge->y+badge->height<title->y);
+    CHECK(badge->x==20&&badge->y==24&&badge->height==28&&title->y==98&&badge->y+badge->height<title->y);
     CHECK(title->parent->y+title->parent->height+33==previous->parent->y);
     CHECK(module_badge->y+module_badge->height+33==title->parent->y);
     for(unsigned i=1;i<node_count;i++) {
@@ -254,17 +256,27 @@ static void selection_test(void) {
     health_rc=-1;update();CHECK(!strcmp(title->text,"Нет модуля"));
     CHECK(!start_count&&!stop_count&&!insmod_count);
 }
+static void title_weight_test(void) {
+    reset();provider_present=1;open_page();
+    CHECK(!strcmp(title->text,title_heavy->text));
+    health_value.selected_index=0;update();CHECK(!strcmp(title->text,entries[0].name)&&!strcmp(title->text,title_heavy->text));
+    get_rc=-1;update();CHECK(!strcmp(title->text,"Обновите данные")&&!strcmp(title->text,title_heavy->text));
+    get_rc=0;health_value.selected_index=-1;update();CHECK(!strcmp(title->text,"Выберите метку")&&!strcmp(title->text,title_heavy->text));
+    health_value.count=0;update();CHECK(!strcmp(title->text,"Нет меток")&&!strcmp(title->text,title_heavy->text));
+    health_rc=-1;update();CHECK(!strcmp(title->text,"Нет модуля")&&!strcmp(title->text,title_heavy->text));
+    destroy(0,&parent,0);CHECK(!title&&!title_heavy&&!badge);
+}
 static void lifecycle_test(void) {
     reset();file("/data/tag_catalog/card-v4.bin",0)->present=0;CHECK(create(0,&parent,0)==-1&&!title&&!live_timers());
     reset();provider_present=1;open_page();unsigned allocation_count=alloc_attempts;
     CHECK(create(0,&parent,0)==-1);go_next(0);CHECK(live_timers()==1);
-    destroy(0,&parent,0);CHECK(!live_timers()&&!title&&!api);
+    destroy(0,&parent,0);CHECK(!live_timers()&&!title&&!title_heavy&&!api);
     unsigned before=node_count;go_next(0);refreshed(0);load_clicked(0);
     CHECK(before==node_count&&!invalid_objects&&!live_timers());open_page();destroy(0,&parent,0);
     for(unsigned fail=1;fail<=allocation_count;fail++) {
         reset();fail_allocation=fail;int rc=create(0,&parent,0);
         CHECK(!invalid_objects);
-        if(rc){CHECK(!title&&!badge&&!module_surface&&!previous&&!next);
+        if(rc){CHECK(!title&&!title_heavy&&!badge&&!module_surface&&!previous&&!next);
             go_next(0);refreshed(0);load_clicked(0);CHECK(!invalid_objects&&!live_timers());}
         destroy(0,&parent,0);CHECK(!live_timers());fail_allocation=0;open_page();destroy(0,&parent,0);
     }
@@ -319,7 +331,7 @@ static void pause_test(void) {
     CHECK(!start_count&&!stop_count);
 }
 int main(void) {
-    trust_test();layout_test();registration_test();selection_test();lifecycle_test();loader_test();pause_test();
+    trust_test();layout_test();registration_test();selection_test();title_weight_test();lifecycle_test();loader_test();pause_test();
     if(failures){fprintf(stderr,"catalog UI: %u of %u checks failed\n",failures,checks);return 1;}
     printf("catalog UI trust, geometry, registration, selection, lifecycle and guarded loader: %u checks PASS\n",checks);return 0;
 }

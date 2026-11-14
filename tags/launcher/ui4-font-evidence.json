@@ -7,7 +7,8 @@
     "family": 0,
     "family_name": "MiSans-Demibold",
     "initializer": "0x2c44bd48..0x2c44bd5c",
-    "literal": "0x2c44be70"
+    "literal": "0x2c44be70",
+    "extra_weight": "Two identical native labels at x and x+1, updated together; same font, width and ellipsis; no new font binding"
   },
   "technology": {
     "ram": "0x200d69d4",
@@ -15,7 +16,8 @@
     "family": 0,
     "family_name": "MiSans-Demibold",
     "initializer": "0x2c44bd90..0x2c44bda4",
-    "literal": "0x2c44be7c"
+    "literal": "0x2c44be7c",
+    "extra_weight": "None; unchanged single MiSans-Demibold 20px label"
   },
   "proof": "Each initializer calls style_init, passes r2=0, r1=size and r0=r2 (family 0) to 0x2c443134, then applies returned font to the literal style pointer through 0x2c557ce8.",
   "runtime_fingerprints": {

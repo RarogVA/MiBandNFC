@@ -27,6 +27,16 @@
   "side_margin": 5,
   "status_to_card_gap": 33,
   "card_to_controls_gap": 33,
+  "badge": [
+    20,
+    18,
+    114,
+    41
+  ],
+  "badge_radius": 15,
+  "badge_border": 1,
+  "title_weight_offset": 1,
+  "static_label_stroke": 0.5,
   "fonts": {
     "title": 26,
     "type": 20,

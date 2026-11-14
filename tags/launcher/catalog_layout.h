@@ -20,10 +20,14 @@
 #define TITLE_W 222
 #define TITLE_H 60
 #define TITLE_FONT 26
-#define TYPE_X 24
-#define TYPE_Y 22
+#define TYPE_X 20
+#define TYPE_Y 18
 #define TYPE_W 114
-#define TYPE_H 32
+#define TYPE_H 41
+#define TYPE_RADIUS 15
+#define TYPE_STROKE 1
+#define TYPE_TEXT_H 28
+#define TITLE_WEIGHT_OFFSET 1
 #define TYPE_FONT 20
 #define STATUS_FONT 20
 #define REFRESH_FONT 23

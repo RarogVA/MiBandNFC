@@ -1,8 +1,8 @@
 {
   "face_id": "999999990",
   "name": "Roundabout RU NFC 4",
-  "bytes": 3939222,
-  "sha256": "067bb30ca29ddd2a25f73ff07c2ce11aa719940145231fdc8dd1f34a66229c40",
+  "bytes": 3939406,
+  "sha256": "1a141da188c2392f32763b18c70307dec1739d46c53f37d0314de06f57cd2d8e",
   "ui_version": 4,
   "core_version": 1,
   "embedded_files": [
@@ -21,56 +21,56 @@
     {
       "name": "app/lua/catalog_ui_v4.elf",
       "source": "tags/launcher/build/nfc_tags_catalog_ui_v4.elf",
-      "bytes": 12560,
-      "sha256": "f1937d8f44022943f7f5a2bb15be2f3173fea12e163f0ed3d74217791847bfbb"
+      "bytes": 12744,
+      "sha256": "0f48b705f521128a0b45208b505721d65d0cf57b2cbdcae9428fc5c960476cdb"
     },
     {
       "name": "app/lua/card-v4.bin",
       "source": "tags/launcher/icons/card-v4.bin",
       "bytes": 71452,
-      "sha256": "bfbfd047968eba5d710fef0ae820927445d81c36fea64e76c69e5f6312dfa79e"
+      "sha256": "b74d920d19cedb58613666eed817d2114b5c3d93dcc0c368c8b834883b5d5a99"
     },
     {
       "name": "app/lua/controls-v4.bin",
       "source": "tags/launcher/icons/controls-v4.bin",
       "bytes": 46350,
-      "sha256": "c752b47b729f5cfa74b68beeca209541d6bf786df7aff10c4999c7cadb6995fb"
+      "sha256": "fc2b7b7105bee0f2325b0b341901e583efa6c0a0d2fcbaa9d2928603c6243158"
     },
     {
       "name": "app/lua/status-ok-v4.bin",
       "source": "tags/launcher/icons/status-ok-v4.bin",
       "bytes": 17010,
-      "sha256": "6c73a558833d02397aa348128aa9f7e1962d0471d9749f6dbcad6c424683eb24"
+      "sha256": "5b3997f39891d96e3d00c1e9ddc37175a49dc34a94a115626225235cf982bd83"
     },
     {
       "name": "app/lua/status-fail-v4.bin",
       "source": "tags/launcher/icons/status-fail-v4.bin",
       "bytes": 17010,
-      "sha256": "122a1f1d96e80fa45c9a7c34e0d5aff85b05654cb868ae7a21a711a14abe2f81"
+      "sha256": "5009e6d3dd106d832105a4e88772074b57d17c12f926a7dc9ee3c8cd330b533c"
     },
     {
       "name": "app/lua/status-busy0-v4.bin",
       "source": "tags/launcher/icons/status-busy0-v4.bin",
       "bytes": 17010,
-      "sha256": "f6ff8c8c588b5b59945bd64fcb6a6b8e83485c09979d963ce16db802319d47e0"
+      "sha256": "7e38327170e5f47c84fd498339125cc29e73f5e2749b16a1bf9dea67d3a5b8e9"
     },
     {
       "name": "app/lua/status-busy1-v4.bin",
       "source": "tags/launcher/icons/status-busy1-v4.bin",
       "bytes": 17010,
-      "sha256": "0d7396a13e8265fd0d9d2aabf423bc86da9f6330288fb20a24cf29b836d81416"
+      "sha256": "38da239c38c24e6523f86733723b7d65ba51eb4f17a812dfc1dd9513e971a5d8"
     },
     {
       "name": "app/lua/status-busy2-v4.bin",
       "source": "tags/launcher/icons/status-busy2-v4.bin",
       "bytes": 17010,
-      "sha256": "f8edd46091be8f404a28c1b3a5d3f4a5b3d3e2f3b5d82647d308b4076c7a2ba8"
+      "sha256": "1a62c1141e2f4fe77e1b6a1a54cdd0e3b6d39da0eab5213772e1975e81bf6cb0"
     },
     {
       "name": "app/lua/status-busy3-v4.bin",
       "source": "tags/launcher/icons/status-busy3-v4.bin",
       "bytes": 17010,
-      "sha256": "cd1244ed170c0541033b8a81fabfdf954b0880146b83973b4c00171a62a3359f"
+      "sha256": "2ae4e1b856463d5bc3b342831f8e29faa1cb9416c1e21f0db4f6e45271436495"
     },
     {
       "name": "app/lua/left-v4.bin",

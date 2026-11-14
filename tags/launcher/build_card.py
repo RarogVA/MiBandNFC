@@ -39,10 +39,11 @@ def painted(outer, inner, fill, stroke):
     paint=Image.new('RGBA',outer.size,fill);paint.putalpha(inner);im.alpha_composite(paint)
     return im
 
-def label(im, value, box, size, color, anchor='mm'):
+def label(im, value, box, size, color, anchor='mm', heavy=False):
     x,y,w,h=box
     ImageDraw.Draw(im).text(((x+w/2)*SCALE,(y+h/2)*SCALE), value,
-        font=ImageFont.truetype(FONT,size*SCALE),fill=color,anchor=anchor)
+        font=ImageFont.truetype(FONT,size*SCALE),fill=color,anchor=anchor,
+        stroke_width=SCALE//2 if heavy else 0,stroke_fill=color)
 
 def encode(name, im):
     im=im.resize((im.width//SCALE,im.height//SCALE),Image.Resampling.LANCZOS)
@@ -82,7 +83,10 @@ def main():
     card=painted(rounded_mask(size,[r]*4),rounded_mask(size,[r-1]*4,1),rgb('CARD_COLOR'),rgb('CARD_BORDER_COLOR'))
     d=ImageDraw.Draw(card)
     d.rounded_rectangle((0,97*SCALE,3*SCALE,157*SCALE),radius=1.5*SCALE,fill='#d3ba67')
-    d.rounded_rectangle((v['TYPE_X']*SCALE,v['TYPE_Y']*SCALE,(v['TYPE_X']+v['TYPE_W'])*SCALE,(v['TYPE_Y']+v['TYPE_H'])*SCALE),radius=5*SCALE,fill=rgb('TYPE_COLOR'))
+    badge_size=(v['TYPE_W'],v['TYPE_H']);badge_radius=v['TYPE_RADIUS'];stroke=v['TYPE_STROKE']
+    badge=painted(rounded_mask(badge_size,[badge_radius]*4),
+        rounded_mask(badge_size,[badge_radius-stroke]*4,stroke),rgb('TYPE_COLOR'),rgb('CARD_BORDER_COLOR'))
+    card.alpha_composite(badge,(v['TYPE_X']*SCALE,v['TYPE_Y']*SCALE))
     # Original contactless wave illustration, distinct from controls.
     for radius in [9,15,21]:
         cx,cy=271,38
@@ -96,7 +100,7 @@ def main():
     bottom.putalpha(mask);panel.alpha_composite(bottom);d=ImageDraw.Draw(panel)
     d.line((163*SCALE,0,163*SCALE,72*SCALE),fill=rgb('CONTROL_BORDER_COLOR'),width=SCALE)
     d.line((SCALE,72*SCALE,325*SCALE,72*SCALE),fill=rgb('CONTROL_BORDER_COLOR'),width=SCALE)
-    label(panel,'Обновить',(0,72,326,67),v['REFRESH_FONT'],'#f4f5f7');save('controls-v4',panel)
+    label(panel,'ОБНОВИТЬ',(0,72,326,67),v['REFRESH_FONT'],'#f4f5f7',heavy=True);save('controls-v4',panel)
     # Crop concentric R51 upper corners, then round the lower six pixels.
     w,h=v['STATUS_W'],v['STATUS_H']
     outer=rounded_mask((w,104),[51]*4).crop((0,0,w*SCALE,h*SCALE))
@@ -105,13 +109,13 @@ def main():
     inner=ImageChops.darker(inner,rounded_mask((w,h),[0,0,5,5],1))
     refresh=Image.open(HERE/'icons/refresh.png').convert('RGBA').resize((24*SCALE,24*SCALE),Image.Resampling.LANCZOS)
     states=[('ok','#183e2c','#315b42','#95e6b9','OK'),('fail','#4b222a','#6a3941','#ffb0bc','FAIL')]
-    states += [(f'busy{i}','#2b2e33','#42464e','#d1d4d9','Проверка') for i in range(4)]
+    states += [(f'busy{i}','#2b2e33','#42464e','#d1d4d9','ЖДИТЕ') for i in range(4)]
     for state,fill,stroke,fg,value in states:
         im=painted(outer,inner,fill,stroke)
         label_width=w if state=='ok' else w-36
-        text='Статус сервиса: '+value
-        assert ImageFont.truetype(FONT,v['STATUS_FONT']*SCALE).getlength(text)<(label_width-20)*SCALE
-        label(im,text,(0,0,label_width,h),v['STATUS_FONT'],fg)
+        text='СТАТУС СЕРВИСА: '+value
+        assert ImageFont.truetype(FONT,v['STATUS_FONT']*SCALE).getlength(text)+SCALE<(label_width-16)*SCALE
+        label(im,text,(0,0,label_width,h),v['STATUS_FONT'],fg,heavy=True)
         if state!='ok':
             icon=Image.new('RGBA',refresh.size,fg);icon.putalpha(refresh.getchannel('A'))
             if state.startswith('busy'):icon=icon.rotate(-int(state[-1])*90)
@@ -145,7 +149,8 @@ def main():
             preview.alpha_composite(assets[name].resize((assets[name].width*SCALE,assets[name].height*SCALE)),(x*SCALE,y*SCALE))
         # Left aligned, bounded native title. All other static labels use
         # exactly the pixels embedded in the FACE, not recreated text.
-        ImageDraw.Draw(preview).text(((v['CARD_X']+v['TITLE_X'])*SCALE,(v['CARD_Y']+v['TITLE_Y']+8)*SCALE),'NFC-Test',font=ImageFont.truetype(FONT,v['TITLE_FONT']*SCALE),fill='#f0f3f8')
+        for dx in [0,v['TITLE_WEIGHT_OFFSET']]:
+            ImageDraw.Draw(preview).text(((v['CARD_X']+v['TITLE_X']+dx)*SCALE,(v['CARD_Y']+v['TITLE_Y']+8)*SCALE),'NFC-Test',font=ImageFont.truetype(FONT,v['TITLE_FONT']*SCALE),fill='#f0f3f8')
         label(preview,'NDEF',(v['CARD_X']+v['TYPE_X'],v['CARD_Y']+v['TYPE_Y'],v['TYPE_W'],v['TYPE_H']),v['TYPE_FONT'],'#f0f3f8')
         preview=preview.resize((672,960),Image.Resampling.LANCZOS)
         preview.save(out/('screen-'+state+'-2x.png'))
@@ -153,6 +158,9 @@ def main():
     report={'profile':'catalog-ui-v4','display':[336,480],'status':[5,5,326,49],
             'card':[5,87,326,216],'controls':[5,336,326,139],'navigation_height':72,'refresh_height':67,
             'side_margin':5,'status_to_card_gap':33,'card_to_controls_gap':33,
+            'badge':[v['TYPE_X'],v['TYPE_Y'],v['TYPE_W'],v['TYPE_H']],
+            'badge_radius':v['TYPE_RADIUS'],'badge_border':v['TYPE_STROKE'],
+            'title_weight_offset':v['TITLE_WEIGHT_OFFSET'],'static_label_stroke':0.5,
             'fonts':{'title':v['TITLE_FONT'],'type':v['TYPE_FONT'],'status':v['STATUS_FONT'],'refresh':v['REFRESH_FONT']},'rounded_safe_area':'PASS',
             'asset_roundtrip':'PASS','asset_count':len(manifest),'asset_bytes':sum(a['bytes'] for a in manifest),
             'preview':'offline render with actual assets; dynamic system text approximate, not a device screenshot',

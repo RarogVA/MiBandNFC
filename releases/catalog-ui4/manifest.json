@@ -1,7 +1,7 @@
 {
   "name": "Roundabout RU NFC 4 — Pult UI4",
   "version": "v1.0.0",
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "model": "miwear.watch.p67glt",
   "firmware": "3.201.026",
   "face_id": "999999990",
@@ -40,20 +40,27 @@
     ],
     "edge_inset": 5,
     "fonts": {
-      "title": "MiSans-Demibold 26px",
-      "technology": "MiSans-Demibold 20px",
-      "status": "Arial Bold raster 20px",
-      "refresh": "Arial Bold raster 23px"
+      "title": "MiSans-Demibold 26px with a second pass offset by 1px",
+      "technology": "MiSans-Demibold 20px (unchanged)",
+      "status": "Arial Bold raster 20px, 0.5px stroke, uppercase prefix",
+      "refresh": "Arial Bold raster 23px, 0.5px stroke, uppercase"
     },
     "technology_badge": [
-      24,
-      22,
+      20,
+      18,
       114,
-      32
-    ]
+      41
+    ],
+    "badge_corner_radii": [
+      15,
+      15,
+      15,
+      15
+    ],
+    "badge_border": 1
   },
   "checks": {
-    "native_asan_ubsan_checks": 922,
+    "native_asan_ubsan_checks": 979,
     "lua_tests": 23,
     "firmware_fingerprints": 38,
     "artwork_roundtrip": "PASS",
@@ -75,12 +82,12 @@
   ],
   "files": {
     "roundabout-ru-nfc4-p67glt.face": {
-      "bytes": 3939222,
-      "sha256": "067bb30ca29ddd2a25f73ff07c2ce11aa719940145231fdc8dd1f34a66229c40"
+      "bytes": 3939406,
+      "sha256": "1a141da188c2392f32763b18c70307dec1739d46c53f37d0314de06f57cd2d8e"
     },
     "nfc-tags-catalog-ui-v4.elf": {
-      "bytes": 12560,
-      "sha256": "f1937d8f44022943f7f5a2bb15be2f3173fea12e163f0ed3d74217791847bfbb"
+      "bytes": 12744,
+      "sha256": "0f48b705f521128a0b45208b505721d65d0cf57b2cbdcae9428fc5c960476cdb"
     },
     "catalog-core-v1.elf": {
       "bytes": 37840,
@@ -91,16 +98,16 @@
       "sha256": "2cbd196e9ed073504ca2f68ded891982583140dd983bf4a42c0ccb3481a73819"
     },
     "nfc-tags-ui4.png": {
-      "bytes": 82610,
-      "sha256": "6260b717977c96fa38323331a2bd21894b13496fcccc6b5406a234dd7178b346"
+      "bytes": 86658,
+      "sha256": "2e8155ede6d84707152683d7df486f2dce634580dbec38e00ffaeec201e64281"
     },
     "nfc-tags-ui4-fail.png": {
-      "bytes": 86772,
-      "sha256": "f2a723a1682f4bb294011af4581ebc004714f5ff028304ec4b1727cd763b8e4b"
+      "bytes": 89642,
+      "sha256": "9b4430a20143192036ae39c97265f717f38943b340b1784597756f3be9b22bb3"
     },
     "nfc-tags-ui4-checking.png": {
-      "bytes": 81183,
-      "sha256": "586c5a65c0499fd67599fe240bb063377c9f5b0e3f7d06ca0967361ec10a83bd"
+      "bytes": 84862,
+      "sha256": "1dd7e19a82a1e2aeaeb404f7c59303420919d47dfed02288089247be2494ac0d"
     },
     "roundabout-preview.png": {
       "bytes": 50977,
@@ -108,35 +115,35 @@
     },
     "ui-build.json": {
       "bytes": 2568,
-      "sha256": "3221cde4d0b4ae9d51c6921c1c4333d1ee6c3da335105b26ddad4bd37b051589"
+      "sha256": "0e3d6354a77307f9f8ffa442c8570efb32ab0428795931d93187faa57a999ca4"
     },
     "ui-tests.json": {
       "bytes": 2453,
-      "sha256": "763100a22bd7d141a2d9d1823107412c3560bfb919cd30d2be40e9edbf1a08cb"
+      "sha256": "4cc9d6384b7dd4858b29ea8d87ca42b1931bcb59d0126cd5403bb0fbc7df0e6e"
     },
     "face-validation.json": {
       "bytes": 3658,
-      "sha256": "5729871152ffa999dd3993eba41509389432d89e5327ea0595f62a655b9b96cd"
+      "sha256": "67ac26bc49e92610edb1316cd74318e33646f658fb3f19cf23b0bb21aec44b30"
     },
     "labels-validation.json": {
       "bytes": 33352,
-      "sha256": "87d94a9e3990e424b3747f5eb6ed7df355da691dc1ba414da00a60a5a233078e"
+      "sha256": "6a8e76166a0c5cf53d8943a191d0ff6ebe607c246ddda604f5cfd2b698b60464"
     },
     "clearance-validation.json": {
       "bytes": 5223,
-      "sha256": "be9519d9b68263ca73dad74430a0dc472ffbd827e480dfc354971cad210209c9"
+      "sha256": "5b36f0fc178327af428d07c1604891907aadd0590b5eb16361ca40b5fb2f1a8c"
     },
     "preview-validation.json": {
-      "bytes": 680,
-      "sha256": "49488b6dc188f9ee523ea20a02e13bc12f65feb7037d6e548fc3654d008196e1"
+      "bytes": 831,
+      "sha256": "46aeb915c7d1f5deec510a154bb8c1b082bfe587072f72b2510adeee0e7d59c5"
     },
     "artwork-manifest.json": {
       "bytes": 2455,
-      "sha256": "9fc2a364dc490b2d93f44c934cc866a01ead9d8aa6c66e7498a3f0ed12c1b77d"
+      "sha256": "f4c5e91240b12bded4bc6e6368300d7ca8d7a5b7a3c339e49408ec249a5e5d72"
     },
     "font-evidence.json": {
-      "bytes": 1028,
-      "sha256": "16ed8b653de86b4f10f768398dc4ab2038c5a58c8f2780f89e7849b0108eb495"
+      "bytes": 1235,
+      "sha256": "09b7a0e54baa46d867a6947cfc9b5f77a20e30a5caba2766a5c204de2d3a849f"
     },
     "core-build.json": {
       "bytes": 3728,
@@ -146,5 +153,10 @@
       "bytes": 3115,
       "sha256": "c40fb421092c657e2f5d39295fe8efeae58c8a9fd7a7ea1f6b3eb3ecc69c961f"
     }
+  },
+  "ui_labels": {
+    "refresh": "ОБНОВИТЬ",
+    "status_prefix": "СТАТУС СЕРВИСА: ",
+    "busy": "ЖДИТЕ"
   }
 }

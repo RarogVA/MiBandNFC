@@ -1,0 +1,138 @@
+[
+  {
+    "offset": "0x95c03c",
+    "xip": "0x2ca1c03c",
+    "role": "NFC-A config table region",
+    "expected_prefix": "0000000003000000",
+    "actual_prefix": "0000000003000000",
+    "ok": true
+  },
+  {
+    "offset": "0x5897e0",
+    "xip": "0x2c6497e0",
+    "role": "NFC-A config search entry",
+    "expected_prefix": "f1b190b500230f4c",
+    "actual_prefix": "f1b190b500230f4c",
+    "ok": true
+  },
+  {
+    "offset": "0x587c14",
+    "xip": "0x2c647c14",
+    "role": "config loader",
+    "expected_prefix": "2de9f0410024adf5",
+    "actual_prefix": "2de9f0410024adf5",
+    "ok": true
+  },
+  {
+    "offset": "0x586d20",
+    "xip": "0x2c646d20",
+    "role": "loader call with table key 0x30",
+    "expected_prefix": "302000f077ff0028",
+    "actual_prefix": "302000f077ff0028",
+    "ok": true
+  },
+  {
+    "offset": "0x590d14",
+    "xip": "0x2c650d14",
+    "role": "NFA_GetConfig",
+    "expected_prefix": "2de9f04105460e46",
+    "actual_prefix": "2de9f04105460e46",
+    "ok": true
+  },
+  {
+    "offset": "0x59b230",
+    "xip": "0x2c65b230",
+    "role": "NFC_SetConfig wrapper",
+    "expected_prefix": "0b4680b5014600af",
+    "actual_prefix": "0b4680b5014600af",
+    "ok": true
+  },
+  {
+    "offset": "0x59b240",
+    "xip": "0x2c65b240",
+    "role": "NFC_GetConfig wrapper",
+    "expected_prefix": "0b4680b5014600af",
+    "actual_prefix": "0b4680b5014600af",
+    "ok": true
+  },
+  {
+    "offset": "0x59a134",
+    "xip": "0x2c65a134",
+    "role": "CORE_SET_CONFIG builder",
+    "expected_prefix": "2de9f041054600af",
+    "actual_prefix": "2de9f041054600af",
+    "ok": true
+  },
+  {
+    "offset": "0x59a028",
+    "xip": "0x2c65a028",
+    "role": "CORE_GET_CONFIG builder",
+    "expected_prefix": "2de9f041054600af",
+    "actual_prefix": "2de9f041054600af",
+    "ok": true
+  },
+  {
+    "offset": "0x50d1f0",
+    "xip": "0x2c5cd1f0",
+    "role": "nfc_nfcid_set_config_callback (stub)",
+    "expected_prefix": "90b5064c83b00420",
+    "actual_prefix": "90b5064c83b00420",
+    "ok": true
+  },
+  {
+    "offset": "0x50d28c",
+    "xip": "0x2c5cd28c",
+    "role": "nfc_nfcid_command_batch",
+    "expected_prefix": "90b5064c83b00420",
+    "actual_prefix": "90b5064c83b00420",
+    "ok": true
+  },
+  {
+    "offset": "0x5a5510",
+    "xip": "0x2c665510",
+    "role": "m1_sector_read",
+    "expected_prefix": "2de9f04716460c46",
+    "actual_prefix": "2de9f04716460c46",
+    "ok": true
+  },
+  {
+    "offset": "0x58c31c",
+    "xip": "0x2c64c31c",
+    "role": "NXP block read via NFA_SendRawFrame",
+    "expected_prefix": "2c4b1b78012b35d1",
+    "actual_prefix": "2c4b1b78012b35d1",
+    "ok": true
+  },
+  {
+    "offset": "0x5a6b74",
+    "xip": "0x2c666b74",
+    "role": "SeApi_WiredTransceive_lower_layer",
+    "expected_prefix": "2de9f04f8bb00023",
+    "actual_prefix": "2de9f04f8bb00023",
+    "ok": true
+  },
+  {
+    "offset": "0x5a9cd4",
+    "xip": "0x2c669cd4",
+    "role": "SeApi_open_card_emulation_lower_layer",
+    "expected_prefix": "80b5002000afe2f7",
+    "actual_prefix": "80b5002000afe2f7",
+    "ok": true
+  },
+  {
+    "offset": "0x50c434",
+    "xip": "0x2c5cc434",
+    "role": "ISSUE_CARD handler",
+    "expected_prefix": "2de9f04387b002af",
+    "actual_prefix": "2de9f04387b002af",
+    "ok": true
+  },
+  {
+    "offset": "0x510ae0",
+    "xip": "0x2c5d0ae0",
+    "role": "ADD_CARD handler",
+    "expected_prefix": "2de9f04f04469db0",
+    "actual_prefix": "2de9f04f04469db0",
+    "ok": true
+  }
+]

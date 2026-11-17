@@ -1,0 +1,64 @@
+{
+  "name": "Roundabout RU NFC Local — local NDEF Type 4 candidate",
+  "status": "host-tested; hardware acceptance pending (release v1.4.0)",
+  "issue": "https://github.com/RarogVA/MiBandNFC/issues/9",
+  "model": "miwear.watch.p67glt",
+  "firmware": "3.201.026",
+  "face_id": "999999969",
+  "face_name": "Roundabout RU NFC Local",
+  "face_sha256": "04308934c394cdff7526636b749eb325878375f3fad6dad88351f1b22a2a9905",
+  "face_bytes": 3630843,
+  "core": {
+    "name": "Tag_Catalog_Local_V2",
+    "sha256": "3523a25685d232a0cc7ca7585bda881a5e7db32b405f2417a25afd912a347e88",
+    "bytes": 37228
+  },
+  "ui": {
+    "name": "NFC_Tags_Catalog_UI_V5",
+    "sha256": "8bcb144ca60223a7f5da357dbe5987c4465d6020e8dbafaeaf08d71c184aa95c",
+    "bytes": 18780
+  },
+  "lua": {
+    "name": "main_local.lua",
+    "sha256": "475720273799ff2ec32f3da03645953c69c113aa87c31559fdafa794ffdb1a2b"
+  },
+  "behavior": {
+    "local_ndef_type4": true,
+    "phone_required_at_use": false,
+    "session_seconds": 60,
+    "start": "page open",
+    "stop": "page leave or timeout",
+    "rf_wake": false,
+    "payment": false,
+    "uid_emulation": false,
+    "ese": false
+  },
+  "build": [
+    "python3 tags/catalog/build_local.py",
+    "python3 tags/launcher/build_local_ui.py",
+    "build/shortcut-research-venv/bin/python tags/bootstrap/build_face.py --core tags/catalog/build/catalog_core_v2_local.elf --ui tags/launcher/build/nfc_tags_catalog_ui_v5.elf --lua tags/bootstrap/main_local.lua --lua-name main_local.lua --face-id 999999969 --face-name \"Roundabout RU NFC Local\" --core-name catalog_core_v2_local.elf --ui-name catalog_ui_v5.elf --ui-version 5 --ui-module NFC_Tags_Catalog_UI_V5 --core-version 2 --profile ui5-local --local-nfc --output build/roundabout-ru-nfc-local.face --report build/roundabout-ru-nfc-local-report.json",
+    "build/shortcut-research-venv/bin/python tags/bootstrap/verify_local.py"
+  ],
+  "tests": [
+    "python3 tags/catalog/test.py",
+    "python3 tags/launcher/test_catalog_ui.py",
+    "python3 tags/launcher/test_local_ui.py",
+    "build/shortcut-research-venv/bin/python tags/bootstrap/test.py",
+    "build/shortcut-research-venv/bin/python tags/bootstrap/test_local.py"
+  ],
+  "hardware_validated": false,
+  "limitations": [
+    "no RF wake/background",
+    "no payment/Mir Pay",
+    "no UID/eSE/transit",
+    "NDEF data is public while active",
+    "exact model/firmware only",
+    "autostart depends on the installed face"
+  ],
+  "release": "v1.4.0",
+  "apk": {
+    "name": "tag-bridge-0.4.1.apk",
+    "sha256": "2cbd196e9ed073504ca2f68ded891982583140dd983bf4a42c0ccb3481a73819",
+    "bytes": 62152
+  }
+}

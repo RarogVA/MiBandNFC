@@ -1,4 +1,5 @@
 #include "storage.h"
+#include "sha256.h"
 catalog_snapshot catalog_current;
 static catalog_snapshot candidate;
 static uint32_t transaction_revision,transaction_total,transaction_offset;
@@ -54,3 +55,43 @@ int catalog_storage_selected(void){
  int at=catalog_find(&catalog_current,bytes+8);if(at<0)return-1;const tag_catalog_entry *e=&catalog_current.entries[at];
  return e->revision==catalog_u32(bytes+24)&&catalog_equal(e->ndef_sha256,bytes+28,32)?at:-1;
 }
+#ifdef TAG_CATALOG_LOCAL_PROFILE
+int catalog_storage_ndef(int index,uint8_t *out,uint16_t capacity,uint16_t *length){
+ if(index<0||index>=(int)catalog_current.count||!out||!length||!capacity)return-1;
+ unsigned wanted_index=(unsigned)index;
+ const tag_catalog_entry *wanted=&catalog_current.entries[index];
+ if(!wanted->kind||!wanted->ndef_length||wanted->ndef_length>capacity)return-1;
+ void *f=catalog_fs_open(CATALOG_DATA_PATH,"r");if(!f)return-2;
+ uint8_t head[12],size_bytes[2],body[1216];
+ size_t got=catalog_fs_read(head,1,sizeof(head),f);
+ if(got!=sizeof(head)||!catalog_equal(head,"TCAT",4)||head[4]||head[5]!=1||
+    head[6]||head[7]!=catalog_current.count){
+  (void)catalog_fs_close(f);return-2;
+ }
+ for(unsigned i=0;i<catalog_current.count;i++){
+  if(catalog_fs_read(size_bytes,1,sizeof(size_bytes),f)!=sizeof(size_bytes)){
+   (void)catalog_fs_close(f);return-2;
+  }
+  unsigned n=(unsigned)size_bytes[0]<<8|size_bytes[1];
+  if(n<26||n>sizeof(body)||catalog_fs_read(body,1,n,f)!=n){
+   (void)catalog_fs_close(f);return-2;
+  }
+  if(i!=wanted_index)continue;
+  unsigned name=body[21],uid=body[22],tech=body[23],ndef=(unsigned)body[24]<<8|body[25];
+  int kind=body[20];
+  if(n!=26+name+uid+tech+ndef||kind!=1||ndef!=wanted->ndef_length||
+     ndef>capacity||ndef>sizeof(body)-26){
+   (void)catalog_fs_close(f);return -3;
+  }
+  const uint8_t *data=body+26+name+uid+tech;
+  uint8_t digest[32];catalog_sha256_digest(data,ndef,digest);
+  if(!catalog_equal(digest,wanted->ndef_sha256,32)){
+   (void)catalog_fs_close(f);return-3;
+  }
+  copy(out,data,ndef);*length=(uint16_t)ndef;
+  if(catalog_fs_close(f))return-2;
+  return 0;
+ }
+ (void)catalog_fs_close(f);return-3;
+}
+#endif

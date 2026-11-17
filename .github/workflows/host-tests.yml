@@ -1,0 +1,41 @@
+name: host-tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  host-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install host test dependencies
+        run: python -m pip install --upgrade pip lupa pillow
+
+      - name: Catalog and local NDEF core host tests
+        run: python tags/catalog/test.py
+
+      - name: Catalog UI host tests
+        run: python tags/launcher/test_catalog_ui.py
+
+      - name: Local NFC UI host tests
+        run: python tags/launcher/test_local_ui.py
+
+      - name: Lua bootstrap host tests
+        run: |
+          python tags/bootstrap/test.py
+          python tags/bootstrap/test_local.py
+
+      - name: Face readback verification
+        run: python tags/bootstrap/verify_local.py --face releases/local-ndef/roundabout-ru-nfc-local-p67glt.face

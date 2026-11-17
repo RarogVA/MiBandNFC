@@ -1,4 +1,6 @@
-#ifdef TAG_CATALOG_PROFILE
+#ifdef TAG_CATALOG_LOCAL_PROFILE
+#include "../catalog/core_local.c"
+#elif defined(TAG_CATALOG_PROFILE)
 #include "../catalog/core.c"
 #else
 /* Single control loop for read-only NFC Type 4 NDEF sharing. No payment AIDs.

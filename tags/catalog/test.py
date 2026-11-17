@@ -5,11 +5,14 @@ ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'tags/catalog/build/tests';OUT
 FLAGS=['-std=c11','-Wall','-Wextra','-Werror','-g','-fsanitize=address,undefined','-fno-omit-frame-pointer','-Itags/catalog','-Itags/catalog/tests','-Iband','-Itags/band','-Itests','-DTRANSPORT_TAG_PROFILE=1','-DTAG_CATALOG_PROFILE=1']
 TESTS={'catalog':['tags/catalog/tests/catalog_test.c','tags/catalog/catalog.c','tags/catalog/storage.c','tags/catalog/sha256.c']}
 TESTS['core']=['tags/catalog/tests/core_test.c','tags/catalog/catalog.c','tags/catalog/storage.c','tags/catalog/sha256.c','tags/band/tag_record.c']
+TESTS['local']=['tags/catalog/tests/local_core_test.c','tags/catalog/catalog.c','tags/catalog/storage.c','tags/catalog/sha256.c']
 TESTS['transport']=['tags/catalog/tests/transport_test.c']
+LOCAL_FLAGS=[f for f in FLAGS if f!='-DTAG_CATALOG_PROFILE=1']+['-DTAG_CATALOG_LOCAL_PROFILE=1']
 def main():
  results={}
  for name,sources in TESTS.items():
-  exe=OUT/name;subprocess.run(['clang',*FLAGS,*sources,'-o',str(exe)],cwd=ROOT,check=True)
+  flags=LOCAL_FLAGS if name=='local' else FLAGS
+  exe=OUT/name;subprocess.run(['clang',*flags,*sources,'-o',str(exe)],cwd=ROOT,check=True)
   r=subprocess.run([str(exe)],cwd=ROOT,text=True,capture_output=True)
   if r.returncode:print(r.stdout+r.stderr);r.check_returncode()
   results[name]=r.stdout.strip();print(r.stdout,end='')

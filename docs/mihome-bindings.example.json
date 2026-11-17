@@ -8,7 +8,8 @@
     "Never commit real tokens; keep this file in local app storage.",
     "Slots 1-5 are active; slot 6 is an inactive placeholder.",
     "Kettle command is model-specific: confirm set_temperature vs MIoT set_properties before enabling.",
-    "timeout_ms is per device; the slow Rockrobo vacuum uses 20000 ms."
+    "timeout_ms is per device; the slow Rockrobo vacuum uses 20000 ms.",
+    "no_ack marks commands that may execute without a response."
   ],
   "devices": {
     "vacuum_1": {
@@ -22,7 +23,8 @@
       "host": "<lan ip>",
       "token": "<local only>",
       "name": "Пылесос 2",
-      "timeout_ms": 20000
+      "timeout_ms": 20000,
+      "no_ack": true
     },
     "socket": {
       "model": "<model from Vevs logs>",

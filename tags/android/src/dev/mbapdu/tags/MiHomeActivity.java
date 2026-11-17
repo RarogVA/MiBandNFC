@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -54,6 +55,9 @@ public final class MiHomeActivity extends Activity {
         AppStyle.gap(root, 20);
         buttons = AppStyle.column(this);
         root.addView(buttons);
+        AppStyle.gap(root, 20);
+        AppStyle.addButton(root, "Получить токен", false,
+            v -> startActivity(new android.content.Intent(this, TokenImportActivity.class)));
         ScrollView page = new ScrollView(this);
         page.setFillViewport(true);
         page.addView(root);
@@ -102,16 +106,33 @@ public final class MiHomeActivity extends Activity {
             String token = device.getString("token");
             String did = device.optString("did", "");
             int timeoutMs = device.optInt("timeout_ms", 10000);
+            boolean noAck = device.optBoolean("no_ack", false);
             JSONObject action = slot.getJSONObject("action");
             String method = action.getString("method");
             Object params = toParams(action.opt("params"));
             status.setText("Отправка: " + slot.optString("label", "слот " + (index + 1)) + "…");
+            Log.d("MiHomeActivity", "slot " + (index + 1) + " " + method + " " + key);
             worker.execute(() -> {
                 try {
                     MiioClient client = new MiioClient(host, token, did, timeoutMs);
-                    client.hello();
-                    JSONObject result = client.send(method, params);
-                    main.post(() -> status.setText("OK · " + slot.optString("label") + "\n" + shorten(result)));
+                    try {
+                        client.hello();
+                    } catch (java.net.SocketTimeoutException e) {
+                        main.post(() -> status.setText("Ошибка · " + slot.optString("label") + "\nНет handshake с устройством"));
+                        return;
+                    }
+                    try {
+                        JSONObject result = client.send(method, params);
+                        main.post(() -> status.setText("OK · " + slot.optString("label") + "\n" + shorten(result)));
+                    } catch (java.net.SocketTimeoutException e) {
+                        if (noAck) {
+                            main.post(() -> status.setText("Отправлено · " + slot.optString("label")
+                                + "\nКоманда ушла, устройство не прислало ответ"));
+                        } else {
+                            main.post(() -> status.setText("Ошибка · " + slot.optString("label")
+                                + "\nНет ответа за " + (timeoutMs / 1000) + " с"));
+                        }
+                    }
                 } catch (Exception e) {
                     main.post(() -> status.setText("Ошибка · " + slot.optString("label") + "\n" + e.getClass().getSimpleName() + ": " + e.getMessage()));
                 }

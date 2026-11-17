@@ -9,6 +9,7 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import android.util.Log;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -92,6 +93,7 @@ final class MiioClient {
     }
 
     void hello() throws Exception {
+        Log.d("MiioClient", "hello " + host);
         byte[] response = transact(HELLO);
         if (response.length < 32) throw new IllegalStateException("short hello");
         did = Arrays.copyOfRange(response, 8, 12);
@@ -99,6 +101,7 @@ final class MiioClient {
     }
 
     JSONObject send(String method, Object params) throws Exception {
+        Log.d("MiioClient", "send " + method + " " + deviceId);
         if (did.length != 4 || did[0] == 0 && did[1] == 0 && did[2] == 0 && did[3] == 0) hello();
         addDid(method, params);
         JSONObject request = new JSONObject();

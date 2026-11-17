@@ -12,9 +12,11 @@ def main():
     p.add_argument("--face",type=Path,default=ROOT/"build/roundabout-ru-nfc-local.face")
     args=p.parse_args();data=args.face.read_bytes()
     require(data[0x28:0x68].split(b"\0")[0]==FACE_ID.encode(),"Local face ID changed")
+    # Compare the face against the committed release copies, not ignored build/
+    # outputs: CI has no NDK build products.
     files={"app/lua/main_local.lua":ROOT/"tags/bootstrap/main_local.lua",
-           "app/lua/catalog_core_v2_local.elf":ROOT/"tags/catalog/build/catalog_core_v2_local.elf",
-           "app/lua/catalog_ui_v5.elf":ROOT/"tags/launcher/build/nfc_tags_catalog_ui_v5.elf"}
+           "app/lua/catalog_core_v2_local.elf":ROOT/"releases/local-ndef/catalog-core-v2-local.elf",
+           "app/lua/catalog_ui_v5.elf":ROOT/"releases/local-ndef/catalog-ui-v5.elf"}
     files.update({"app/lua/"+name+".bin":ROOT/"tags/launcher/icons"/(name+".bin") for name in ASSET_NAMES})
     table=list(entries(data));checked=[]
     for theme in NORMAL:
@@ -45,8 +47,8 @@ def main():
     for length in lengths:
         require(title[cursor:cursor+length].decode()==FACE_NAME,"Unexpected localized title");cursor+=length
     require(cursor==len(title),"Title bounds mismatch")
-    core=(ROOT/"tags/catalog/build/catalog_core_v2_local.elf").read_bytes()
-    ui=(ROOT/"tags/launcher/build/nfc_tags_catalog_ui_v5.elf").read_bytes()
+    core=(ROOT/"releases/local-ndef/catalog-core-v2-local.elf").read_bytes()
+    ui=(ROOT/"releases/local-ndef/catalog-ui-v5.elf").read_bytes()
     report={"face_id":FACE_ID,"name":FACE_NAME,"bytes":len(data),"sha256":sha(data),
             "ui_version":5,"ui_module":"NFC_Tags_Catalog_UI_V5","core_version":2,
             "embedded_files":[{"name":name,"source":str(path.relative_to(ROOT)),

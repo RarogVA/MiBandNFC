@@ -2,6 +2,10 @@
 
 The working tree now builds **Roundabout RU NFC 4**, ID `999999990`, with UI4.
 The approved Pult screen is implemented with bold labels and bounded service checks.
+
+For the selectable lower-circle candidate **NFC 5** — 43 stock Roundabout app
+choices plus **NFC-метки** — see [CHOICE.md](CHOICE.md). It is a separate
+candidate and does not replace the released v1.0.0 face.
 The user reported checking UI4 before the v1.0.0 release. See
 [UI4 build notes](../launcher/UI4.md) for the current build. The UI3 recipe
 below documents tag `v0.4.2-alpha.1`; use that tag to reproduce UI3.

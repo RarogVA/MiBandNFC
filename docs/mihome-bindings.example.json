@@ -1,50 +1,95 @@
 {
   "version": 1,
-  "bridge": "home_assistant",
+  "bridge": "local_miio",
+  "source": "vevs_logs",
   "notes": [
-    "6 slots = 6 buttons on the band.",
-    "For a Mi Home cloud scene use: {\"type\":\"mihome_scene\",\"home_id\":\"...\",\"scene_id\":\"...\"}.",
-    "state is optional; without it the band can show only the last command result."
+    "Local LAN control only; no Mi Home cloud and no stock Mi Home app.",
+    "Vevs is used to provision devices and expose token/IP/model logs.",
+    "Never commit real tokens; keep this file in local app storage.",
+    "Slots 5 and 6 are inactive placeholders."
   ],
+  "devices": {
+    "vacuum_1": {
+      "model": "<model from Vevs logs>",
+      "host": "<lan ip>",
+      "token": "<local only>",
+      "name": "Пылесос 1"
+    },
+    "vacuum_2": {
+      "model": "<model from Vevs logs>",
+      "host": "<lan ip>",
+      "token": "<local only>",
+      "name": "Пылесос 2"
+    },
+    "socket": {
+      "model": "<model from Vevs logs>",
+      "host": "<lan ip>",
+      "token": "<local only>",
+      "name": "Розетка"
+    }
+  },
   "slots": [
     {
       "slot": 1,
-      "label": "Уборка",
+      "label": "Пылесос 1",
       "icon": "vacuum",
-      "action": { "type": "script", "id": "script.vacuum_clean" }
+      "enabled": true,
+      "action": {
+        "type": "miio",
+        "device": "vacuum_1",
+        "method": "app_start",
+        "params": []
+      }
     },
     {
       "slot": 2,
-      "label": "Розетка",
-      "icon": "plug",
-      "action": { "type": "scene", "id": "scene.socket_on" },
-      "state": { "entity_id": "switch.coffee_socket", "on": "on", "off": "off" }
+      "label": "Пылесос 2",
+      "icon": "vacuum",
+      "enabled": true,
+      "action": {
+        "type": "miio",
+        "device": "vacuum_2",
+        "method": "app_start",
+        "params": []
+      }
     },
     {
       "slot": 3,
-      "label": "Розетка",
+      "label": "Розетка вкл",
       "icon": "plug",
-      "action": { "type": "scene", "id": "scene.socket_off" },
-      "state": { "entity_id": "switch.coffee_socket", "on": "on", "off": "off" }
+      "enabled": true,
+      "action": {
+        "type": "miio",
+        "device": "socket",
+        "method": "set_power",
+        "params": ["on"]
+      }
     },
     {
       "slot": 4,
-      "label": "Покормить",
-      "icon": "fish",
-      "action": { "type": "script", "id": "script.fish_feed" }
+      "label": "Розетка выкл",
+      "icon": "plug",
+      "enabled": true,
+      "action": {
+        "type": "miio",
+        "device": "socket",
+        "method": "set_power",
+        "params": ["off"]
+      }
     },
     {
       "slot": 5,
-      "label": "Свет",
-      "icon": "bulb",
-      "action": { "type": "scene", "id": "scene.light_off" },
-      "state": { "entity_id": "light.living_room", "on": "on", "off": "off" }
+      "label": "—",
+      "icon": "empty",
+      "enabled": false,
+      "action": null
     },
     {
       "slot": 6,
-      "label": "Шторы",
-      "icon": "curtain",
-      "action": { "type": "scene", "id": "scene.curtain_open" }
+      "label": "—",
+      "icon": "empty",
+      "enabled": false,
+      "action": null
     }
   ]
 }

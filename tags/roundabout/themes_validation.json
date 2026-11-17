@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "base_face": "build/roundabout-ru-nfc5.face",
+  "base_sha256": "d650dd4c3cd9ce7f5a5a2da5ccff4e410e6ffbaf97aeafbda178769bf3a2c560",
+  "style_limit": "4 normal styles + 4 AOD themes per .face; variants are separate faces",
+  "variants": [
+    {
+      "name": "NFC 5 Light Sapphire",
+      "face_id": "999999988",
+      "base": "light",
+      "slug": "light-sapphire",
+      "bezel": [
+        64,
+        120,
+        200
+      ],
+      "hand": [
+        41,
+        121,
+        255
+      ],
+      "normal_theme": 4,
+      "aod_theme": 7,
+      "background_uid": "0x2000125",
+      "minute_uid": "0x2000150",
+      "aod_background_uid": "0x2000183",
+      "aod_minute_uid": "0x200019a",
+      "sha256": "c5c8b7dbdcf1979461956215fc96f78217781ee2f15f1c87c61d16aaf548d9d7",
+      "bytes": 3491184,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/light-sapphire.face",
+      "preview_path": "build/theme-variants/light-sapphire.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Light Emerald",
+      "face_id": "999999987",
+      "base": "light",
+      "slug": "light-emerald",
+      "bezel": [
+        46,
+        158,
+        107
+      ],
+      "hand": [
+        0,
+        200,
+        83
+      ],
+      "normal_theme": 4,
+      "aod_theme": 7,
+      "background_uid": "0x2000125",
+      "minute_uid": "0x2000150",
+      "aod_background_uid": "0x2000183",
+      "aod_minute_uid": "0x200019a",
+      "sha256": "17253617c7813fc855bc01a4da8ae37880155d186f8fc6bc92bbc25ea0602975",
+      "bytes": 3501407,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/light-emerald.face",
+      "preview_path": "build/theme-variants/light-emerald.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Light Turquoise",
+      "face_id": "999999986",
+      "base": "light",
+      "slug": "light-turquoise",
+      "bezel": [
+        0,
+        168,
+        150
+      ],
+      "hand": [
+        0,
+        200,
+        180
+      ],
+      "normal_theme": 4,
+      "aod_theme": 7,
+      "background_uid": "0x2000125",
+      "minute_uid": "0x2000150",
+      "aod_background_uid": "0x2000183",
+      "aod_minute_uid": "0x200019a",
+      "sha256": "4fabf6036bc42f59f7c5d55e472f50cf2ea98cab01cc937485a3bc56edf12040",
+      "bytes": 3489737,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/light-turquoise.face",
+      "preview_path": "build/theme-variants/light-turquoise.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Dark Turquoise",
+      "face_id": "999999985",
+      "base": "dark",
+      "slug": "dark-turquoise",
+      "bezel": [
+        0,
+        191,
+        166
+      ],
+      "hand": [
+        0,
+        229,
+        199
+      ],
+      "normal_theme": 0,
+      "aod_theme": 1,
+      "background_uid": "0x2000001",
+      "minute_uid": "0x2000077",
+      "aod_background_uid": "0x200007c",
+      "aod_minute_uid": "0x20000b3",
+      "sha256": "e0b04adeb5ecd95ff1a055dd0ad48727c6cd1404142ff2edb8cdb7555a802405",
+      "bytes": 3490836,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/dark-turquoise.face",
+      "preview_path": "build/theme-variants/dark-turquoise.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Copper",
+      "face_id": "999999984",
+      "base": "dark",
+      "slug": "copper",
+      "bezel": [
+        184,
+        115,
+        51
+      ],
+      "hand": [
+        255,
+        183,
+        77
+      ],
+      "normal_theme": 0,
+      "aod_theme": 1,
+      "background_uid": "0x2000001",
+      "minute_uid": "0x2000077",
+      "aod_background_uid": "0x200007c",
+      "aod_minute_uid": "0x20000b3",
+      "sha256": "b5c61f9631a63450bf32ca982dc795cccb43a883093bf416d9e11a0c21912cb0",
+      "bytes": 3490416,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/copper.face",
+      "preview_path": "build/theme-variants/copper.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Deep Ocean",
+      "face_id": "999999983",
+      "base": "dark",
+      "slug": "deep-ocean",
+      "bezel": [
+        30,
+        95,
+        138
+      ],
+      "hand": [
+        79,
+        195,
+        247
+      ],
+      "normal_theme": 0,
+      "aod_theme": 1,
+      "background_uid": "0x2000001",
+      "minute_uid": "0x2000077",
+      "aod_background_uid": "0x200007c",
+      "aod_minute_uid": "0x20000b3",
+      "sha256": "7ba00b31e2ddb8024102e6921a4f943218c86c9263b6b1c9f316c04bf369eeff",
+      "bytes": 3490504,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/deep-ocean.face",
+      "preview_path": "build/theme-variants/deep-ocean.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Sunset Coral",
+      "face_id": "999999982",
+      "base": "dark",
+      "slug": "sunset-coral",
+      "bezel": [
+        224,
+        90,
+        79
+      ],
+      "hand": [
+        255,
+        138,
+        101
+      ],
+      "normal_theme": 0,
+      "aod_theme": 1,
+      "background_uid": "0x2000001",
+      "minute_uid": "0x2000077",
+      "aod_background_uid": "0x200007c",
+      "aod_minute_uid": "0x20000b3",
+      "sha256": "93f29d3b62902e217df712db293218c39a4d21041cb2d421655cc81ef37187fd",
+      "bytes": 3490310,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/sunset-coral.face",
+      "preview_path": "build/theme-variants/sunset-coral.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Forest Sage",
+      "face_id": "999999981",
+      "base": "light",
+      "slug": "forest-sage",
+      "bezel": [
+        78,
+        125,
+        91
+      ],
+      "hand": [
+        129,
+        199,
+        132
+      ],
+      "normal_theme": 4,
+      "aod_theme": 7,
+      "background_uid": "0x2000125",
+      "minute_uid": "0x2000150",
+      "aod_background_uid": "0x2000183",
+      "aod_minute_uid": "0x200019a",
+      "sha256": "cdd1e79e6e4d9ca2f0e1da0cbeae2515adbecb92d1a582a37ccd0cd975adfb50",
+      "bytes": 3487509,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/forest-sage.face",
+      "preview_path": "build/theme-variants/forest-sage.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    },
+    {
+      "name": "NFC 5 Steel",
+      "face_id": "999999980",
+      "base": "dark",
+      "slug": "steel",
+      "bezel": [
+        154,
+        164,
+        176
+      ],
+      "hand": [
+        224,
+        224,
+        224
+      ],
+      "normal_theme": 0,
+      "aod_theme": 1,
+      "background_uid": "0x2000001",
+      "minute_uid": "0x2000077",
+      "aod_background_uid": "0x200007c",
+      "aod_minute_uid": "0x20000b3",
+      "sha256": "c59fde2ac321dcc893eb79353b40ba80eb8b59154aab091e4ef8c3f23cabbd68",
+      "bytes": 3490591,
+      "hardware_tested": false,
+      "face_path": "build/theme-variants/steel.face",
+      "preview_path": "build/theme-variants/steel.png",
+      "preview_sheet": "tags/roundabout/themes-preview.png"
+    }
+  ],
+  "contact_sheet": "tags/roundabout/themes-preview.png",
+  "hardware_tested": false,
+  "limits": [
+    "Each variant replaces one base style (light style 4 or dark style 1) in a separate .face.",
+    "The other three styles remain; the variant is selected in the Roundabout editor.",
+    "The lower-circle app choice from NFC 5 is preserved.",
+    "AOD ring/minute hand are recoloured dimmer; AOD previews are not separate.",
+    "Previews are renders, not device screenshots."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "bridge": "home_assistant",
+  "notes": [
+    "6 slots = 6 buttons on the band.",
+    "For a Mi Home cloud scene use: {\"type\":\"mihome_scene\",\"home_id\":\"...\",\"scene_id\":\"...\"}.",
+    "state is optional; without it the band can show only the last command result."
+  ],
+  "slots": [
+    {
+      "slot": 1,
+      "label": "Уборка",
+      "icon": "vacuum",
+      "action": { "type": "script", "id": "script.vacuum_clean" }
+    },
+    {
+      "slot": 2,
+      "label": "Розетка",
+      "icon": "plug",
+      "action": { "type": "scene", "id": "scene.socket_on" },
+      "state": { "entity_id": "switch.coffee_socket", "on": "on", "off": "off" }
+    },
+    {
+      "slot": 3,
+      "label": "Розетка",
+      "icon": "plug",
+      "action": { "type": "scene", "id": "scene.socket_off" },
+      "state": { "entity_id": "switch.coffee_socket", "on": "on", "off": "off" }
+    },
+    {
+      "slot": 4,
+      "label": "Покормить",
+      "icon": "fish",
+      "action": { "type": "script", "id": "script.fish_feed" }
+    },
+    {
+      "slot": 5,
+      "label": "Свет",
+      "icon": "bulb",
+      "action": { "type": "scene", "id": "scene.light_off" },
+      "state": { "entity_id": "light.living_room", "on": "on", "off": "off" }
+    },
+    {
+      "slot": 6,
+      "label": "Шторы",
+      "icon": "curtain",
+      "action": { "type": "scene", "id": "scene.curtain_open" }
+    }
+  ]
+}

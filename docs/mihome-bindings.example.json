@@ -6,7 +6,8 @@
     "Local LAN control only; no Mi Home cloud and no stock Mi Home app.",
     "Vevs is used to provision devices and expose token/IP/model logs.",
     "Never commit real tokens; keep this file in local app storage.",
-    "Slots 5 and 6 are inactive placeholders."
+    "Slots 1-5 are active; slot 6 is an inactive placeholder.",
+    "Kettle command is model-specific: confirm set_temperature vs MIoT set_properties before enabling."
   ],
   "devices": {
     "vacuum_1": {
@@ -26,6 +27,12 @@
       "host": "<lan ip>",
       "token": "<local only>",
       "name": "Розетка"
+    },
+    "kettle": {
+      "model": "<model from Vevs logs>",
+      "host": "<lan ip>",
+      "token": "<local only>",
+      "name": "Чайник"
     }
   },
   "slots": [
@@ -79,10 +86,15 @@
     },
     {
       "slot": 5,
-      "label": "—",
-      "icon": "empty",
-      "enabled": false,
-      "action": null
+      "label": "Чайник 45°C",
+      "icon": "kettle",
+      "enabled": true,
+      "action": {
+        "type": "miio",
+        "device": "kettle",
+        "method": "set_temperature",
+        "params": [45]
+      }
     },
     {
       "slot": 6,

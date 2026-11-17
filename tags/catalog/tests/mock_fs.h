@@ -4,10 +4,10 @@
 #include <string.h>
 #include "storage.h"
 typedef struct{uint8_t bytes[65537];size_t length,pos;int exists;} mock_file;
-static mock_file mock_files[4];
+static mock_file mock_files[6];
 static int mock_short_write,mock_close_failure,mock_rename_failure;
 int catalog_storage_verified(void){return 1;}
-static int file_index(const char *p){if(!strcmp(p,CATALOG_DATA_PATH))return 0;if(!strcmp(p,CATALOG_STAGE_PATH))return 1;if(!strcmp(p,"/data/tag_catalog/selected.next"))return 2;if(!strcmp(p,"/data/tag_catalog/selected.bin"))return 3;assert(!"unexpected filesystem path");return-1;}
+static int file_index(const char *p){if(!strcmp(p,CATALOG_DATA_PATH))return 0;if(!strcmp(p,CATALOG_STAGE_PATH))return 1;if(!strcmp(p,"/data/tag_catalog/selected.next"))return 2;if(!strcmp(p,"/data/tag_catalog/selected.bin"))return 3;if(!strcmp(p,"/tmp/mihome_action"))return 4;if(!strcmp(p,"/tmp/mihome_status"))return 5;assert(!"unexpected filesystem path");return-1;}
 void *catalog_fs_open(const char *p,const char *mode){mock_file *f=&mock_files[file_index(p)];if(mode[0]=='r'){if(!f->exists)return 0;f->pos=0;}else if(mode[0]=='w'){f->exists=1;f->length=f->pos=0;}else{assert(mode[0]=='a');f->exists=1;f->pos=f->length;}return f;}
 size_t catalog_fs_read(void *p,size_t size,size_t n,void *file){assert(size==1);mock_file *f=file;if(n>f->length-f->pos)n=f->length-f->pos;memcpy(p,f->bytes+f->pos,n);f->pos+=n;return n;}
 size_t catalog_fs_write(const void *p,size_t size,size_t n,void *file){assert(size==1);mock_file *f=file;if(mock_short_write&&n){mock_short_write=0;n--;}assert(n<=sizeof(f->bytes)-f->pos);memcpy(f->bytes+f->pos,p,n);f->pos+=n;if(f->pos>f->length)f->length=f->pos;return n;}

@@ -72,5 +72,14 @@ int main(void){
  mock_clean=1;mock_nfc_error=1;api.stop();tick();api.health(&health);assert(phase==TAG_CATALOG_ERROR&&health.error&&!health.authorized);
  mock_nfc_error=0;assert(!api.select(7,entry.id,9));tick();handshake();control(1,23);mock_nfc_ready=1;tick();apdu_sequence=0x1fffffffu;apdu(select,sizeof(select),0);tick();assert(request_sequence==0x10000001u&&last_type==1);
  mock_clock_fail=1;tick();tick();api.health(&health);assert(!desired&&!pending&&!health.loop_live&&clock_failed);
- puts("catalog core: capability, transactional sync, offline API, STOP-before-select, exact handshake, epochs, health and NFC deadlines: PASS");return 0;
+ /* MiHome: a Pixel query consumes the band action file; status is written back. */
+ mock_clock_fail=0;uint8_t mh_get=1;receiver(8,30,&mh_get,1);tick();
+ assert(last_type==8&&last_seq==30&&last_length==2&&last_payload[0]==1&&last_payload[1]==0xff);
+ mock_files[4].exists=1;mock_files[4].length=2;memcpy(mock_files[4].bytes,"3\n",2);
+ receiver(8,31,&mh_get,1);tick();assert(last_type==8&&last_payload[0]==1&&last_payload[1]==3);
+ receiver(8,32,&mh_get,1);tick();assert(last_payload[1]==0xff);
+ uint8_t mh_status[2]={2,0};receiver(8,33,mh_status,2);tick();
+ assert(last_type==8&&last_payload[0]==2&&!last_payload[1]);
+ assert(mock_files[5].exists&&mock_files[5].length==3&&!memcmp(mock_files[5].bytes,"OK\n",3));
+ puts("catalog core: capability, transactional sync, offline API, STOP-before-select, exact handshake, epochs, health, NFC deadlines and MiHome mailbox: PASS");return 0;
 }

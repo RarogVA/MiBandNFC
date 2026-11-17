@@ -19,10 +19,10 @@ static ui_obj nodes[256],parent;
 static ui_timer timers[128];
 static mock_file files[32];
 static unsigned node_count,timer_count,file_count,alloc_attempts,fail_allocation,image_count;
-static unsigned invalid_objects,install_count,open_count,insmod_count,select_count,start_count,stop_count;
+static unsigned invalid_objects,install_count,open_count,insmod_count,select_count,start_count,stop_count,launcher_count,mihome_install_count,service_install_count;
 static unsigned health_calls,get_calls,name_calls,api_file_reads;
 static int firmware_ok,bindings_ok,launch_ok,timer_fail,install_rc,install_partial,install_wrong;
-static int insmod_rc,health_rc,get_rc,select_rc,provider_present,ui_present,write_short,write_close;
+static int insmod_rc,health_rc,get_rc,select_rc,provider_present,ui_present,mihome_present,service_present,write_short,write_close;
 static const char *write_failure_path;
 static tag_catalog_provider blob;
 static tag_catalog_health health_value;
@@ -74,11 +74,18 @@ static void tick(unsigned period) {
 }
 ui_app *ui_lookup(uint16_t id) {
     if(id==PROVIDER_ID)return provider_present?&provider_app:0;
+    if(id==MIHOME_ID)return mihome_present?&mihome_app:0;
+    if(id==SERVICE_ID)return service_present?&service_app:0;
     assert(id==APP_ID);return ui_present?(install_wrong?&other_app:&app):0;
 }
 int ui_install(ui_app *a,ui_page **p,int n) {
+    if(a==&mihome_app){assert(p[0]==&mihome_page&&n==1);mihome_present=1;mihome_install_count++;return 0;}
+    if(a==&service_app){assert(p[0]==&service_page&&n==1);service_present=1;service_install_count++;return 0;}
     assert(a==&app&&p[0]==&page&&n==1);install_count++;
     ui_present=!install_rc||install_partial;return install_rc;
+}
+int ui_launcher_add(uint16_t id) {
+    assert(id==APP_ID||id==MIHOME_ID||id==SERVICE_ID);launcher_count++;return 0;
 }
 int tag_bootstrap_open_app(uint16_t id){assert(id==APP_ID);open_count++;return 0;}
 int tag_bootstrap_insmod_core(void) {
@@ -87,6 +94,7 @@ int tag_bootstrap_insmod_core(void) {
     CHECK(f&&f->present&&!f->close_error&&f->length==2&&!memcmp(f->data,"1\n",2));
     insmod_count++;return insmod_rc;
 }
+int tag_bootstrap_reboot(void){return 0;}
 static ui_obj *object(ui_obj *p) {
     assert(p);if(++alloc_attempts==fail_allocation)return 0;
     assert(node_count<256);ui_obj *o=&nodes[node_count++];o->parent=p;o->flags=0xffff;return o;
@@ -136,13 +144,16 @@ static const char *provider_name(void){name_calls++;return (const char *)&blob;}
 static void reset(void) {
     memset(nodes,0,sizeof(nodes));memset(timers,0,sizeof(timers));memset(files,0,sizeof(files));
     memset(&app,0,sizeof(app));memset(&page,0,sizeof(page));pages[0]=0;
+    memset(&mihome_app,0,sizeof(mihome_app));memset(&mihome_page,0,sizeof(mihome_page));
+    memset(&service_app,0,sizeof(service_app));memset(&service_page,0,sizeof(service_page));
+    mihome_pages[0]=service_pages[0]=0;mihome_status=modules_status=0;
     handles_clear();refresh_timer=load_timer=service_timer=0;service_ticks=service_frame=0;
     refresh_count=initialized=revision=0;initialization_result=-1;current=-1;total=0;api=0;
     node_count=timer_count=file_count=alloc_attempts=fail_allocation=image_count=0;
-    invalid_objects=install_count=open_count=insmod_count=select_count=start_count=stop_count=0;
+    invalid_objects=install_count=open_count=insmod_count=select_count=start_count=stop_count=launcher_count=mihome_install_count=0;
     health_calls=get_calls=name_calls=api_file_reads=0;
     firmware_ok=bindings_ok=launch_ok=1;
-    timer_fail=install_rc=install_partial=install_wrong=insmod_rc=health_rc=get_rc=select_rc=0;
+    timer_fail=install_rc=install_partial=install_wrong=insmod_rc=health_rc=get_rc=select_rc=0;mihome_present=0;service_present=0;
     provider_present=ui_present=write_short=write_close=0;write_failure_path=0;
     memset(&blob,0,sizeof(blob));strcpy(blob.label,TAG_CATALOG_PROVIDER_LABEL);
     blob.api=(tag_catalog_api){TAG_CATALOG_API_MAGIC,TAG_CATALOG_API_VERSION,sizeof(tag_catalog_api),
@@ -221,8 +232,8 @@ static void registration_test(void) {
     reset();timer_fail=1;CHECK(module_initialize()==-1);timer_fail=0;
     CHECK(module_initialize()==-1&&!live_timers()); /* Resident failed initialization stays explicitly failed. */
     reset();CHECK(module_initialize()==0&&module_initialize()==0&&live_timers()==1);
-    tick(500);CHECK(ui_present&&install_count==1&&!live_timers());
-    CHECK(!app.icon&&!page.on_back&&!strcmp(diagnostic_value(),"NFC_CATALOG_UI4\nREADY\n0\nEND\n"));
+    tick(500);CHECK(ui_present&&install_count==1&&mihome_install_count==1&&launcher_count==3&&service_install_count==1&&!live_timers());
+    CHECK(!strcmp(app.icon,"/resource/app/nfccard/pay_green_icon.bin")&&launcher_count==3&&!page.on_back&&!strcmp(diagnostic_value(),"NFC_CATALOG_UI4\nREADY\n0\nEND\n"));
     CHECK(file("/tmp/nfc_tags_catalog_ui_ready",0)&&!strcmp(file("/tmp/nfc_tags_catalog_ui_ready",0)->data,"catalog_ui_v4\n"));
     reset();ui_present=1;module_initialize();tick(500);CHECK(!install_count&&strstr(diagnostic_value(),"ID_OCCUPIED"));
     reset();install_rc=-12;install_partial=1;module_initialize();tick(500);
@@ -330,8 +341,28 @@ static void pause_test(void) {
     go_next(0);health_value.selected_index=2;tick(500);CHECK(!live_timers()&&!strcmp(title->text,entries[2].name));
     CHECK(!start_count&&!stop_count);
 }
+static void pages_test(void) {
+    reset();
+    CHECK(mihome_create(0,&parent,0)==0);
+    CHECK(mihome_status&&!strcmp(mihome_status->text,"Откройте Mi Home на Pixel"));
+    CHECK(node_count==15);
+    mihome_action(3);
+    CHECK(!strcmp(file("/tmp/mihome_action",0)->data,"3\n"));
+    CHECK(!strcmp(mihome_status->text,"Отправлено в Pixel")&&live_timers()==1);
+    put("/tmp/mihome_status","OK\n");
+    tick(500);
+    CHECK(!strcmp(mihome_status->text,"Pixel: OK")&&!live_timers());
+    CHECK(!strcmp(file("/tmp/mihome_status",0)->data,""));
+    CHECK(modules_create(0,&parent,0)==0);
+    CHECK(modules_status&&strstr(modules_status->text,"Ядро: не загружено"));
+    CHECK(node_count==23);
+    modules_reload(0);
+    CHECK(insmod_count==1&&modules_status&&strstr(modules_status->text,"Команда выполнена"));
+    modules_destroy(0,&parent,0);CHECK(!modules_status);
+    mihome_destroy(0,&parent,0);CHECK(!mihome_status);
+}
 int main(void) {
-    trust_test();layout_test();registration_test();selection_test();title_weight_test();lifecycle_test();loader_test();pause_test();
+    trust_test();layout_test();registration_test();selection_test();title_weight_test();lifecycle_test();loader_test();pause_test();pages_test();
     if(failures){fprintf(stderr,"catalog UI: %u of %u checks failed\n",failures,checks);return 1;}
     printf("catalog UI trust, geometry, registration, selection, lifecycle and guarded loader: %u checks PASS\n",checks);return 0;
 }

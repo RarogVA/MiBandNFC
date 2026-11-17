@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cloud_fallback_description">Запускает сцену Vevs (Mi Home Cloud) при ошибке локальной команды. Доступ ограничен пакетом com.xiaomi.smarthome.</string>
+</resources>

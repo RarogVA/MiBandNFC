@@ -7,10 +7,19 @@
 #include "../bootstrap/launch.h"
 #define APP_ID 0xd4u
 #define PROVIDER_ID 0xd6u
+#define MIHOME_ID 0xd5u
+#define SERVICE_ID 0xd7u
 #define SERVICE_TICKS 100u /* 20 seconds at 200ms, only after a user tap. */
 static const char app_name[]="dev.mbapdu.tags";
+static const char mihome_name[]="dev.mbapdu.mihome";
+static const char service_name[]="dev.mbapdu.service";
 static ui_app app;
 static ui_page page,*pages[1];
+static ui_app mihome_app;
+static ui_page mihome_page,*mihome_pages[1];
+static ui_app service_app;
+static ui_page service_page,*service_pages[1];
+static ui_obj *mihome_status,*modules_status;
 static ui_obj *title,*title_heavy,*badge,*module_badge,*module_surface,*previous,*next,*previous_image,*next_image;
 static ui_timer *refresh_timer,*load_timer,*service_timer;
 static unsigned refresh_count,initialized,service_ticks,service_frame;
@@ -218,14 +227,155 @@ static int destroy(void *pm,ui_obj *root,void *data) {
     (void)pm;(void)root;(void)data;timers_stop();handles_clear();
     diagnostic("NFC_CATALOG_UI4\nREADY\n0\nEND\n");return 0;
 }
+static ui_timer *mihome_timer;
+static unsigned mihome_ticks;
+static const char *const mihome_labels[6]={"Отец ВКЛ","Сынок ВКЛ",
+    "Розетка ВКЛ","Розетка ВЫКЛ","Чайник 45 °C","—  ·  пусто"};
+static void mihome_text(const char *value) {
+    if(mihome_status)ui_text(mihome_status,value);
+}
+static void mihome_stop(void) {
+    if(mihome_timer){ui_timer_delete(mihome_timer);mihome_timer=0;}
+    mihome_ticks=0;
+}
+static void mihome_poll(ui_timer *t) {
+    if(!mihome_status){ui_timer_delete(t);mihome_timer=0;return;}
+    char buf[16];
+    int n=file_read("/tmp/mihome_status",buf,sizeof(buf));
+    if(n>0) {
+        mihome_text(contains(buf,"OK")?"Pixel: OK":"Pixel: ошибка");
+        (void)file_write("/tmp/mihome_status","");
+        mihome_stop();return;
+    }
+    if(++mihome_ticks>=20) {
+        mihome_text("Нет ответа Pixel");
+        (void)file_write("/tmp/mihome_action","");
+        mihome_stop();return;
+    }
+}
+static void mihome_action(int index) {
+    char value[4]={(char)('0'+index),'\n',0};
+    if(!file_write("/tmp/mihome_action",value)) {
+        mihome_text("Отправлено в Pixel");
+        mihome_ticks=0;
+        if(!mihome_timer)mihome_timer=ui_timer_create(mihome_poll,500,0);
+    } else mihome_text("Ошибка записи действия");
+}
+static void mihome_1(ui_event *e){(void)e;mihome_action(1);}
+static void mihome_2(ui_event *e){(void)e;mihome_action(2);}
+static void mihome_3(ui_event *e){(void)e;mihome_action(3);}
+static void mihome_4(ui_event *e){(void)e;mihome_action(4);}
+static void mihome_5(ui_event *e){(void)e;mihome_action(5);}
+static ui_obj *mihome_button(ui_obj *parent,int index,int x,int y) {
+    void (*cb)(ui_event *)=index==1?mihome_1:index==2?mihome_2:index==3?mihome_3:
+        index==4?mihome_4:index==5?mihome_5:0;
+    ui_obj *button=owned(parent,x,y,148,84,cb);if(!button)return 0;
+    ui_bg(button,cb?0xff16202cu:0xff101010u,0);ui_opa(button,255,0);
+    if(!text(button,mihome_labels[index-1],0,0,148,84,TYPE_FONT,1))return 0;
+    return button;
+}
+static const char *mihome_get_name(void){return "Mi Home";}
+static int mihome_create(void *pm,ui_obj *parent,void *data) {
+    (void)pm;(void)data;if(!parent||mihome_status)return -1;
+    (void)file_write("/tmp/mihome_action","");(void)file_write("/tmp/mihome_status","");
+    ui_obj *root=owned(parent,0,0,SCREEN_W,SCREEN_H,0);if(!root)return -1;
+    ui_bg(root,0xff000000u,0);ui_opa(root,255,0);
+    if(!text(root,"Mi Home",0,24,SCREEN_W,40,TITLE_FONT,1))return -1;
+    for(int i=1;i<=6;i++) {
+        int x=(i%2)?16:172,y=88+(i-1)/2*100;
+        if(!mihome_button(root,i,x,y))return -1;
+    }
+    mihome_status=text(root,"Откройте Mi Home на Pixel",0,404,SCREEN_W,48,TYPE_FONT,1);
+    if(!mihome_status)return -1;
+    return 0;
+}
+static int mihome_destroy(void *pm,ui_obj *root,void *data) {
+    (void)pm;(void)root;(void)data;mihome_stop();mihome_status=0;return 0;
+}
+static int mihome_pause(void *pm,ui_obj *root,void *data) {
+    (void)pm;(void)root;(void)data;mihome_stop();return 0;
+}
+static void modules_text(const char *value) {
+    if(modules_status)ui_text(modules_status,value);
+}
+static void modules_reload(ui_event *e) {
+    (void)e;
+    if(!modules_status)return;
+    if(ui_lookup(PROVIDER_ID)){modules_text("Ядро уже загружено");return;}
+    if(exists("/tmp/Tag_Catalog_V1_attempted")||exists("/tmp/apdu_lab_loaded")||
+       exists("/tmp/tag_catalog_loaded")){modules_text("Нужна перезагрузка");return;}
+    if(file_write("/tmp/Tag_Catalog_V1_attempted","1\n")){modules_text("Нет доступа к /tmp");return;}
+    int rc=tag_bootstrap_insmod_core();
+    if(rc){modules_text("Ошибка загрузки ядра");return;}
+    modules_text(ui_lookup(PROVIDER_ID)?"Ядро загружено":"Команда выполнена");
+}
+static void modules_reboot(ui_event *e) {
+    (void)e;
+    if(!modules_status)return;
+    if(tag_bootstrap_reboot())modules_text("Перезагрузка недоступна");
+}
+static ui_obj *modules_button(ui_obj *parent,const char *caption,int y,void (*cb)(ui_event *)) {
+    ui_obj *button=owned(parent,0,y,304,64,cb);if(!button)return 0;
+    ui_bg(button,0xff16202cu,0);ui_opa(button,255,0);
+    if(!text(button,caption,0,0,304,64,TYPE_FONT,1))return 0;
+    return button;
+}
+static const char *service_get_name(void){return "Модули";}
+static int modules_create(void *pm,ui_obj *parent,void *data) {
+    (void)pm;(void)data;if(!parent||modules_status)return -1;
+    ui_obj *root=owned(parent,0,0,SCREEN_W,SCREEN_H,0);if(!root)return -1;
+    ui_bg(root,0xff000000u,0);ui_opa(root,255,0);
+    if(!text(root,"Модули",0,24,SCREEN_W,40,TITLE_FONT,1))return -1;
+    modules_status=text(root,"",0,80,304,148,TYPE_FONT,1);
+    if(!modules_status)return -1;
+    modules_text(ui_lookup(PROVIDER_ID)?"Ядро: загружено\nСтраница: NFC-метки":
+                                       "Ядро: не загружено\nНажмите загрузку");
+    if(!modules_button(root,"Загрузить модули",244,modules_reload))return -1;
+    if(!modules_button(root,"Перезагрузить",324,modules_reboot))return -1;
+    if(!text(root,"Модуль работает до перезагрузки",0,420,304,40,TYPE_FONT,1))return -1;
+    return 0;
+}
+static int modules_destroy(void *pm,ui_obj *root,void *data) {
+    (void)pm;(void)root;(void)data;modules_status=0;return 0;
+}
 static const char *get_name(void){return "NFC-метки";}
 static void register_app(ui_timer *t) {
     ui_timer_delete(t);
     if(ui_lookup(APP_ID)){diagnostic("NFC_CATALOG_UI4\nID_OCCUPIED\n-1\nEND\n");return;}
     app.name=app_name;app.app_id=APP_ID;app.get_name=get_name;
+    /* A launcher entry needs a readable image source. This stock LVGL image
+     * exists in the 3.201.026 resource set; a custom icon is a separate,
+     * unverified FACE/resource change. */
+    app.icon="/resource/app/nfccard/pay_green_icon.bin";
     page.name="main";page.app_id=APP_ID;page.layer=1;page.on_create=create;page.on_destroy=destroy;page.on_pause=pause_page;page.on_stop=pause_page;page.on_resume=resume_page;pages[0]=&page;
     int rc=ui_install(&app,pages,1);ui_app *installed=ui_lookup(APP_ID);
     if(rc||!installed||!equal(installed->name,app_name)){diagnostic("NFC_CATALOG_UI4\nREGISTER_FAILED\n-1\nEND\n");return;}
+    /* Add the same app to the general launcher grid. The watchface's native
+     * direct-ID action remains independent and keeps working if this fails. */
+    (void)ui_launcher_add(APP_ID);
+    /* Separate Mi Home entry: a mock Phase 1 page, never required for NFC. */
+    if(!ui_lookup(MIHOME_ID)) {
+        mihome_app.name=mihome_name;mihome_app.app_id=MIHOME_ID;
+        mihome_app.get_name=mihome_get_name;
+        mihome_app.icon="/resource/app/settings/icon/my_device.bin";
+        mihome_page.name="main";mihome_page.app_id=MIHOME_ID;mihome_page.layer=1;
+        mihome_page.on_create=mihome_create;mihome_page.on_destroy=mihome_destroy;
+        mihome_page.on_pause=mihome_pause;mihome_page.on_stop=mihome_pause;
+        mihome_pages[0]=&mihome_page;
+        if(!ui_install(&mihome_app,mihome_pages,1)) (void)ui_launcher_add(MIHOME_ID);
+    }
+    /* Recovery entry: loads the catalog core if it is missing and exposes the
+     * statically verified NSH reboot path. It is not a substitute for the
+     * watchface bootstrap when this whole module failed to load. */
+    if(!ui_lookup(SERVICE_ID)) {
+        service_app.name=service_name;service_app.app_id=SERVICE_ID;
+        service_app.get_name=service_get_name;
+        service_app.icon="/resource/app/settings/icon/app_warning.bin";
+        service_page.name="main";service_page.app_id=SERVICE_ID;service_page.layer=1;
+        service_page.on_create=modules_create;service_page.on_destroy=modules_destroy;
+        service_pages[0]=&service_page;
+        if(!ui_install(&service_app,service_pages,1)) (void)ui_launcher_add(SERVICE_ID);
+    }
     if(file_write("/tmp/nfc_tags_catalog_ui_ready","catalog_ui_v4\n")) {
         diagnostic("NFC_CATALOG_UI4\nMARKER_FAILED\n-1\nEND\n");return;
     }

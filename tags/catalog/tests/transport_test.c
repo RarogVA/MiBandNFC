@@ -100,10 +100,14 @@ int main(void) {
     frame[9]=58;feed(frame,10,10);transport_poll(100);assert(!transport_ready());subscribe();transport_poll(100);
     frame[3]=6;frame[8]=1;frame[9]=6;feed(frame,10,10);transport_poll(100);assert(!transport_ready());subscribe();transport_poll(100);
     frame[8]=0;frame[9]=0;feed(frame,10,10);transport_poll(100);assert(!transport_ready());subscribe();transport_poll(100);
+    frame[3]=8;frame[8]=0;frame[9]=7;feed(frame,17,20);transport_poll(100);assert(received_type==8&&received_length==7);
+    frame[9]=9;feed(frame,10,10);transport_poll(100);assert(!transport_ready());subscribe();transport_poll(100);
     uint8_t request[57]={1};assert(transport_notify(7,0x20000001u,request,57)==0);
     for(unsigned i=0;i<12;i++)transport_poll(100+i*10);
     assert(sent_length_total==67&&sent[3]==7&&sent[4]==0x20&&sent[9]==57);
     assert(transport_notify(7,2,request,58)==-3&&transport_notify(6,2,request,1)==-3);
+    assert(transport_notify(8,3,request,8)==0);for(unsigned i=0;i<12;i++)transport_poll(400+i*10);
+    assert(transport_notify(8,2,request,9)==-3);
     frame[3]=7;frame[9]=57;feed(frame,12,12);disconnected(service,&test_peer);subscribe();transport_poll(200);
     unsigned before=delivered;feed(frame,67,20);transport_poll(200);assert(delivered==before+1);
     transport_stop();puts("catalog transport: type6<=261/type7exact57 fragments, ATT send, malformed bounds and epochs: PASS");

@@ -14,6 +14,8 @@
 #ifdef TAG_CATALOG_PROFILE
 #define TRANSPORT_CATALOG 6u
 #define TRANSPORT_SELECTION 7u
+#define TRANSPORT_MIHOME 8u
+#define TRANSPORT_MAX_MIHOME 8u
 #endif
 typedef void (*transport_frame_cb)(uint8_t type, uint32_t sequence,
                                   const uint8_t *payload, uint16_t length);

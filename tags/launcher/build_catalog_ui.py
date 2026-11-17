@@ -17,7 +17,7 @@ def main():
             addr=int(a,16);data=bytes(int(v.strip(),16) for v in values.split(",") if v.strip())
             if len(data)!=24 or firmware[addr-0x2c0c0000:addr-0x2c0c0000+24]!=data:raise SystemExit("Bad fingerprint "+a)
             checked.append(a)
-    if len(checked)!=38:raise SystemExit("Expected all 38 UI firmware gates")
+    if len(checked)!=39:raise SystemExit("Expected all 39 UI firmware gates")
     OUT.mkdir(parents=True,exist_ok=True);objects=[]
     flags=[f for f in b.FLAGS if not f.startswith(("-DNFC_","-DTRANSPORT_"))]
     for source in SOURCES:

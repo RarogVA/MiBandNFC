@@ -30,7 +30,7 @@ local function timer(attrs)
  function attrs:resume() self.paused=false end
  table.insert(timers,attrs);return attrs
 end
-function tick() for _,t in ipairs(timers)do if not t.paused then t.cb(t) end end end
+function tick(period) for _,t in ipairs(timers)do if not t.paused and (period==nil or t.period==period) then t.cb(t) end end end
 package.preload.lvgl=function() return {Object=object,Label=object,Timer=timer,OPA=function(x)return x end,
  FLAG={SCROLLABLE=16,CLICKABLE=2,EVENT_BUBBLE=0x4000},Font=function()return 1 end,ALIGN={CENTER=0}} end
 io={open=function(path,mode)
@@ -48,6 +48,7 @@ os={remove=function(path)files[path]=nil;return true end,execute=function(cmd)
  if fail_mkdir and cmd:match("^mkdir ") then return nil,"exit",1 end
  if fail_core and cmd:match("^insmod.*Tag_Catalog_V1$") then return nil,"exit",1 end
  if fail_ui and cmd:match("^insmod.*NFC_Tags_Catalog_UI_V4$") then return nil,"exit",1 end
+ if fail_reboot and cmd=="shutdown --reboot" then return nil,"exit",1 end
  return true,"exit",0
 end}
 '''
@@ -66,12 +67,15 @@ class BootstrapTest(unittest.TestCase):
         self.assertEqual((root.attrs.w,root.attrs.h),(84,84),"Size must be set after removing styles")
         return lua
     def tap(self,lua):lua.globals().objects[1].callback()
+    def timer(self,lua,period):
+        return lua.eval('function(p) for _,t in ipairs(timers) do if t.period==p then return t end end end')(period)
     def insmods(self,lua):return [c for c in lua.globals().commands.values() if c.startswith("insmod ")]
+    def reboots(self,lua):return [c for c in lua.globals().commands.values() if c=="shutdown --reboot"]
     def test_cold_manual_load(self):
         lua=self.make();self.tap(lua)
         self.assertEqual(len(self.insmods(lua)),2)
         self.assertTrue(self.insmods(lua)[0].endswith("Tag_Catalog_V1"))
-        self.assertEqual(lua.globals().files["/tmp/nfc_tags_ui_open_request"],"catalog_ui_v4\n")
+        self.assertIsNone(lua.globals().files["/tmp/nfc_tags_ui_open_request"])
         self.assertEqual(lua.globals().files["/data/tag_catalog/core-catalog.elf"],"core bytes")
         self.assertEqual(lua.globals().files["/data/tag_catalog/ui-catalog-v4.elf"],"ui bytes")
         self.assertEqual(lua.globals().files["/data/tag_catalog/right-off-v4.bin"],"artwork right-off-v4.bin")
@@ -80,9 +84,11 @@ class BootstrapTest(unittest.TestCase):
         self.assertFalse(lua.globals().objects[1].bubble)
         lua.globals().files["/tmp/nfc_tags_catalog_ui_ready"]="catalog_ui_v4\n"
         lua.globals().tick()
-        self.assertFalse(lua.globals().objects[1].clickable)
-        self.assertTrue(lua.globals().timers[1].paused)
-        self.assertEqual(lua.globals().objects[1].attrs.bg_opa,0)
+        self.assertTrue(lua.globals().objects[1].clickable,"Reboot is requested from the same touch")
+        self.assertEqual(self.reboots(lua),["shutdown --reboot"])
+        self.assertEqual(lua.globals().files["/data/tag_catalog/auto_load"],"catalog_ui_v4\n")
+        self.assertTrue(self.timer(lua,100).paused)
+        self.assertEqual(lua.globals().objects[2].attrs.text,"REBOOT")
         self.assertIsNone(lua.globals().objects[1].attrs.border_width)
     def test_warm_passes_to_native(self):
         lua=self.make(r'files["/tmp/nfc_tags_catalog_ui_ready"]="catalog_ui_v4\n"')
@@ -93,7 +99,7 @@ class BootstrapTest(unittest.TestCase):
         lua=self.make(r'files["/tmp/nfc_tags_ui_loaded"]="catalog_ui_v4\n"')
         self.assertTrue(lua.globals().objects[1].clickable)
         for _ in range(30):lua.globals().tick()
-        self.assertTrue(lua.globals().timers[1].paused)
+        self.assertTrue(self.timer(lua,100).paused)
         self.assertEqual(lua.globals().objects[2].attrs.text,"REBOOT")
         self.assertIsNone(lua.globals().objects[2].attrs.width)
         self.assertEqual(lua.globals().objects[2].attrs.align,0)
@@ -147,10 +153,13 @@ class BootstrapTest(unittest.TestCase):
         lua=self.make('fail_open="/data/tag_catalog/ui-catalog-v4.elf"');self.tap(lua)
         self.assertEqual(self.insmods(lua),[])
         self.assertEqual(lua.globals().objects[2].attrs.text,"UI DST")
-    def test_ui_request_failure_is_distinct(self):
-        lua=self.make('fail_open="/tmp/nfc_tags_ui_open_request"');self.tap(lua)
-        self.assertEqual(len(self.insmods(lua)),1)
-        self.assertEqual(lua.globals().objects[2].attrs.text,"UI REQ")
+    def test_reboot_failure_stays_visible_and_clickable(self):
+        lua=self.make("fail_reboot=true");self.tap(lua)
+        self.assertEqual(len(self.insmods(lua)),2)
+        lua.globals().files["/tmp/nfc_tags_catalog_ui_ready"]="catalog_ui_v4\n"
+        lua.globals().tick(100)
+        self.assertEqual(lua.globals().objects[2].attrs.text,"NO REBOOT")
+        self.assertTrue(lua.globals().objects[1].clickable)
     def test_v1_loaded_ui_requires_reboot(self):
         lua=self.make(r'files["/tmp/nfc_tags_ui_loaded"]="catalog_ui_v1\n"');self.tap(lua)
         self.assertEqual(self.insmods(lua),[])
@@ -198,6 +207,53 @@ class BootstrapTest(unittest.TestCase):
             lua=self.make(state);self.tap(lua)
             self.assertEqual(self.insmods(lua),[])
             self.assertEqual(lua.globals().objects[2].attrs.text,"REBOOT")
+
+    def test_boot_timer_loads_entries_without_opening(self):
+        lua=self.make(r'files["/data/tag_catalog/auto_load"]="catalog_ui_v4\n"')
+        self.assertEqual(len(lua.globals().timers),1)
+        lua.globals().tick(2000)
+        self.assertEqual(len(self.insmods(lua)),2)
+        self.assertIsNone(lua.globals().files["/tmp/nfc_tags_ui_open_request"])
+        self.assertEqual(lua.globals().files["/tmp/nfc_tags_ui_loaded"],"catalog_ui_v4\n")
+        self.assertFalse(lua.globals().objects[1].clickable,"Overlay is transparent from the first frame")
+        lua.globals().files["/tmp/nfc_tags_catalog_ui_ready"]="catalog_ui_v4\n"
+        lua.globals().tick(100)
+        self.assertFalse(lua.globals().objects[1].clickable)
+        self.assertTrue(lua.globals().objects[1].bubble)
+        self.assertEqual(lua.globals().objects[1].attrs.bg_opa,0)
+
+    def test_boot_timer_failure_stays_silent_for_manual_retry(self):
+        lua=self.make(r'files["/data/tag_catalog/auto_load"]="catalog_ui_v4\n";fail_ui=true')
+        lua.globals().tick(2000)
+        self.assertEqual(len(lua.globals().objects),1,"No visible status at boot")
+        self.assertEqual(lua.globals().files["/tmp/tag_bootstrap_auto"],
+                         "REBOOT\n\n")
+        self.assertFalse(lua.globals().objects[1].clickable,"No retry overlay after confirmation")
+        before=len(self.insmods(lua))
+        self.assertIsNone(lua.globals().objects[1].callback)
+        self.assertEqual(len(self.insmods(lua)),before,"No manual retry path")
+
+    def test_boot_timer_skips_partial_state(self):
+        lua=self.make(r'files["/data/tag_catalog/auto_load"]="catalog_ui_v4\n";files["/tmp/nfc_tags_ui_loaded"]="catalog_ui_v4\n"')
+        lua.globals().tick(2000)
+        self.assertEqual(self.insmods(lua),[])
+        self.assertFalse(lua.globals().objects[1].clickable)
+        for _ in range(30):lua.globals().tick(100)
+        self.assertEqual(len(lua.globals().objects),1,"Partial state stays silent")
+
+    def test_boot_timer_does_not_run_for_ready_face(self):
+        lua=self.make(r'files["/tmp/nfc_tags_catalog_ui_ready"]="catalog_ui_v4\n"')
+        self.assertEqual(len(lua.globals().timers),0)
+
+    def test_first_boot_has_no_auto_timer_and_records_confirmation(self):
+        lua=self.make()
+        self.assertEqual(len(lua.globals().timers),0,"No auto-load before one confirmed install")
+        self.tap(lua)
+        self.assertEqual(len(self.insmods(lua)),2)
+        lua.globals().files["/tmp/nfc_tags_catalog_ui_ready"]="catalog_ui_v4\n"
+        lua.globals().tick(100)
+        self.assertEqual(lua.globals().files["/data/tag_catalog/auto_load"],"catalog_ui_v4\n")
+        self.assertEqual(self.reboots(lua),["shutdown --reboot"])
 
     def test_card_asset_required(self):
         lua=self.make('files[SCRIPT_PATH.."card-v4.bin"]=nil');self.tap(lua)

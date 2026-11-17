@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /** MB/v1 framing with a separate tag-profile GATT service. */
 public final class Protocol {
-    public static final int REQUEST=1, RESPONSE=2, STATUS=3, CONTROL=4, TAG=5, CATALOG=6, SELECTION=7, HEADER=10;
+    public static final int REQUEST=1, RESPONSE=2, STATUS=3, CONTROL=4, TAG=5, CATALOG=6, SELECTION=7, MIHOME=8, HEADER=10;
     public static final int MAX_REQUEST=261, MAX_RESPONSE=258;
     public static final String SERVICE="7dbb0011-8e51-4f89-a9cb-9d40bb8c0e31";
     public static final String RX="7dbb0012-8e51-4f89-a9cb-9d40bb8c0e31";
@@ -22,7 +22,7 @@ public final class Protocol {
     }
     private static int maximum(int kind) {
         switch(kind) {case REQUEST:return 261;case RESPONSE:return 258;
-            case STATUS:case TAG:return 128;case CATALOG:case SELECTION:return 261;case CONTROL:return 1;default:return 0;}
+            case STATUS:case TAG:return 128;case CATALOG:case SELECTION:return 261;case CONTROL:return 1;case MIHOME:return 8;default:return 0;}
     }
     public static byte[] encode(Frame frame) {
         byte[] out=new byte[HEADER+frame.payload.length];out[0]=0x4d;out[1]=0x42;out[2]=1;out[3]=(byte)frame.kind;

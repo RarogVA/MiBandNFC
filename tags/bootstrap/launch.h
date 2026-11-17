@@ -11,4 +11,9 @@ int tag_bootstrap_open_app(uint16_t app_id);
  * Only the fixed installer commands below are exposed, not arbitrary input. */
 int tag_bootstrap_insmod_core(void);
 
+/* NSH `shutdown --reboot` through the same verified system() backend. Static
+ * analysis confirms the command and boardctl/board_reset path; device test is
+ * still required. Returns only if the request did not reboot the band. */
+int tag_bootstrap_reboot(void);
+
 #endif

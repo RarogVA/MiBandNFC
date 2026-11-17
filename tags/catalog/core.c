@@ -78,8 +78,38 @@ static void selection_frame(uint32_t seq,const uint8_t *p,uint16_t n){
  if(selection_sent&&(uint32_t)(now_ms-selection_at)>=SELECTION_DEADLINE_MS){selection_sent=authorized=0;phase=TAG_CATALOG_ERROR;status(seq,"ERROR:selection acknowledgement timed out");return;}
  authorized=1;selection_sent=selection_dirty=0;phase=TAG_CATALOG_SELECTED;error_code=0;status(seq,"SELECT_OK");
 }
+#define MIHOME_ACTION_PATH "/tmp/mihome_action"
+#define MIHOME_STATUS_PATH "/tmp/mihome_status"
+static void mihome_file_write(const char *path,const char *text) {
+ void *f=catalog_fs_open(path,"w");if(!f)return;
+ size_t n=0;while(text[n])n++;(void)catalog_fs_write(text,1,n,f);(void)catalog_fs_close(f);
+}
+static uint8_t mihome_read_action(void) {
+ void *f=catalog_fs_open(MIHOME_ACTION_PATH,"r");uint8_t value=0xff;
+ if(f) {
+  char buf[8]={0};size_t n=catalog_fs_read(buf,1,sizeof(buf)-1,f);(void)catalog_fs_close(f);
+  if(n&&buf[0]>='1'&&buf[0]<='6')value=(uint8_t)(buf[0]-'0');
+ }
+ return value;
+}
+static void mihome_frame(uint32_t seq,const uint8_t *p,uint16_t n) {
+ if(n==1&&p[0]==1) {
+  uint8_t action=mihome_read_action(),out[2]={1,action};
+  /* Keep the mailbox until the ATT notification is queued, so a lost reply
+   * is retried by the next Pixel poll instead of silently dropping a tap. */
+  if(!transport_notify(TRANSPORT_MIHOME,seq,out,2)&&action!=0xff)
+   mihome_file_write(MIHOME_ACTION_PATH,"");
+  return;
+ }
+ if(n==2&&p[0]==2) {
+  mihome_file_write(MIHOME_STATUS_PATH,p[1]?"ERR\n":"OK\n");
+  uint8_t out[2]={2,0};(void)transport_notify(TRANSPORT_MIHOME,seq,out,2);return;
+ }
+ status(seq,"ERROR:mihome");
+}
 static void frame_received(uint8_t type,uint32_t seq,const uint8_t *p,uint16_t n){
  peer_reconcile();if(transport_frame_generation()!=transport_generation())return;if(!clock_sample())return;
+ if(type==TRANSPORT_MIHOME){mihome_frame(seq,p,n);return;}
  if(type==TRANSPORT_CATALOG){catalog_frame(seq,p,n);return;}if(type==TRANSPORT_SELECTION){selection_frame(seq,p,n);return;}
  if(type==TRANSPORT_TAG){status(seq,"ERROR:use catalog protocol v1");return;}
  if(type==TRANSPORT_CONTROL&&n==1){

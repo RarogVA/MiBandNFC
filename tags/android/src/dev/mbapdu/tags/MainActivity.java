@@ -106,7 +106,8 @@ public final class MainActivity extends Activity {
         sync=AppStyle.addButton(root,"Синхронизировать с браслетом",false,v->syncChecked());AppStyle.gap(root,10);
         start=AppStyle.addButton(root,"Включить NFC",true,v->{if(active)requestStop(false);else startEmulation();});
         status=AppStyle.text(this,"",14,AppStyle.MUTED);status.setPadding(dp(4),dp(14),dp(4),0);status.setVisibility(View.GONE);root.addView(status);
-        AppStyle.gap(root,24);Button debug=AppStyle.addButton(root,"Запустить Debug",false,v->debugWindow());debug.setTextColor(AppStyle.MUTED);
+        AppStyle.gap(root,24);AppStyle.addButton(root,"Mi Home (тест)",false,v->startActivity(new Intent(this,MiHomeActivity.class)));AppStyle.gap(root,10);
+        Button debug=AppStyle.addButton(root,"Запустить Debug",false,v->debugWindow());debug.setTextColor(AppStyle.MUTED);
         readbackResult=text("Тест NFC ещё не запускался",14);log=text("",12);log.setTypeface(android.graphics.Typeface.MONOSPACE);log.setTextIsSelectable(true);
         ScrollView page=new ScrollView(this);page.setBackgroundColor(AppStyle.BG);page.setFillViewport(true);page.addView(root);AppStyle.insets(page,root);setContentView(page);page.requestApplyInsets();
     }

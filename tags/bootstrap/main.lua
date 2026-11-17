@@ -1,9 +1,14 @@
--- Embedded as the second child of the existing 84x84 lower-circle Widget.
--- Evaluating this file never loads a module or starts NFC. Only a manual tap
--- can copy/load the modules. The ordinary Widget remains the app launcher.
+-- Embedded as the second child of the 84x84 lower-circle Find Phone Widget.
+-- Evaluating this file never loads a module or starts NFC. The first tap
+-- installs and reboots; later boots run the same verified copy/insmod path
+-- once from a bounded UI timer, so the launcher entries return automatically.
+-- After the first install the overlay is transparent and never runs at render
+-- time except for that timer.
 local lvgl=require("lvgl")
 local UI_VERSION="catalog_ui_v4\n"
 local CORE_VERSION="catalog_v1\n"
+local AUTO_DELAY_MS=2000
+local AUTO_MARKER="/data/tag_catalog/auto_load"
 local function read(path,n)
  local f=io.open(path,"rb");if not f then return nil end
  local value=f:read(n or 128);f:close();return value
@@ -41,6 +46,18 @@ local function load(target,name)
  if not mark(attempted,"1\n") then return false end
  return execute("insmod "..target.." "..name)
 end
+local function blocked()
+ -- Any earlier attempt in this boot must be resolved manually: a partial
+ -- load is never retried silently, and a resident module is never unloaded.
+ return read("/tmp/nfc_tags_ui_loaded") or
+        read("/tmp/nfc_tags_catalog_ui_ready") or
+        read("/tmp/tag_bootstrap_auto") or
+        read("/tmp/NFC_Tags_Catalog_UI_V1_attempted") or
+        read("/tmp/NFC_Tags_Catalog_UI_V2_attempted") or
+        read("/tmp/NFC_Tags_Catalog_UI_V3_attempted") or
+        read("/tmp/NFC_Tags_Catalog_UI_V4_attempted") or
+        read("/tmp/tag_catalog_loaded")
+end
 local root=lvgl.Object(nil,{})
 -- The theme's default Object style has a visible border. Remove it before
 -- setting our dimensions: remove_style_all also removes local size styles.
@@ -64,36 +81,151 @@ local function failure(code,detail)
 end
 local busy=false
 local ready_timer=nil
+local auto_timer=nil
 local waiting=false
+local ready_quiet=false
+local pending_reboot=false
 local ready_ticks=0
 local function ready()
  return read("/tmp/nfc_tags_catalog_ui_ready")==UI_VERSION
 end
 local function pass_through()
  if ready_timer then ready_timer:pause() end
+ if auto_timer then auto_timer:pause() end
  waiting=false
+ -- A successful registration is the one-time proof that this build runs on
+ -- the device. Only then do later boots attempt the silent auto-load.
+ mark(AUTO_MARKER,UI_VERSION)
+ if pending_reboot then
+  pending_reboot=false
+  show("REBOOT")
+  -- Confirmed static path: NSH shutdown --reboot -> boardctl/board_reset.
+  if not execute("shutdown --reboot") then
+   show("NO REBOOT")
+   root:add_flag(lvgl.FLAG.CLICKABLE)
+  end
+  return
+ end
  if status then status:set{text=""} end
  root:set{bg_opa=0}
  root:add_flag(lvgl.FLAG.EVENT_BUBBLE)
  root:clear_flag(lvgl.FLAG.CLICKABLE)
 end
-local function watch_ready()
+local function watch_ready(quiet)
  -- Same Timer API used by the original recorder.face installer. Bound the
  -- registration wait; an insmod success must never be mistaken for readiness.
- ready_ticks=30
+ ready_ticks=30;ready_quiet=quiet
  if not ready_timer then
   ready_timer=lvgl.Timer{period=100,paused=true,cb=function(t)
    if ready() then pass_through();return end
    ready_ticks=ready_ticks-1
-   if ready_ticks<=0 then t:pause();waiting=false;show("REBOOT") end
+   if ready_ticks<=0 then
+    t:pause();waiting=false
+    -- A boot-time attempt stays silent; the manual path reports REBOOT and
+    -- must not reboot later on a stale ready.
+    if not ready_quiet then pending_reboot=false;show("REBOOT") end
+   end
   end}
  end
  waiting=true;ready_timer:resume()
 end
-if ready() then
- -- The native Widget handles ordinary taps after initialization, including
- -- after leaving this face and coming back. No polling timer is needed.
+local function install(automatic)
+ if busy then return end
+ if ready() then pass_through();return end
+ busy=true
+ local function stop(code,detail)
+  if automatic then
+   mark("/tmp/tag_bootstrap_auto",code.."\n"..(detail or "").."\n")
+  else
+   failure(code,detail)
+  end
+  busy=false
+ end
+ local model=prop("product.model","/tmp/tag_bootstrap_model")
+ local version=prop("ro.build.version","/tmp/tag_bootstrap_version"):gsub("_",".")
+ if model~="miwear.watch.p67glt" or version~="3.201.026" then
+  if not automatic then show("VERSION") end
+  busy=false;return
+ end
+ local ui=read("/tmp/nfc_tags_ui_loaded")
+ local resident_ready=read("/tmp/nfc_tags_catalog_ui_ready")
+ local core=read("/tmp/tag_catalog_v1_loaded")
+ if (ui and ui~=UI_VERSION) or (resident_ready and resident_ready~=UI_VERSION) or
+    (core and core~=CORE_VERSION) or
+    ((read("/tmp/apdu_lab_loaded") or read("/tmp/tag_catalog_loaded")) and core~=CORE_VERSION) then
+  if not automatic then show("REBOOT") end
+  busy=false;return
+ end
+ if ui==UI_VERSION then
+  if not automatic then show(waiting and "WAIT" or "REBOOT") end
+  busy=false;return
+ end
+ if read("/tmp/NFC_Tags_Catalog_UI_V1_attempted") or
+    read("/tmp/NFC_Tags_Catalog_UI_V2_attempted") or
+    read("/tmp/NFC_Tags_Catalog_UI_V3_attempted") or
+    read("/tmp/NFC_Tags_Catalog_UI_V4_attempted") then
+  if not automatic then show("REBOOT") end
+  busy=false;return
+ end
+ if not automatic then show("LOAD") end
+ -- Exact .026 NSH mkdir -p returns -1/EEXIST for an existing final directory.
+ -- Verify actual writability instead of treating that return as a failure.
+ execute("mkdir -p /data/tag_catalog")
+ local probe="/data/tag_catalog/.bootstrap_probe"
+ local probe_value="nfc_catalog_bootstrap\n"
+ if not mark(probe,probe_value) or read(probe)~=probe_value then
+  stop("DIR",probe);return
+ end
+ os.remove(probe)
+ -- Preserve both ELFs and all audited UI4 artwork before attempting insmod.
+ local core_copied=copy("catalog_core_v1.elf","/data/tag_catalog/core-catalog.elf")
+ local ui_copied,ui_error,ui_path=copy("catalog_ui_v4.elf","/data/tag_catalog/ui-catalog-v4.elf")
+ if not ui_copied then stop("UI "..ui_error,ui_path);return end
+ local artwork={"card-v4.bin","controls-v4.bin","status-ok-v4.bin","status-fail-v4.bin",
+  "status-busy0-v4.bin","status-busy1-v4.bin","status-busy2-v4.bin","status-busy3-v4.bin",
+  "left-v4.bin","right-v4.bin","left-off-v4.bin","right-off-v4.bin"}
+ for _,name in ipairs(artwork) do
+  if not copy(name,"/data/tag_catalog/"..name) then
+   stop("UI ART","/data/tag_catalog/"..name);return
+  end
+ end
+ if core~=CORE_VERSION and core_copied and not read("/tmp/Tag_Catalog_V1_attempted") then
+  if load("/data/tag_catalog/core-catalog.elf","Tag_Catalog_V1") then
+   mark("/tmp/tag_catalog_v1_loaded",CORE_VERSION)
+  end
+ end
+ -- The first tap only installs and reboots; the app itself is opened from the
+ -- launcher menu afterwards. The automatic path only restores registration.
+ if not load("/data/tag_catalog/ui-catalog-v4.elf","NFC_Tags_Catalog_UI_V4") then
+  stop("REBOOT");return
+ end
+ if not mark("/tmp/nfc_tags_ui_loaded",UI_VERSION) then
+  stop("REBOOT");return
+ end
+ pending_reboot=not automatic and read(AUTO_MARKER)~=UI_VERSION
+ -- Keep intercepting until the registration timer publishes exact READY, but
+ -- a boot-time wait stays silent. Failed registration leaves a visible state
+ -- for the manual path, not a dead shortcut.
+ if automatic then
+  watch_ready(true)
+ else
+  show("WAIT");watch_ready(false)
+ end
+ busy=false
+end
+local confirmed=read(AUTO_MARKER)==UI_VERSION
+if ready() or confirmed then
+ -- After the first confirmed install the overlay is transparent from the
+ -- first frame: the native circle keeps its stock action, and the silent
+ -- auto-load only restores the launcher entries.
  pass_through()
+ if confirmed and not ready() then
+  auto_timer=lvgl.Timer{period=AUTO_DELAY_MS,cb=function(t)
+   t:pause()
+   if busy or ready() or blocked() then return end
+   install(true)
+  end}
+ end
 else
  root:add_flag(lvgl.FLAG.CLICKABLE)
  -- onPressed is firmware event1; the Widget launch is SHORT_CLICKED event4.
@@ -103,73 +235,9 @@ else
  root:onClicked(function()
   if busy then return end
   if ready() then pass_through();return end
-  busy=true
-  local model=prop("product.model","/tmp/tag_bootstrap_model")
-  local version=prop("ro.build.version","/tmp/tag_bootstrap_version"):gsub("_",".")
-  if model~="miwear.watch.p67glt" or version~="3.201.026" then
-   show("VERSION");busy=false;return
-  end
-  local ui=read("/tmp/nfc_tags_ui_loaded")
-  local resident_ready=read("/tmp/nfc_tags_catalog_ui_ready")
-  local core=read("/tmp/tag_catalog_v1_loaded")
-  if (ui and ui~=UI_VERSION) or (resident_ready and resident_ready~=UI_VERSION) or
-     (core and core~=CORE_VERSION) or
-     ((read("/tmp/apdu_lab_loaded") or read("/tmp/tag_catalog_loaded")) and core~=CORE_VERSION) then
-   show("REBOOT");busy=false;return
-  end
-  if ui==UI_VERSION then
-   show(waiting and "WAIT" or "REBOOT");busy=false;return
-  end
-  if read("/tmp/NFC_Tags_Catalog_UI_V1_attempted") or
-     read("/tmp/NFC_Tags_Catalog_UI_V2_attempted") or
-     read("/tmp/NFC_Tags_Catalog_UI_V3_attempted") or
-     read("/tmp/NFC_Tags_Catalog_UI_V4_attempted") then
-   show("REBOOT");busy=false;return
-  end
-  show("LOAD")
-  -- Exact .026 NSH mkdir -p returns -1/EEXIST for an existing final directory.
-  -- Verify actual writability instead of treating that return as a failure.
-  execute("mkdir -p /data/tag_catalog")
-  local probe="/data/tag_catalog/.bootstrap_probe"
-  local probe_value="nfc_catalog_bootstrap\n"
-  if not mark(probe,probe_value) or read(probe)~=probe_value then
-   failure("DIR",probe);busy=false;return
-  end
-  os.remove(probe)
-  -- Preserve both ELFs and all audited UI4 artwork before attempting insmod.
-  local core_copied=copy("catalog_core_v1.elf","/data/tag_catalog/core-catalog.elf")
-  local ui_copied,ui_error,ui_path=copy("catalog_ui_v4.elf","/data/tag_catalog/ui-catalog-v4.elf")
-  if not ui_copied then failure("UI "..ui_error,ui_path);busy=false;return end
-  local artwork={"card-v4.bin","controls-v4.bin","status-ok-v4.bin","status-fail-v4.bin",
-   "status-busy0-v4.bin","status-busy1-v4.bin","status-busy2-v4.bin","status-busy3-v4.bin",
-   "left-v4.bin","right-v4.bin","left-off-v4.bin","right-off-v4.bin"}
-  for _,name in ipairs(artwork) do
-   if not copy(name,"/data/tag_catalog/"..name) then
-    failure("UI ART","/data/tag_catalog/"..name);busy=false;return
-   end
-  end
-  if core~=CORE_VERSION and core_copied and not read("/tmp/Tag_Catalog_V1_attempted") then
-   if load("/data/tag_catalog/core-catalog.elf","Tag_Catalog_V1") then
-    mark("/tmp/tag_catalog_v1_loaded",CORE_VERSION)
-   end
-  end
-  -- A failed core must still permit the native page to report FAIL. The UI
-  -- consumes this request on its registration timer, after this Lua callback.
-  if not mark("/tmp/nfc_tags_ui_open_request",UI_VERSION) then
-   failure("UI REQ","/tmp/nfc_tags_ui_open_request");busy=false;return
-  end
-  if not load("/data/tag_catalog/ui-catalog-v4.elf","NFC_Tags_Catalog_UI_V4") then
-   show("REBOOT");busy=false;return
-  end
-  if not mark("/tmp/nfc_tags_ui_loaded",UI_VERSION) then
-   show("REBOOT");busy=false;return
-  end
-  -- Keep intercepting until the registration timer publishes exact READY.
-  -- Failed registration leaves a visible REBOOT state, not a dead shortcut.
-  show("WAIT");watch_ready()
-  busy=false
+  install(false)
  end)
  if read("/tmp/nfc_tags_ui_loaded")==UI_VERSION then
-  show("WAIT");watch_ready()
+  show("WAIT");watch_ready(false)
  end
 end

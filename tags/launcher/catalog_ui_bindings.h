@@ -2,6 +2,7 @@
 #define TAG_CATALOG_UI_BINDINGS_H
 #include "bindings.h"
 int catalog_ui_bindings_verified(void);
+int ui_launcher_add(uint16_t);
 void ui_text_align(ui_obj *,uint8_t,uint32_t);
 ui_obj *ui_image(ui_obj *,void *);
 void ui_image_src(ui_obj *,const void *);
@@ -9,6 +10,9 @@ void ui_image_src(ui_obj *,const void *);
  * only. Reset an owned backdrop before assigning its geometry and colors. */
 void ui_remove_style_all(ui_obj *);
 #ifndef TAG_UI_HOST_TEST
+/* Verified on 3.201.026 by MiWatchNativeApps; adds the native app icon to
+ * the launcher grid. Called only after our install succeeded. */
+#define ui_launcher_add UI_FN(0x2c48c3e4u,int (*)(uint16_t))
 #define ui_text_align UI_FN(0x2c5599a0u,void (*)(ui_obj *,uint8_t,uint32_t))
 #define ui_image UI_FN(0x2c5587a0u,ui_obj *(*)(ui_obj *,void *))
 #define ui_image_src UI_FN(0x2c557dd0u,void (*)(ui_obj *,const void *))

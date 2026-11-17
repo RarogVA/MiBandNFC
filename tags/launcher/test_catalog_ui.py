@@ -23,7 +23,7 @@ for source in ("tags/launcher/catalog_ui_bindings.c", "tags/bootstrap/launch.c")
         assert len(expected) == 24 and offset >= 0
         assert firmware[offset:offset+24] == expected, (source, address)
         fingerprints.append(address)
-assert len(fingerprints) == 14
+assert len(fingerprints) == 15
 # The only exposed loader command has fixed module name and path. The C mock
 # proves all UI paths establish a persistent attempt guard before invoking it.
 launch = (ROOT / "tags/bootstrap/launch.c").read_text()

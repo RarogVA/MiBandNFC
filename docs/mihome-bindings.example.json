@@ -7,7 +7,10 @@
     "Vevs is used to provision devices and expose token/IP/model logs.",
     "Never commit real tokens; keep this file in local app storage.",
     "Slots 1-5 are active; slot 6 is an inactive placeholder.",
-    "Kettle command is model-specific: confirm set_temperature vs MIoT set_properties before enabling."
+    "Kettle command is model-specific: confirm set_temperature vs MIoT set_properties before enabling.",
+    "timeout_ms is per device; the slow Rockrobo vacuum uses 20000 ms.",
+    "no_ack marks commands that may execute without a response.",
+    "cloud_fallback=vevs opens the matching Vevs scene when local miIO fails; requires the app Accessibility service."
   ],
   "devices": {
     "vacuum_1": {
@@ -20,7 +23,9 @@
       "model": "<model from Vevs logs>",
       "host": "<lan ip>",
       "token": "<local only>",
-      "name": "Пылесос 2"
+      "name": "Пылесос 2",
+      "timeout_ms": 20000,
+      "no_ack": true
     },
     "socket": {
       "model": "<model from Vevs logs>",
@@ -69,7 +74,9 @@
         "type": "miio",
         "device": "socket",
         "method": "set_power",
-        "params": ["on"]
+        "params": [
+          "on"
+        ]
       }
     },
     {
@@ -81,7 +88,9 @@
         "type": "miio",
         "device": "socket",
         "method": "set_power",
-        "params": ["off"]
+        "params": [
+          "off"
+        ]
       }
     },
     {
@@ -93,7 +102,9 @@
         "type": "miio",
         "device": "kettle",
         "method": "set_temperature",
-        "params": [45]
+        "params": [
+          45
+        ]
       }
     },
     {
@@ -103,5 +114,6 @@
       "enabled": false,
       "action": null
     }
-  ]
+  ],
+  "cloud_fallback": "vevs"
 }

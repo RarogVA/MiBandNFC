@@ -78,6 +78,9 @@ public final class MiHomeActivity extends Activity {
         AppStyle.gap(root, 20);
         AppStyle.addButton(root, "Получить токен", false,
             v -> startActivity(new android.content.Intent(this, TokenImportActivity.class)));
+        AppStyle.gap(root, 10);
+        AppStyle.addButton(root, "Включить fallback Vevs", false,
+            v -> startActivity(new android.content.Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS)));
         ScrollView page = new ScrollView(this);
         page.setFillViewport(true);
         page.addView(root);
@@ -229,8 +232,9 @@ public final class MiHomeActivity extends Activity {
                     try {
                         client.hello();
                     } catch (java.net.SocketTimeoutException e) {
-                        main.post(() -> status.setText("Ошибка · " + slot.optString("label") + "\nНет handshake с устройством"));
-                        done.accept(1); return;
+                        String label = slot.optString("label", "слот");
+                        main.post(() -> status.setText("Ошибка · " + label + "\nНет handshake с устройством"));
+                        done.accept(fallback(label) ? 0 : 1); return;
                     }
                     try {
                         JSONObject result = client.send(method, params);
@@ -242,20 +246,35 @@ public final class MiHomeActivity extends Activity {
                                 + "\nКоманда ушла, устройство не прислало ответ"));
                             done.accept(0);
                         } else {
-                            main.post(() -> status.setText("Ошибка · " + slot.optString("label")
+                            String label = slot.optString("label", "слот");
+                            main.post(() -> status.setText("Ошибка · " + label
                                 + "\nНет ответа за " + (timeoutMs / 1000) + " с"));
-                            done.accept(1);
+                            done.accept(fallback(label) ? 0 : 1);
                         }
                     }
                 } catch (Exception e) {
-                    main.post(() -> status.setText("Ошибка · " + slot.optString("label") + "\n" + e.getClass().getSimpleName() + ": " + e.getMessage()));
-                    done.accept(1);
+                    String label = slot.optString("label", "слот");
+                    main.post(() -> status.setText("Ошибка · " + label + "\n" + e.getClass().getSimpleName() + ": " + e.getMessage()));
+                    done.accept(fallback(label) ? 0 : 1);
                 }
             });
         } catch (Exception e) {
             status.setText("Ошибка слота: " + e.getMessage());
             done.accept(1);
         }
+    }
+
+    private boolean fallback(String label) {
+        if (config == null || !"vevs".equals(config.optString("cloud_fallback", ""))) return false;
+        if (!CloudFallbackService.enabled(this)) {
+            main.post(() -> status.setText("Локально не прошло · fallback Vevs не включён\nВключи Accessibility для «Метки • NFC»"));
+            return false;
+        }
+        main.post(() -> {
+            status.setText("Локально не прошло · открываю Vevs: " + label);
+            CloudFallbackService.request(this, label);
+        });
+        return true;
     }
 
     private static Object toParams(Object value) throws Exception {

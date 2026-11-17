@@ -44,6 +44,16 @@ STYLES = [
     dict(name="Light Turquoise", face=4, aod=7, editor=3, aod_editor=7,
          accent=(0, 168, 150), hand=(0, 200, 180), light=True),
 ]
+CUSTOM_STYLES = [
+    dict(name="Copper", face=0, aod=1, editor=0, aod_editor=4,
+         accent=(184, 115, 51), hand=(255, 183, 77), light=False),
+    dict(name="Light Emerald", face=2, aod=5, editor=3, aod_editor=7,
+         accent=(46, 158, 107), hand=(0, 200, 83), light=True, clone=True),
+    dict(name="Sunset Coral", face=3, aod=6, editor=2, aod_editor=6,
+         accent=(224, 90, 79), hand=(255, 138, 101), light=False),
+    dict(name="Forest Sage", face=4, aod=7, editor=3, aod_editor=7,
+         accent=(78, 125, 91), hand=(129, 199, 132), light=True),
+]
 
 
 def require(ok, message):
@@ -221,6 +231,10 @@ def decode_entry(face, entry):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-face", type=Path, default=BASE_FACE)
+    parser.add_argument("--base-sha", default=BASE_SHA)
+    parser.add_argument("--face-id", default=FACE_ID)
+    parser.add_argument("--face-name", default=FACE_NAME)
+    parser.add_argument("--palette", choices=("main", "custom"), default="main")
     parser.add_argument("--source-zip", type=Path, default=SOURCE_ZIP)
     parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--report", type=Path, default=REPORT)
@@ -228,7 +242,7 @@ def main():
     args = parser.parse_args()
 
     base = args.base_face.read_bytes()
-    require(sha(base) == BASE_SHA, "Unexpected NFC 5 base face")
+    require(sha(base) == args.base_sha, "Unexpected base face SHA-256")
     with zipfile.ZipFile(args.source_zip) as z:
         editor = json.loads(z.read("editor.config.json"))
         names = {k: int(v, 16) for k, v in
@@ -325,7 +339,7 @@ def main():
     previews = []
     labels = []
     records = []
-    for style in STYLES:
+    for style in (CUSTOM_STYLES if args.palette == "custom" else STYLES):
         theme = style["face"]
         aod = style["aod"]
         editor_theme = style["editor"]
@@ -399,8 +413,8 @@ def main():
     main_offset = u32(face, 168 + 4)
     struct.pack_into("<I", face, 0x20, main_offset)
     allowed.update(range(0x20, 0x24))
-    face[0x28:0x68] = FACE_ID.encode().ljust(64, b"\0")
-    struct.pack_into("<II", face, 0x74, *append(translations(FACE_NAME)))
+    face[0x28:0x68] = args.face_id.encode().ljust(64, b"\0")
+    struct.pack_into("<II", face, 0x74, *append(translations(args.face_name)))
 
     # Validation.
     after = {(t, k, u): (off, size, pos) for t, k, u, off, size, pos in index_entries(face)}
@@ -423,7 +437,7 @@ def main():
                 "New image size mismatch")
     changed = [i for i, (a, b) in enumerate(zip(base, face)) if a != b]
     require(set(changed) <= allowed, "Unexpected original-prefix mutation")
-    require(sha(base) == BASE_SHA, "Base face changed during build")
+    require(sha(base) == args.base_sha, "Base face changed during build")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(face)
@@ -444,8 +458,8 @@ def main():
     except ValueError:
         base_face_path = str(args.base_face)
     report = {
-        "name": FACE_NAME, "id": FACE_ID, "base_face": base_face_path,
-        "base_sha256": BASE_SHA, "output_sha256": sha(face), "bytes": len(face),
+        "name": args.face_name, "id": args.face_id, "base_face": base_face_path,
+        "base_sha256": args.base_sha, "output_sha256": sha(face), "bytes": len(face),
         "styles": records,
         "light_blend": 0.55, "dark_blend": 0.85,
         "notes": [

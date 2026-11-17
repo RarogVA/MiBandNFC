@@ -1,0 +1,93 @@
+{
+  "name": "NFC-метки — Авторские",
+  "id": "999999977",
+  "base_face": "build/nfc-tags-installer-base.face",
+  "base_sha256": "07fbe8d334a5c95d8eac45bd30172662f23a89300701a62a91bfca18c7aa2b09",
+  "output_sha256": "5f48b56276cf2aac5989faf3cc8e0e45f368e37e70181a68520a6a777307fb4e",
+  "bytes": 3901321,
+  "styles": [
+    {
+      "name": "Copper",
+      "style": 1,
+      "normal_descriptor": 0,
+      "aod_descriptor": 1,
+      "window": "dark",
+      "bezel": [
+        184,
+        115,
+        51
+      ],
+      "hand": [
+        255,
+        183,
+        77
+      ],
+      "semi_transparent_blend": 0.85
+    },
+    {
+      "name": "Light Emerald",
+      "style": 2,
+      "normal_descriptor": 2,
+      "aod_descriptor": 5,
+      "window": "light",
+      "bezel": [
+        46,
+        158,
+        107
+      ],
+      "hand": [
+        0,
+        200,
+        83
+      ],
+      "semi_transparent_blend": 0.55
+    },
+    {
+      "name": "Sunset Coral",
+      "style": 3,
+      "normal_descriptor": 3,
+      "aod_descriptor": 6,
+      "window": "dark",
+      "bezel": [
+        224,
+        90,
+        79
+      ],
+      "hand": [
+        255,
+        138,
+        101
+      ],
+      "semi_transparent_blend": 0.85
+    },
+    {
+      "name": "Forest Sage",
+      "style": 4,
+      "normal_descriptor": 4,
+      "aod_descriptor": 7,
+      "window": "light",
+      "bezel": [
+        78,
+        125,
+        91
+      ],
+      "hand": [
+        129,
+        199,
+        132
+      ],
+      "semi_transparent_blend": 0.55
+    }
+  ],
+  "light_blend": 0.55,
+  "dark_blend": 0.85,
+  "notes": [
+    "Style 2 is a full clone of the light style 4; its light resources are recoloured separately.",
+    "Light themes pre-blend accent with white to emulate a semi-transparent accent (indexed8, no reliance on screen compositing).",
+    "Dark themes pre-blend accent with black; bezel, sun track and both bottom bars use the accent.",
+    "Sun progress ImageArray and both bottom bar ImageArrays are recoloured.",
+    "AOD themes are recoloured dimmer; no separate AOD previews.",
+    "Hardware acceptance pending."
+  ],
+  "hardware_tested": false
+}

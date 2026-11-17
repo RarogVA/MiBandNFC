@@ -58,7 +58,9 @@ def main():
             "original_data_resources_byteidentical":unchanged_numeric,
             "previous_releases_unchanged":True,"hardware_validated":False,
             "local_nfc_start_on_page_open":True}
-    (ROOT/"build/roundabout-ru-nfc-local-validation.json").write_text(json.dumps(report,indent=2)+"\n")
+    out=ROOT/"build/roundabout-ru-nfc-local-validation.json"
+    out.parent.mkdir(parents=True,exist_ok=True)
+    out.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report,indent=2))
 
 if __name__=="__main__":main()

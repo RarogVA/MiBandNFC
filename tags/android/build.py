@@ -61,7 +61,8 @@ def main():
     run([BT / 'apksigner', 'verify', '--verbose', apk])
     run([BT / 'zipalign', '-c', '4', apk])
     permissions = subprocess.check_output([str(BT / 'aapt'), 'dump', 'permissions', str(apk)], text=True, env=ENV)
-    expected = {'android.permission.NFC', 'android.permission.BLUETOOTH_SCAN', 'android.permission.BLUETOOTH_CONNECT'}
+    expected = {'android.permission.NFC', 'android.permission.BLUETOOTH_SCAN', 'android.permission.BLUETOOTH_CONNECT',
+                'android.permission.INTERNET', 'android.permission.ACCESS_LOCAL_NETWORK'}
     actual = set(re.findall(r"uses-permission: name='([^']+)'", permissions))
     if actual != expected: raise SystemExit('Unexpected APK permissions: ' + repr(actual))
     result = {'apk': str(apk), 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(), 'bytes': apk.stat().st_size,

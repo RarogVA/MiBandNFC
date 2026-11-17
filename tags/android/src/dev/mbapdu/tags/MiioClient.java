@@ -24,13 +24,19 @@ final class MiioClient {
     private final byte[] key;
     private final byte[] iv;
     private final String deviceId;
+    private final int timeoutMs;
     private byte[] did = new byte[4];
     private int ts;
 
     MiioClient(String host, String tokenHex, String deviceId) {
+        this(host, tokenHex, deviceId, 10000);
+    }
+
+    MiioClient(String host, String tokenHex, String deviceId, int timeoutMs) {
         this.host = host;
         this.token = hex(tokenHex);
         this.deviceId = deviceId;
+        this.timeoutMs = timeoutMs;
         if (token.length != 16) throw new IllegalArgumentException("token must be 16 bytes");
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
@@ -67,7 +73,7 @@ final class MiioClient {
 
     private DatagramSocket socket() throws Exception {
         DatagramSocket socket = new DatagramSocket();
-        socket.setSoTimeout(10000);
+        socket.setSoTimeout(timeoutMs);
         return socket;
     }
 

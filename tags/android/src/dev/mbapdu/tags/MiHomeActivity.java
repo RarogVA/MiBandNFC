@@ -101,13 +101,14 @@ public final class MiHomeActivity extends Activity {
             String host = device.getString("host");
             String token = device.getString("token");
             String did = device.optString("did", "");
+            int timeoutMs = device.optInt("timeout_ms", 10000);
             JSONObject action = slot.getJSONObject("action");
             String method = action.getString("method");
             Object params = toParams(action.opt("params"));
             status.setText("Отправка: " + slot.optString("label", "слот " + (index + 1)) + "…");
             worker.execute(() -> {
                 try {
-                    MiioClient client = new MiioClient(host, token, did);
+                    MiioClient client = new MiioClient(host, token, did, timeoutMs);
                     client.hello();
                     JSONObject result = client.send(method, params);
                     main.post(() -> status.setText("OK · " + slot.optString("label") + "\n" + shorten(result)));

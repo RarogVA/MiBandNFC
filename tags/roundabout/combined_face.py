@@ -54,6 +54,16 @@ CUSTOM_STYLES = [
     dict(name="Forest Sage", face=4, aod=7, editor=3, aod_editor=7,
          accent=(78, 125, 91), hand=(129, 199, 132), light=True),
 ]
+MIX_STYLES = [
+    dict(name="Steel", face=0, aod=1, editor=0, aod_editor=4,
+         accent=(138, 147, 160), hand=(207, 216, 226), light=False),
+    dict(name="Light Turquoise", face=2, aod=5, editor=3, aod_editor=7,
+         accent=(0, 168, 150), hand=(0, 200, 180), light=True, clone=True),
+    dict(name="Forest Sage", face=3, aod=6, editor=2, aod_editor=6,
+         accent=(78, 125, 91), hand=(129, 199, 132), light=False),
+    dict(name="Sunset Coral", face=4, aod=7, editor=3, aod_editor=7,
+         accent=(224, 90, 79), hand=(255, 138, 101), light=True),
+]
 
 
 def require(ok, message):
@@ -234,7 +244,7 @@ def main():
     parser.add_argument("--base-sha", default=BASE_SHA)
     parser.add_argument("--face-id", default=FACE_ID)
     parser.add_argument("--face-name", default=FACE_NAME)
-    parser.add_argument("--palette", choices=("main", "custom"), default="main")
+    parser.add_argument("--palette", choices=("main", "custom", "mix"), default="main")
     parser.add_argument("--source-zip", type=Path, default=SOURCE_ZIP)
     parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--report", type=Path, default=REPORT)
@@ -339,7 +349,12 @@ def main():
     previews = []
     labels = []
     records = []
-    for style in (CUSTOM_STYLES if args.palette == "custom" else STYLES):
+    palette = STYLES
+    if args.palette == "custom":
+        palette = CUSTOM_STYLES
+    elif args.palette == "mix":
+        palette = MIX_STYLES
+    for style in palette:
         theme = style["face"]
         aod = style["aod"]
         editor_theme = style["editor"]

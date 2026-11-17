@@ -1,6 +1,6 @@
 {
   "name": "Roundabout RU NFC Local — local NDEF Type 4 candidate",
-  "status": "host-tested, hardware acceptance pending",
+  "status": "host-tested; hardware acceptance pending (release v1.4.0)",
   "issue": "https://github.com/RarogVA/MiBandNFC/issues/9",
   "model": "miwear.watch.p67glt",
   "firmware": "3.201.026",
@@ -16,7 +16,7 @@
   "ui": {
     "name": "NFC_Tags_Catalog_UI_V5",
     "sha256": "8bcb144ca60223a7f5da357dbe5987c4465d6020e8dbafaeaf08d71c184aa95c",
-    "bytes": 18748
+    "bytes": 18780
   },
   "lua": {
     "name": "main_local.lua",
@@ -54,5 +54,11 @@
     "NDEF data is public while active",
     "exact model/firmware only",
     "autostart depends on the installed face"
-  ]
+  ],
+  "release": "v1.4.0",
+  "apk": {
+    "name": "tag-bridge-0.4.1.apk",
+    "sha256": "2cbd196e9ed073504ca2f68ded891982583140dd983bf4a42c0ccb3481a73819",
+    "bytes": 62152
+  }
 }

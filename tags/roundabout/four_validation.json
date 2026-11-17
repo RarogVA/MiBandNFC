@@ -1,0 +1,93 @@
+{
+  "name": "NFC 5 Four",
+  "id": "999999979",
+  "base_face": "build/roundabout-ru-nfc5.face",
+  "base_sha256": "d650dd4c3cd9ce7f5a5a2da5ccff4e410e6ffbaf97aeafbda178769bf3a2c560",
+  "output_sha256": "019b1a7678e6d632f56d55d9a3b9a0b4405e1ea33a5c5aca69a4ca054ba421f5",
+  "bytes": 3917994,
+  "styles": [
+    {
+      "name": "Dark Turquoise",
+      "style": 1,
+      "normal_descriptor": 0,
+      "aod_descriptor": 1,
+      "window": "dark",
+      "bezel": [
+        0,
+        191,
+        166
+      ],
+      "hand": [
+        0,
+        229,
+        199
+      ],
+      "semi_transparent_blend": 0.85
+    },
+    {
+      "name": "Light Sapphire",
+      "style": 2,
+      "normal_descriptor": 2,
+      "aod_descriptor": 5,
+      "window": "light",
+      "bezel": [
+        64,
+        120,
+        200
+      ],
+      "hand": [
+        41,
+        121,
+        255
+      ],
+      "semi_transparent_blend": 0.55
+    },
+    {
+      "name": "Deep Ocean",
+      "style": 3,
+      "normal_descriptor": 3,
+      "aod_descriptor": 6,
+      "window": "dark",
+      "bezel": [
+        30,
+        95,
+        138
+      ],
+      "hand": [
+        79,
+        195,
+        247
+      ],
+      "semi_transparent_blend": 0.85
+    },
+    {
+      "name": "Light Turquoise",
+      "style": 4,
+      "normal_descriptor": 4,
+      "aod_descriptor": 7,
+      "window": "light",
+      "bezel": [
+        0,
+        168,
+        150
+      ],
+      "hand": [
+        0,
+        200,
+        180
+      ],
+      "semi_transparent_blend": 0.55
+    }
+  ],
+  "light_blend": 0.55,
+  "dark_blend": 0.85,
+  "notes": [
+    "Style 2 is a full clone of the light style 4; its light resources are recoloured separately.",
+    "Light themes pre-blend accent with white to emulate a semi-transparent accent (indexed8, no reliance on screen compositing).",
+    "Dark themes pre-blend accent with black; bezel, sun track and both bottom bars use the accent.",
+    "Sun progress ImageArray and both bottom bar ImageArrays are recoloured.",
+    "AOD themes are recoloured dimmer; no separate AOD previews.",
+    "Hardware acceptance pending."
+  ],
+  "hardware_tested": false
+}

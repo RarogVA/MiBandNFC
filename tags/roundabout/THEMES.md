@@ -1,5 +1,9 @@
 # Roundabout RU NFC 5 — цветовые темы
 
+Отдельный собранный циферблат с четырьмя темами (Dark Turquoise, Light
+Sapphire, Deep Ocean, Light Turquoise) и четырьмя AOD описан в
+[FOUR.md](FOUR.md).
+
 ## Ограничение формата
 
 `.face` и редактор Roundabout рассчитаны ровно на **4 обычных стиля + 4 AOD**.

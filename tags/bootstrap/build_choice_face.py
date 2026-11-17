@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Build Roundabout RU NFC 5 with a selectable lower-circle app choice.
+"""Build Roundabout RU NFC 5 or the NFC 6 installer face.
 
-Starts from the original Roundabout RU face, replaces the empty lower-circle
-Slot option with the MiBandNFC "Метки" option, and keeps all 43 stock app
-choices. Selecting a stock app in the watchface editor launches it natively;
-selecting "NFC-метки" runs the existing manual bootstrap and opens the native
-catalog page.
+Default (--circle-app nfc): replaces the empty lower-circle Slot option with
+the MiBandNFC "Метки" option; selecting it runs the bootstrap.
+
+--circle-app findPhone builds the installer face: the empty option becomes a
+Find Phone clone with the same Lua child. The first tap installs modules and
+reboots; after that the overlay is transparent and the circle launches stock
+Find Phone. Apps are launched from the menu.
 
 No device I/O. Exact p67glt / 3.201.026 only.
 """
@@ -82,6 +84,9 @@ def translations(text):
 
 
 def build(args):
+    app_id = 0x27 if args.circle_app == "findPhone" else APP_ID
+    face_id = args.face_id
+    face_name = args.face_name
     original = args.baseline.read_bytes()
     require(sha(original) == BASE_SHA, "Unexpected Roundabout RU baseline")
     source = args.source_zip.read_bytes()
@@ -181,23 +186,26 @@ def build(args):
         require((template_flags >> 4) & 255 == 0x27 and template_flags & 2,
                 "Find Phone template flags changed")
 
-        image_uid = next_uid(2)
-        translation_uid = next_uid(6)
         widget_uid = next_uid(9)
-        with Image.open(args.assets / f"theme_{theme}.png") as image:
-            image = image.convert("RGBA")
-        require(image.size == (84, 84), "Shortcut icon must be 84x84")
-        image_payload = rebuild_image(2, image.size,
-                                      [encode_frame(image.tobytes(), *image.size)])
-        image_location = append(image_payload)
-        translation_location = append(translations("NFC-метки"))
+        image_uid = translation_uid = None
+        if args.circle_app == "nfc":
+            image_uid = next_uid(2)
+            translation_uid = next_uid(6)
+            with Image.open(args.assets / f"theme_{theme}.png") as image:
+                image = image.convert("RGBA")
+            require(image.size == (84, 84), "Shortcut icon must be 84x84")
+            image_payload = rebuild_image(2, image.size,
+                                          [encode_frame(image.tobytes(), *image.size)])
+            image_location = append(image_payload)
+            translation_location = append(translations("NFC-метки"))
 
         widget = bytearray(template)
-        struct.pack_into("<I", widget, 4, translation_uid)
-        struct.pack_into("<I", widget, 36, image_uid)
+        if args.circle_app == "nfc":
+            struct.pack_into("<I", widget, 4, translation_uid)
+            struct.pack_into("<I", widget, 36, image_uid)
+            struct.pack_into("<hhII", widget, 44, 0, 0, image_uid, 0)
         struct.pack_into("<H", widget, 42,
-                         (template_flags & ~0xff0) | (APP_ID << 4))
-        struct.pack_into("<hhII", widget, 44, 0, 0, image_uid, 0)
+                         (template_flags & ~0xff0) | (app_id << 4))
         if theme in NORMAL:
             widget = bytearray(widget[:56] + struct.pack("<hhII", 0, 0, 0x05000000, 0)
                                + widget[56:])
@@ -216,11 +224,13 @@ def build(args):
             struct.pack_into("<II", output, descriptor, len(file_records), file_table)
             allowed.update(range(descriptor, descriptor + 8))
 
-        new_entries.setdefault((theme, 2), []).extend([
-            (image_uid, 0, *image_location),
-            (editbox_uid, 0, *editbox_location),
-        ])
-        new_entries.setdefault((theme, 6), []).append((translation_uid, 0, *translation_location))
+        image_entries = [(editbox_uid, 0, *editbox_location)]
+        if image_uid is not None:
+            image_entries.insert(0, (image_uid, 0, *image_location))
+        new_entries.setdefault((theme, 2), []).extend(image_entries)
+        if translation_uid is not None:
+            new_entries.setdefault((theme, 6), []).append(
+                (translation_uid, 0, *translation_location))
         new_entries.setdefault((theme, 9), []).append((widget_uid, 0, *widget_location))
         changed_slots[theme, slot_uid] = new_slot_location
         report_themes.append({
@@ -230,9 +240,9 @@ def build(args):
             "slot_uid": hex(slot_uid),
             "replaced_empty_uid": hex(last_uid),
             "widget_uid": hex(widget_uid),
-            "image_uid": hex(image_uid),
-            "translation_uid": hex(translation_uid),
-            "app_id": APP_ID,
+            "image_uid": hex(image_uid) if image_uid is not None else None,
+            "translation_uid": hex(translation_uid) if translation_uid is not None else None,
+            "app_id": app_id,
             "lua_child": theme in NORMAL,
             "stock_options_preserved": slot_count - 1,
         })
@@ -250,8 +260,8 @@ def build(args):
             struct.pack_into("<II", output, descriptor, len(combined), table_offset)
             allowed.update(range(descriptor, descriptor + 8))
 
-    output[0x28:0x68] = FACE_ID.encode().ljust(64, b"\0")
-    struct.pack_into("<II", output, 0x74, *append(translations(FACE_NAME)))
+    output[0x28:0x68] = face_id.encode().ljust(64, b"\0")
+    struct.pack_into("<II", output, 0x74, *append(translations(face_name)))
 
     after = {(t, u): (off, size, pos) for t, k, u, off, size, pos in entries(output)}
     unchanged = 0
@@ -286,7 +296,7 @@ def build(args):
         runtime_flags = ((struct.unpack_from("<H", widget, 42)[0] & 0xf)
                          | (((struct.unpack_from("<H", widget, 42)[0] >> 4) & 255) << 7)
                          | (((struct.unpack_from("<H", widget, 42)[0] >> 12) & 7) << 4))
-        require((runtime_flags >> 7) & 255 == APP_ID, "Native action did not roundtrip")
+        require((runtime_flags >> 7) & 255 == app_id, "Native action did not roundtrip")
         if theme in NORMAL:
             require(struct.unpack_from("<hhII", widget, 56) == (0, 0, 0x05000000, 0),
                     "Lua child mismatch")
@@ -294,10 +304,11 @@ def build(args):
                 foff, fsize, _ = after[theme, 0x05000000 + i]
                 require(decode_file(output[foff:foff + fsize]) == (name, payload),
                         "FileResource roundtrip mismatch")
-        image_uid = int(report_themes[theme]["image_uid"], 16)
-        ioff, isize, _ = after[theme, image_uid]
-        isize2, frames = parse_image(output[ioff:ioff + isize], 2)
-        require(isize2 == (84, 84), "New icon dimensions changed")
+        if report_themes[theme]["image_uid"] is not None:
+            image_uid = int(report_themes[theme]["image_uid"], 16)
+            ioff, isize, _ = after[theme, image_uid]
+            isize2, frames = parse_image(output[ioff:ioff + isize], 2)
+            require(isize2 == (84, 84), "New icon dimensions changed")
 
     changed = [i for i, (a, b) in enumerate(zip(original, output)) if a != b]
     require(set(changed) <= allowed, "Unexpected original-prefix mutation")
@@ -306,9 +317,9 @@ def build(args):
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(output)
     report = {
-        "name": FACE_NAME,
-        "id": FACE_ID,
-        "app_id": APP_ID,
+        "name": face_name,
+        "id": face_id,
+        "app_id": app_id,
         "app_name": "dev.mbapdu.tags",
         "firmware_sha256": FW_SHA,
         "baseline_sha256": BASE_SHA,
@@ -321,14 +332,22 @@ def build(args):
         "unchanged_original_resource_entries": unchanged,
         "changed_original_prefix_bytes": len(changed),
         "hardware_tested": False,
-        "selection": "Roundabout watchface editor: choose a stock app or NFC-метки in the lower Slot",
-        "limits": [
+        "selection": ("Installer: lower circle is a Find Phone clone with the bootstrap overlay; "
+                      "after setup it launches stock Find Phone" if args.circle_app == "findPhone"
+                      else "Roundabout watchface editor: choose a stock app or NFC-метки in the lower Slot"),
+        "limits": ([
+            "The empty lower-circle option is replaced by a Find Phone installer clone; 43 stock choices remain.",
+            "First tap loads modules, waits READY, writes /data/tag_catalog/auto_load and reboots.",
+            "After reboot the overlay is transparent; the circle launches stock Find Phone and apps come from the menu.",
+            "AOD themes get no Lua child and no installer.",
+            "Device UI/reboot behavior is not verified.",
+        ] if args.circle_app == "findPhone" else [
             "The empty lower-circle option is replaced by NFC-метки; 43 stock choices remain.",
             "Selecting NFC-метки keeps the existing manual bootstrap; stock choices launch natively.",
             "AOD themes get the icon/action but no Lua child.",
             "No runtime picker page is added; selection is the watchface editor Slot.",
             "Device UI/editor behavior is not verified.",
-        ],
+        ]),
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
@@ -349,6 +368,10 @@ def main():
     p.add_argument("--ui", type=Path, required=True)
     p.add_argument("--assets", type=Path,
                    default=ROOT / "tags/roundabout/shortcut-assets")
+    p.add_argument("--circle-app", choices=("nfc", "findPhone"), default="nfc",
+                   help="nfc: install NFC-метки entry; findPhone: stock installer button")
+    p.add_argument("--face-id", default=FACE_ID)
+    p.add_argument("--face-name", default=FACE_NAME)
     p.add_argument("--output", type=Path,
                    default=ROOT / "build/roundabout-ru-nfc5.face")
     p.add_argument("--report", type=Path,

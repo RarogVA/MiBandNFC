@@ -18,22 +18,37 @@ import java.util.concurrent.Executors;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/** Test bridge for five Mi Home actions over local miIO. No cloud. */
+/** Five Mi Home actions over local miIO, triggered from the band over BLE. */
 public final class MiHomeActivity extends Activity {
     private static final String LOCAL_NETWORK = "android.permission.ACCESS_LOCAL_NETWORK";
+    private interface Done { void accept(int code); }
+
     private final Handler main = new Handler(Looper.getMainLooper());
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private TextView status;
+    private TextView connection;
     private LinearLayout buttons;
     private JSONObject config;
+    private BleTransport transport;
+    private boolean bleReady, polling, queryPending;
+    private long sequence = 1;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
-        if (checkSelfPermission(LOCAL_NETWORK) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{LOCAL_NETWORK}, 7);
-        }
+        requestPermissionsIfNeeded();
         buildUi();
         load();
+    }
+
+    private void requestPermissionsIfNeeded() {
+        java.util.ArrayList<String> missing = new java.util.ArrayList<>();
+        if (checkSelfPermission(LOCAL_NETWORK) != PackageManager.PERMISSION_GRANTED)
+            missing.add(LOCAL_NETWORK);
+        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED)
+            missing.add(android.Manifest.permission.BLUETOOTH_SCAN);
+        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+            missing.add(android.Manifest.permission.BLUETOOTH_CONNECT);
+        if (!missing.isEmpty()) requestPermissions(missing.toArray(new String[0]), 7);
     }
 
     private void buildUi() {
@@ -46,9 +61,14 @@ public final class MiHomeActivity extends Activity {
         root.addView(title);
         AppStyle.gap(root, 8);
         TextView note = AppStyle.text(this,
-            "Локальный miIO · 5 действий · без Mi Home Cloud\n6-й слот пустой",
+            "Локальный miIO · 5 действий · команда с браслета\n6-й слот пустой",
             14, AppStyle.MUTED);
         root.addView(note);
+        AppStyle.gap(root, 12);
+        connection = AppStyle.text(this, "Браслет не подключён", 14, AppStyle.MUTED);
+        root.addView(connection);
+        AppStyle.gap(root, 8);
+        AppStyle.addButton(root, "Подключить браслет", false, v -> connectBand());
         AppStyle.gap(root, 20);
         status = AppStyle.text(this, "Загрузка конфигурации…", 14, AppStyle.MUTED);
         root.addView(status);
@@ -62,6 +82,91 @@ public final class MiHomeActivity extends Activity {
         page.setFillViewport(true);
         page.addView(root);
         setContentView(page);
+    }
+
+    private void connectBand() {
+        String address = getPreferences(MODE_PRIVATE).getString("band_address", "");
+        if (address == null || address.trim().isEmpty()) {
+            connection.setText("Сначала подключите браслет в главном экране");
+            return;
+        }
+        if (transport == null) transport = new BleTransport(this, listener);
+        bleReady = false;
+        connection.setText("Подключение браслета…");
+        transport.connect(address.trim());
+    }
+
+    private final BridgeTransport.Listener listener = new BridgeTransport.Listener() {
+        @Override public void state(boolean ready, String message) {
+            bleReady = ready;
+            main.post(() -> {
+                connection.setText(message);
+                if (ready) startPolling(); else stopPolling();
+            });
+        }
+        @Override public void received(Protocol.Frame frame) {
+            if (frame.kind != Protocol.MIHOME || frame.payload.length < 1) return;
+            int opcode = frame.payload[0] & 255;
+            if (opcode == 1) {
+                queryPending = false;
+                int index = frame.payload.length > 1 ? (frame.payload[1] & 255) : 0xff;
+                if (index >= 1 && index <= 6) {
+                    main.post(() -> runSlot(index - 1, code -> sendStatus(code)));
+                } else {
+                    main.post(() -> sendStatus(0));
+                }
+            }
+        }
+        @Override public void log(String message) {
+            main.post(() -> connection.setText(message));
+        }
+    };
+
+    private void startPolling() {
+        if (polling || !bleReady) return;
+        polling = true;
+        main.post(poll);
+    }
+
+    private void stopPolling() {
+        polling = false;
+        queryPending = false;
+        main.removeCallbacks(poll);
+    }
+
+    private final Runnable poll = new Runnable() {
+        @Override public void run() {
+            if (!polling || !bleReady || transport == null) return;
+            if (!queryPending) {
+                queryPending = true;
+                try {
+                    transport.send(new Protocol.Frame(Protocol.MIHOME, nextSequence(), new byte[]{1}),
+                        ok -> { if (!ok) main.post(() -> { queryPending = false; polling = false; }); });
+                } catch (RuntimeException e) {
+                    queryPending = false;
+                    connection.setText("BLE: " + e.getMessage());
+                    return;
+                }
+                main.postDelayed(() -> queryPending = false, 2000);
+            }
+            main.postDelayed(this, 500);
+        }
+    };
+
+    private long nextSequence() {
+        long value = sequence++;
+        if (sequence > 0xffffffffL) sequence = 1;
+        return value;
+    }
+
+    private void sendStatus(int code) {
+        if (transport == null || !bleReady) return;
+        try {
+            transport.send(new Protocol.Frame(Protocol.MIHOME, nextSequence(),
+                new byte[]{2, (byte) (code == 0 ? 0 : 1)}), ok -> { });
+        } catch (RuntimeException e) {
+            connection.setText("BLE статус: " + e.getMessage());
+        }
     }
 
     private void load() {
@@ -92,14 +197,20 @@ public final class MiHomeActivity extends Activity {
             if (!enabled) button.setText(label + "  ·  пусто");
             AppStyle.gap(buttons, 10);
         }
-        status.setText("Готово. Нажатие отправит локальную команду.");
+        status.setText("Готово. Команда с браслета выполнится на Pixel.");
     }
 
     private void runSlot(int index) {
-        if (config == null) return;
+        runSlot(index, code -> { });
+    }
+
+    private void runSlot(int index, Done done) {
+        if (config == null) { done.accept(1); return; }
         try {
             JSONObject slot = config.getJSONArray("slots").getJSONObject(index);
-            if (!slot.optBoolean("enabled", slot.has("action") && !slot.isNull("action"))) return;
+            if (!slot.optBoolean("enabled", slot.has("action") && !slot.isNull("action"))) {
+                done.accept(1); return;
+            }
             String key = slot.getString("device_key");
             JSONObject device = config.getJSONObject("devices").getJSONObject(key);
             String host = device.getString("host");
@@ -119,26 +230,31 @@ public final class MiHomeActivity extends Activity {
                         client.hello();
                     } catch (java.net.SocketTimeoutException e) {
                         main.post(() -> status.setText("Ошибка · " + slot.optString("label") + "\nНет handshake с устройством"));
-                        return;
+                        done.accept(1); return;
                     }
                     try {
                         JSONObject result = client.send(method, params);
                         main.post(() -> status.setText("OK · " + slot.optString("label") + "\n" + shorten(result)));
+                        done.accept(0);
                     } catch (java.net.SocketTimeoutException e) {
                         if (noAck) {
                             main.post(() -> status.setText("Отправлено · " + slot.optString("label")
                                 + "\nКоманда ушла, устройство не прислало ответ"));
+                            done.accept(0);
                         } else {
                             main.post(() -> status.setText("Ошибка · " + slot.optString("label")
                                 + "\nНет ответа за " + (timeoutMs / 1000) + " с"));
+                            done.accept(1);
                         }
                     }
                 } catch (Exception e) {
                     main.post(() -> status.setText("Ошибка · " + slot.optString("label") + "\n" + e.getClass().getSimpleName() + ": " + e.getMessage()));
+                    done.accept(1);
                 }
             });
         } catch (Exception e) {
             status.setText("Ошибка слота: " + e.getMessage());
+            done.accept(1);
         }
     }
 
@@ -152,5 +268,19 @@ public final class MiHomeActivity extends Activity {
     private static String shorten(JSONObject value) {
         String text = value.toString();
         return text.length() > 500 ? text.substring(0, 500) + "…" : text;
+    }
+
+    @Override protected void onPause() {
+        stopPolling();
+        if (transport != null) transport.disconnect();
+        bleReady = false;
+        super.onPause();
+    }
+
+    @Override protected void onDestroy() {
+        stopPolling();
+        if (transport != null) transport.shutdown();
+        worker.shutdownNow();
+        super.onDestroy();
     }
 }

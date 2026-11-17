@@ -72,7 +72,9 @@ public final class TagTest {
         rejected(()->new Protocol.Frame(Protocol.CONTROL,1,new byte[2]),"control length");
         rejected(()->new Protocol.Frame(Protocol.TAG,1,new byte[129]),"metadata cap");
         rejected(()->new Protocol.Frame(Protocol.RESPONSE,1,new byte[1]),"response SW required");
-        rejected(()->new Protocol.Frame(8,1,new byte[1]),"unknown kind");
+        rejected(()->new Protocol.Frame(9,1,new byte[1]),"unknown kind");
+        require(new Protocol.Frame(Protocol.MIHOME,1,new byte[]{1}).payload.length==1,"mihome frame");
+        rejected(()->new Protocol.Frame(Protocol.MIHOME,1,new byte[9]),"mihome cap");
         byte[] bad=wire.clone();bad[8]=1;bad[9]=1;rejected(()->new Protocol.Parser().feed(bad,f->{}),"oversized header");
 
         CommandGate gate=new CommandGate();gate.begin(9,"TAG_OK");gate.status(8,"TAG_OK");gate.write(9,true);require(!gate.complete(),"wrong seq never completes");

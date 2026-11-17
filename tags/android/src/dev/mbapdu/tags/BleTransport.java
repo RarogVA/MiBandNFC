@@ -121,7 +121,7 @@ public final class BleTransport implements BridgeTransport {
     @Override public void send(Protocol.Frame response, Completion completion) {
         handler.post(() -> {
             if (!ready || gatt == null) { completion.done(false); return; }
-            if ((response.kind != Protocol.RESPONSE && response.kind != Protocol.CONTROL && response.kind != Protocol.TAG && response.kind != Protocol.CATALOG && response.kind != Protocol.SELECTION) || writes.size() >= 8) {
+            if ((response.kind != Protocol.RESPONSE && response.kind != Protocol.CONTROL && response.kind != Protocol.TAG && response.kind != Protocol.CATALOG && response.kind != Protocol.SELECTION && response.kind != Protocol.MIHOME) || writes.size() >= 8) {
                 completion.done(false); close("BT: переполнение очереди или неверный тип ответа"); return;
             }
             writes.add(new Write(response, completion));
@@ -204,8 +204,8 @@ public final class BleTransport implements BridgeTransport {
             if (partialTimeout != null) handler.removeCallbacks(partialTimeout);
             try {
                 parser.feed(value, frame -> {
-                    if (frame.kind != Protocol.REQUEST && frame.kind != Protocol.STATUS && frame.kind != Protocol.SELECTION)
-                        throw new IllegalArgumentException("ожидался CAPDU, STATUS или запрос выбора");
+                    if (frame.kind != Protocol.REQUEST && frame.kind != Protocol.STATUS && frame.kind != Protocol.SELECTION && frame.kind != Protocol.MIHOME)
+                        throw new IllegalArgumentException("ожидался CAPDU, STATUS, MiHome или запрос выбора");
                     if (frame.kind == Protocol.REQUEST && !seen.add(frame.sequence))
                         throw new IllegalArgumentException("повтор sequence в сеансе");
                     if (seen.size() > 4096) throw new IllegalArgumentException("лимит сеанса: переподключите браслет");

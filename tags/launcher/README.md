@@ -6,17 +6,24 @@ released catalog UI3, its layout, build commands and validation status, see
 
 Small resident module for `miwear.watch.p67glt`, firmware **3.201.026** only.
 It registers its own native app `dev.mbapdu.tags`, ID **0xD4 / 212**, page **0**.
-The separately packaged Roundabout RU NFC watchface opens this app from one
-circle using the firmware's existing native-ID widget action. No stock app ID,
-event hook, ROM patch, extra polling loop, or NFC command is involved.
+The catalog app is launched from the general app list; the legacy NFC 5 face
+can also open it from the lower circle via the native-ID widget action. The
+same module registers **Mi Home** (`0xD5`, five BLE-triggered slots) and
+**Модули** (`0xD7`, core reload and reboot), and calls the firmware's
+`app_launcher_add` for all three, so they appear in the general app list. No
+stock app ID, event hook, ROM patch, extra polling loop, or NFC command is
+involved. Launcher entries, boot-time reactivation, icons and the device
+acceptance checklist are described in
+[launcher-and-autostart.md](../../docs/launcher-and-autostart.md).
 
 The page shows a manually refreshed snapshot of the selected tag, original UID,
 technology, support flag, and bridge state from `/tmp/tag_catalog_state`.
 `READY` is explicitly labelled a snapshot; it is not a new connection or NFC
 acknowledgement. NFC remains controlled by Pixel and the verified core's session
 deadline. Leaving this page does **not** stop NFC. Swipe right uses the normal
-system back handler. The app is intentionally absent from the general launcher
-menu: `app_launcher_add` is not needed for the watchface's direct-ID route.
+system back handler. The watchface's direct-ID route (NFC 5) does not depend on the launcher
+entry; both paths address the same registered app. The NFC 6 installer face
+uses stock Find Phone after setup and leaves app launches to the menu.
 
 ## Build and check
 

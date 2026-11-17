@@ -58,3 +58,10 @@ int tag_bootstrap_insmod_core(void) {
     return ((int (*)(const char *))(uintptr_t)0x2c2025d5u)(
         "insmod /data/tag_catalog/core-catalog.elf Tag_Catalog_V1");
 }
+
+int tag_bootstrap_reboot(void) {
+    if(!tag_bootstrap_bindings_verified())return -1;
+    /* NSH command table entry "shutdown" -> boardctl(BOARDIOC_RESET, 0).
+     * No user/permission check exists in this build. */
+    return ((int (*)(const char *))(uintptr_t)0x2c2025d5u)("shutdown --reboot");
+}

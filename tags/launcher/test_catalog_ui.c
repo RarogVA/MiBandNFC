@@ -138,7 +138,8 @@ static int select_mock(uint32_t rev,const uint8_t id[16],uint32_t entry_rev) {
     for(unsigned i=0;i<3;i++)if(!memcmp(id,entries[i].id,16))found=(int)i;
     CHECK(found>=0&&entry_rev==entries[found].revision);select_count++;return select_rc;
 }
-static int start_mock(void){start_count++;return -1;}
+static int start_rc=-1;
+static int start_mock(void){start_count++;return start_rc;}
 static int stop_mock(void){stop_count++;return 0;}
 static const char *provider_name(void){name_calls++;return (const char *)&blob;}
 static void reset(void) {
@@ -148,7 +149,7 @@ static void reset(void) {
     memset(&service_app,0,sizeof(service_app));memset(&service_page,0,sizeof(service_page));
     mihome_pages[0]=service_pages[0]=0;mihome_status=modules_status=0;
     handles_clear();refresh_timer=load_timer=service_timer=0;service_ticks=service_frame=0;
-    refresh_count=initialized=revision=0;initialization_result=-1;current=-1;total=0;api=0;
+    refresh_count=initialized=revision=0;initialization_result=-1;current=-1;total=0;api=0;start_rc=-1;
     node_count=timer_count=file_count=alloc_attempts=fail_allocation=image_count=0;
     invalid_objects=install_count=open_count=insmod_count=select_count=start_count=stop_count=launcher_count=mihome_install_count=0;
     health_calls=get_calls=name_calls=api_file_reads=0;
@@ -361,8 +362,10 @@ static void pages_test(void) {
     modules_destroy(0,&parent,0);CHECK(!modules_status);
     mihome_destroy(0,&parent,0);CHECK(!mihome_status);
 }
+#ifndef LOCAL_UI_TEST
 int main(void) {
     trust_test();layout_test();registration_test();selection_test();title_weight_test();lifecycle_test();loader_test();pause_test();pages_test();
     if(failures){fprintf(stderr,"catalog UI: %u of %u checks failed\n",failures,checks);return 1;}
     printf("catalog UI trust, geometry, registration, selection, lifecycle and guarded loader: %u checks PASS\n",checks);return 0;
 }
+#endif

@@ -1,4 +1,13 @@
-/* Pult UI4. Manual refresh, bounded service check, no RF start/idle polling. */
+/* Pult UI4/UI5. Manual refresh, bounded service check, no RF start/idle polling.
+ * TAG_UI_LOCAL_NFC builds the UI5 page that starts and stops the band-local
+ * NDEF responder. The default build keeps the UI4 diagnostics and behavior. */
+#ifdef TAG_UI_LOCAL_NFC
+#define UI_DIAG "NFC_CATALOG_UI5"
+#define UI_READY "catalog_ui_v5\n"
+#else
+#define UI_DIAG "NFC_CATALOG_UI4"
+#define UI_READY "catalog_ui_v4\n"
+#endif
 #include "bindings.h"
 #include "catalog_ui_bindings.h"
 #include "catalog_layout.h"
@@ -27,6 +36,11 @@ static int initialization_result=-1,service_busy,service_state=-1,page_active;
 static uint32_t revision;
 static int current=-1,total,selection_target=-1;
 static const tag_catalog_api *api;
+#ifdef TAG_UI_LOCAL_NFC
+static ui_timer *nfc_timer;
+static unsigned nfc_ticks;
+static int local_requested;
+#endif
 
 static int equal(const char *a,const char *b) {
     if(!a||!b)return 0;
@@ -59,7 +73,7 @@ static const tag_catalog_api *provider(void) {
     const tag_catalog_api *a=(const tag_catalog_api *)(const void *)(blob+32);
     if(a->magic!=TAG_CATALOG_API_MAGIC||a->version!=TAG_CATALOG_API_VERSION||
        a->bytes!=sizeof(*a)||a->profile!=TAG_CATALOG_API_PROFILE||
-       !a->health||!a->get||!a->select||!a->stop)return 0;
+       !a->health||!a->get||!a->select||!a->start||!a->stop)return 0;
     return a;
 }
 static void pads(ui_obj *o,int n) {
@@ -107,7 +121,11 @@ static void title_text(const char *value) {
 static void update(void) {
     if(!title||!page_active)return;
     tag_catalog_health health;
-    api=provider();int available=api&&api->health(&health)==0;
+    api=provider();
+    int available=api&&api->health(&health)==0;
+#ifdef TAG_UI_LOCAL_NFC
+    int nfc=available&&(health.nfc_ready||health.phase==TAG_CATALOG_STARTING);
+#endif
     if(!service_busy)service_draw(available&&health.loop_live&&!health.error?0:1);
     if(!available){current=-1;total=0;revision=0;title_text("Нет модуля");ui_text(badge,"—");nav_update();return;}
     revision=health.catalog_revision;total=health.count;current=health.selected_index;
@@ -117,12 +135,50 @@ static void update(void) {
     title_text(entry.name);
     const char *kind=entry.kind==1?"NDEF":contains(entry.technology,"IsoDep")?"ISO-DEP":
         contains(entry.technology,"NfcA")?"NFC-A":contains(entry.technology,"NfcB")?"NFC-B":"Сведения";
-    ui_text(badge,kind);nav_update();
+#ifdef TAG_UI_LOCAL_NFC
+    ui_text(badge,nfc?(health.nfc_ready?"NFC":"NFC…"):health.error?"Ошибка":kind);
+#else
+    ui_text(badge,kind);
+#endif
+    nav_update();
 }
+#ifdef TAG_UI_LOCAL_NFC
+static void nfc_poll(ui_timer *t) {
+    if(!title||!page_active){ui_timer_delete(t);nfc_timer=0;return;}
+    update();
+    tag_catalog_health health;
+    if(api&&api->health(&health)==0&&(health.nfc_ready||health.phase==TAG_CATALOG_STARTING)){
+        nfc_ticks=120;return;
+    }
+    if(!nfc_ticks){ui_timer_delete(t);nfc_timer=0;return;}
+    nfc_ticks--;
+}
+static void local_start(void) {
+    if(!title||!page_active)return;
+    if(!api){api=provider();if(!api)return;}
+    tag_catalog_health health;
+    if(api->health(&health)!=0||health.selected_index<0||health.count<=0)return;
+    if(api->start()!=0)return;
+    local_requested=1;
+    nfc_ticks=120;
+    if(!nfc_timer)nfc_timer=ui_timer_create(nfc_poll,500,0);
+}
+static void local_stop(void) {
+    if(nfc_timer){ui_timer_delete(nfc_timer);nfc_timer=0;}
+    nfc_ticks=0;
+    if(local_requested&&api&&api->stop)(void)api->stop();
+    local_requested=0;
+}
+#endif
 static void refresh_later(ui_timer *t) {
     if(!title||!page_active||!refresh_count){ui_timer_delete(t);refresh_timer=0;return;}
     update();
-    if(current==selection_target||!--refresh_count){ui_timer_delete(t);refresh_timer=0;selection_target=-1;}
+    if(current==selection_target||!--refresh_count){
+#ifdef TAG_UI_LOCAL_NFC
+        if(current==selection_target)local_start();
+#endif
+        ui_timer_delete(t);refresh_timer=0;selection_target=-1;
+    }
 }
 static void delayed_refresh(int target) {
     refresh_count=40;selection_target=target;
@@ -139,10 +195,17 @@ static void choose(int delta) {
 }
 static void go_previous(ui_event *e){(void)e;choose(-1);}
 static void go_next(ui_event *e){(void)e;choose(1);}
-static void refreshed(ui_event *e){(void)e;if(!title||!page_active)return;notice("");update();}
+static void refreshed(ui_event *e){(void)e;if(!title||!page_active)return;notice("");update();
+#ifdef TAG_UI_LOCAL_NFC
+    local_start();
+#endif
+}
 static void service_finish(int ok,const char *message) {
     if(service_timer){ui_timer_delete(service_timer);service_timer=0;}
     service_busy=0;service_ticks=0;notice(message);update();service_draw(ok?0:1);
+#ifdef TAG_UI_LOCAL_NFC
+    if(ok)local_start();
+#endif
 }
 static void service_poll(ui_timer *t) {
     (void)t;
@@ -188,18 +251,29 @@ static void timers_stop(void) {
     if(refresh_timer){ui_timer_delete(refresh_timer);refresh_timer=0;}
     if(load_timer){ui_timer_delete(load_timer);load_timer=0;}
     if(service_timer){ui_timer_delete(service_timer);service_timer=0;}
+#ifdef TAG_UI_LOCAL_NFC
+    if(nfc_timer){ui_timer_delete(nfc_timer);nfc_timer=0;}nfc_ticks=0;local_requested=0;
+#endif
     refresh_count=service_ticks=0;service_busy=0;selection_target=-1;
 }
 static int pause_page(void *pm,ui_obj *root,void *data) {
-    (void)pm;(void)root;(void)data;page_active=0;timers_stop();return 0;
+    (void)pm;(void)root;(void)data;
+#ifdef TAG_UI_LOCAL_NFC
+    local_stop();
+#endif
+    page_active=0;timers_stop();return 0;
 }
 static int resume_page(void *pm,ui_obj *root,void *data) {
-    (void)pm;(void)root;(void)data;if(title){page_active=1;update();}return 0;
+    (void)pm;(void)root;(void)data;if(title){page_active=1;update();
+#ifdef TAG_UI_LOCAL_NFC
+        local_start();
+#endif
+    }return 0;
 }
 static int create(void *pm,ui_obj *parent,void *data) {
     (void)pm;(void)data;if(!parent||title)return -1;
     for(unsigned i=0;i<sizeof(ui4_assets)/sizeof(ui4_assets[0]);i++)if(!exists(ui4_assets[i])) {
-        diagnostic("NFC_CATALOG_UI4\nUI_ASSET\n-1\nEND\n");return -1;
+        diagnostic(UI_DIAG "\nUI_ASSET\n-1\nEND\n");return -1;
     }
     ui_obj *root=owned(parent,0,0,SCREEN_W,SCREEN_H,0);if(!root)return -1;
     ui_bg(root,0xff000000u,0);ui_opa(root,255,0);
@@ -219,13 +293,21 @@ static int create(void *pm,ui_obj *parent,void *data) {
     next_image=surface(next,ui4_assets[9],65,20,32,32);
     if(!owned(controls,0,REFRESH_Y,CONTROLS_W,REFRESH_H,refreshed))goto failed;
     if(!title||!title_heavy||!badge||!previous_image||!next_image)goto failed;
-    page_active=1;service_state=-1;update();diagnostic("NFC_CATALOG_UI4\nPAGE_OPEN\n0\nEND\n");return 0;
+    page_active=1;service_state=-1;update();
+#ifdef TAG_UI_LOCAL_NFC
+    local_start();
+#endif
+    diagnostic(UI_DIAG "\nPAGE_OPEN\n0\nEND\n");return 0;
 failed:
-    handles_clear();diagnostic("NFC_CATALOG_UI4\nUI_ALLOC\n-1\nEND\n");return -1;
+    handles_clear();diagnostic(UI_DIAG "\nUI_ALLOC\n-1\nEND\n");return -1;
 }
 static int destroy(void *pm,ui_obj *root,void *data) {
-    (void)pm;(void)root;(void)data;timers_stop();handles_clear();
-    diagnostic("NFC_CATALOG_UI4\nREADY\n0\nEND\n");return 0;
+    (void)pm;(void)root;(void)data;
+#ifdef TAG_UI_LOCAL_NFC
+    local_stop();
+#endif
+    timers_stop();handles_clear();
+    diagnostic(UI_DIAG "\nREADY\n0\nEND\n");return 0;
 }
 static ui_timer *mihome_timer;
 static unsigned mihome_ticks;
@@ -341,7 +423,7 @@ static int modules_destroy(void *pm,ui_obj *root,void *data) {
 static const char *get_name(void){return "NFC-метки";}
 static void register_app(ui_timer *t) {
     ui_timer_delete(t);
-    if(ui_lookup(APP_ID)){diagnostic("NFC_CATALOG_UI4\nID_OCCUPIED\n-1\nEND\n");return;}
+    if(ui_lookup(APP_ID)){diagnostic(UI_DIAG "\nID_OCCUPIED\n-1\nEND\n");return;}
     app.name=app_name;app.app_id=APP_ID;app.get_name=get_name;
     /* A launcher entry needs a readable image source. This stock LVGL image
      * exists in the 3.201.026 resource set; a custom icon is a separate,
@@ -349,7 +431,7 @@ static void register_app(ui_timer *t) {
     app.icon="/resource/app/nfccard/pay_green_icon.bin";
     page.name="main";page.app_id=APP_ID;page.layer=1;page.on_create=create;page.on_destroy=destroy;page.on_pause=pause_page;page.on_stop=pause_page;page.on_resume=resume_page;pages[0]=&page;
     int rc=ui_install(&app,pages,1);ui_app *installed=ui_lookup(APP_ID);
-    if(rc||!installed||!equal(installed->name,app_name)){diagnostic("NFC_CATALOG_UI4\nREGISTER_FAILED\n-1\nEND\n");return;}
+    if(rc||!installed||!equal(installed->name,app_name)){diagnostic(UI_DIAG "\nREGISTER_FAILED\n-1\nEND\n");return;}
     /* Add the same app to the general launcher grid. The watchface's native
      * direct-ID action remains independent and keeps working if this fails. */
     (void)ui_launcher_add(APP_ID);
@@ -376,12 +458,12 @@ static void register_app(ui_timer *t) {
         service_pages[0]=&service_page;
         if(!ui_install(&service_app,service_pages,1)) (void)ui_launcher_add(SERVICE_ID);
     }
-    if(file_write("/tmp/nfc_tags_catalog_ui_ready","catalog_ui_v4\n")) {
-        diagnostic("NFC_CATALOG_UI4\nMARKER_FAILED\n-1\nEND\n");return;
+    if(file_write("/tmp/nfc_tags_catalog_ui_ready",UI_READY)) {
+        diagnostic(UI_DIAG "\nMARKER_FAILED\n-1\nEND\n");return;
     }
-    diagnostic("NFC_CATALOG_UI4\nREADY\n0\nEND\n");
+    diagnostic(UI_DIAG "\nREADY\n0\nEND\n");
     char request[32];
-    if(file_read("/tmp/nfc_tags_ui_open_request",request,sizeof(request))>0&&equal(request,"catalog_ui_v4\n")) {
+    if(file_read("/tmp/nfc_tags_ui_open_request",request,sizeof(request))>0&&equal(request,UI_READY)) {
         (void)file_write("/tmp/nfc_tags_ui_open_request","");
         (void)tag_bootstrap_open_app(APP_ID);
     }
@@ -390,7 +472,7 @@ int module_initialize(void) {
     if(initialized)return initialization_result;
     if(!ui_firmware_verified()||!catalog_ui_bindings_verified()||!tag_bootstrap_bindings_verified())return -1;
     initialized=1;
-    diagnostic("NFC_CATALOG_UI4\nDEFERRED\n0\nEND\n");
+    diagnostic(UI_DIAG "\nDEFERRED\n0\nEND\n");
     initialization_result=ui_timer_create(register_app,500,0)?0:-1;
     return initialization_result;
 }

@@ -14,6 +14,10 @@ int catalog_storage_active(void);
 uint32_t catalog_storage_offset(void);
 int catalog_storage_select(int index);
 int catalog_storage_selected(void);
+/* Copy one committed record's NDEF bytes out of catalog.bin. The caller owns
+ * the buffer. Returns 0 on success, -1 bad index/kind/capacity, -2 I/O or
+ * malformed file, -3 record/hash mismatch. Used by the local NFC responder. */
+int catalog_storage_ndef(int index, uint8_t *out, uint16_t capacity, uint16_t *length);
 /* Backend primitives are exposed only for the core's fixed diagnostic/API
  * descriptors. All paths are compile-time constants, never user names. */
 void *catalog_fs_open(const char *,const char *);

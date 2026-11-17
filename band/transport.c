@@ -245,7 +245,7 @@ int transport_notify(uint8_t type,uint32_t sequence,const uint8_t *payload,uint1
     if (outgoing_length) return -2;
     if (LOAD(generation)!=observed_generation) return -7;
     uint16_t limit=type==1 ? TRANSPORT_MAX_REQUEST : type==2 ? TRANSPORT_MAX_RESPONSE : type==3 ? 128u : 0u;
-#ifdef TAG_CATALOG_PROFILE
+#ifdef TRANSPORT_CATALOG_FRAMES
     if(type==TRANSPORT_SELECTION)limit=57u;
     if(type==TRANSPORT_MIHOME)limit=TRANSPORT_MAX_MIHOME;
 #endif
@@ -281,7 +281,7 @@ static void receive_byte(uint8_t byte,uint32_t epoch,uint32_t now) {
 #ifdef TRANSPORT_TAG_PROFILE
          && byte!=TRANSPORT_TAG
 #endif
-#ifdef TAG_CATALOG_PROFILE
+#ifdef TRANSPORT_CATALOG_FRAMES
          && byte!=TRANSPORT_CATALOG && byte!=TRANSPORT_SELECTION
          && byte!=TRANSPORT_MIHOME
 #endif
@@ -295,7 +295,7 @@ static void receive_byte(uint8_t byte,uint32_t epoch,uint32_t now) {
 #ifdef TRANSPORT_TAG_PROFILE
             || (incoming[3]==TRANSPORT_TAG && (length<1 || length>TRANSPORT_MAX_TAG))
 #endif
-#ifdef TAG_CATALOG_PROFILE
+#ifdef TRANSPORT_CATALOG_FRAMES
             || (incoming[3]==TRANSPORT_CATALOG && (length<1 || length>261u))
             || (incoming[3]==TRANSPORT_SELECTION && length!=57u)
             || (incoming[3]==TRANSPORT_MIHOME && (length<1 || length>TRANSPORT_MAX_MIHOME))

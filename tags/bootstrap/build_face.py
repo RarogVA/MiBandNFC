@@ -66,9 +66,10 @@ def build(args):
     reference_name,reference_data=decode_file(recorder[offset:offset+size])
     require(rid==0x05000000 and reference_name=="app/lua/main.lua","Recorder Lua reference changed")
     require(file_resource(reference_name,reference_data)==recorder[offset:offset+size],"FileResource reference roundtrip failed")
-    resources=[("app/lua/main.lua",args.lua.read_bytes()),
-               ("app/lua/catalog_core_v1.elf",args.core.read_bytes()),
-               ("app/lua/catalog_ui_v4.elf",args.ui.read_bytes())]
+    require(len(args.face_id)<=63 and args.face_id,"Face ID must fit the 64-byte field")
+    resources=[("app/lua/"+args.lua_name,args.lua.read_bytes()),
+               ("app/lua/"+args.core_name,args.core.read_bytes()),
+               ("app/lua/"+args.ui_name,args.ui.read_bytes())]
     for name,payload in resources[1:]:require(payload[:4]==b"\x7fELF",f"Not an ELF: {name}")
     extras=args.extra or [name+".bin="+str(ROOT/"tags/launcher/icons"/(name+".bin")) for name in ASSET_NAMES]
     for spec in extras:
@@ -119,8 +120,8 @@ def build(args):
         descriptor=168+theme*176+8+2*8
         struct.pack_into("<II",output,descriptor,len(image_entries),image_table)
         allowed.update(range(descriptor,descriptor+8))
-    output[0x28:0x68]=FACE_ID.encode().ljust(64,b"\0")
-    struct.pack_into("<II",output,0x74,*append(translations(FACE_NAME)))
+    output[0x28:0x68]=args.face_id.encode().ljust(64,b"\0")
+    struct.pack_into("<II",output,0x74,*append(translations(args.face_name)))
     after={(t,u):(off,size,pos) for t,k,u,off,size,pos in entries(output)}
     unchanged=0
     for t,k,u,off,size,pos in before:
@@ -148,14 +149,17 @@ def build(args):
     require(sha(args.baseline.read_bytes())==BASE_SHA,"Baseline modified")
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_bytes(output)
-    report={"face_id":FACE_ID,"name":FACE_NAME,"bytes":len(output),"sha256":sha(output),
-            "ui_version":4,"ui_module":"NFC_Tags_Catalog_UI_V4","core_version":1,
+    report={"face_id":args.face_id,"name":args.face_name,"bytes":len(output),"sha256":sha(output),
+            "ui_version":args.ui_version,"ui_module":args.ui_module,
+            "core_version":args.core_version,"profile":args.profile,
+            "lua_name":args.lua_name,"core_name":args.core_name,"ui_name":args.ui_name,
             "baseline_sha256":BASE_SHA,"firmware_sha256":FW_SHA,"normal_themes":list(NORMAL),
             "unchanged_resource_entries":unchanged,"changed_prefix_bytes":len(changed),
             "editor_boundary":{"uid":hex(editbox_uid),"old_pixels":[69,69],"new_pixels":[84,84],"widget_position":[126,274],"themes":8},
             "resources":[{"name":n,"bytes":len(p),"sha256":sha(p)} for n,p in resources],
             "preserved":"All baseline clock/metric payloads, image previews, other buttons and AOD rendering; lower-circle Widget references change for Lua and corrected editBox",
-            "manual_bootstrap_only":True,"automatic_nfc_start":False,"hardware_validated":False,
+            "manual_bootstrap_only":True,"automatic_nfc_start":False,
+            "local_nfc_start_on_page_open":bool(args.local_nfc),"hardware_validated":False,
             "remaining_hardware_checks":["Lua inside ordinary Widget initializes and receives tap","Both files extract into face directory","First-tap UI deferred open","Later native shortcut pass-through","Reboot and repeat"]}
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
@@ -169,6 +173,16 @@ def main():
     p.add_argument("--lua",type=Path,default=Path(__file__).with_name("main.lua"))
     p.add_argument("--core",type=Path,required=True)
     p.add_argument("--ui",type=Path,required=True)
+    p.add_argument("--face-id",default=FACE_ID)
+    p.add_argument("--face-name",default=FACE_NAME)
+    p.add_argument("--lua-name",default="main.lua")
+    p.add_argument("--core-name",default="catalog_core_v1.elf")
+    p.add_argument("--ui-name",default="catalog_ui_v4.elf")
+    p.add_argument("--ui-version",type=int,default=4)
+    p.add_argument("--ui-module",default="NFC_Tags_Catalog_UI_V4")
+    p.add_argument("--core-version",type=int,default=1)
+    p.add_argument("--profile",default="ui4")
+    p.add_argument("--local-nfc",action="store_true")
     p.add_argument("--extra",action="append",default=[],metavar="NAME=PATH")
     p.add_argument("--output",type=Path,default=ROOT/"build/roundabout-ru-nfc4.face")
     p.add_argument("--report",type=Path,default=Path(__file__).with_name("validation.json"))

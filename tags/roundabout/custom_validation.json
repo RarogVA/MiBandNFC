@@ -1,10 +1,10 @@
 {
-  "name": "NFC-метки — Авторские",
+  "name": "SmartRound #2",
   "id": "999999977",
   "base_face": "build/nfc-tags-installer-base.face",
-  "base_sha256": "07fbe8d334a5c95d8eac45bd30172662f23a89300701a62a91bfca18c7aa2b09",
-  "output_sha256": "5f48b56276cf2aac5989faf3cc8e0e45f368e37e70181a68520a6a777307fb4e",
-  "bytes": 3901321,
+  "base_sha256": "b6fe076647bcebd780149e6f61785cb8ea06c27ffe79f41c3a571e78c5a6b88c",
+  "output_sha256": "8409d92705c8331549b57f0d7a08c2782ccf4316f03268a2fd52e50217fd4a81",
+  "bytes": 3899737,
   "styles": [
     {
       "name": "Copper",

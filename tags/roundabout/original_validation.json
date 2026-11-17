@@ -1,13 +1,13 @@
 {
-  "name": "NFC-метки — Оригинал",
+  "name": "SmartRound #3",
   "id": "999999975",
   "app_id": 39,
   "app_name": "dev.mbapdu.tags",
   "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
   "baseline_sha256": "b7875710957e54f4feee042ff1bcbc766f2fb49afc8cde19d4e047aa0e3bd3b2",
   "source_zip_sha256": "ef28f70549660bc5f8a126c6e4dbcc53e13511d222863e405eade28b03766738",
-  "output_sha256": "6d5cd1adaf048e66e03d2706b38fdd8b6b83f15adef7a4d86f4137c58c7fd1b8",
-  "bytes": 3422055,
+  "output_sha256": "2398eba6909e7ce5f3dcdfe6a541a7d4a9b4d7ae4fc4215c099a02f130c7c597",
+  "bytes": 3421329,
   "changed_empty_variant": true,
   "stock_options_preserved_per_theme": 43,
   "themes": [
@@ -125,7 +125,7 @@
     }
   ],
   "unchanged_original_resource_entries": 2440,
-  "changed_original_prefix_bytes": 130,
+  "changed_original_prefix_bytes": 128,
   "hardware_tested": false,
   "selection": "Installer: lower circle is a Find Phone clone with the bootstrap overlay; after setup it launches stock Find Phone",
   "limits": [

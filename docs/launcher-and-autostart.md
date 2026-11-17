@@ -6,8 +6,8 @@
 ниже отдельно указано, что подтверждено статически, что проверено на
 устройстве ранее и что ещё нужно проверить.
 
-Готовые циферблаты: **NFC-метки — Классика** (основные темы),
-**NFC-метки — Авторские** (авторские темы) и **NFC-метки — Оригинал**
+Готовые циферблаты: **SmartRound #1** (основные темы),
+**SmartRound #2** (авторские темы) и **SmartRound #3**
 (исходные темы); см. [watchfaces.md](watchfaces.md).
 
 ## Что изменилось
@@ -220,11 +220,11 @@ miIO, токены остаются на Pixel в `Android/data/dev.mbapdu.tags/
 
 Порядок безопасный: новая FACE-копия, старая остаётся установленной.
 
-1. Установить **NFC-метки — Классика** (`build/nfc-tags-classic.face`,
-   ID `999999978`), **NFC-метки — Авторские** (`build/nfc-tags-custom.face`,
-   ID `999999977`) и/или **NFC-метки — Оригинал**
-   (`build/nfc-tags-original.face`, ID `999999975`). Нижний круг можно оставить
-   любой из 43 штатных вариантов — installer-слой есть у всех.
+1. Установить **SmartRound #1** (`build/nfc-tags-classic.face`,
+   ID `999999978`), **SmartRound #2** (`build/nfc-tags-custom.face`,
+   ID `999999977`) и/или **SmartRound #3**
+   (`build/nfc-tags-original.face`, ID `999999975`). Нижний круг можно
+   оставить любым из 43 штатных вариантов — installer-слой есть у всех.
 2. Нажать нижний круг **один раз**. Ожидаемо: загрузка, `READY`, затем
    перезагрузка браслета. Если перезагрузки нет — записать экранный код
    (`DIR`, `UI SRC`, `REBOOT`, `NO REBOOT`) и не повторять вслепую.
@@ -252,7 +252,7 @@ python3 tags/launcher/build_catalog_ui.py
 python3 tags/catalog/build.py
 build/shortcut-research-venv/bin/python tags/bootstrap/build_choice_face.py \
   --circle-app findPhone --face-id 999999976 \
-  --face-name "NFC-метки — Установщик" \
+  --face-name "SmartRound Base" \
   --core tags/catalog/build/catalog_core_v1.elf \
   --ui tags/launcher/build/nfc_tags_catalog_ui_v4.elf \
   --output build/nfc-tags-installer-base.face \
@@ -261,19 +261,19 @@ BASE=build/nfc-tags-installer-base.face
 SHA=$(shasum -a 256 "$BASE" | cut -d' ' -f1)
 build/shortcut-research-venv/bin/python tags/roundabout/combined_face.py \
   --base-face "$BASE" --base-sha "$SHA" --palette main \
-  --face-id 999999978 --face-name "NFC-метки — Классика" \
+  --face-id 999999978 --face-name "SmartRound #1" \
   --output build/nfc-tags-classic.face \
   --report tags/roundabout/classic_validation.json \
   --preview tags/roundabout/classic-preview.png
 build/shortcut-research-venv/bin/python tags/roundabout/combined_face.py \
   --base-face "$BASE" --base-sha "$SHA" --palette custom \
-  --face-id 999999977 --face-name "NFC-метки — Авторские" \
+  --face-id 999999977 --face-name "SmartRound #2" \
   --output build/nfc-tags-custom.face \
   --report tags/roundabout/custom_validation.json \
   --preview tags/roundabout/custom-preview.png
 build/shortcut-research-venv/bin/python tags/bootstrap/build_choice_face.py \
   --circle-app findPhone --face-id 999999975 \
-  --face-name "NFC-метки — Оригинал" \
+  --face-name "SmartRound #3" \
   --core tags/catalog/build/catalog_core_v1.elf \
   --ui tags/launcher/build/nfc_tags_catalog_ui_v4.elf \
   --output build/nfc-tags-original.face \
@@ -282,12 +282,13 @@ build/shortcut-research-venv/bin/python tags/bootstrap/build_choice_face.py \
 python3 tags/android/build.py
 ```
 
-Результаты: `build/nfc-tags-classic.face` (**3 916 939 байт**, SHA-256
-`ee8ea72a26fa825d44a5c5118c7d44c2a7317b9c8696aec6346b5eb2014de4d8`) и
-`build/nfc-tags-custom.face` (**3 901 321 байт**, SHA-256
-`5f48b56276cf2aac5989faf3cc8e0e45f368e37e70181a68520a6a777307fb4e`);
-**Оригинал** — `build/nfc-tags-original.face` (**3 422 055 байт**, SHA-256
-`6d5cd1adaf048e66e03d2706b38fdd8b6b83f15adef7a4d86f4137c58c7fd1b8`).
+Результаты: **SmartRound #1** — `build/nfc-tags-classic.face`
+(**3 915 421 байт**, SHA-256
+`0ba855d3c19a5a3d126091dca930c1b1721da1a8f1fda0a1bfa09daad79ab0f3`);
+**SmartRound #2** — `build/nfc-tags-custom.face` (**3 899 737 байт**,
+SHA-256 `8409d92705c8331549b57f0d7a08c2782ccf4316f03268a2fd52e50217fd4a81`);
+**SmartRound #3** — `build/nfc-tags-original.face` (**3 421 329 байт**,
+SHA-256 `2398eba6909e7ce5f3dcdfe6a541a7d4a9b4d7ae4fc4215c099a02f130c7c597`).
 Подробности и темы — в [watchfaces.md](watchfaces.md). Релизные файлы не
 перезаписываются.
 

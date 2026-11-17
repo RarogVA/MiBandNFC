@@ -12,7 +12,7 @@ below documents tag `v0.4.2-alpha.1`; use that tag to reproduce UI3.
 
 # Manual bootstrap from Roundabout
 
-Target: the user's Mi Smart Band 10 Pro Ceramic GL (`miwear.watch.p67glt`), firmware **3.201.026** only. This adds a small Lua child to the **Find Phone** lower-circle clone in the four normal Roundabout themes. Clock, metric resources, other buttons and AOD remain native. The separate candidate is **Roundabout RU NFC 3**, ID `999999991`; released IDs `999999995` and `999999994` are immutable inputs. This fresh ID avoids Notify reusing the already-installed ID `999999992`; the previous NFC 2 files are preserved. Only the face ID and its 33 localized titles change from the UI3 NFC 2 candidate; the Lua, core/UI ELFs, icons and all live/preview resources are identical.
+Target: the user's Mi Smart Band 10 Pro Ceramic GL (`miwear.watch.p67glt`), firmware **3.201.026** only. This adds a small Lua child to every stock variant of the **bottom** lower-circle Slot, plus the Find Phone installer clone, in the four normal Roundabout themes. The top two circles and AOD remain stock. Clock, metric resources, other buttons and AOD remain native. The separate candidate is **Roundabout RU NFC 3**, ID `999999991`; released IDs `999999995` and `999999994` are immutable inputs. This fresh ID avoids Notify reusing the already-installed ID `999999992`; the previous NFC 2 files are preserved. Only the face ID and its 33 localized titles change from the UI3 NFC 2 candidate; the Lua, core/UI ELFs, icons and all live/preview resources are identical.
 
 Evaluating the face performs no shell command and loads no module. The first
 tap on the Find Phone installer circle copies the embedded core/UI/artwork,

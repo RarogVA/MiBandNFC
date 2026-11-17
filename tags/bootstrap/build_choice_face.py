@@ -186,6 +186,24 @@ def build(args):
         require((template_flags >> 4) & 255 == 0x27 and template_flags & 2,
                 "Find Phone template flags changed")
 
+        stock_widgets = []
+        if theme in NORMAL:
+            for index in range(slot_count - 1):
+                old_uid = slot_uids[index]
+                old_off, old_size = old[theme, old_uid][:2]
+                stock = original[old_off:old_off + old_size]
+                children = stock[40]
+                require(old_size == 44 + 12 * children + 8,
+                        "Unexpected stock Widget child layout")
+                clone = bytearray(stock)
+                at = 44 + 12 * children
+                clone[at:at] = struct.pack("<hhII", 0, 0, 0x05000000, 0)
+                clone[40] = children + 1
+                new_uid = next_uid(9)
+                location = append(clone)
+                new_entries.setdefault((theme, 9), []).append((new_uid, 0, *location))
+                stock_widgets.append((new_uid, old_uid))
+
         widget_uid = next_uid(9)
         image_uid = translation_uid = None
         if args.circle_app == "nfc":
@@ -214,6 +232,8 @@ def build(args):
         widget_location = append(widget)
 
         new_slot = bytearray(slot)
+        for index, (new_uid, _) in enumerate(stock_widgets):
+            struct.pack_into("<I", new_slot, 4 + index * 4, new_uid)
         struct.pack_into("<I", new_slot, 4 + (slot_count - 1) * 4, widget_uid)
         new_slot_location = append(new_slot)
         struct.pack_into("<II", output, slot_index_pos + 8, *new_slot_location)
@@ -244,6 +264,7 @@ def build(args):
             "translation_uid": hex(translation_uid) if translation_uid is not None else None,
             "app_id": app_id,
             "lua_child": theme in NORMAL,
+            "stock_widget_clones": len(stock_widgets),
             "stock_options_preserved": slot_count - 1,
         })
 
@@ -284,8 +305,26 @@ def build(args):
         uids = struct.unpack_from("<" + "I" * 44, slot, 4)
         require(uids[-1] == int(report_themes[theme]["widget_uid"], 16),
                 "New Slot does not reference the new Widget")
-        require(list(uids[:43]) == original_slot_uids[theme][:43],
-                "Stock Slot options changed")
+        if theme in NORMAL:
+            for index in range(43):
+                old_uid = original_slot_uids[theme][index]
+                old_off, old_size = old[theme, old_uid][:2]
+                old_widget = original[old_off:old_off + old_size]
+                new_off, new_size = after[theme, uids[index]][:2]
+                new_widget = output[new_off:new_off + new_size]
+                require(new_size == old_size + 12 and
+                        new_widget[40] == old_widget[40] + 1,
+                        "Stock Widget clone layout changed")
+                require(struct.unpack_from("<hhII", new_widget,
+                                           44 + 12 * old_widget[40]) ==
+                        (0, 0, 0x05000000, 0), "Stock Widget Lua child missing")
+                old_flags = struct.unpack_from("<H", old_widget, 42)[0]
+                new_flags = struct.unpack_from("<H", new_widget, 42)[0]
+                require((old_flags >> 4) & 255 == (new_flags >> 4) & 255,
+                        "Stock Widget action changed")
+        else:
+            require(list(uids[:43]) == original_slot_uids[theme][:43],
+                    "Stock Slot options changed")
 
     for theme in range(8):
         widget_uid = int(report_themes[theme]["widget_uid"], 16)

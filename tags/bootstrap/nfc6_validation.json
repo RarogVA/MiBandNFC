@@ -6,8 +6,8 @@
   "firmware_sha256": "66701c11073aebbd1d925cb6e097aa56a3101fc747d9f0fc280cd250dce72a40",
   "baseline_sha256": "b7875710957e54f4feee042ff1bcbc766f2fb49afc8cde19d4e047aa0e3bd3b2",
   "source_zip_sha256": "ef28f70549660bc5f8a126c6e4dbcc53e13511d222863e405eade28b03766738",
-  "output_sha256": "8891757215b18bf77f4fba55fe73ba4312c27f88670575651c63dbd6706b91b2",
-  "bytes": 3404455,
+  "output_sha256": "aa4a5b90d3fb5d8786b77a2b7ec027e9921e9bdca96c6674b4c0b66dab346a05",
+  "bytes": 3421527,
   "changed_empty_variant": true,
   "stock_options_preserved_per_theme": 43,
   "themes": [
@@ -17,11 +17,12 @@
       "slot": "Slot3",
       "slot_uid": "0x8000002",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000132",
+      "widget_uid": "0x900015d",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": true,
+      "stock_widget_clones": 43,
       "stock_options_preserved": 43
     },
     {
@@ -30,11 +31,12 @@
       "slot": "Slot8",
       "slot_uid": "0x8000007",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000133",
+      "widget_uid": "0x900015e",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": false,
+      "stock_widget_clones": 0,
       "stock_options_preserved": 43
     },
     {
@@ -43,11 +45,12 @@
       "slot": "Slot13",
       "slot_uid": "0x800000c",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000134",
+      "widget_uid": "0x900018a",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": true,
+      "stock_widget_clones": 43,
       "stock_options_preserved": 43
     },
     {
@@ -56,11 +59,12 @@
       "slot": "Slot18",
       "slot_uid": "0x8000011",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000135",
+      "widget_uid": "0x90001b6",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": true,
+      "stock_widget_clones": 43,
       "stock_options_preserved": 43
     },
     {
@@ -69,11 +73,12 @@
       "slot": "Slot23",
       "slot_uid": "0x8000016",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000136",
+      "widget_uid": "0x90001e2",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": true,
+      "stock_widget_clones": 43,
       "stock_options_preserved": 43
     },
     {
@@ -82,11 +87,12 @@
       "slot": "Slot28",
       "slot_uid": "0x800001b",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000137",
+      "widget_uid": "0x90001e3",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": false,
+      "stock_widget_clones": 0,
       "stock_options_preserved": 43
     },
     {
@@ -95,11 +101,12 @@
       "slot": "Slot33",
       "slot_uid": "0x8000020",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000138",
+      "widget_uid": "0x90001e4",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": false,
+      "stock_widget_clones": 0,
       "stock_options_preserved": 43
     },
     {
@@ -108,16 +115,17 @@
       "slot": "Slot38",
       "slot_uid": "0x8000025",
       "replaced_empty_uid": "0x9000039",
-      "widget_uid": "0x9000139",
+      "widget_uid": "0x90001e5",
       "image_uid": null,
       "translation_uid": null,
       "app_id": 39,
       "lua_child": false,
+      "stock_widget_clones": 0,
       "stock_options_preserved": 43
     }
   ],
   "unchanged_original_resource_entries": 2440,
-  "changed_original_prefix_bytes": 133,
+  "changed_original_prefix_bytes": 130,
   "hardware_tested": false,
   "selection": "Installer: lower circle is a Find Phone clone with the bootstrap overlay; after setup it launches stock Find Phone",
   "limits": [

@@ -6,8 +6,9 @@
 ниже отдельно указано, что подтверждено статически, что проверено на
 устройстве ранее и что ещё нужно проверить.
 
-Готовые циферблаты: **NFC-метки — Классика** (основные темы) и
-**NFC-метки — Авторские** (авторские темы); см. [two-faces.md](two-faces.md).
+Готовые циферблаты: **NFC-метки — Классика** (основные темы),
+**NFC-метки — Авторские** (авторские темы) и **NFC-метки — Оригинал**
+(исходные темы); см. [watchfaces.md](watchfaces.md).
 
 ## Что изменилось
 
@@ -220,8 +221,9 @@ miIO, токены остаются на Pixel в `Android/data/dev.mbapdu.tags/
 Порядок безопасный: новая FACE-копия, старая остаётся установленной.
 
 1. Установить **NFC-метки — Классика** (`build/nfc-tags-classic.face`,
-   ID `999999978`) и/или **NFC-метки — Авторские**
-   (`build/nfc-tags-custom.face`, ID `999999977`). Нижний круг можно оставить
+   ID `999999978`), **NFC-метки — Авторские** (`build/nfc-tags-custom.face`,
+   ID `999999977`) и/или **NFC-метки — Оригинал**
+   (`build/nfc-tags-original.face`, ID `999999975`). Нижний круг можно оставить
    любой из 43 штатных вариантов — installer-слой есть у всех.
 2. Нажать нижний круг **один раз**. Ожидаемо: загрузка, `READY`, затем
    перезагрузка браслета. Если перезагрузки нет — записать экранный код
@@ -269,6 +271,13 @@ build/shortcut-research-venv/bin/python tags/roundabout/combined_face.py \
   --output build/nfc-tags-custom.face \
   --report tags/roundabout/custom_validation.json \
   --preview tags/roundabout/custom-preview.png
+build/shortcut-research-venv/bin/python tags/bootstrap/build_choice_face.py \
+  --circle-app findPhone --face-id 999999975 \
+  --face-name "NFC-метки — Оригинал" \
+  --core tags/catalog/build/catalog_core_v1.elf \
+  --ui tags/launcher/build/nfc_tags_catalog_ui_v4.elf \
+  --output build/nfc-tags-original.face \
+  --report tags/roundabout/original_validation.json
 (cd tags/bootstrap && ../../build/shortcut-research-venv/bin/python test.py)
 python3 tags/android/build.py
 ```
@@ -276,8 +285,10 @@ python3 tags/android/build.py
 Результаты: `build/nfc-tags-classic.face` (**3 916 939 байт**, SHA-256
 `ee8ea72a26fa825d44a5c5118c7d44c2a7317b9c8696aec6346b5eb2014de4d8`) и
 `build/nfc-tags-custom.face` (**3 901 321 байт**, SHA-256
-`5f48b56276cf2aac5989faf3cc8e0e45f368e37e70181a68520a6a777307fb4e`).
-Подробности и темы — в [two-faces.md](two-faces.md). Релизные файлы не
+`5f48b56276cf2aac5989faf3cc8e0e45f368e37e70181a68520a6a777307fb4e`);
+**Оригинал** — `build/nfc-tags-original.face` (**3 422 055 байт**, SHA-256
+`6d5cd1adaf048e66e03d2706b38fdd8b6b83f15adef7a4d86f4137c58c7fd1b8`).
+Подробности и темы — в [watchfaces.md](watchfaces.md). Релизные файлы не
 перезаписываются.
 
 ## Ограничения

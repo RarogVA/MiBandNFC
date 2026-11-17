@@ -22,8 +22,8 @@ technology, support flag, and bridge state from `/tmp/tag_catalog_state`.
 acknowledgement. NFC remains controlled by Pixel and the verified core's session
 deadline. Leaving this page does **not** stop NFC. Swipe right uses the normal
 system back handler. The watchface's direct-ID route (NFC 5) does not depend on the launcher
-entry; both paths address the same registered app. The two installer faces
-(**NFC-метки — Классика** and **NFC-метки — Авторские**) use the selected
+entry; both paths address the same registered app. The three installer faces
+(**NFC-метки — Классика**, **NFC-метки — Авторские**, **NFC-метки — Оригинал**) use the selected
 stock app after setup and leave app launches to the menu.
 
 ## Build and check
